@@ -9,7 +9,6 @@
 #include <queue>
 #include <limits>
 #include <algorithm>
-#include "../data_structures/MutablePriorityQueue.h" // not needed for now
 
 template <class T>
 class Edge;

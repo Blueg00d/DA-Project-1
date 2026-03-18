@@ -2,10 +2,6 @@
 #include <string>
 using namespace std;
 
-Reviewer() {
-    //necessário?
-}
-
 //contructor
 Reviewer::Reviewer(int id, string name, string email, int primary, int secondary) {
     this->id = id;

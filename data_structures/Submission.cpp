@@ -2,10 +2,6 @@
 #include <string>
 using namespace std;
 
-Submission() {
-    //necessário?
-}
-
 //constructor
 Submission::Submission(int id, string title, string author, string email, int primary, int secondary) {
     this->id = id;
