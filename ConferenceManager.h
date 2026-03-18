@@ -5,17 +5,21 @@
 #include "Graph.h"
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
 using namespace std;
 
 class ConferenceManager {
     private:
     //Private Attributes
-    unordered_map<int, Reviewer> reviewers;
-    unordered_map<int, Submission> submissions;
+    vector<Reviewer> reviewers;
+    vector<Submission> submissions;
     int minReviewsPerSubmission;
     int maxReviewsPerReviewer; // Acho que fica melhor assim, sara vê pls
     int generateAssignment;
     int riskAnalysis;
+
+    unordered_map<int, Reviewer> nodesToReviewers;
+    unordered_map<int, Submission> nodesToSubmissions;
 
     Graph<int> graph;
 
@@ -23,13 +27,13 @@ class ConferenceManager {
     void createNodes();
     void connectSourceSinkToNodes();
     void connectNodes();
-    
+
 
     public:
     // Constructor
     ConferenceManager(
-        unordered_map<int, Reviewer> reviewers,
-        unordered_map<int, Submission> submissions,
+        vector<Reviewer> reviewers,
+        vector<Submission> submissions,
         int minReviewsPerSubmission,
         int maxReviewsPerReviewer,
         int generateAssignement,
