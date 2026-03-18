@@ -1,7 +1,7 @@
 #ifndef DA_PROJECT_1_CONFERENCEMANAGER_H
 #define DA_PROJECT_1_CONFERENCEMANAGER_H
-#include "Reviewers.h"
-#include "Submissions.h"
+#include "Reviewer.h"
+#include "Submission.h"
 #include <string>
 #include <unordered_map>
 using namespace std;
