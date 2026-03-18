@@ -21,49 +21,30 @@ template <class T>
 class Vertex {
 public:
     Vertex(T in);
-    bool operator<(Vertex<T> & vertex) const; // // required by MutablePriorityQueue
 
     T getInfo() const;
     std::vector<Edge<T> *> getAdj() const;
     bool isVisited() const;
-    bool isProcessing() const;
-    unsigned int getIndegree() const;
-    double getDist() const;
     Edge<T> *getPath() const;
     std::vector<Edge<T> *> getIncoming() const;
 
     void setInfo(T info);
     void setVisited(bool visited);
-    void setProcessing(bool processing);
 
-    int getLow() const;
-    void setLow(int value);
-    int getNum() const;
-    void setNum(int value);
-
-    void setIndegree(unsigned int indegree);
-    void setDist(double dist);
     void setPath(Edge<T> *path);
     Edge<T> * addEdge(Vertex<T> *dest, double w);
     bool removeEdge(T in);
     void removeOutgoingEdges();
 
-    friend class MutablePriorityQueue<Vertex>;
 protected:
     T info;                // info node
     std::vector<Edge<T> *> adj;  // outgoing edges
 
     // auxiliary fields
     bool visited = false; // used by DFS, BFS, Prim ...
-    bool processing = false; // used by isDAG (in addition to the visited attribute)
-    int low = -1, num = -1; // used by SCC Tarjan
-    unsigned int indegree; // used by topsort
-    double dist = 0;
     Edge<T> *path = nullptr;
 
     std::vector<Edge<T> *> incoming; // incoming edges
-
-    int queueIndex = 0; 		// required by MutablePriorityQueue and UFDS
 
     void deleteEdge(Edge<T> *edge);
 };
@@ -77,20 +58,14 @@ public:
 
     Vertex<T> * getDest() const;
     double getWeight() const;
-    bool isSelected() const;
     Vertex<T> * getOrig() const;
     Edge<T> *getReverse() const;
     double getFlow() const;
 
-    void setSelected(bool selected);
-    void setReverse(Edge<T> *reverse);
     void setFlow(double flow);
 protected:
     Vertex<T> * dest; // destination vertex
     double weight; // edge weight, can also be used for capacity
-
-    // auxiliary fields
-    bool selected = false;
 
     // used for bidirectional edges
     Vertex<T> *orig;
@@ -131,18 +106,11 @@ public:
 protected:
     std::vector<Vertex<T> *> vertexSet;    // vertex set
 
-    double ** distMatrix = nullptr;   // dist matrix for Floyd-Warshall
-    int **pathMatrix = nullptr;   // path matrix for Floyd-Warshall
-
     /*
      * Finds the index of the vertex with a given content.
      */
     int findVertexIdx(const T &in) const;
 };
-
-void deleteMatrix(int **m, int n);
-void deleteMatrix(double **m, int n);
-
 
 /************************* Vertex  **************************/
 
@@ -198,33 +166,8 @@ void Vertex<T>::removeOutgoingEdges() {
 }
 
 template <class T>
-bool Vertex<T>::operator<(Vertex<T> & vertex) const {
-    return this->dist < vertex.dist;
-}
-
-template <class T>
 T Vertex<T>::getInfo() const {
     return this->info;
-}
-
-template <class T>
-int Vertex<T>::getLow() const {
-    return this->low;
-}
-
-template <class T>
-void Vertex<T>::setLow(int value) {
-    this->low = value;
-}
-
-template <class T>
-int Vertex<T>::getNum() const {
-    return this->num;
-}
-
-template <class T>
-void Vertex<T>::setNum(int value) {
-    this->num = value;
 }
 
 template <class T>
@@ -235,21 +178,6 @@ std::vector<Edge<T>*> Vertex<T>::getAdj() const {
 template <class T>
 bool Vertex<T>::isVisited() const {
     return this->visited;
-}
-
-template <class T>
-bool Vertex<T>::isProcessing() const {
-    return this->processing;
-}
-
-template <class T>
-unsigned int Vertex<T>::getIndegree() const {
-    return this->indegree;
-}
-
-template <class T>
-double Vertex<T>::getDist() const {
-    return this->dist;
 }
 
 template <class T>
@@ -270,21 +198,6 @@ void Vertex<T>::setInfo(T in) {
 template <class T>
 void Vertex<T>::setVisited(bool visited) {
     this->visited = visited;
-}
-
-template <class T>
-void Vertex<T>::setProcessing(bool processing) {
-    this->processing = processing;
-}
-
-template <class T>
-void Vertex<T>::setIndegree(unsigned int indegree) {
-    this->indegree = indegree;
-}
-
-template <class T>
-void Vertex<T>::setDist(double dist) {
-    this->dist = dist;
 }
 
 template <class T>
@@ -334,23 +247,8 @@ Edge<T> *Edge<T>::getReverse() const {
 }
 
 template <class T>
-bool Edge<T>::isSelected() const {
-    return this->selected;
-}
-
-template <class T>
 double Edge<T>::getFlow() const {
     return flow;
-}
-
-template <class T>
-void Edge<T>::setSelected(bool selected) {
-    this->selected = selected;
-}
-
-template <class T>
-void Edge<T>::setReverse(Edge<T> *reverse) {
-    this->reverse = reverse;
 }
 
 template <class T>
