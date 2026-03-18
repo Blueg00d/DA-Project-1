@@ -1,0 +1,7 @@
+.idea/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+*.o
+*.out
+*.log
