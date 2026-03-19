@@ -11,4 +11,5 @@ add_executable(MyProject
         data_structures/Parser.cpp
         data_structures/ConferenceManager.cpp
         data_structures/Reviewer.cpp
-        data_structures/Submission.cpp)
+        data_structures/Submission.cpp
+)
