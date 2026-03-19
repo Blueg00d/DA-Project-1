@@ -1,6 +1,7 @@
 #ifndef PARSER_H
 #define PARSER_H
 #include <string>
+#include <vector>
 #include "Parameters.h"
 #include "Reviewer.h"
 #include "Submission.h"

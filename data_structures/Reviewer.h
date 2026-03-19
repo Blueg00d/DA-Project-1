@@ -12,7 +12,7 @@ class Reviewer {
         int secondary;
 
     public:
-        Reviewer();
+        Reviewer() = default;
         Reviewer(int id, string name, string email, int primary, int secondary);
 
         int getId() const;

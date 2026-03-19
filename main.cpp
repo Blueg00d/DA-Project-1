@@ -12,7 +12,8 @@ void handleChoice(int choice, ConferenceManager& manager) {
             cin >> filename;
             
             Parser parser;
-            parser.parseFile("Project1SampleDatasets/input/" + filename);
+            cout << "Project1SampleDatasets/input/" + filename << endl;
+            parser.parseFile(filename);
             
             if (choice == 1) parser.testParser();  
             else manager = ConferenceManager(parser.getReviewers(), parser.getSubmissions(), parser.getParams());

@@ -13,7 +13,7 @@ class Submission {
         int secondary;
     public:
 
-    Submission();
+    Submission() = default;
     Submission(int id, string title, string author, string email, int primary, int secondary);
 
     int getId() const;

@@ -79,7 +79,7 @@ protected:
 template <class T>
 class Graph {
 public:
-    ~Graph();
+    ~Graph() = default;
     /*
     * Auxiliary function to find a vertex with a given the content.
     */
@@ -381,12 +381,6 @@ inline void deleteMatrix(double **m, int n) {
                 delete [] m[i];
         delete [] m;
     }
-}
-
-template <class T>
-Graph<T>::~Graph() {
-    deleteMatrix(distMatrix, vertexSet.size());
-    deleteMatrix(pathMatrix, vertexSet.size());
 }
 
 #endif /* DA_TP_CLASSES_GRAPH */

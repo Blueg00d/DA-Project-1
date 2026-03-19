@@ -16,8 +16,8 @@ class ConferenceManager {
     vector<Submission> submissions;
     Parameters params;
 
-    unordered_map<int, Reviewer> nodesToReviewers;
-    unordered_map<int, Submission> nodesToSubmissions;
+    unordered_map<int, Reviewer*> nodesToReviewers;
+    unordered_map<int, Submission*> nodesToSubmissions;
 
     Graph<int> graph;
 
@@ -34,11 +34,12 @@ class ConferenceManager {
         vector<Submission> submissions,
         Parameters params
     );
-    ConferenceManager();
+    ConferenceManager() = default;
+    ~ConferenceManager() = default;
 
     bool loadFromCSV(string filename);
     void buildGraph();
-    void debugGraph();
+    void debugGraph() const;
     void runAssignment();
 };
 

@@ -2,6 +2,7 @@
 #include "Utils.h"
 #include <fstream>
 #include <iostream>
+#include <filesystem> // Required for modern file system operations
 using namespace std;
 enum Section {
     NONE,
@@ -12,6 +13,8 @@ enum Section {
 };
 
 bool Parser::parseFile(const string filename) {
+    std::filesystem::path current_dir = std::filesystem::current_path();
+    cout << current_dir << endl;
     ifstream file(filename);
     if (!file.is_open()) {
         cerr << "Error opening file\n";
@@ -50,13 +53,22 @@ bool Parser::parseFile(const string filename) {
         if (currentSection == SUBMISSIONS) {
             Submission s;
 
-
+            cout << fields[0] << endl;
             s.setId(stoi(fields[0]));
+
+            cout << fields[1] << endl;
             s.setTitle(fields[1]);
+
+            cout << fields[2] << endl;
             s.setAuthor(fields[2]);
+
+            cout << fields[3] << endl;
             s.setEmail(fields[3]);
+
+            cout << fields[4] << endl;
             s.setPrimary(stoi(fields[4]));
-                if (fields.size() > 5 && !fields[5].empty()) {
+                if (fields.size() > 5 && fields[5] == " ") {
+                    cout << '|' << fields[5] << '|' << endl << endl;
                     s.setSecondary(std::stoi(fields[5]));
                 }
                 else {
