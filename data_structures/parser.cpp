@@ -86,23 +86,22 @@ bool parser::parseFile(const string filename) {
         // PARAMETERS
         else if (currentSection == PARAMETERS) {
             if (fields[0] == "MinReviewsPerSubmission")
-                //params.minReviewsPerSubmission = std::stoi(fields[1]);
+                params.setminReviewsPerSubmission(stoi(fields[1]));
 
             if (fields[0] == "MaxReviewsPerReviewer")
-                //params.maxReviewsPerReviewer = std::stoi(fields[1]);
+                params.setmaxReviewsPerReviewer(stoi(fields[1]));
         }
 
         // CONTROL
         else if (currentSection == CONTROL) {
             if (fields[0] == "GenerateAssignments")
-                //params.generateAssignments = std::stoi(fields[1]);
+                params.setgenerateAssignments(stoi(fields[1]));
 
             if (fields[0] == "RiskAnalysis")
-                //params.riskAnalysis = std::stoi(fields[1]);
+                params.setriskAnalysis(stoi(fields[1]));
 
             if (fields[0] == "OutputFileName")
-                //params.outputFileName = fields[1]
-                ;
+                params.setoutputFileName(fields[1]);
         }
     }
 
