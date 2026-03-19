@@ -58,7 +58,7 @@ bool Parser::parseFile(const string filename) {
             s.setAuthor(fields[2]);
             s.setEmail(fields[3]);
             s.setPrimary(stoi(fields[4]));
-                if (fields.size() > 5 && fields[5] == " ") {
+                if (fields.size() > 5 && !fields[5].empty()) {
                     s.setSecondary(std::stoi(fields[5]));
                 }
                 else {
