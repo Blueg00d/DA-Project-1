@@ -91,3 +91,25 @@ void ConferenceManager::buildGraph() {
     connectSourceSinkToNodes();
     connectNodes();
 }
+
+void ConferenceManager::buildGraph() {
+
+    // Print Source to Reviewers Edges
+    for (Edge<int>* e: this->graph.findVertex(0)->getAdj()) {
+        cout << e->getOrig() << "--- " << e->getWeight() << " ---" << e->getDest() << endl;
+    }
+    cout << endl;
+
+    // Print Reviwers to Submissions Edges
+    for (pair<int, Reviewer> reviewer: this->nodesToReviewers) {
+        for (Edge<int>* e: this->graph.findVertex(reviewer.first)->getAdj()) {
+            cout << e->getOrig() << "--- " << e->getWeight() << " ---" << e->getDest() << endl;
+        }
+    }
+    cout << endl;
+
+    // Print Submissions to Sink Edges
+    for (Edge<int>* e: this->graph.findVertex(1)->getIncoming()) {
+        cout << e->getOrig() << "--- " << e->getWeight() << " ---" << e->getDest() << endl;
+    }
+}

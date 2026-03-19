@@ -42,6 +42,7 @@ class ConferenceManager {
 
     bool loadFromCSV(string filename);
     void buildGraph();
+    void debugGraph();
     void runAssignment();
 };
 
