@@ -90,20 +90,20 @@ void ConferenceManager::debugGraph() const{
 
     // Print Source to Reviewers Edges
     for (Edge<int>* e: this->graph.findVertex(0)->getAdj()) {
-        cout << e->getOrig() << "--- " << e->getWeight() << " ---" << e->getDest() << endl;
+        cout << "Source--- " << e->getWeight() << " ---" << this->nodesToReviewers.at(e->getDest()->getInfo())->getId() << endl;
     }
     cout << endl;
 
     // Print Reviwers to Submissions Edges
     for (pair<int, Reviewer*> reviewer: this->nodesToReviewers) {
         for (Edge<int>* e: this->graph.findVertex(reviewer.first)->getAdj()) {
-            cout << e->getOrig() << "--- " << e->getWeight() << " ---" << e->getDest() << endl;
+            cout << this->nodesToReviewers.at(e->getOrig()->getInfo())->getId() << "--- " << e->getWeight() << " ---" << this->nodesToSubmissions.at(e->getDest()->getInfo())->getId() << endl;
         }
     }
     cout << endl;
 
     // Print Submissions to Sink Edges
     for (Edge<int>* e: this->graph.findVertex(1)->getIncoming()) {
-        cout << e->getOrig() << "--- " << e->getWeight() << " ---" << e->getDest() << endl;
+        cout << this->nodesToSubmissions.at(e->getOrig()->getInfo())->getId() << "--- " << e->getWeight() << " ---Sink" << endl;
     }
 }

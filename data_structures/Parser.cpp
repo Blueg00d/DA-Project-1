@@ -13,8 +13,6 @@ enum Section {
 };
 
 bool Parser::parseFile(const string filename) {
-    std::filesystem::path current_dir = std::filesystem::current_path();
-    cout << current_dir << endl;
     ifstream file(filename);
     if (!file.is_open()) {
         cerr << "Error opening file\n";
