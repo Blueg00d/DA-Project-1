@@ -12,5 +12,6 @@ public:
     int generateAssignments;
     int riskAnalysis;
     string outputFileName;
+
 };
 #endif //PARAMETERS_H
