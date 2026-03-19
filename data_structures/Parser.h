@@ -15,6 +15,7 @@ class Parser {
     vector<Submission> getSubmissions() {return this->submissions;}
     vector<Reviewer> getReviewers() {return this->reviewers;}
     Parameters getParams() {return this->params;}
+    void testParser();
 };
 
 #endif //PARSER_H

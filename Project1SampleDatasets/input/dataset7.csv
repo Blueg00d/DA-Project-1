@@ -1,0 +1,31 @@
+#Submissions
+#Id, Title, Authors,E-mail,Primary,Secondary
+1, "Quantum Networks for AI", Alice Brown, alice.brown@gmail.com, 1, 2
+2, "Secure Distributed Ledgers", John Smith, john.smith@gmail.com, 2, 3
+3, "Neural Rendering Pipelines", Maria Costa, maria.costa@gmail.com, 3, 4
+4, "Adaptive Compiler Optimizations", Rui Fernandes, rfernandes@gmail.com, 2, 1
+5, "Autonomous Vehicle Planning", Carla Gomes, carla.gomes@gmail.com, 4, 3
+6, "Efficient Graph Algorithms", Pedro Santos, pedro.santos@gmail.com, 5, 1
+7, "Blockchain Consensus Protocols", David Silva, david.silva@gmail.com, 5, 4
+8, "AI-Assisted Code Generation", Marta Nunes, marta.nunes@gmail.com, 3, 
+9, "GPU Memory Optimization", Ricardo Melo, ricardo.melo@gmail.com, 4, 2
+#
+#Reviewers
+#Id, Name, E-mail,Primary,Secondary
+1, Jaqueline N. Chame, jchame@yahoo.com, 1, 
+2, Daniel Carter, dcarter@gmail.com, 2, 3
+3, Laura Chen, laura.chen@gmail.com, 3, 
+4, Victor Mendes, vmendes@gmail.com, 4, 1
+5, Sandra Oliveira, sandra.oliveira@gmail.com, 5, 3
+6, Kevin Patel, kpatel@gmail.com, 2, 
+#Parameters
+MinReviewsPerSubmission, 2
+MaxReviewsPerReviewer, 2
+PrimaryReviewerExpertise, 1
+SecondaryReviewerExpertise, 0
+PrimarySubmissionDomain, 1
+SecondarySubmissionDomain, 0
+#Control
+GenerateAssignments, 1
+RiskAnalysis, 0
+OutputFileName, "output_dataset7.csv"

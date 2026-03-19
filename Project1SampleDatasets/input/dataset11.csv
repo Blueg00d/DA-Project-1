@@ -1,0 +1,26 @@
+# Scenario: Secondary submission domain only - all satisfied with margin
+#Submissions
+#Id, Title, Authors, E-mail, Primary, Secondary
+1, "AI Planning Systems", Alice Brown, alice.brown@gmail.com, 1, 2
+2, "Secure Databases", Bob Smith, bob.smith@gmail.com, 3, 2
+3, "GPU Scheduling", Carla Costa, carla.costa@gmail.com, 4, 2
+#
+#Reviewers
+#Id, Name, E-mail, Primary, Secondary
+1, Jaqueline N. Chame, jchame@yahoo.com, 2,
+2, Mary W. Hall, mhall@hotmail.edu, 2,
+3, Daniel Carter, dcarter@gmail.com, 2,
+4, Laura Chen, laura.chen@gmail.com, 2,
+5, Victor Mendes, vmendes@gmail.com, 2,
+6, Sandra Oliveira, sandra.oliveira@gmail.com, 2,
+#Parameters
+MinReviewsPerSubmission, 2
+MaxReviewsPerReviewer, 2
+PrimaryReviewerExpertise, 1
+SecondaryReviewerExpertise, 0
+PrimarySubmissionDomain, 1
+SecondarySubmissionDomain, 1
+#Control
+GenerateAssignments, 2
+RiskAnalysis, 1
+OutputFileName, "output_dataset11.csv"

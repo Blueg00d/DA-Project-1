@@ -1,0 +1,27 @@
+#Submissions
+#Id, Title, Authors,E-mail,Primary,Secondary
+1, "AI Planning Systems", Alice Brown, alice.brown@gmail.com, 1,
+2, "Compiler Optimizations", Rui Fernandes, rfernandes@gmail.com, 4,
+3, "GPU Scheduling", Maria Costa, maria.costa@gmail.com, 3,
+4, "Secure Databases", John Smith, john.smith@gmail.com, 2,
+#
+#Reviewers
+#Id, Name, E-mail,Primary,Secondary
+1, Jaqueline N. Chame, jchame@yahoo.com, 1,
+2, Mary W. Hall, mhall@hotmail.edu, 2,
+3, Daniel Carter, dcarter@gmail.com, 3,
+4, Laura Chen, laura.chen@gmail.com, 4,
+5, Victor Mendes, vmendes@gmail.com, 1,
+6, Sandra Oliveira, sandra.oliveira@gmail.com, 2,
+7, Robert Green, rgreen@gmail.com, 3,
+#Parameters
+MinReviewsPerSubmission, 2
+MaxReviewsPerReviewer, 3
+PrimaryReviewerExpertise, 1
+SecondaryReviewerExpertise, 0
+PrimarySubmissionDomain, 1
+SecondarySubmissionDomain, 0
+#Control
+GenerateAssignments, 1
+RiskAnalysis, 0
+OutputFileName, "output_dataset6.csv"

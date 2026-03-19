@@ -1,0 +1,25 @@
+#Submissions
+#Id, Title, Authors,E-mail,Primary,Secondary
+1, "Autonomous Driving Systems", Carla Gomes, carla.gomes@gmail.com, 1,
+2, "Distributed Ledger Platforms", Pedro Santos, pedro.santos@gmail.com, 2,
+3, "High Performance GPU Pipelines", Ana Pereira, ana.pereira@gmail.com, 3,
+#
+#Reviewers
+#Id, Name, E-mail,Primary,Secondary
+1, Tomas Novak, tnovak@gmail.com, 1,
+2, Andrew Scott, ascott@gmail.com, 2,
+3, Olivia White, owhite@gmail.com, 1,
+4, Juliana Ribeiro, jribeiro@gmail.com, 3,
+5, Elena Petrova, epetrova@gmail.com, 2,
+6, Kevin Patel, kpatel@gmail.com, 3,
+#Parameters
+MinReviewsPerSubmission, 2
+MaxReviewsPerReviewer, 1
+PrimaryReviewerExpertise, 1
+SecondaryReviewerExpertise, 0
+PrimarySubmissionDomain, 1
+SecondarySubmissionDomain, 0
+#Control
+GenerateAssignments, 1
+RiskAnalysis, 1
+OutputFileName, "output_dataset5.csv"

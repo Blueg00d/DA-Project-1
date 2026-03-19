@@ -107,3 +107,29 @@ bool Parser::parseFile(const string filename) {
 
     return true;
 }
+
+void Parser::testParser() {
+    for (const Submission& s: this->submissions) {
+        cout << "ID: " << s.getId() <<
+        "; Title: " << s.getTitle() <<
+        "; Authors: " << s.getAuthor() <<
+        "; Email: " << s.getEmail() <<
+        "; Primary: " << s.getPrimary() <<
+        "; Secondary: " << s.getSecondary() << endl; 
+    }
+
+    for (const Reviewer& r: this->reviewers) {
+        cout << "ID: " << r.getId() <<
+        "; Name: " << r.getName() <<
+        "; Email: " << r.getEmail() <<
+        "; Primary: " << r.getPrimary() <<
+        "; Secondary: " << r.getSecondary() << endl;
+    }
+
+    cout << endl;
+    cout << "MinReviewsPerSubmission: " << this->params.getMinReviewsPerSubmission() << endl;
+    cout << "MaxReviewsPerReviewer: " << this->params.getMaxReviewsPerReviewer() << endl;
+    cout << "GenerateAssignments: " << this->params.getGenerateAssigLevel() << endl;
+    cout << "RiskAnalysis: " << this->params.getRiskAnalLevel() << endl;
+    cout << "OutputFilename: " << this->params.getOutputFilename() << endl;
+}

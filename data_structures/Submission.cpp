@@ -13,12 +13,12 @@ Submission::Submission(int id, string title, string author, string email, int pr
 }
 
 //getters
-int Submission::getId() { return id; }
-string Submission::getTitle() { return title; }
-string Submission::getAuthor() { return author; }
-string Submission::getEmail() { return email; }
-int Submission::getPrimary() { return primary; }
-int Submission::getSecondary() { return secondary; }
+int Submission::getId() const { return id; }
+string Submission::getTitle() const { return title; }
+string Submission::getAuthor() const { return author; }
+string Submission::getEmail() const { return email; }
+int Submission::getPrimary() const { return primary; }
+int Submission::getSecondary() const { return secondary; }
 
 //setters
 void Submission::setId(int id) { this->id = id; }

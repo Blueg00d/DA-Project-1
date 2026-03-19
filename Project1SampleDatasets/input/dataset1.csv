@@ -1,0 +1,20 @@
+#Submissions
+#Id, Title, Authors,E-mail,Primary,Secondary
+31, "The Eternal Wheel of Reincarnation", Ralph Kholer, kholer@gmail.com, 3, 4
+87, "GoDiva: A PIM Architecture", Jeff Draper, draper@usc.edu, 1,
+#
+#Reviewers
+#Id, Name, E-mail,Primary,Secondary
+1, Jaqueline N. Chame, jchame@yahoo.com, 1, 
+2, Mary W. Hall, mhall@hotmail.edu, 1, 4
+#Parameters
+MinReviewsPerSubmission, 5
+MaxReviewsPerReviewer, 4
+PrimaryReviewerExpertise, 1
+SecondaryReviewerExpertise, 0
+PrimarySubmissionDomain, 1
+SecondarySubmissionDomain, 1
+#Control
+GenerateAssignments, 1
+RiskAnalysis, 0
+OutputFileName, "output_dataset1.csv"

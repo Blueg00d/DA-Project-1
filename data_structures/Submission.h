@@ -16,12 +16,12 @@ class Submission {
     Submission();
     Submission(int id, string title, string author, string email, int primary, int secondary);
 
-    int getId();
-    string getTitle();
-    string getAuthor();
-    string getEmail();
-    int getPrimary();
-    int getSecondary();
+    int getId() const;
+    string getTitle() const;
+    string getAuthor() const;
+    string getEmail() const;
+    int getPrimary() const;
+    int getSecondary() const;
 
     void setId(int id);
     void setTitle(string title);

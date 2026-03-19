@@ -12,11 +12,11 @@ Reviewer::Reviewer(int id, string name, string email, int primary, int secondary
 }
 
 //getters
-int Reviewer::getId() { return id; }
-string Reviewer::getName() { return name; }
-string Reviewer::getEmail() { return email; }
-int Reviewer::getPrimary() { return primary; }
-int Reviewer::getSecondary() { return secondary; }
+int Reviewer::getId() const { return id; }
+string Reviewer::getName() const { return name; }
+string Reviewer::getEmail() const { return email; }
+int Reviewer::getPrimary() const { return primary; }
+int Reviewer::getSecondary() const { return secondary; }
 
 //setters
 void Reviewer::setId(int id) { this->id = id; }

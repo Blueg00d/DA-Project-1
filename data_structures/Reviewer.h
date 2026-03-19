@@ -15,11 +15,11 @@ class Reviewer {
         Reviewer();
         Reviewer(int id, string name, string email, int primary, int secondary);
 
-        int getId();
-        string getName();
-        string getEmail();
-        int getPrimary();
-        int getSecondary();
+        int getId() const;
+        string getName() const;
+        string getEmail() const;
+        int getPrimary() const;
+        int getSecondary() const;
 
         void setId(int id);
         void setName(string name);

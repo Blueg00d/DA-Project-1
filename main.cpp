@@ -3,14 +3,21 @@
 #include "data_structures/Parser.h"
 using namespace std;
 
-void handleChoice(int choice) {
+void handleChoice(int choice, ConferenceManager& manager) {
     switch (choice) {
-        case 1: {
+        case 1: case 2:
             // input file
             string filename;
-            cout << "insert the name of your file: ";
-            cin >> filename;            
-        }
+            cout << "Insert the name of your file: ";
+            cin >> filename;
+            
+            Parser parser;
+            parser.parseFile("Project1SampleDatasets/input/" + filename);
+            
+            if (choice == 1) parser.testParser();  
+            else manager = ConferenceManager(parser.getReviewers(), parser.getSubmissions(), parser.getParams());
+            break;
+        
     }
 }
 
@@ -20,7 +27,8 @@ int main() {
 
     while (true) {
         cout << "☆ Choose which path to follow (this action will have consequences):" << endl;
-        cout << "1: Read File" << endl;
+        cout << "1: Test Parser" << endl;
+        cout << "2: Read File" << endl;
         cout << "2: " << endl;
         cout << "etc" << endl;
         cout << "0: sair :p" << endl;
@@ -31,7 +39,7 @@ int main() {
             cout << "leaving ! :p" << endl;
             break;
         }
-        handleChoice(choice);
+        handleChoice(choice, manager);
     }
     return 0;
 }

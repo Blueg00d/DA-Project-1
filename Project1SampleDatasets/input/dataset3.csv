@@ -1,0 +1,28 @@
+#Submissions
+#Id, Title, Authors,E-mail,Primary,Secondary
+1, "AI Planning Systems", Alice Brown, alice@gmail.com, 1, 2
+2, "Secure Databases", Bob Smith, bob@gmail.com, 2, 3
+3, "GPU Scheduling", Carla Costa, carla@gmail.com, 3, 4
+#
+#Reviewers
+#Id, Name, E-mail,Primary,Secondary
+1, John Miller, jm@gmail.com, 1, 2
+2, Sarah White, sw@gmail.com, 2, 3
+3, Pedro Lopes, pl@gmail.com, 3, 4
+4, Rui Gomes, rg@gmail.com, 3, 1
+5, Ana Torres, at@gmail.com, 1, 3
+6, Luis Costa, lc@gmail.com, 2, 4
+7, John Miller, jm@gmail.com, 1, 2
+8, Sarah White, sw@gmail.com, 2, 3
+9, Pedro Lopes, pl@gmail.com, 3, 1
+#Parameters
+MinReviewsPerSubmission, 2
+MaxReviewsPerReviewer, 3
+PrimaryReviewerExpertise, 1
+SecondaryReviewerExpertise, 0
+PrimarySubmissionDomain, 1
+SecondarySubmissionDomain, 0
+#Control
+GenerateAssignments, 1
+RiskAnalysis, 1
+OutputFileName, "output_dataset3.csv"

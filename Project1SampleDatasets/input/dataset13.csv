@@ -1,0 +1,25 @@
+# Scenario: Secondary submission domain only - undercovered submissions
+#Submissions
+#Id, Title, Authors, E-mail, Primary, Secondary
+1, "AI Planning Systems", Alice Brown, alice.brown@gmail.com, 1, 2
+2, "Secure Databases", Bob Smith, bob.smith@gmail.com, 3, 2
+3, "GPU Scheduling", Carla Costa, carla.costa@gmail.com, 4, 3
+4, "Compiler Optimizations", Rui Fernandes, rfernandes@gmail.com, 5, 3
+#
+#Reviewers
+#Id, Name, E-mail, Primary, Secondary
+1, Jaqueline N. Chame, jchame@yahoo.com, 2,
+2, Mary W. Hall, mhall@hotmail.edu, 2,
+3, Daniel Carter, dcarter@gmail.com, 3,
+4, Olivia White, owhite@gmail.com, 3, 1
+#Parameters
+MinReviewsPerSubmission, 2
+MaxReviewsPerReviewer, 2
+PrimaryReviewerExpertise, 1
+SecondaryReviewerExpertise, 0
+PrimarySubmissionDomain, 1
+SecondarySubmissionDomain, 1
+#Control
+GenerateAssignments, 2
+RiskAnalysis, 1
+OutputFileName, "output_dataset13.csv"
