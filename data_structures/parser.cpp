@@ -86,22 +86,22 @@ bool parser::parseFile(const string filename) {
         // PARAMETERS
         else if (currentSection == PARAMETERS) {
             if (fields[0] == "MinReviewsPerSubmission")
-                params.setminReviewsPerSubmission(stoi(fields[1]));
+                params.setMinReviewsPerSubmission(stoi(fields[1]));
 
             if (fields[0] == "MaxReviewsPerReviewer")
-                params.setmaxReviewsPerReviewer(stoi(fields[1]));
+                params.setMaxReviewsPerReviewer(stoi(fields[1]));
         }
 
         // CONTROL
         else if (currentSection == CONTROL) {
             if (fields[0] == "GenerateAssignments")
-                params.setgenerateAssignments(stoi(fields[1]));
+                params.setGenerateAssigLevel(stoi(fields[1]));
 
             if (fields[0] == "RiskAnalysis")
-                params.setriskAnalysis(stoi(fields[1]));
+                params.setRiskAnalLevel(stoi(fields[1]));
 
             if (fields[0] == "OutputFileName")
-                params.setoutputFileName(fields[1]);
+                params.setOutputFilename(fields[1]);
         }
     }
 

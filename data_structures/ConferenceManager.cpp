@@ -38,7 +38,7 @@ void ConferenceManager::connectSourceSinkToNodes() {
 
     // Connecting Submissions to Sink
     for (pair<int, Submission>p: this->nodesToSubmissions) {
-        this->graph.addEdge(p.first, 1, this->params.getMinReviwesPerSubmission());
+        this->graph.addEdge(p.first, 1, this->params.getMinReviewsPerSubmission());
     }
 }
 
