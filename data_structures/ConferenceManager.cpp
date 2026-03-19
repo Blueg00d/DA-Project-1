@@ -4,18 +4,12 @@
 ConferenceManager::ConferenceManager(
         vector<Reviewer> reviewers,
         vector<Submission> submissions,
-        int minReviewsPerSubmission,
-        int maxReviewsPerReviewer,
-        int generateAssignment,
-        int riskAnalysis
+        parameters params
     ) 
 {
         this->reviewers = reviewers;
         this->submissions = submissions;
-        this->minReviewsPerSubmission = minReviewsPerSubmission;
-        this->maxReviewsPerReviewer = maxReviewsPerReviewer;
-        this->generateAssignment = generateAssignment;
-        this->riskAnalysis = riskAnalysis;
+        this->params = params;
 }
 
 void ConferenceManager::createNodes() {
@@ -39,17 +33,17 @@ void ConferenceManager::createNodes() {
 void ConferenceManager::connectSourceSinkToNodes() {
     // Connecting Source to Reviewers
     for (pair<int, Reviewer> p: this->nodesToReviewers) {
-        this->graph.addEdge(0, p.first, this->maxReviewsPerReviewer);
+        this->graph.addEdge(0, p.first, this->params.getMaxReviewsPerReviewer());
     }
 
     // Connecting Submissions to Sink
     for (pair<int, Submission>p: this->nodesToSubmissions) {
-        this->graph.addEdge(p.first, 1, this->minReviewsPerSubmission);
+        this->graph.addEdge(p.first, 1, this->params.getMinReviwesPerSubmission());
     }
 }
 
 void ConferenceManager::connectNodes() {
-    switch (this->generateAssignment) {
+    switch (this->params.getGenerateAssigLevel()) {
         case 0: break; // Ainda não percebi isto crl
         case 1:
             for (pair<int, Reviewer> reviewer: this->nodesToReviewers) {
