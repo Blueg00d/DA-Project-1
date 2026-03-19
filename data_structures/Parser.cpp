@@ -53,22 +53,12 @@ bool Parser::parseFile(const string filename) {
         if (currentSection == SUBMISSIONS) {
             Submission s;
 
-            cout << fields[0] << endl;
             s.setId(stoi(fields[0]));
-
-            cout << fields[1] << endl;
             s.setTitle(fields[1]);
-
-            cout << fields[2] << endl;
             s.setAuthor(fields[2]);
-
-            cout << fields[3] << endl;
             s.setEmail(fields[3]);
-
-            cout << fields[4] << endl;
             s.setPrimary(stoi(fields[4]));
                 if (fields.size() > 5 && fields[5] == " ") {
-                    cout << '|' << fields[5] << '|' << endl << endl;
                     s.setSecondary(std::stoi(fields[5]));
                 }
                 else {
@@ -81,7 +71,6 @@ bool Parser::parseFile(const string filename) {
         else if (currentSection == REVIEWERS) {
             Reviewer r;
 
-//setters
             r.setId(stoi(fields[0]));
             r.setName(fields[1]);
             r.setEmail(fields[2]);
@@ -121,6 +110,7 @@ bool Parser::parseFile(const string filename) {
 }
 
 void Parser::testParser() {
+    cout << "|SUBMISSIONS|" << endl;
     for (const Submission& s: this->submissions) {
         cout << "ID: " << s.getId() <<
         "; Title: " << s.getTitle() <<
@@ -129,7 +119,9 @@ void Parser::testParser() {
         "; Primary: " << s.getPrimary() <<
         "; Secondary: " << s.getSecondary() << endl; 
     }
+    cout << endl;
 
+    cout << "|REVIEWERS|" << endl;
     for (const Reviewer& r: this->reviewers) {
         cout << "ID: " << r.getId() <<
         "; Name: " << r.getName() <<
@@ -137,11 +129,13 @@ void Parser::testParser() {
         "; Primary: " << r.getPrimary() <<
         "; Secondary: " << r.getSecondary() << endl;
     }
-
     cout << endl;
+
+    cout << "|CONTROL PARAMETERS|" << endl;
     cout << "MinReviewsPerSubmission: " << this->params.getMinReviewsPerSubmission() << endl;
     cout << "MaxReviewsPerReviewer: " << this->params.getMaxReviewsPerReviewer() << endl;
     cout << "GenerateAssignments: " << this->params.getGenerateAssigLevel() << endl;
     cout << "RiskAnalysis: " << this->params.getRiskAnalLevel() << endl;
     cout << "OutputFilename: " << this->params.getOutputFilename() << endl;
+    cout << endl;
 }

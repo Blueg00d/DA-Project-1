@@ -27,10 +27,10 @@ inline vector<string> split(const string & line) {
  *@return string line with no leading or useless whitespace
  */
 inline string trim(const string & line) {
-    size_t start = line.find_first_not_of("\t\"");
-    size_t end = line.find_last_not_of("\t\"");
-    return( start== string::npos)? "": line.substr(start, end-start+1);
-
+    // Add spaces ' ', \r, and \n to the list of characters to remove
+    size_t start = line.find_first_not_of(" \t\r\n\"");
+    size_t end = line.find_last_not_of(" \t\r\n\"");
+    return (start == string::npos) ? "" : line.substr(start, end - start + 1);
 }
 
 #endif //UTILS_H
