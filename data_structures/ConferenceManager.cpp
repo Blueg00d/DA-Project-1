@@ -107,3 +107,11 @@ void ConferenceManager::buildGraph() {
         cout << e->getOrig() << "--- " << e->getWeight() << " ---" << e->getDest() << endl;
     }
 }
+
+void ConferenceManager::runAssignment() {
+    //erase previous graph so we can start over
+    this->graph = Graph<int>();
+    //build the new graph with new data
+    buildGraph();
+    double flow = graph.edmondsKarp(0,1);
+}
