@@ -2,6 +2,7 @@
 #define DA_PROJECT_1_CONFERENCEMANAGER_H
 #include "Reviewer.h"
 #include "Submission.h"
+#include "parameters.h"
 #include "Graph.h"
 #include <string>
 #include <unordered_map>
@@ -13,10 +14,7 @@ class ConferenceManager {
     //Private Attributes
     vector<Reviewer> reviewers;
     vector<Submission> submissions;
-    int minReviewsPerSubmission;
-    int maxReviewsPerReviewer; // Acho que fica melhor assim, sara vê pls
-    int generateAssignment;
-    int riskAnalysis;
+    parameters params;
 
     unordered_map<int, Reviewer> nodesToReviewers;
     unordered_map<int, Submission> nodesToSubmissions;
@@ -34,10 +32,7 @@ class ConferenceManager {
     ConferenceManager(
         vector<Reviewer> reviewers,
         vector<Submission> submissions,
-        int minReviewsPerSubmission,
-        int maxReviewsPerReviewer,
-        int generateAssignement,
-        int riskAnalysis
+        parameters params
     );
 
     bool loadFromCSV(string filename);
