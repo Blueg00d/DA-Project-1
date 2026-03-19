@@ -1,5 +1,5 @@
-#include "parser.h"
-#include "utils.h"
+#include "Parser.h"
+#include "Utils.h"
 #include <fstream>
 #include <iostream>
 using namespace std;

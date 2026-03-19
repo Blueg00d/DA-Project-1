@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-class parameters {
+class Parameters {
 private:
     int minReviewsPerSubmission;
     int maxReviewsPerReviewer;

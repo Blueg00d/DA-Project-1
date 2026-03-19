@@ -4,7 +4,7 @@
 ConferenceManager::ConferenceManager(
         vector<Reviewer> reviewers,
         vector<Submission> submissions,
-        parameters params
+        Parameters params
     ) 
 {
         this->reviewers = reviewers;

@@ -2,7 +2,7 @@
 #define DA_PROJECT_1_CONFERENCEMANAGER_H
 #include "Reviewer.h"
 #include "Submission.h"
-#include "parameters.h"
+#include "Parameters.h"
 #include "Graph.h"
 #include <string>
 #include <unordered_map>
@@ -14,7 +14,7 @@ class ConferenceManager {
     //Private Attributes
     vector<Reviewer> reviewers;
     vector<Submission> submissions;
-    parameters params;
+    Parameters params;
 
     unordered_map<int, Reviewer> nodesToReviewers;
     unordered_map<int, Submission> nodesToSubmissions;
@@ -32,7 +32,7 @@ class ConferenceManager {
     ConferenceManager(
         vector<Reviewer> reviewers,
         vector<Submission> submissions,
-        parameters params
+        Parameters params
     );
 
     bool loadFromCSV(string filename);
