@@ -1,15 +1,15 @@
 #include <iostream>
 #include "data_structures/ConferenceManager.h"
+#include "data_structures/Parser.h"
 using namespace std;
 
-void handleChoice(int choice, ConferenceManager &conferenceManager) {
+void handleChoice(int choice) {
     switch (choice) {
         case 1: {
-            //input file
-            // string filename;
-            // cout << "insert the name of your file: ";
-            // cin << filename;
-            // função de parser da rita
+            // input file
+            string filename;
+            cout << "insert the name of your file: ";
+            cin >> filename;            
         }
     }
 }
@@ -20,7 +20,7 @@ int main() {
 
     while (true) {
         cout << "☆ Choose which path to follow (this action will have consequences):" << endl;
-        cout << "1: Test input" << endl;
+        cout << "1: Read File" << endl;
         cout << "2: " << endl;
         cout << "etc" << endl;
         cout << "0: sair :p" << endl;
@@ -31,7 +31,7 @@ int main() {
             cout << "leaving ! :p" << endl;
             break;
         }
-        handleChoice(choice, manager);
+        handleChoice(choice);
     }
     return 0;
 }

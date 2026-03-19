@@ -34,6 +34,7 @@ class ConferenceManager {
         vector<Submission> submissions,
         Parameters params
     );
+    ConferenceManager();
 
     bool loadFromCSV(string filename);
     void buildGraph();
