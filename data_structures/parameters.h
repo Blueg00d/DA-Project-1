@@ -12,6 +12,13 @@ private:
     string outputFileName;
 
 public:
+
+    void setMinReviwesPerSubmission(int min) {this->minReviewsPerSubmission = min;}
+    void setMaxReviewsPerReviewer(int max) {this->maxReviewsPerReviewer = max;}
+    void setGenerateAssigLevel(int level) {this->generateAssignments = level;}
+    void setRiskAnalLevel(int level) {this->riskAnalysis = level;}
+    void setOutputFilename(string filename) {this->outputFileName = filename;}
+
     int getMinReviwesPerSubmission() {return this->minReviewsPerSubmission;}
     int getMaxReviewsPerReviewer() {return this->maxReviewsPerReviewer;}
     int getGenerateAssigLevel() {return this->generateAssignments;}
