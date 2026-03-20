@@ -4,6 +4,8 @@
 #include "Submission.h"
 #include "Parameters.h"
 #include "Graph.h"
+#include "MatchResult.h"
+#include "MissingReviewsResult.h"
 #include <string>
 #include <unordered_map>
 #include <sstream>
@@ -15,6 +17,10 @@ class ConferenceManager {
     vector<Reviewer> reviewers;
     vector<Submission> submissions;
     Parameters params;
+
+    vector<MatchResult> matchResults;
+    vector<MissingReviewsResult> missingReviewsResults;
+    int success = -1;
 
     unordered_map<int, Reviewer*> nodesToReviewers;
     unordered_map<int, Submission*> nodesToSubmissions;
@@ -42,6 +48,8 @@ class ConferenceManager {
     void debugGraph() const;
     void runAssignment();
     void debugGraphFLow() const;
+    void interpretFlowResults();
+    void debugInterpretationResults() const;
 };
 
 

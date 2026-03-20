@@ -127,3 +127,61 @@ void ConferenceManager::debugGraphFLow() const {
 
     std::cout << ss.str() << std::endl << std::endl;
 }
+
+void ConferenceManager::interpretFlowResults() {
+    int flow = 0;
+    for (const pair<int, Submission*> p: this->nodesToSubmissions) {
+        int reviewsExecuted = 0;
+        Submission* s = p.second;
+        for (Edge<int>* e: this->graph.findVertex(p.first)->getIncoming()) {
+            if (e->getFlow() > 0) {
+                flow++;
+                reviewsExecuted++;
+                Reviewer* r = this->nodesToReviewers.at(e->getOrig()->getInfo());
+
+                int match;
+                if (r->getPrimary() == s->getPrimary() || r->getPrimary() == s->getSecondary()) match = r->getPrimary();
+                else match = r->getSecondary();
+                this->matchResults.emplace_back(
+                        r->getId(),
+                        s->getId(),
+                        match
+                    );
+            }
+        }
+        int minReviewsPerSub = this->params.getMinReviewsPerSubmission();
+        if (reviewsExecuted < minReviewsPerSub) {
+            this->missingReviewsResults.emplace_back(
+                            s->getId(),
+                            s->getPrimary(),
+                            minReviewsPerSub - reviewsExecuted
+                            );
+        }
+    }
+    if (flow >= this->params.getMinReviewsPerSubmission() * this->nodesToSubmissions.size()) this->success = true;
+    else success = false;
+
+    sort(matchResults.begin(), matchResults.end());
+    sort(missingReviewsResults.begin(), missingReviewsResults.end());
+}
+
+void ConferenceManager::debugInterpretationResults() const {
+    cout << "#SubmissionId,ReviewerId,Match" << endl;
+    for (const MatchResult& ms: this->matchResults) {
+        cout << ms.toStringSubRevMatch() << endl;
+    }
+
+    cout << "#ReviewerId,SubmissionId,Match" << endl;
+    for (const MatchResult& ms: this->matchResults) {
+        cout << ms.toStringRevSubMatch() << endl;
+    }
+
+    cout << "#Total: " << this->matchResults.size() << endl;
+
+    if (!this->missingReviewsResults.empty()) {
+        cout << "#SubmissionId,Domain,MissingReviews" << endl;
+        for (const MissingReviewsResult& ms: this->missingReviewsResults) {
+            cout << ms.toStringMissingReviewsResult() << endl;
+        }
+    }
+}

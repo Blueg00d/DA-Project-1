@@ -12,4 +12,8 @@ add_executable(MyProject
         data_structures/ConferenceManager.cpp
         data_structures/Reviewer.cpp
         data_structures/Submission.cpp
+        data_structures/MatchResult.h
+        data_structures/MatchResult.cpp
+        data_structures/MissingReviewsResult.cpp
+        data_structures/MissingReviewsResult.h
 )
