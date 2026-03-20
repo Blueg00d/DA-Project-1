@@ -12,7 +12,7 @@ class Parser {
     Parameters params;
 
     public:
-    bool parseFile(const std::string fileName);
+    bool parseFile(const string &fileName);
     vector<Submission> getSubmissions() {return this->submissions;}
     vector<Reviewer> getReviewers() {return this->reviewers;}
     Parameters getParams() {return this->params;}

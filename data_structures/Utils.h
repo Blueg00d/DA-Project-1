@@ -21,7 +21,7 @@ inline vector<string> split(const string & line) {
     return result;
 }
 /** @brief Function: trim
- *to 'trim' poorly written inputs (extra spaces etc.)
+ *to 'trim' poorly written inputs (extra spaces, tabs, \r, \n)
  *
  *@param const string & line (the line being read)
  *@return string line with no leading or useless whitespace

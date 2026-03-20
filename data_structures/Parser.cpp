@@ -12,7 +12,7 @@ enum Section {
     CONTROL
 };
 
-bool Parser::parseFile(const string filename) {
+bool Parser::parseFile(const string &filename) {
     ifstream file(filename);
     if (!file.is_open()) {
         cerr << "Error opening file\n";
