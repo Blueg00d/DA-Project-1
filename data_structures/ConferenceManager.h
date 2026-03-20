@@ -50,6 +50,7 @@ class ConferenceManager {
     void debugGraphFLow() const;
     void interpretFlowResults();
     void debugInterpretationResults() const;
+    void saveOutput();
 };
 
 

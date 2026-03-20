@@ -1,4 +1,6 @@
 #include "ConferenceManager.h"
+#include <fstream>
+using namespace std;
 
 // Constructor
 ConferenceManager::ConferenceManager(
@@ -184,4 +186,42 @@ void ConferenceManager::debugInterpretationResults() const {
             cout << ms.toStringMissingReviewsResult() << endl;
         }
     }
+}
+
+void ConferenceManager::saveOutput() {
+    string filename = params.getOutputFilename();
+
+    //if the parser couldn't read the filename, then we need to use a default one
+    if (filename.empty()) { filename = "assignment.csv"; }
+
+    //open the writing stream so we can write in the file
+    ofstream outFile(filename);
+
+    //check if we can open/create file
+    if (!outFile.is_open()) {
+        //eror message?
+        return;
+    }
+
+    //write in the output file just like it prints on the terminal
+    outFile << "#SubmissionId,ReviewerId,Match" << endl;
+    for (const MatchResult& ms: this->matchResults) {
+        outFile << ms.toStringSubRevMatch() << endl;
+    }
+
+    outFile << "#ReviewerId,SubmissionId,Match" << endl;
+    for (const MatchResult& ms: this->matchResults) {
+        outFile << ms.toStringRevSubMatch() << endl;
+    }
+
+    outFile << "#Total: " << this->matchResults.size() << endl;
+    if (!this->missingReviewsResults.empty()) {
+        outFile << "#SubmissionId,Domain,MissingReviews" << endl;
+        for (const MissingReviewsResult& ms: this->missingReviewsResults) {
+            outFile << ms.toStringMissingReviewsResult() << endl;
+        }
+    }
+
+    outFile.close();
+    cout << "success! results saved in: " << filename << endl;
 }

@@ -34,6 +34,12 @@ void handleChoice(int choice, ConferenceManager& manager) {
             if (choice == 8) manager.debugInterpretationResults();
             break;
         }
+
+        case 9: {
+            manager.interpretFlowResults(); //?
+            manager.saveOutput();
+            break;
+        }
     }
 }
 
@@ -51,6 +57,7 @@ int main() {
         cout << "6: Debug Graph FLow" << endl;
         cout << "7: Interpret Graph Flow" << endl;
         cout << "8: Debug Interpretation" << endl;
+        cout << "9: Save output" << endl;
         cout << "0: Exit :p" << endl;
         cout << "input: ";
         cin >> choice;
