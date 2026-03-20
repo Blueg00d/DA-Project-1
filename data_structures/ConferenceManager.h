@@ -6,7 +6,7 @@
 #include "Graph.h"
 #include <string>
 #include <unordered_map>
-#include <unordered_set>
+#include <sstream>
 using namespace std;
 
 class ConferenceManager {
@@ -41,6 +41,7 @@ class ConferenceManager {
     void buildGraph();
     void debugGraph() const;
     void runAssignment();
+    void debugGraphFLow() const;
 };
 
 

@@ -115,3 +115,15 @@ void ConferenceManager::runAssignment() {
     buildGraph();
     double flow = graph.edmondsKarp(0,1);
 }
+
+void ConferenceManager::debugGraphFLow() const {
+    std::stringstream ss;
+    for(auto v : this->graph.getVertexSet()) {
+        ss << v->getInfo() << "-> (";
+        for (const auto e : v->getAdj())
+            ss << (e->getDest())->getInfo() << "[Flow: " << e->getFlow() << "] ";
+        ss << ") || ";
+    }
+
+    std::cout << ss.str() << std::endl << std::endl;
+}
