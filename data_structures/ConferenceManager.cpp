@@ -1,4 +1,6 @@
 #include "ConferenceManager.h"
+#include <fstream>
+using namespace std;
 
 #include "Utils.h"
 
@@ -189,4 +191,91 @@ void ConferenceManager::debugInterpretationResults() const {
             cout << ms.toStringMissingReviewsResult() << endl;
         }
     }
+
+    if (params.getRiskAnalLevel() > 0) {
+        cout << "#Risk Analysis: " << params.getRiskAnalLevel() << endl;
+
+        for (size_t i = 0; i < this->riskyReviewers.size(); i++) {
+            cout << this->riskyReviewers[i] << (i == riskyReviewers.size() - 1 ? "" : ", ");
+        }
+        cout << endl;
+    }
+}
+
+void ConferenceManager::runRiskAnalysis() {
+    int M = params.getRiskAnalLevel();
+    if (M == 0) return;
+
+    runAssignment();
+    double requiredFlow = submissions.size() * params.getMinReviewsPerSubmission();
+
+    //clear previous results
+    this->riskyReviewers.clear();
+
+    for (auto const& [revNodeID, rev] : nodesToReviewers) {
+        //full reset of the graph since the algorithm leaves residual flow on the edges
+        this->graph = Graph<int>();
+        buildGraph();
+
+        Vertex<int>* vSource = graph.findVertex(0);
+        for (auto e : vSource->getAdj()) {
+            if (e->getDest()->getInfo() == revNodeID) {
+                e->setWeight(0);
+                break;
+            }
+        }
+
+        double flowAfter = graph.edmondsKarp(0,1);
+        if (flowAfter < requiredFlow) {
+            this->riskyReviewers.push_back(rev->getId());
+        }
+    }
+    sort(riskyReviewers.begin(), riskyReviewers.end());
+}
+
+void ConferenceManager::saveOutput() {
+    string filename = params.getOutputFilename();
+
+    //if the parser couldn't read the filename, then we need to use a default one
+    if (filename.empty()) { filename = "assignment.csv"; }
+
+    //open the writing stream so we can write in the file
+    ofstream outFile(filename);
+
+    //check if we can open/create file
+    if (!outFile.is_open()) {
+        //eror message?
+        return;
+    }
+
+    //write in the output file just like it prints on the terminal
+    outFile << "#SubmissionId,ReviewerId,Match" << endl;
+    for (const MatchResult& ms: this->matchResults) {
+        outFile << ms.toStringSubRevMatch() << endl;
+    }
+
+    outFile << "#ReviewerId,SubmissionId,Match" << endl;
+    for (const MatchResult& ms: this->matchResults) {
+        outFile << ms.toStringRevSubMatch() << endl;
+    }
+
+    outFile << "#Total: " << this->matchResults.size() << endl;
+    if (!this->missingReviewsResults.empty()) {
+        outFile << "#SubmissionId,Domain,MissingReviews" << endl;
+        for (const MissingReviewsResult& ms: this->missingReviewsResults) {
+            outFile << ms.toStringMissingReviewsResult() << endl;
+        }
+    }
+
+    if (params.getRiskAnalLevel() > 0) {
+        outFile << "#Risk Analysis: " << params.getRiskAnalLevel() << endl;
+
+        for (size_t i = 0; i < this->riskyReviewers.size(); i++) {
+            outFile << this->riskyReviewers[i] << (i == riskyReviewers.size() - 1 ? "" : ", ");
+        }
+        outFile << endl;
+    }
+
+    outFile.close();
+    cout << "success! results saved in: " << filename << endl;
 }

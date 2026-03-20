@@ -12,7 +12,7 @@ void handleChoice(int choice, ConferenceManager& manager) {
             cout << TXT_INVERT <<"Insert the name of your file: ";
             cin >> filename;
             cout << TXT_RESET;
-            
+
             Parser parser;
             parser.parseFile(filename);
             
@@ -36,6 +36,12 @@ void handleChoice(int choice, ConferenceManager& manager) {
             if (choice == 8) manager.debugInterpretationResults();
             break;
         }
+
+        case 9: {
+            manager.interpretFlowResults(); //?
+            manager.saveOutput();
+            break;
+        }
     }
 }
 
@@ -54,6 +60,9 @@ int main() {
         cout << "6: Debug Graph FLow" << endl;
         cout << "7: Interpret Graph Flow" << endl;
         cout << "8: Debug Interpretation" << endl;
+        cout << "9: Save output" << endl;
+        cout << "0: Exit :p" << endl;
+        cout << "input: ";
         cout << "0: Exit :p" << endl << endl;
         cout << TXT_INVERT << "Input: ";
         cin >> choice;
