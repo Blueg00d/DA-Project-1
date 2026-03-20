@@ -1,5 +1,7 @@
 #include "ConferenceManager.h"
 
+#include "Utils.h"
+
 // Constructor
 ConferenceManager::ConferenceManager(
         vector<Reviewer> reviewers,
@@ -129,6 +131,9 @@ void ConferenceManager::debugGraphFLow() const {
 }
 
 void ConferenceManager::interpretFlowResults() {
+    this->matchResults.clear();
+    this->missingReviewsResults.clear();
+
     int flow = 0;
     for (const pair<int, Submission*> p: this->nodesToSubmissions) {
         int reviewsExecuted = 0;
@@ -166,20 +171,20 @@ void ConferenceManager::interpretFlowResults() {
 }
 
 void ConferenceManager::debugInterpretationResults() const {
-    cout << "#SubmissionId,ReviewerId,Match" << endl;
+    cout << TXT_BOLD << FG_GREEN << "#SubmissionId,ReviewerId,Match" << TXT_RESET << endl;
     for (const MatchResult& ms: this->matchResults) {
         cout << ms.toStringSubRevMatch() << endl;
     }
 
-    cout << "#ReviewerId,SubmissionId,Match" << endl;
+    cout << TXT_BOLD << FG_GREEN << "#ReviewerId,SubmissionId,Match" << TXT_RESET <<endl;
     for (const MatchResult& ms: this->matchResults) {
         cout << ms.toStringRevSubMatch() << endl;
     }
 
-    cout << "#Total: " << this->matchResults.size() << endl;
+    cout << TXT_BOLD << FG_YELLOW << "#Total: " << this->matchResults.size() << TXT_RESET <<endl;
 
     if (!this->missingReviewsResults.empty()) {
-        cout << "#SubmissionId,Domain,MissingReviews" << endl;
+        cout << TXT_BOLD << FG_GREEN << "#SubmissionId,Domain,MissingReviews" << TXT_RESET <<endl;
         for (const MissingReviewsResult& ms: this->missingReviewsResults) {
             cout << ms.toStringMissingReviewsResult() << endl;
         }

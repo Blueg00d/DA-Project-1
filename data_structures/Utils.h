@@ -39,10 +39,12 @@
 #define BG_DEFAULT     ANSI_ESC "49m"
 
 // --- SCREEN AND CURSOR CONTROLS ---
-#define CLR_SCREEN     ANSI_ESC "2J"
+#define CLR_SCREEN     ANSI_ESC "2J" // "Clears" Screen, but you can scroll up and see previous messages
+#define CLR_HISTORY    ANSI_ESC "3J" // Clear previous messages' history
 #define CLR_LINE       ANSI_ESC "K"
 #define CUR_HOME       ANSI_ESC "H"
 #define CUR_UP(n)      ANSI_ESC #n "A"  // MOVES THE CURSOR N LINES UP
+#define CLR_ALL        CUR_HOME CLR_SCREEN CLR_HISTORY
 
 
 #include <string>

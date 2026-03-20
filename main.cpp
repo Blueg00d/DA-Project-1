@@ -9,8 +9,9 @@ void handleChoice(int choice, ConferenceManager& manager) {
         case 1: case 2: {
             // input file
             string filename;
-            cout << "Insert the name of your file: ";
+            cout << TXT_INVERT <<"Insert the name of your file: ";
             cin >> filename;
+            cout << TXT_RESET;
             
             Parser parser;
             parser.parseFile(filename);
@@ -39,6 +40,7 @@ void handleChoice(int choice, ConferenceManager& manager) {
 }
 
 int main() {
+    cout << CLR_ALL;
     ConferenceManager manager;
     int choice;
 
@@ -52,13 +54,12 @@ int main() {
         cout << "6: Debug Graph FLow" << endl;
         cout << "7: Interpret Graph Flow" << endl;
         cout << "8: Debug Interpretation" << endl;
-        cout << "0: Exit :p" << endl;
-        cout << "input: ";
+        cout << "0: Exit :p" << endl << endl;
+        cout << TXT_INVERT << "Input: ";
         cin >> choice;
-        cout << CLR_LINE <<;
+        cout << TXT_RESET << CLR_ALL;
 
         if (choice == 0) {
-            cout << "leaving ! :p" << endl;
             break;
         }
         handleChoice(choice, manager);
