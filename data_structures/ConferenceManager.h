@@ -27,6 +27,8 @@ class ConferenceManager {
 
     Graph<int> graph;
 
+    vector<int> riskyReviewers;
+
     //Private Methods
     void createNodes();
     void connectSourceSinkToNodes();
@@ -51,6 +53,7 @@ class ConferenceManager {
     void interpretFlowResults();
     void debugInterpretationResults() const;
     void saveOutput();
+    void runRiskAnalysis();
 };
 
 

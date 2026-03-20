@@ -186,6 +186,46 @@ void ConferenceManager::debugInterpretationResults() const {
             cout << ms.toStringMissingReviewsResult() << endl;
         }
     }
+
+    if (params.getRiskAnalLevel() > 0) {
+        cout << "#Risk Analysis: " << params.getRiskAnalLevel() << endl;
+
+        for (size_t i = 0; i < this->riskyReviewers.size(); i++) {
+            cout << this->riskyReviewers[i] << (i == riskyReviewers.size() - 1 ? "" : ", ");
+        }
+        cout << endl;
+    }
+}
+
+void ConferenceManager::runRiskAnalysis() {
+    int M = params.getRiskAnalLevel();
+    if (M == 0) return;
+
+    runAssignment();
+    double requiredFlow = submissions.size() * params.getMinReviewsPerSubmission();
+
+    //clear previous results
+    this->riskyReviewers.clear();
+
+    for (auto const& [revNodeID, rev] : nodesToReviewers) {
+        //full reset of the graph since the algorithm leaves residual flow on the edges
+        this->graph = Graph<int>();
+        buildGraph();
+
+        Vertex<int>* vSource = graph.findVertex(0);
+        for (auto e : vSource->getAdj()) {
+            if (e->getDest()->getInfo() == revNodeID) {
+                e->setWeight(0);
+                break;
+            }
+        }
+
+        double flowAfter = graph.edmondsKarp(0,1);
+        if (flowAfter < requiredFlow) {
+            this->riskyReviewers.push_back(rev->getId());
+        }
+    }
+    sort(riskyReviewers.begin(), riskyReviewers.end());
 }
 
 void ConferenceManager::saveOutput() {
@@ -220,6 +260,15 @@ void ConferenceManager::saveOutput() {
         for (const MissingReviewsResult& ms: this->missingReviewsResults) {
             outFile << ms.toStringMissingReviewsResult() << endl;
         }
+    }
+
+    if (params.getRiskAnalLevel() > 0) {
+        outFile << "#Risk Analysis: " << params.getRiskAnalLevel() << endl;
+
+        for (size_t i = 0; i < this->riskyReviewers.size(); i++) {
+            outFile << this->riskyReviewers[i] << (i == riskyReviewers.size() - 1 ? "" : ", ");
+        }
+        outFile << endl;
     }
 
     outFile.close();
