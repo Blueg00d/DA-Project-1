@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Utils.h"
 #include "data_structures/ConferenceManager.h"
 #include "data_structures/Parser.h"
 using namespace std;
@@ -42,7 +43,7 @@ int main() {
     int choice;
 
     while (true) {
-        cout << "☆ Choose which path to follow (this action will have consequences):" << endl;
+        cout << TXT_BOLD << FG_RED << "☆ Choose which path to follow (this action will have consequences):" << TXT_RESET << endl;
         cout << "1: Test Parser" << endl;
         cout << "2: Read File" << endl;
         cout << "3: Build Graph" << endl;
@@ -54,6 +55,7 @@ int main() {
         cout << "0: Exit :p" << endl;
         cout << "input: ";
         cin >> choice;
+        cout << CLR_LINE <<;
 
         if (choice == 0) {
             cout << "leaving ! :p" << endl;
