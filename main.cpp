@@ -62,8 +62,6 @@ int main() {
         cout << "8: Debug Interpretation" << endl;
         cout << "9: Save output" << endl;
         cout << "0: Exit :p" << endl;
-        cout << "input: ";
-        cout << "0: Exit :p" << endl << endl;
         cout << TXT_INVERT << "Input: ";
         cin >> choice;
         cout << TXT_RESET << CLR_ALL;
