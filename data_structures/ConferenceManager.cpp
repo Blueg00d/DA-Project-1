@@ -107,3 +107,11 @@ void ConferenceManager::debugGraph() const{
         cout << this->nodesToSubmissions.at(e->getOrig()->getInfo())->getId() << "--- " << e->getWeight() << " ---Sink" << endl;
     }
 }
+
+void ConferenceManager::runAssignment() {
+    //erase previous graph so we can start over
+    this->graph = Graph<int>();
+    //build the new graph with new data
+    buildGraph();
+    double flow = graph.edmondsKarp(0,1);
+}
