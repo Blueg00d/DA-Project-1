@@ -13,6 +13,10 @@ enum Section {
 };
 
 bool Parser::parseFile(const string &filename) {
+    //clean before reading so we do not acumulate from previews calls
+    this->submissions.clear();
+    this->reviewers.clear();
+
     ifstream file(filename);
     if (!file.is_open()) {
         cerr << TXT_BOLD << FG_RED << TXT_INVERT << "ERROR OPENING FILE!" << endl << TXT_RESET;

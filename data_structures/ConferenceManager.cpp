@@ -37,10 +37,24 @@ void ConferenceManager::createNodes() {
 }
 
 void ConferenceManager::connectSourceSinkToNodes() {
-    // Connecting Source to Reviewers
-    for (pair<int, Reviewer*> p: this->nodesToReviewers) {
-        this->graph.addEdge(0, p.first, this->params.getMaxReviewsPerReviewer());
+    //process so that the revisor with the smallest ID is processed first
+    vector<int> sortedNodeIDs;
+    for (auto const& [nodeID, rev] : nodesToReviewers) {
+        sortedNodeIDs.push_back(nodeID);
     }
+
+    sort(sortedNodeIDs.begin(), sortedNodeIDs.end(), [&](int a, int b) {
+        return nodesToReviewers[a]->getId() < nodesToReviewers[b]->getId();
+    });
+
+    for (int nodeID : sortedNodeIDs) {
+        this->graph.addEdge(0, nodeID, this->params.getMaxReviewsPerReviewer());
+    }
+
+    // Connecting Source to Reviewers
+    //for (pair<int, Reviewer*> p: this->nodesToReviewers) {
+    //    this->graph.addEdge(0, p.first, this->params.getMaxReviewsPerReviewer());
+    //}
 
     // Connecting Submissions to Sink
     for (pair<int, Submission*>p: this->nodesToSubmissions) {
@@ -208,16 +222,22 @@ void ConferenceManager::runRiskAnalysis() {
     int M = params.getRiskAnalLevel();
     if (M == 0) return;
 
-    double requiredFlow = submissions.size() * params.getMinReviewsPerSubmission();
+    //as createnodes() clears the map at its beginning we need to save the revID so we are not affected in the next loop
+    vector<int> reviewerNodes;
+    for (auto const& [nodeID, rev] : nodesToReviewers) {
+        reviewerNodes.push_back(nodeID);
+    }
 
+    double requiredFlow = submissions.size() * params.getMinReviewsPerSubmission();
     //clear previous results
     this->riskyReviewers.clear();
 
-    for (auto const& [revNodeID, rev] : nodesToReviewers) {
+    for (int revNodeID : reviewerNodes) {
         //full reset of the graph since the algorithm leaves residual flow on the edges
         this->graph = Graph<int>();
         buildGraph();
 
+        Reviewer* currentRev = nodesToReviewers[revNodeID];
         Vertex<int>* vSource = graph.findVertex(0);
         for (auto e : vSource->getAdj()) {
             if (e->getDest()->getInfo() == revNodeID) {
@@ -228,7 +248,7 @@ void ConferenceManager::runRiskAnalysis() {
 
         double flowAfter = graph.edmondsKarp(0,1);
         if (flowAfter < requiredFlow) {
-            this->riskyReviewers.push_back(rev->getId());
+            this->riskyReviewers.push_back(currentRev->getId());
         }
     }
     sort(riskyReviewers.begin(), riskyReviewers.end());
