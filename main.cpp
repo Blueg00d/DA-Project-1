@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Utils.h"
+#include "data_structures/Utils.h"
 #include "data_structures/ConferenceManager.h"
 #include "data_structures/Parser.h"
 using namespace std;
@@ -27,6 +27,7 @@ void handleChoice(int choice, ConferenceManager& manager) {
         }
         case 5: case 6: {
             manager.runAssignment();
+            manager.runRiskAnalysis();
             if (choice == 6) manager.debugGraphFLow();
             break;
         }

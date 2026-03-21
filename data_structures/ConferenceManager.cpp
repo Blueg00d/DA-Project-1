@@ -17,6 +17,8 @@ ConferenceManager::ConferenceManager(
 }
 
 void ConferenceManager::createNodes() {
+    this->nodesToReviewers.clear();
+    this->nodesToSubmissions.clear();
     this->graph.addVertex(0); // Represents Source
     this->graph.addVertex(1); // Represents Sink
 
@@ -206,7 +208,6 @@ void ConferenceManager::runRiskAnalysis() {
     int M = params.getRiskAnalLevel();
     if (M == 0) return;
 
-    runAssignment();
     double requiredFlow = submissions.size() * params.getMinReviewsPerSubmission();
 
     //clear previous results
@@ -231,6 +232,11 @@ void ConferenceManager::runRiskAnalysis() {
         }
     }
     sort(riskyReviewers.begin(), riskyReviewers.end());
+
+    //leave the graph just like we found it
+    this->graph = Graph<int>();
+    this->buildGraph();
+    this->runAssignment();
 }
 
 void ConferenceManager::saveOutput() {
