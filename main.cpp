@@ -2,6 +2,7 @@
 #include "data_structures/Utils.h"
 #include "data_structures/ConferenceManager.h"
 #include "data_structures/Parser.h"
+#include "data_structures/Tester.h"
 using namespace std;
 
 void handleChoice(int choice, ConferenceManager& manager) {
@@ -40,9 +41,22 @@ void handleChoice(int choice, ConferenceManager& manager) {
 
         case 9: {
             manager.interpretFlowResults(); //?
-            manager.saveOutput();
+            string folder;
+            cout << TXT_INVERT <<"Insert the name of your folder: ";
+            cin >> folder;
+            cout << TXT_RESET;
+            manager.saveOutput(folder);
             break;
         }
+        case 10: case 11:
+            string folder;
+            cout << TXT_INVERT <<"Insert the name of your folder: ";
+            cin >> folder;
+            cout << TXT_RESET;
+            Tester tester(folder);
+            tester.executeAllInputTasks();
+            if (choice == 11) tester.compareGeneratedWithExpected();
+            break;
     }
 }
 
@@ -62,6 +76,8 @@ int main() {
         cout << "7: Interpret Graph Flow" << endl;
         cout << "8: Debug Interpretation" << endl;
         cout << "9: Save output" << endl;
+        cout << "10: Run all Inputs" << endl;
+        cout << "11: Test all Inputs" << endl;
         cout << "0: Exit :p" << endl;
         cout << TXT_INVERT << "Input: ";
         cin >> choice;

@@ -259,8 +259,8 @@ void ConferenceManager::runRiskAnalysis() {
     this->runAssignment();
 }
 
-void ConferenceManager::saveOutput() {
-    string filename = params.getOutputFilename();
+void ConferenceManager::saveOutput(const string& folder) {
+    string filename = folder + params.getOutputFilename();
 
     //if the parser couldn't read the filename, then we need to use a default one
     if (filename.empty()) { filename = "assignment.csv"; }
@@ -270,17 +270,27 @@ void ConferenceManager::saveOutput() {
 
     //check if we can open/create file
     if (!outFile.is_open()) {
-        //eror message?
+        cerr << TXT_BOLD << FG_RED << TXT_INVERT << "ERROR OPENING FILE!" << endl << TXT_RESET;
         return;
     }
 
     //write in the output file just like it prints on the terminal
     outFile << "#SubmissionId,ReviewerId,Match" << endl;
+    sort(matchResults.begin(), matchResults.end(), [] (MatchResult& a, MatchResult& b) {
+        if (a.getSubmissionID() != b.getSubmissionID()) return a.getSubmissionID() < b.getSubmissionID();
+        else if (a.getReviewerID() != b.getReviewerID()) return a.getReviewerID() < b.getReviewerID();
+        else return a.getMatch() < b.getMatch();
+    });
     for (const MatchResult& ms: this->matchResults) {
         outFile << ms.toStringSubRevMatch() << endl;
     }
 
     outFile << "#ReviewerId,SubmissionId,Match" << endl;
+    sort(matchResults.begin(), matchResults.end(), [] (MatchResult& a, MatchResult& b) {
+        if (a.getReviewerID() != b.getReviewerID()) return a.getReviewerID() < b.getReviewerID();
+        else if (a.getSubmissionID() != b.getSubmissionID()) return a.getSubmissionID() < b.getSubmissionID();
+        else return a.getMatch() < b.getMatch();
+    });
     for (const MatchResult& ms: this->matchResults) {
         outFile << ms.toStringRevSubMatch() << endl;
     }
@@ -305,3 +315,12 @@ void ConferenceManager::saveOutput() {
     outFile.close();
     cout << "success! results saved in: " << filename << endl;
 }
+
+void ConferenceManager::executeAllTasks(const string &folder) {
+    buildGraph();
+    runAssignment();
+    interpretFlowResults();
+    runRiskAnalysis();
+    saveOutput(folder);
+}
+

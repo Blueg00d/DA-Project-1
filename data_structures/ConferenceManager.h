@@ -45,15 +45,15 @@ class ConferenceManager {
     ConferenceManager() = default;
     ~ConferenceManager() = default;
 
-    bool loadFromCSV(string filename);
     void buildGraph();
     void debugGraph() const;
     void runAssignment();
     void debugGraphFLow() const;
     void interpretFlowResults();
     void debugInterpretationResults() const;
-    void saveOutput();
+    void saveOutput(const string& folder);
     void runRiskAnalysis();
+    void executeAllTasks(const string& folder);
 };
 
 
