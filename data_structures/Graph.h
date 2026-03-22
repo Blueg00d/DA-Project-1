@@ -63,6 +63,7 @@ public:
     double getFlow() const;
 
     void setFlow(double flow);
+    void setWeight(double weight);
 protected:
     Vertex<T> * dest; // destination vertex
     double weight; // edge weight, can also be used for capacity
@@ -267,6 +268,11 @@ double Edge<T>::getFlow() const {
 template <class T>
 void Edge<T>::setFlow(double flow) {
     this->flow = flow;
+}
+
+template <class T>
+void Edge<T>::setWeight(double weight) {
+    this->weight = weight;
 }
 
 /********************** Graph  ****************************/

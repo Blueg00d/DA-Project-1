@@ -4,9 +4,11 @@
 #include "Submission.h"
 #include "Parameters.h"
 #include "Graph.h"
+#include "MatchResult.h"
+#include "MissingReviewsResult.h"
 #include <string>
 #include <unordered_map>
-#include <unordered_set>
+#include <sstream>
 using namespace std;
 
 /**
@@ -20,11 +22,16 @@ class ConferenceManager {
     vector<Submission> submissions;
     Parameters params;
 
-    unordered_map<int, Reviewer*> nodesToReviewers; ///<
-    unordered_map<int, Submission*> nodesToSubmissions; ///<
+    vector<MatchResult> matchResults;
+    vector<MissingReviewsResult> missingReviewsResults;
+    int success = -1;
+
+    unordered_map<int, Reviewer*> nodesToReviewers;
+    unordered_map<int, Submission*> nodesToSubmissions;
 
     Graph<int> graph;
 
+    vector<int> riskyReviewers;
 
     /**
      * @brief places information about Reviewers and Submissions in nodes
@@ -86,6 +93,12 @@ class ConferenceManager {
      * @brief Function "restarts" graph and calls buildgraph
      */
     void runAssignment();
+    void debugGraphFLow() const;
+    void interpretFlowResults();
+    void debugInterpretationResults() const;
+    void saveOutput(const string& folder);
+    void runRiskAnalysis();
+    void executeAllTasks(const string& folder);
 };
 
 

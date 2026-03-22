@@ -1,4 +1,8 @@
 #include "ConferenceManager.h"
+#include <fstream>
+using namespace std;
+
+#include "Utils.h"
 
 #include <utility>
 
@@ -22,6 +26,8 @@ ConferenceManager::ConferenceManager(
  * Iterates over all Reviewers (R) and all Submissions (S) and adds them to an unordered map
  */
 void ConferenceManager::createNodes() {
+    this->nodesToReviewers.clear();
+    this->nodesToSubmissions.clear();
     this->graph.addVertex(0); // Represents Source
     this->graph.addVertex(1); //Represents Sink
 
@@ -46,10 +52,24 @@ void ConferenceManager::createNodes() {
  *First for loop iterates through all reviewers (R) and second one through all Submissions (S)
  */
 void ConferenceManager::connectSourceSinkToNodes() {
-    // Connecting Source to Reviewers
-    for (pair<int, Reviewer*> p: this->nodesToReviewers) {
-        this->graph.addEdge(0, p.first, this->params.getMaxReviewsPerReviewer());
+    //process so that the revisor with the smallest ID is processed first
+    vector<int> sortedNodeIDs;
+    for (auto const& [nodeID, rev] : nodesToReviewers) {
+        sortedNodeIDs.push_back(nodeID);
     }
+
+    sort(sortedNodeIDs.begin(), sortedNodeIDs.end(), [&](int a, int b) {
+        return nodesToReviewers[a]->getId() < nodesToReviewers[b]->getId();
+    });
+
+    for (int nodeID : sortedNodeIDs) {
+        this->graph.addEdge(0, nodeID, this->params.getMaxReviewsPerReviewer());
+    }
+
+    // Connecting Source to Reviewers
+    //for (pair<int, Reviewer*> p: this->nodesToReviewers) {
+    //    this->graph.addEdge(0, p.first, this->params.getMaxReviewsPerReviewer());
+    //}
 
     // Connecting submissions to Sink
     for (pair<int, Submission*>p: this->nodesToSubmissions) {
@@ -158,3 +178,192 @@ void ConferenceManager::runAssignment() {
     buildGraph();
     double flow = graph.edmondsKarp(0,1);
 }
+
+void ConferenceManager::debugGraphFLow() const {
+    std::stringstream ss;
+    for(auto v : this->graph.getVertexSet()) {
+        ss << v->getInfo() << "-> (";
+        for (const auto e : v->getAdj())
+            ss << (e->getDest())->getInfo() << "[Flow: " << e->getFlow() << "] ";
+        ss << ") || ";
+    }
+
+    std::cout << ss.str() << std::endl << std::endl;
+}
+
+void ConferenceManager::interpretFlowResults() {
+    this->matchResults.clear();
+    this->missingReviewsResults.clear();
+
+    int flow = 0;
+    for (const pair<int, Submission*> p: this->nodesToSubmissions) {
+        int reviewsExecuted = 0;
+        Submission* s = p.second;
+        for (Edge<int>* e: this->graph.findVertex(p.first)->getIncoming()) {
+            if (e->getFlow() > 0) {
+                flow++;
+                reviewsExecuted++;
+                Reviewer* r = this->nodesToReviewers.at(e->getOrig()->getInfo());
+
+                int match;
+                if (r->getPrimary() == s->getPrimary() || r->getPrimary() == s->getSecondary()) match = r->getPrimary();
+                else match = r->getSecondary();
+                this->matchResults.emplace_back(
+                        r->getId(),
+                        s->getId(),
+                        match
+                    );
+            }
+        }
+        int minReviewsPerSub = this->params.getMinReviewsPerSubmission();
+        if (reviewsExecuted < minReviewsPerSub) {
+            this->missingReviewsResults.emplace_back(
+                            s->getId(),
+                            s->getPrimary(),
+                            minReviewsPerSub - reviewsExecuted
+                            );
+        }
+    }
+    if (flow >= this->params.getMinReviewsPerSubmission() * this->nodesToSubmissions.size()) this->success = true;
+    else success = false;
+
+    sort(matchResults.begin(), matchResults.end());
+    sort(missingReviewsResults.begin(), missingReviewsResults.end());
+}
+
+void ConferenceManager::debugInterpretationResults() const {
+    cout << TXT_BOLD << FG_GREEN << "#SubmissionId,ReviewerId,Match" << TXT_RESET << endl;
+    for (const MatchResult& ms: this->matchResults) {
+        cout << ms.toStringSubRevMatch() << endl;
+    }
+
+    cout << TXT_BOLD << FG_GREEN << "#ReviewerId,SubmissionId,Match" << TXT_RESET <<endl;
+    for (const MatchResult& ms: this->matchResults) {
+        cout << ms.toStringRevSubMatch() << endl;
+    }
+
+    cout << TXT_BOLD << FG_YELLOW << "#Total: " << this->matchResults.size() << TXT_RESET <<endl;
+
+    if (!this->missingReviewsResults.empty()) {
+        cout << TXT_BOLD << FG_GREEN << "#SubmissionId,Domain,MissingReviews" << TXT_RESET <<endl;
+        for (const MissingReviewsResult& ms: this->missingReviewsResults) {
+            cout << ms.toStringMissingReviewsResult() << endl;
+        }
+    }
+
+    if (params.getRiskAnalLevel() > 0) {
+        cout << "#Risk Analysis: " << params.getRiskAnalLevel() << endl;
+
+        for (size_t i = 0; i < this->riskyReviewers.size(); i++) {
+            cout << this->riskyReviewers[i] << (i == riskyReviewers.size() - 1 ? "" : ", ");
+        }
+        cout << endl;
+    }
+}
+
+void ConferenceManager::runRiskAnalysis() {
+    int M = params.getRiskAnalLevel();
+    if (M == 0) return;
+
+    //as createnodes() clears the map at its beginning we need to save the revID so we are not affected in the next loop
+    vector<int> reviewerNodes;
+    for (auto const& [nodeID, rev] : nodesToReviewers) {
+        reviewerNodes.push_back(nodeID);
+    }
+
+    double requiredFlow = submissions.size() * params.getMinReviewsPerSubmission();
+    //clear previous results
+    this->riskyReviewers.clear();
+
+    for (int revNodeID : reviewerNodes) {
+        //full reset of the graph since the algorithm leaves residual flow on the edges
+        this->graph = Graph<int>();
+        buildGraph();
+
+        Reviewer* currentRev = nodesToReviewers[revNodeID];
+        Vertex<int>* vSource = graph.findVertex(0);
+        for (auto e : vSource->getAdj()) {
+            if (e->getDest()->getInfo() == revNodeID) {
+                e->setWeight(0);
+                break;
+            }
+        }
+
+        double flowAfter = graph.edmondsKarp(0,1);
+        if (flowAfter < requiredFlow) {
+            this->riskyReviewers.push_back(currentRev->getId());
+        }
+    }
+    sort(riskyReviewers.begin(), riskyReviewers.end());
+
+    //leave the graph just like we found it
+    this->graph = Graph<int>();
+    this->buildGraph();
+    this->runAssignment();
+}
+
+void ConferenceManager::saveOutput(const string& folder) {
+    string filename = folder + params.getOutputFilename();
+
+    //if the parser couldn't read the filename, then we need to use a default one
+    if (filename.empty()) { filename = "assignment.csv"; }
+
+    //open the writing stream so we can write in the file
+    ofstream outFile(filename);
+
+    //check if we can open/create file
+    if (!outFile.is_open()) {
+        cerr << TXT_BOLD << FG_RED << TXT_INVERT << "ERROR OPENING FILE!" << endl << TXT_RESET;
+        return;
+    }
+
+    //write in the output file just like it prints on the terminal
+    outFile << "#SubmissionId,ReviewerId,Match" << endl;
+    sort(matchResults.begin(), matchResults.end(), [] (MatchResult& a, MatchResult& b) {
+        if (a.getSubmissionID() != b.getSubmissionID()) return a.getSubmissionID() < b.getSubmissionID();
+        else if (a.getReviewerID() != b.getReviewerID()) return a.getReviewerID() < b.getReviewerID();
+        else return a.getMatch() < b.getMatch();
+    });
+    for (const MatchResult& ms: this->matchResults) {
+        outFile << ms.toStringSubRevMatch() << endl;
+    }
+
+    outFile << "#ReviewerId,SubmissionId,Match" << endl;
+    sort(matchResults.begin(), matchResults.end(), [] (MatchResult& a, MatchResult& b) {
+        if (a.getReviewerID() != b.getReviewerID()) return a.getReviewerID() < b.getReviewerID();
+        else if (a.getSubmissionID() != b.getSubmissionID()) return a.getSubmissionID() < b.getSubmissionID();
+        else return a.getMatch() < b.getMatch();
+    });
+    for (const MatchResult& ms: this->matchResults) {
+        outFile << ms.toStringRevSubMatch() << endl;
+    }
+
+    outFile << "#Total: " << this->matchResults.size() << endl;
+    if (!this->missingReviewsResults.empty()) {
+        outFile << "#SubmissionId,Domain,MissingReviews" << endl;
+        for (const MissingReviewsResult& ms: this->missingReviewsResults) {
+            outFile << ms.toStringMissingReviewsResult() << endl;
+        }
+    }
+
+    if (params.getRiskAnalLevel() > 0) {
+        outFile << "#Risk Analysis: " << params.getRiskAnalLevel() << endl;
+
+        for (size_t i = 0; i < this->riskyReviewers.size(); i++) {
+            outFile << this->riskyReviewers[i] << (i == riskyReviewers.size() - 1 ? "" : ", ");
+        }
+        outFile << endl;
+    }
+
+    outFile.close();
+    cout << "success! results saved in: " << filename << endl;
+}
+
+void ConferenceManager::executeAllTasks(const string &folder) {
+    buildGraph();
+    runAssignment();
+    interpretFlowResults();
+    runRiskAnalysis();
+    saveOutput(folder);
+}
+

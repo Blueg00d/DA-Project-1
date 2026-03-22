@@ -1,15 +1,12 @@
 cmake_minimum_required(VERSION 3.10)
-project(MyProject)
+project(DA-Project CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(./data_structures)
-include_directories(./Project1SampleDatasets)
+add_subdirectory(data_structures)
 
-add_executable(MyProject
+add_executable(program
         main.cpp
-        data_structures/Parser.cpp
-        data_structures/ConferenceManager.cpp
-        data_structures/Reviewer.cpp
-        data_structures/Submission.cpp
 )
+
+target_link_libraries(program PRIVATE DataStructures)

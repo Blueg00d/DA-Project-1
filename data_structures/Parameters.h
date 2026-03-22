@@ -22,7 +22,7 @@ public:
     int getMinReviewsPerSubmission() {return this->minReviewsPerSubmission;}
     int getMaxReviewsPerReviewer() {return this->maxReviewsPerReviewer;}
     int getGenerateAssigLevel() {return this->generateAssignments;}
-    int getRiskAnalLevel() {return this->riskAnalysis;}
+    int getRiskAnalLevel() const {return this->riskAnalysis;}
     string getOutputFilename() {return this->outputFileName;}
 };
 #endif //PARAMETERS_H

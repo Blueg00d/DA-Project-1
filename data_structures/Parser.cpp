@@ -13,9 +13,13 @@ enum Section {
 };
 
 bool Parser::parseFile(const string &filename) {
+    //clean before reading so we do not acumulate from previews calls
+    this->submissions.clear();
+    this->reviewers.clear();
+
     ifstream file(filename);
     if (!file.is_open()) {
-        cerr << "Error opening file\n";
+        cerr << TXT_BOLD << FG_RED << TXT_INVERT << "ERROR OPENING FILE!" << endl << TXT_RESET;
         return false;
     }
 
@@ -108,32 +112,37 @@ bool Parser::parseFile(const string &filename) {
 }
 
 void Parser::testParser() {
-    cout << "|SUBMISSIONS|" << endl;
+    if (this->getReviewers().empty() || this->getSubmissions().empty()) {
+        cout << TXT_BOLD << FG_RED << "There isn't any Reviewers or Submissions to display." << TXT_RESET << endl;
+        return;
+    }
+
+    cout << TXT_BOLD << FG_YELLOW << "|SUBMISSIONS|" << TXT_RESET << endl;
     for (const Submission& s: this->submissions) {
-        cout << "ID: " << s.getId() <<
-        "; Title: " << s.getTitle() <<
-        "; Authors: " << s.getAuthor() <<
-        "; Email: " << s.getEmail() <<
-        "; Primary: " << s.getPrimary() <<
-        "; Secondary: " << s.getSecondary() << endl; 
+        cout << FG_GREEN << "ID: " << TXT_RESET << s.getId() <<
+        FG_GREEN << "; Title: " << TXT_RESET << s.getTitle() <<
+        FG_GREEN << "; Authors: " << TXT_RESET << s.getAuthor() <<
+        FG_GREEN << "; Email: " << TXT_RESET << s.getEmail() <<
+        FG_GREEN << "; Primary: " << TXT_RESET << s.getPrimary() <<
+        FG_GREEN << ";  Secondary: " << TXT_RESET << s.getSecondary() << endl;
     }
     cout << endl;
 
-    cout << "|REVIEWERS|" << endl;
+    cout << TXT_BOLD << FG_YELLOW << "|REVIEWERS|" << TXT_RESET << endl;
     for (const Reviewer& r: this->reviewers) {
-        cout << "ID: " << r.getId() <<
-        "; Name: " << r.getName() <<
-        "; Email: " << r.getEmail() <<
-        "; Primary: " << r.getPrimary() <<
-        "; Secondary: " << r.getSecondary() << endl;
+        cout << FG_GREEN << "ID: " << TXT_RESET << r.getId() <<
+         FG_GREEN << "; Name: " << TXT_RESET << r.getName() <<
+         FG_GREEN << "; Email: " << TXT_RESET << r.getEmail() <<
+         FG_GREEN << "; Primary: " << TXT_RESET << r.getPrimary() <<
+         FG_GREEN << "; Secondary: " << TXT_RESET << r.getSecondary() << endl;
     }
     cout << endl;
 
-    cout << "|CONTROL PARAMETERS|" << endl;
-    cout << "MinReviewsPerSubmission: " << this->params.getMinReviewsPerSubmission() << endl;
-    cout << "MaxReviewsPerReviewer: " << this->params.getMaxReviewsPerReviewer() << endl;
-    cout << "GenerateAssignments: " << this->params.getGenerateAssigLevel() << endl;
-    cout << "RiskAnalysis: " << this->params.getRiskAnalLevel() << endl;
-    cout << "OutputFilename: " << this->params.getOutputFilename() << endl;
+    cout << TXT_BOLD << FG_YELLOW << "|CONTROL PARAMETERS|" << TXT_RESET << endl;
+    cout << FG_GREEN << "MinReviewsPerSubmission: " << TXT_RESET << this->params.getMinReviewsPerSubmission() << endl;
+    cout << FG_GREEN << "MaxReviewsPerReviewer: " << TXT_RESET << this->params.getMaxReviewsPerReviewer() << endl;
+    cout << FG_GREEN << "GenerateAssignments: " << TXT_RESET << this->params.getGenerateAssigLevel() << endl;
+    cout << FG_GREEN << "RiskAnalysis: " << TXT_RESET << this->params.getRiskAnalLevel() << endl;
+    cout << FG_GREEN << "OutputFilename: " << TXT_RESET << this->params.getOutputFilename() << endl;
     cout << endl;
 }
