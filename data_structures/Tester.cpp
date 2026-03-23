@@ -89,7 +89,7 @@ void Tester::compareGeneratedWithExpected() {
 
                 // Construct the path for the generated file.
                 // Based on your previous files, they have an "output_" prefix.
-                fs::path generatedPath = this->mainFolder + "/generated/output_" + originalFilename;
+                fs::path generatedPath = this->mainFolder + "/generated/" + originalFilename;
 
                 // Check if the generated file even exists
                 if (!fs::exists(generatedPath)) {
