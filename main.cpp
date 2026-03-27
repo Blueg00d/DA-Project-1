@@ -69,6 +69,16 @@ int main() {
     string letterColor = TXT_RESET;
     string boxColor = FG_YELLOW;
 
+    cout << FG_RED << R"(
+                         _..-------++._
+                     _.-'/ |      _||  \"--._
+               __.--'`._/_\j_____/_||___\    `----.
+          _.--'_____    |          \     _____    /
+        _j    /,---.\   |        =o |   /,---.\   |_
+        [__]==// .-. \\==`===========/==// .-. \\=[__]
+         `-._|\ `-' /|___\_________/___|\ `-' /|_.-'
+               `---'                     `---'
+)" << TXT_RESET;
     while (true) {
         cout << TXT_BOLD << FG_YELLOW << TXT_INVERT << "☆ Choose which path to follow (this action will have consequences):" << TXT_RESET << endl;
         cout << boxColor << "==================================================================" << TXT_RESET << endl;
