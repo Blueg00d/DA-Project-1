@@ -139,6 +139,7 @@ void ConferenceManager::buildGraph() {
  * @copybrief debugGraph
  *
  * Time complexity: O(R*S)
+ * Nested loops of Reviewers R and Submissions S
  */
 void ConferenceManager::debugGraph() const{
 
@@ -148,7 +149,7 @@ void ConferenceManager::debugGraph() const{
     }
     cout << endl;
 
-    // Print Reviwers to Submissions Edges
+    // Print Reviewers to Submissions Edges
     for (pair<int, Reviewer*> reviewer: this->nodesToReviewers) {
         for (Edge<int>* e: this->graph.findVertex(reviewer.first)->getAdj()) {
             cout << this->nodesToReviewers.at(e->getOrig()->getInfo())->getId() << "--- " << e->getWeight() << " ---" << this->nodesToSubmissions.at(e->getDest()->getInfo())->getId() << endl;
@@ -163,7 +164,7 @@ void ConferenceManager::debugGraph() const{
 }
 
 /**
- *@copybrief runAssignment
+ * @copybrief runAssignment
  *
  * Time complexity: O((R+S)*(R*S)^2)
  * Calls edmondsKarp with complexity O(V*E^2);
@@ -179,6 +180,11 @@ void ConferenceManager::runAssignment() {
     double flow = graph.edmondsKarp(0,1);
 }
 
+/**
+ * @copybrief debugGraphFLow
+ * Time complexity: O(R*S)
+ * Nested cycle of Reviewers R and Submissions S
+ */
 void ConferenceManager::debugGraphFLow() const {
     std::stringstream ss;
     for(auto v : this->graph.getVertexSet()) {
@@ -191,11 +197,18 @@ void ConferenceManager::debugGraphFLow() const {
     std::cout << ss.str() << std::endl << std::endl;
 }
 
+/**
+ * @copybrief interpretFlowResults
+ * Time complexity: O((R*S)+ElogE)
+ * First it iterates through all submissions S in a nested loop with the reviewers R O(R*S)
+ * Sorting results takes O(ElogE) for edges E
+ */
 void ConferenceManager::interpretFlowResults() {
+    //Initialization
     this->matchResults.clear();
     this->missingReviewsResults.clear();
-
     int flow = 0;
+    //Iterate through all submissions
     for (const pair<int, Submission*> p: this->nodesToSubmissions) {
         int reviewsExecuted = 0;
         Submission* s = p.second;
@@ -204,7 +217,7 @@ void ConferenceManager::interpretFlowResults() {
                 flow++;
                 reviewsExecuted++;
                 Reviewer* r = this->nodesToReviewers.at(e->getOrig()->getInfo());
-
+                //Determine which area is matched
                 int match;
                 if (r->getPrimary() == s->getPrimary() || r->getPrimary() == s->getSecondary()) match = r->getPrimary();
                 else match = r->getSecondary();
@@ -215,6 +228,7 @@ void ConferenceManager::interpretFlowResults() {
                     );
             }
         }
+        //Check if enough reviews were received
         int minReviewsPerSub = this->params.getMinReviewsPerSubmission();
         if (reviewsExecuted < minReviewsPerSub) {
             this->missingReviewsResults.emplace_back(
@@ -224,13 +238,18 @@ void ConferenceManager::interpretFlowResults() {
                             );
         }
     }
+    //If it was successful or not
     if (flow >= this->params.getMinReviewsPerSubmission() * this->nodesToSubmissions.size()) this->success = true;
     else success = false;
-
+    //Sort results
     sort(matchResults.begin(), matchResults.end());
     sort(missingReviewsResults.begin(), missingReviewsResults.end());
 }
 
+/**
+ * @copybrief debugInterpretationResults
+ * Time complexity: O()
+ */
 void ConferenceManager::debugInterpretationResults() const {
     cout << TXT_BOLD << FG_GREEN << "#SubmissionId,ReviewerId,Match" << TXT_RESET << endl;
     for (const MatchResult& ms: this->matchResults) {
@@ -261,22 +280,27 @@ void ConferenceManager::debugInterpretationResults() const {
     }
 }
 
+/**
+ * @copybrief runRiskAnalysis
+ * O(R * (R+S)*(R*S)^2)
+ * Reruns edmondsKarp() once per reviewer R
+ */
 void ConferenceManager::runRiskAnalysis() {
     int M = params.getRiskAnalLevel();
     if (M == 0) return;
 
-    //as createnodes() clears the map at its beginning we need to save the revID so we are not affected in the next loop
+    //As createNodes() clears the map at its beginning we need to save the revID so we are not affected in the next loop
     vector<int> reviewerNodes;
     for (auto const& [nodeID, rev] : nodesToReviewers) {
         reviewerNodes.push_back(nodeID);
     }
 
     double requiredFlow = submissions.size() * params.getMinReviewsPerSubmission();
-    //clear previous results
+    //Clear previous results
     this->riskyReviewers.clear();
 
     for (int revNodeID : reviewerNodes) {
-        //full reset of the graph since the algorithm leaves residual flow on the edges
+        //Full reset of the graph since the algorithm leaves residual flow on the edges
         this->graph = Graph<int>();
         buildGraph();
 
@@ -296,12 +320,19 @@ void ConferenceManager::runRiskAnalysis() {
     }
     sort(riskyReviewers.begin(), riskyReviewers.end());
 
-    //leave the graph just like we found it
+    //Leave the graph just like we found it
     this->graph = Graph<int>();
     this->buildGraph();
     this->runAssignment();
 }
 
+/**
+ * @copybrief saveOutput
+ * Time complexity: O(MlogM + R)
+ * - M = number of matches (matchResults.size())
+ * Sorts results twice (grouped by submission and then grouped by reviewer)
+ *  Writes matches, missing reviews and risky reviewers to output O(M+R)
+ */
 void ConferenceManager::saveOutput(const string& folder) {
     string filename = folder + params.getOutputFilename();
 
@@ -359,6 +390,15 @@ void ConferenceManager::saveOutput(const string& folder) {
     cout << "success! results saved in: " << filename << endl;
 }
 
+/**
+ * @copydoc executeAllTasks
+ * Time complexity: O(R * (R+S)*(R*S)^2)
+ * buildGraph: O(R*S)
+ * runAssignment: O((R+S)*(R*S)^2)
+ * interpretFlowResults: O((R*S)+ElogE)
+ * runRiskAnalysis: O(R * (R+S)*(R*S)^2)
+ * saveOutput: O(MlogM + R)
+ */
 void ConferenceManager::executeAllTasks(const string &folder) {
     buildGraph();
     runAssignment();

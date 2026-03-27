@@ -93,11 +93,37 @@ class ConferenceManager {
      * @brief Function "restarts" graph and calls buildgraph
      */
     void runAssignment();
+
+    /**
+     * @brief Function prints the graph nodes and the flows between them
+     */
     void debugGraphFLow() const;
+
+    /**
+     * @brief Function maps the flows on edges given by the max flow into a sorted list
+     */
     void interpretFlowResults();
+
+    /**
+     * @brief
+     */
     void debugInterpretationResults() const;
+
+    /**
+     * @brief
+     * @param folder
+     */
     void saveOutput(const string& folder);
+
+    /**
+     * @brief
+     */
     void runRiskAnalysis();
+
+    /**
+     * @brief
+     * @param folder
+     */
     void executeAllTasks(const string& folder);
 };
 
