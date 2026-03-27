@@ -146,3 +146,46 @@ void Parser::testParser() {
     cout << FG_GREEN << "OutputFilename: " << TXT_RESET << this->params.getOutputFilename() << endl;
     cout << endl;
 }
+
+void Parser::changeparams() {
+    int parameter;
+    int value;
+    string name;
+    cout << "Please specify which parameter you want to change." << endl;
+    cout << "choices:" << endl;
+    cout << "1. Minimum Reviews per Submission" << endl;
+    cout << "2. Maximum Reviews per Reviewer" << endl;
+    cout << "3. Generate Assignments" << endl;
+    cout << "4. Risk Analysis" << endl;
+    cout << "5. Output Filename" << endl;
+    cout << "Input: ";
+    cin >> parameter;
+    cout << endl;
+    cout << "What do you want to change it for? ";
+    switch (parameter) {
+        case 1: case 2: case 3: case 4: {
+            cin >> value;
+            cout << endl;
+            if (parameter == 1) {
+                getParams().setMinReviewsPerSubmission(value);
+            }
+            if (parameter == 2) {
+                getParams().setMaxReviewsPerReviewer(value);
+            }
+            if (parameter == 3) {
+                getParams().setGenerateAssigLevel(value);
+            }
+            if (parameter == 4) {
+                getParams().setRiskAnalLevel(value);
+            }
+            break;
+        }
+        case 5: {
+            cin >> name;
+            cout << endl;
+            getParams().setOutputFilename(name);
+            break;
+        }
+    }
+}
+

@@ -5,41 +5,52 @@
 #include "data_structures/Tester.h"
 using namespace std;
 
-void handleChoice(int choice, ConferenceManager& manager) {
+void handleChoice(int choice, ConferenceManager& manager, Parser& parser) {
     switch (choice) {
-        case 1: case 2: {
+        case 1: /*PRINT FILE*/ {
+            string filename = manager.getFilename();
+            if (filename.empty()) {
+                cout << FG_RED << TXT_INVERT << "no file found, PLEASE use option 2 first!" << endl;
+                cout << TXT_RESET;
+            } else {
+                parser.testParser();
+            }
+            break;
+        }
+        case 2: /*READ FILE*/ {
             // input file
             string filename;
+
             cout << TXT_INVERT <<"Insert the name of your file: ";
             cin >> filename;
             cout << TXT_RESET;
 
-            Parser parser;
             parser.parseFile(filename);
-            
-            if (choice == 1) parser.testParser();  
-            else manager = ConferenceManager(parser.getReviewers(), parser.getSubmissions(), parser.getParams());
+
+            manager = ConferenceManager(parser.getReviewers(), parser.getSubmissions(), parser.getParams());
+            manager.setFilename(filename);
             break;
         }
-        case 3: case 4: {
+
+        case 3: case 4: /*BUILD GRAPH AND DEBUG GRAPH*/{
             manager.buildGraph();
             if (choice == 4) manager.debugGraph();
             break;
         }
-        case 5: case 6: {
+        case 5: case 6: /*RUN EDMONDS KARP AND DEBUG GRAPH FLOW*/{
             manager.runAssignment();
             manager.runRiskAnalysis();
             if (choice == 6) manager.debugGraphFLow();
             break;
         }
 
-        case 7: case 8: {
+        case 7: case 8: /*INTERPRET GRAPH FLOW AND DEBUG INTERPRETATION*/{
             manager.interpretFlowResults();
             if (choice == 8) manager.debugInterpretationResults();
             break;
         }
 
-        case 9: {
+        case 9: /*SAVE OUTPUT*/{
             manager.interpretFlowResults(); //?
             string folder;
             cout << TXT_INVERT <<"Insert the name of your folder: ";
@@ -48,7 +59,7 @@ void handleChoice(int choice, ConferenceManager& manager) {
             manager.saveOutput(folder);
             break;
         }
-        case 10: case 11:
+        case 10: case 11: /*RUN ALL INPUTS AND TEST ALL INPUTS*/{
             string folder;
             cout << TXT_INVERT <<"Insert the name of your folder: ";
             cin >> folder;
@@ -57,12 +68,18 @@ void handleChoice(int choice, ConferenceManager& manager) {
             tester.executeAllInputTasks();
             if (choice == 11) tester.compareGeneratedWithExpected();
             break;
+        }
+        case 12: /*CHANGE PARAMETERS*/{
+            parser.changeparams();
+            manager.setParams(parser.getParams()); //warn manager that the params changed
+        }
     }
 }
 
 int main() {
     cout << CLR_ALL;
     ConferenceManager manager;
+    Parser parser;
     int choice;
 
     string optionsColor = FG_CYAN;
@@ -82,7 +99,7 @@ int main() {
     while (true) {
         cout << TXT_BOLD << FG_YELLOW << TXT_INVERT << "☆ Choose which path to follow (this action will have consequences):" << TXT_RESET << endl;
         cout << boxColor << "==================================================================" << TXT_RESET << endl;
-        cout << boxColor << "*" << optionsColor << "[1]" << TXT_RESET << letterColor << " Test Parser" << boxColor << "                                                 *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[1]" << TXT_RESET << letterColor << " Print File" << boxColor << "                                                 *" << TXT_RESET << endl;
         cout << boxColor << "*" << optionsColor << "[2]" << TXT_RESET << letterColor << " Read File" << boxColor << "                                                   *" << TXT_RESET << endl;
         cout << boxColor << "*" << optionsColor << "[3]" << TXT_RESET << letterColor << " Build Graph" << boxColor << "                                                 *" << TXT_RESET << endl;
         cout << boxColor << "*" << optionsColor << "[4]" << TXT_RESET << letterColor << " Debug Graph" << boxColor << "                                                 *" << TXT_RESET << endl;
@@ -93,6 +110,7 @@ int main() {
         cout << boxColor << "*" << optionsColor << "[9]" << TXT_RESET << letterColor << " Save output" << boxColor << "                                                 *" << TXT_RESET << endl;
         cout << boxColor << "*" << optionsColor << "[10]" << TXT_RESET << letterColor << " Run all Inputs" << boxColor << "                                             *" << TXT_RESET << endl;
         cout << boxColor << "*" << optionsColor << "[11]" << TXT_RESET << letterColor << " Test all Inputs" << boxColor << "                                            *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[12]" << TXT_RESET << letterColor << " Change Parameters" << boxColor << "                                          *" << TXT_RESET << endl;
         cout << boxColor << "*" << optionsColor << "[0]" << TXT_RESET << letterColor << " Exit :p" << boxColor << "                                                     *" << TXT_RESET << endl;
         cout << boxColor << "==================================================================" << TXT_RESET << endl;
         cout << FG_YELLOW << TXT_INVERT << "Input: ";
@@ -102,7 +120,7 @@ int main() {
         if (choice == 0) {
             break;
         }
-        handleChoice(choice, manager);
+        handleChoice(choice, manager, parser);
     }
     return 0;
 }

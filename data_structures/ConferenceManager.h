@@ -10,17 +10,21 @@
 #include <unordered_map>
 #include <sstream>
 using namespace std;
-
 #define SOURCE 0
 #define SINK 1
 #define NOT_DEFINED -1
 
+/**
+ * @class ConferenceManager
+ * @brief ConferenceManager gathers all info from inputs and puts them in a graph
+ *
+ */
 class ConferenceManager {
     private:
-    //Private Attributes
     vector<Reviewer> reviewers;
     vector<Submission> submissions;
     Parameters params;
+    string filename;
 
     vector<MatchResult> matchResults;
     vector<MissingReviewsResult> missingReviewsResults;
@@ -33,31 +37,101 @@ class ConferenceManager {
 
     vector<int> riskyReviewers;
 
-    //Private Methods
+    /**
+     * @brief places information about Reviewers and Submissions in nodes
+     *
+     */
     void createNodes();
+
+    /**
+     *@brief Connects Source to Reviewers and Submissions to Sink
+     */
     void connectSourceSinkToNodes();
+
+    /**
+     *@brief connects Reviewers and Submissions
+     *
+     * Depending on the Assignment Level indicated in the input
+     */
     void connectNodes();
 
 
     public:
-    // Constructor
+    /**
+     * @brief Constructor of class ConferenceManager
+     *
+     * @param reviewers a vector of Reviewers from input
+     * @param submissions a vector of Submissions from input
+     * @param params Parameters from input
+     */
     ConferenceManager(
         vector<Reviewer> reviewers,
         vector<Submission> submissions,
         Parameters params
     );
+
+    /**
+     * @brief Default constructor of ConferenceManager
+     */
     ConferenceManager() = default;
+
+    /**
+     * @brief Destructor of class ConferenceManager
+     */
     ~ConferenceManager() = default;
 
+
+    /**
+     * @brief Function builds graph with information from input
+     *
+    * Calls createNodes, connectSourceSinkToNodes and connectNodes.
+     */
     void buildGraph();
+
+    /**
+     * @brief Function prints graph for debug purposes
+     */
     void debugGraph() const;
+
+    /**
+     * @brief Function "restarts" graph and calls buildgraph
+     */
     void runAssignment();
+
+    /**
+     * @brief Function prints the graph nodes and the flows between them
+     */
     void debugGraphFLow() const;
+
+    /**
+     * @brief Function maps the flows on edges given by the max flow into a sorted list
+     */
     void interpretFlowResults();
+
+    /**
+     * @brief
+     */
     void debugInterpretationResults() const;
+
+    /**
+     * @brief
+     * @param folder
+     */
     void saveOutput(const string& folder);
+
+    /**
+     * @brief
+     */
     void runRiskAnalysis();
+
+    /**
+     * @brief
+     * @param folder
+     */
     void executeAllTasks(const string& folder);
+    void setFilename(string filename);
+    string getFilename();
+    void setParams(Parameters params);
 };
 
 

@@ -18,8 +18,9 @@ class Parser {
     bool parseFile(const string &fileName);
     vector<Submission> getSubmissions() {return this->submissions;}
     vector<Reviewer> getReviewers() {return this->reviewers;}
-    Parameters getParams() {return this->params;}
+    Parameters& getParams() {return this->params;}
     void testParser();
+    void changeparams();
 };
 
 #endif //PARSER_H

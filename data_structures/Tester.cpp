@@ -9,6 +9,11 @@
 #include "Parser.h"
 #include "ConferenceManager.h"
 
+/**
+ * @copybrief
+ * Time complexity: O(F* )
+ * Parses and executes executeAllTasks() once for each number of files F
+ */
 void Tester::executeAllInputTasks() {
     for (const auto& entry: fs::directory_iterator(this->mainFolder + "/input/")) {
         if (entry.is_regular_file()) {
@@ -23,19 +28,24 @@ void Tester::executeAllInputTasks() {
 
 namespace fs = std::filesystem;
 
+/**
+ * @copydoc areFilesEqual
+ * Time complexity: O(N)
+ * Size in bytes of the files being read is N
+ */
 bool Tester::areFilesEqual(const fs::path& filePath1, const fs::path& filePath2) {
-    // 1. Check if both paths exist and are actually files
+    //Checking if both paths exist and are actually files
     if (!fs::exists(filePath1) || !fs::exists(filePath2) ||
         !fs::is_regular_file(filePath1) || !fs::is_regular_file(filePath2)) {
         return false;
         }
 
-    // 2. Fast fail: If the sizes are different, the files are definitely different
+    //If the sizes are different, the files are different
     if (fs::file_size(filePath1) != fs::file_size(filePath2)) {
         return false;
     }
 
-    // 3. Open both files in binary mode
+    //Opening both files in binary mode
     std::ifstream file1(filePath1, std::ios::binary);
     std::ifstream file2(filePath2, std::ios::binary);
 
@@ -43,17 +53,17 @@ bool Tester::areFilesEqual(const fs::path& filePath1, const fs::path& filePath2)
         return false; // Failed to open one or both files
     }
 
-    // 4. Compare the contents in chunks to keep memory usage low
+    //Comparing the contents in chunks to keep memory usage low
     const size_t bufferSize = 8192; // 8KB buffer
     std::vector<char> buffer1(bufferSize);
     std::vector<char> buffer2(bufferSize);
 
     do {
-        // Read a chunk from both files
+        //Reading a chunk from both files
         file1.read(buffer1.data(), bufferSize);
         file2.read(buffer2.data(), bufferSize);
 
-        // Check how many bytes were actually read
+        //Checking how many bytes were read
         std::streamsize bytesRead1 = file1.gcount();
         std::streamsize bytesRead2 = file2.gcount();
 
@@ -64,9 +74,15 @@ bool Tester::areFilesEqual(const fs::path& filePath1, const fs::path& filePath2)
             }
     } while (file1.good() && file2.good());
 
-    return true; // If we made it here, the files are identical
+    return true; //The files are identical
 }
 
+/**
+ * @copybrief
+ * Time complexity: O(F*N)
+ * Size in bytes of the files being compared in areFilesEqual is N
+ * Number of files expected is F
+ */
 void Tester::compareGeneratedWithExpected() {
     std::cout << CLR_ALL << FG_YELLOW << TXT_BOLD;
     std::cout << "======================================\n";
@@ -79,7 +95,7 @@ void Tester::compareGeneratedWithExpected() {
     int totalCount = 0;
 
     try {
-        // Iterate through all files in the "output" directory (the expected files)
+        // Iterating through all files in the "output" directory (the expected files)
         for (const auto& entry : fs::directory_iterator(this->mainFolder + "/output/")) {
             if (entry.is_regular_file()) {
                 totalCount++;
@@ -87,11 +103,10 @@ void Tester::compareGeneratedWithExpected() {
                 fs::path expectedPath = entry.path();
                 std::string originalFilename = expectedPath.filename().string();
 
-                // Construct the path for the generated file.
-                // Based on your previous files, they have an "output_" prefix.
-                fs::path generatedPath = this->mainFolder + "/generated/" + originalFilename;
+                // Constructing the path for the generated file. They have an "output_" prefix.
+                fs::path generatedPath = this->mainFolder + "/generated/output_" + originalFilename;
 
-                // Check if the generated file even exists
+                // Checking if the generated file even exists
                 if (!fs::exists(generatedPath)) {
                     std::cout << FG_RED << "[-] FAIL: " << originalFilename
                               << " -> Missing generated file: " << TXT_RESET << generatedPath.filename().string() << '\n';
@@ -99,7 +114,7 @@ void Tester::compareGeneratedWithExpected() {
                     continue;
                 }
 
-                // Compare the files using the areFilesEqual method
+                //Comparing the files using the areFilesEqual method
                 if (areFilesEqual(generatedPath, expectedPath)) {
                     std::cout << FG_GREEN << "[+] PASS: " << TXT_RESET << originalFilename << '\n';
                     passedCount++;

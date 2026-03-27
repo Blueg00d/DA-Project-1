@@ -16,3 +16,4 @@ CMakeCache.txt
 *.out
 *.log
 build
+.DS_Store

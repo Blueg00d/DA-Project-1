@@ -4,18 +4,36 @@ using namespace std;
 
 #include "Utils.h"
 
-// Constructor
+#include <utility>
+
 ConferenceManager::ConferenceManager(
         vector<Reviewer> reviewers,
         vector<Submission> submissions,
         Parameters params
     ) 
 {
-        this->reviewers = reviewers;
-        this->submissions = submissions;
-        this->params = params;
+        this->reviewers = std::move(reviewers);
+        this->submissions = std::move(submissions);
+        this->params = std::move(params);
+}
+void ConferenceManager::setFilename(string filename) {
+    this->filename = filename;
+}
+string ConferenceManager::getFilename() {
+    return this->filename;
 }
 
+void ConferenceManager::setParams(Parameters params) {
+    this->params = params;
+}
+/**
+ * @copybrief createNodes
+ *
+ * Makes source have default value of 0 and sink have default value of 1
+ *
+ * Time complexity: O(R+S)
+ * Iterates over all Reviewers (R) and all Submissions (S) and adds them to an unordered map
+ */
 void ConferenceManager::createNodes() {
     this->nodesToReviewers.clear();
     this->nodesToSubmissions.clear();
@@ -36,6 +54,12 @@ void ConferenceManager::createNodes() {
     }
 }
 
+/**
+ * @copybrief connectSourceSinkToNodes
+ *
+ * Time complexity: O(R+S)
+ *First for loop iterates through all reviewers (R) and second one through all Submissions (S)
+ */
 void ConferenceManager::connectSourceSinkToNodes() {
     //process so that the revisor with the smallest ID is processed first
     vector<int> sortedNodeIDs;
@@ -62,12 +86,22 @@ void ConferenceManager::connectSourceSinkToNodes() {
     }
 }
 
+/**
+ * @copybrief connectNodes
+ *
+ * Depending on the GenerateAssignments parameter the program receives, it considers different levels of expertise
+ *
+ * Time complexity: O(R*S)
+ * Cases 1, 2 and 3 have nested for loops where the outer loop iterates through all Reviewers (R) and the inner loop through all Submissions (S)
+ */
 void ConferenceManager::connectNodes() {
     switch (this->params.getGenerateAssigLevel()) {
+        case 0: break; //Only prints results in terminal but doesn't write output
+        case 1:
         case 0: case 1:
             for (pair<int, Reviewer*> reviewer: this->nodesToReviewers) {
                 for (pair<int, Submission*> submission: this->nodesToSubmissions) {
-                    if (reviewer.second->getPrimary() == submission.second->getPrimary()) { // Verifies Reviwer's Primary Expertise Area with Submission's Primary Area
+                    if (reviewer.second->getPrimary() == submission.second->getPrimary()) { //Verifies Reviewer's primary expertise area with Submission's primary area
                         this->graph.addEdge(reviewer.first, submission.first, 1);
                     }
                 }
@@ -76,8 +110,8 @@ void ConferenceManager::connectNodes() {
         case 2:
             for (pair<int, Reviewer*> reviewer: this->nodesToReviewers) {
                 for (pair<int, Submission*> submission: this->nodesToSubmissions) {
-                    if (reviewer.second->getPrimary() == submission.second->getPrimary() || // Verifies Reviwer's Primary Expertise Area with Submission's Primary Area
-                       (submission.second->getSecondary() != NOT_DEFINED && reviewer.second->getPrimary() == submission.second->getSecondary()) // Verifies Reviwer's Primary Expertise Area with Submission's Secondary Area
+                    if (reviewer.second->getPrimary() == submission.second->getPrimary() || //Verifies Reviewer's Primary Expertise Area with Submission's Primary Area
+                       (submission.second->getSecondary() != NOT_DEFINED && reviewer.second->getPrimary() == submission.second->getSecondary()) //Verifies Reviewer's Primary Expertise Area with Submission's Secondary Area
                 ) {
                         this->graph.addEdge(reviewer.first, submission.first, 1);
                     }
@@ -87,10 +121,10 @@ void ConferenceManager::connectNodes() {
         case 3: 
             for (pair<int, Reviewer*> reviewer: this->nodesToReviewers) {
                 for (pair<int, Submission*> submission: this->nodesToSubmissions) {
-                    if (reviewer.second->getPrimary() == submission.second->getPrimary() || // Verifies Reviwer's Primary Expertise Area with Submission's Primary Area
-                        (submission.second->getSecondary() != NOT_DEFINED && reviewer.second->getPrimary() == submission.second->getSecondary()) || // Verifies Reviwer's Primary Expertise Area with Submission's Secondary Area
-                        (reviewer.second->getSecondary() != NOT_DEFINED && reviewer.second->getSecondary() == submission.second->getPrimary()) || // Verifies Reviwer's Secondary Expertise Area with Submission's Primary Area
-                        (reviewer.second->getSecondary() != NOT_DEFINED && submission.second->getSecondary() != NOT_DEFINED && reviewer.second->getSecondary() == submission.second->getSecondary()) // Verifies Reviwer's Secondary Expertise Area with Submission's Secondary Area
+                    if (reviewer.second->getPrimary() == submission.second->getPrimary() || // Verifies Reviewer's Primary Expertise Area with Submission's Primary Area
+                        (submission.second->getSecondary() != NOT_DEFINED && reviewer.second->getPrimary() == submission.second->getSecondary()) || // Verifies Reviewer's Primary Expertise Area with Submission's Secondary Area
+                        (reviewer.second->getSecondary() != NOT_DEFINED && reviewer.second->getSecondary() == submission.second->getPrimary()) || // Verifies Reviewer's Secondary Expertise Area with Submission's Primary Area
+                        (reviewer.second->getSecondary() != NOT_DEFINED && submission.second->getSecondary() != NOT_DEFINED && reviewer.second->getSecondary() == submission.second->getSecondary()) // Verifies Reviewer's Secondary Expertise Area with Submission's Secondary Area
                     ) {
                         this->graph.addEdge(reviewer.first, submission.first, 1);
                     }
@@ -99,12 +133,24 @@ void ConferenceManager::connectNodes() {
     }
 }
 
+/**
+ * @copybrief buildGraph
+ *
+ * Time complexity: O(R*S)
+ * Biggest time complexity out of the three functions called
+ */
 void ConferenceManager::buildGraph() {
     createNodes();
     connectSourceSinkToNodes();
     connectNodes();
 }
 
+/**
+ * @copybrief debugGraph
+ *
+ * Time complexity: O(R*S)
+ * Nested loops of Reviewers R and Submissions S
+ */
 void ConferenceManager::debugGraph() const{
 
     // Print Source to Reviewers Edges
@@ -113,7 +159,7 @@ void ConferenceManager::debugGraph() const{
     }
     cout << endl;
 
-    // Print Reviwers to Submissions Edges
+    // Print Reviewers to Submissions Edges
     for (pair<int, Reviewer*> reviewer: this->nodesToReviewers) {
         for (Edge<int>* e: this->graph.findVertex(reviewer.first)->getAdj()) {
             cout << this->nodesToReviewers.at(e->getOrig()->getInfo())->getId() << "--- " << e->getWeight() << " ---" << this->nodesToSubmissions.at(e->getDest()->getInfo())->getId() << endl;
@@ -127,14 +173,28 @@ void ConferenceManager::debugGraph() const{
     }
 }
 
+/**
+ * @copybrief runAssignment
+ *
+ * Time complexity: O((R+S)*(R*S)^2)
+ * Calls edmondsKarp with complexity O(V*E^2);
+ * V is number of vertices (R+S+2);
+ * E is number of edges (Source->Reviewers == R; Reviewers->Submissions == up to R*S; Submissions->Sink == S) Let it be approx. R*S
+ * O(R+S+2*(R*S)^2) ≈ O((R+S)*(R*S)^2)
+ */
 void ConferenceManager::runAssignment() {
-    //erase previous graph so we can start over
+    //Erase previous graph so we can start over
     this->graph = Graph<int>();
-    //build the new graph with new data
+    //Build the new graph with new data
     buildGraph();
     double flow = graph.edmondsKarp(SOURCE,SINK);
 }
 
+/**
+ * @copybrief debugGraphFLow
+ * Time complexity: O(R*S)
+ * Nested cycle of Reviewers R and Submissions S
+ */
 void ConferenceManager::debugGraphFLow() const {
     std::stringstream ss;
     for(auto v : this->graph.getVertexSet()) {
@@ -147,11 +207,18 @@ void ConferenceManager::debugGraphFLow() const {
     std::cout << ss.str() << std::endl << std::endl;
 }
 
+/**
+ * @copybrief interpretFlowResults
+ * Time complexity: O((R*S)+ElogE)
+ * First it iterates through all submissions S in a nested loop with the reviewers R O(R*S)
+ * Sorting results takes O(ElogE) for edges E
+ */
 void ConferenceManager::interpretFlowResults() {
+    //Initialization
     this->matchResults.clear();
     this->missingReviewsResults.clear();
-
     int flow = 0;
+    //Iterate through all submissions
     for (const pair<int, Submission*> p: this->nodesToSubmissions) {
         int reviewsExecuted = 0;
         Submission* s = p.second;
@@ -160,7 +227,7 @@ void ConferenceManager::interpretFlowResults() {
                 flow++;
                 reviewsExecuted++;
                 Reviewer* r = this->nodesToReviewers.at(e->getOrig()->getInfo());
-
+                //Determine which area is matched
                 int match;
                 if (r->getPrimary() == s->getPrimary() || r->getPrimary() == s->getSecondary()) match = r->getPrimary();
                 else match = r->getSecondary();
@@ -171,6 +238,7 @@ void ConferenceManager::interpretFlowResults() {
                     );
             }
         }
+        //Check if enough reviews were received
         int minReviewsPerSub = this->params.getMinReviewsPerSubmission();
         if (reviewsExecuted < minReviewsPerSub) {
             this->missingReviewsResults.emplace_back(
@@ -180,13 +248,18 @@ void ConferenceManager::interpretFlowResults() {
                             );
         }
     }
+    //If it was successful or not
     if (flow >= this->params.getMinReviewsPerSubmission() * this->nodesToSubmissions.size()) this->success = true;
     else success = false;
-
+    //Sort results
     sort(matchResults.begin(), matchResults.end());
     sort(missingReviewsResults.begin(), missingReviewsResults.end());
 }
 
+/**
+ * @copybrief debugInterpretationResults
+ * Time complexity: O()
+ */
 void ConferenceManager::debugInterpretationResults() const {
     cout << TXT_BOLD << FG_GREEN << "#SubmissionId,ReviewerId,Match" << TXT_RESET << endl;
     for (const MatchResult& ms: this->matchResults) {
@@ -217,22 +290,27 @@ void ConferenceManager::debugInterpretationResults() const {
     }
 }
 
+/**
+ * @copybrief runRiskAnalysis
+ * O(R * (R+S)*(R*S)^2)
+ * Reruns edmondsKarp() once per reviewer R
+ */
 void ConferenceManager::runRiskAnalysis() {
     int M = params.getRiskAnalLevel();
     if (M == 0) return;
 
-    //as createnodes() clears the map at its beginning we need to save the revID so we are not affected in the next loop
+    //As createNodes() clears the map at its beginning we need to save the revID so we are not affected in the next loop
     vector<int> reviewerNodes;
     for (auto const& [nodeID, rev] : nodesToReviewers) {
         reviewerNodes.push_back(nodeID);
     }
 
     double requiredFlow = submissions.size() * params.getMinReviewsPerSubmission();
-    //clear previous results
+    //Clear previous results
     this->riskyReviewers.clear();
 
     for (int revNodeID : reviewerNodes) {
-        //full reset of the graph since the algorithm leaves residual flow on the edges
+        //Full reset of the graph since the algorithm leaves residual flow on the edges
         this->graph = Graph<int>();
         buildGraph();
 
@@ -252,12 +330,19 @@ void ConferenceManager::runRiskAnalysis() {
     }
     sort(riskyReviewers.begin(), riskyReviewers.end());
 
-    //leave the graph just like we found it
+    //Leave the graph just like we found it
     this->graph = Graph<int>();
     this->buildGraph();
     this->runAssignment();
 }
 
+/**
+ * @copybrief saveOutput
+ * Time complexity: O(MlogM + R)
+ * - M = number of matches (matchResults.size())
+ * Sorts results twice (grouped by submission and then grouped by reviewer)
+ *  Writes matches, missing reviews and risky reviewers to output O(M+R)
+ */
 void ConferenceManager::saveOutput(const string& folder) {
     string filename = folder + params.getOutputFilename();
 
@@ -315,6 +400,15 @@ void ConferenceManager::saveOutput(const string& folder) {
     cout << "success! results saved in: " << filename << endl;
 }
 
+/**
+ * @copydoc executeAllTasks
+ * Time complexity: O(R * (R+S)*(R*S)^2)
+ * buildGraph: O(R*S)
+ * runAssignment: O((R+S)*(R*S)^2)
+ * interpretFlowResults: O((R*S)+ElogE)
+ * runRiskAnalysis: O(R * (R+S)*(R*S)^2)
+ * saveOutput: O(MlogM + R)
+ */
 void ConferenceManager::executeAllTasks(const string &folder) {
     buildGraph();
     runAssignment();
