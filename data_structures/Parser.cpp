@@ -64,7 +64,7 @@ bool Parser::parseFile(const string &filename) {
                     s.setSecondary(std::stoi(fields[5]));
                 }
                 else {
-                    s.setSecondary(-1);
+                    s.setSecondary(NOT_DEFINED);
                 }
             submissions.push_back(s);
         }
@@ -81,7 +81,7 @@ bool Parser::parseFile(const string &filename) {
                 r.setSecondary(std::stoi(fields[4]));
             }
             else {
-                r.setSecondary(-1);
+                r.setSecondary(NOT_DEFINED);
             }
             reviewers.push_back(r);
         }

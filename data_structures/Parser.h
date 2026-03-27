@@ -5,6 +5,9 @@
 #include "Parameters.h"
 #include "Reviewer.h"
 #include "Submission.h"
+
+#define NOT_DEFINED -1
+
 class Parser {
     private:
     vector<Submission> submissions;

@@ -19,8 +19,8 @@ ConferenceManager::ConferenceManager(
 void ConferenceManager::createNodes() {
     this->nodesToReviewers.clear();
     this->nodesToSubmissions.clear();
-    this->graph.addVertex(0); // Represents Source
-    this->graph.addVertex(1); // Represents Sink
+    this->graph.addVertex(SOURCE); // Represents Source
+    this->graph.addVertex(SINK); // Represents Sink
 
     for (int i = 2; i < 2 + this->reviewers.size() + this->submissions.size(); i++) {
         this->graph.addVertex(i);
@@ -48,7 +48,7 @@ void ConferenceManager::connectSourceSinkToNodes() {
     });
 
     for (int nodeID : sortedNodeIDs) {
-        this->graph.addEdge(0, nodeID, this->params.getMaxReviewsPerReviewer());
+        this->graph.addEdge(SOURCE, nodeID, this->params.getMaxReviewsPerReviewer());
     }
 
     // Connecting Source to Reviewers
@@ -58,14 +58,13 @@ void ConferenceManager::connectSourceSinkToNodes() {
 
     // Connecting Submissions to Sink
     for (pair<int, Submission*>p: this->nodesToSubmissions) {
-        this->graph.addEdge(p.first, 1, this->params.getMinReviewsPerSubmission());
+        this->graph.addEdge(p.first, SINK, this->params.getMinReviewsPerSubmission());
     }
 }
 
 void ConferenceManager::connectNodes() {
     switch (this->params.getGenerateAssigLevel()) {
-        case 0: break; // Ainda não percebi isto crl
-        case 1:
+        case 0: case 1:
             for (pair<int, Reviewer*> reviewer: this->nodesToReviewers) {
                 for (pair<int, Submission*> submission: this->nodesToSubmissions) {
                     if (reviewer.second->getPrimary() == submission.second->getPrimary()) { // Verifies Reviwer's Primary Expertise Area with Submission's Primary Area
@@ -78,7 +77,7 @@ void ConferenceManager::connectNodes() {
             for (pair<int, Reviewer*> reviewer: this->nodesToReviewers) {
                 for (pair<int, Submission*> submission: this->nodesToSubmissions) {
                     if (reviewer.second->getPrimary() == submission.second->getPrimary() || // Verifies Reviwer's Primary Expertise Area with Submission's Primary Area
-                       (submission.second->getSecondary() != -1 && reviewer.second->getPrimary() == submission.second->getSecondary()) // Verifies Reviwer's Primary Expertise Area with Submission's Secondary Area
+                       (submission.second->getSecondary() != NOT_DEFINED && reviewer.second->getPrimary() == submission.second->getSecondary()) // Verifies Reviwer's Primary Expertise Area with Submission's Secondary Area
                 ) {
                         this->graph.addEdge(reviewer.first, submission.first, 1);
                     }
@@ -89,9 +88,9 @@ void ConferenceManager::connectNodes() {
             for (pair<int, Reviewer*> reviewer: this->nodesToReviewers) {
                 for (pair<int, Submission*> submission: this->nodesToSubmissions) {
                     if (reviewer.second->getPrimary() == submission.second->getPrimary() || // Verifies Reviwer's Primary Expertise Area with Submission's Primary Area
-                        (submission.second->getSecondary() != -1 && reviewer.second->getPrimary() == submission.second->getSecondary()) || // Verifies Reviwer's Primary Expertise Area with Submission's Secondary Area
-                        (reviewer.second->getSecondary() != -1 && reviewer.second->getSecondary() == submission.second->getPrimary()) || // Verifies Reviwer's Secondary Expertise Area with Submission's Primary Area
-                        (reviewer.second->getSecondary() != -1 && submission.second->getSecondary() != -1 && reviewer.second->getSecondary() == submission.second->getSecondary()) // Verifies Reviwer's Secondary Expertise Area with Submission's Secondary Area
+                        (submission.second->getSecondary() != NOT_DEFINED && reviewer.second->getPrimary() == submission.second->getSecondary()) || // Verifies Reviwer's Primary Expertise Area with Submission's Secondary Area
+                        (reviewer.second->getSecondary() != NOT_DEFINED && reviewer.second->getSecondary() == submission.second->getPrimary()) || // Verifies Reviwer's Secondary Expertise Area with Submission's Primary Area
+                        (reviewer.second->getSecondary() != NOT_DEFINED && submission.second->getSecondary() != NOT_DEFINED && reviewer.second->getSecondary() == submission.second->getSecondary()) // Verifies Reviwer's Secondary Expertise Area with Submission's Secondary Area
                     ) {
                         this->graph.addEdge(reviewer.first, submission.first, 1);
                     }
@@ -109,7 +108,7 @@ void ConferenceManager::buildGraph() {
 void ConferenceManager::debugGraph() const{
 
     // Print Source to Reviewers Edges
-    for (Edge<int>* e: this->graph.findVertex(0)->getAdj()) {
+    for (Edge<int>* e: this->graph.findVertex(SOURCE)->getAdj()) {
         cout << "Source--- " << e->getWeight() << " ---" << this->nodesToReviewers.at(e->getDest()->getInfo())->getId() << endl;
     }
     cout << endl;
@@ -123,7 +122,7 @@ void ConferenceManager::debugGraph() const{
     cout << endl;
 
     // Print Submissions to Sink Edges
-    for (Edge<int>* e: this->graph.findVertex(1)->getIncoming()) {
+    for (Edge<int>* e: this->graph.findVertex(SINK)->getIncoming()) {
         cout << this->nodesToSubmissions.at(e->getOrig()->getInfo())->getId() << "--- " << e->getWeight() << " ---Sink" << endl;
     }
 }
@@ -133,7 +132,7 @@ void ConferenceManager::runAssignment() {
     this->graph = Graph<int>();
     //build the new graph with new data
     buildGraph();
-    double flow = graph.edmondsKarp(0,1);
+    double flow = graph.edmondsKarp(SOURCE,SINK);
 }
 
 void ConferenceManager::debugGraphFLow() const {
@@ -238,7 +237,7 @@ void ConferenceManager::runRiskAnalysis() {
         buildGraph();
 
         Reviewer* currentRev = nodesToReviewers[revNodeID];
-        Vertex<int>* vSource = graph.findVertex(0);
+        Vertex<int>* vSource = graph.findVertex(SOURCE);
         for (auto e : vSource->getAdj()) {
             if (e->getDest()->getInfo() == revNodeID) {
                 e->setWeight(0);
@@ -246,7 +245,7 @@ void ConferenceManager::runRiskAnalysis() {
             }
         }
 
-        double flowAfter = graph.edmondsKarp(0,1);
+        double flowAfter = graph.edmondsKarp(SOURCE,SINK);
         if (flowAfter < requiredFlow) {
             this->riskyReviewers.push_back(currentRev->getId());
         }
