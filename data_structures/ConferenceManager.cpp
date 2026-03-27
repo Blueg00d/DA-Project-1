@@ -16,6 +16,17 @@ ConferenceManager::ConferenceManager(
         this->params = params;
 }
 
+void ConferenceManager::setFilename(string filename) {
+    this->filename = filename;
+}
+string ConferenceManager::getFilename() {
+    return this->filename;
+}
+
+void ConferenceManager::setParams(Parameters params) {
+    this->params = params;
+}
+
 void ConferenceManager::createNodes() {
     this->nodesToReviewers.clear();
     this->nodesToSubmissions.clear();
