@@ -151,14 +151,14 @@ void Parser::changeparams() {
     int parameter;
     int value;
     string name;
-    cout << "Please specify which parameter you want to change: ";
+    cout << "Please specify which parameter you want to change." << endl;
     cout << "choices:" << endl;
     cout << "1. Minimum Reviews per Submission" << endl;
     cout << "2. Maximum Reviews per Reviewer" << endl;
     cout << "3. Generate Assignments" << endl;
     cout << "4. Risk Analysis" << endl;
     cout << "5. Output Filename" << endl;
-    cout << "input: ";
+    cout << "Input: ";
     cin >> parameter;
     cout << endl;
     cout << "What do you want to change it for? ";

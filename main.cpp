@@ -69,7 +69,7 @@ void handleChoice(int choice, ConferenceManager& manager, Parser& parser) {
             if (choice == 11) tester.compareGeneratedWithExpected();
             break;
         }
-        case 13: /*CHANGE PARAMETERS*/{
+        case 12: /*CHANGE PARAMETERS*/{
             parser.changeparams();
             manager.setParams(parser.getParams()); //warn manager that the params changed
         }
@@ -95,7 +95,7 @@ int main() {
         cout << "9: Save output" << endl;
         cout << "10: Run all Inputs" << endl;
         cout << "11: Test all Inputs" << endl;
-        cout << "13: Change Parameters" << endl;
+        cout << "12: Change Parameters" << endl;
         cout << "0: Exit :p" << endl;
         cout << TXT_INVERT << "Input: ";
         cin >> choice;
