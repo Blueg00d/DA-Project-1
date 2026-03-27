@@ -65,21 +65,27 @@ int main() {
     ConferenceManager manager;
     int choice;
 
+    string optionsColor = FG_CYAN;
+    string letterColor = TXT_RESET;
+    string boxColor = FG_YELLOW;
+
     while (true) {
-        cout << TXT_BOLD << FG_RED << "☆ Choose which path to follow (this action will have consequences):" << TXT_RESET << endl;
-        cout << "1: Test Parser" << endl;
-        cout << "2: Read File" << endl;
-        cout << "3: Build Graph" << endl;
-        cout << "4: Debug Graph" << endl;
-        cout << "5: Run Edmond Karp's Algorithm" << endl;
-        cout << "6: Debug Graph FLow" << endl;
-        cout << "7: Interpret Graph Flow" << endl;
-        cout << "8: Debug Interpretation" << endl;
-        cout << "9: Save output" << endl;
-        cout << "10: Run all Inputs" << endl;
-        cout << "11: Test all Inputs" << endl;
-        cout << "0: Exit :p" << endl;
-        cout << TXT_INVERT << "Input: ";
+        cout << TXT_BOLD << FG_YELLOW << TXT_INVERT << "☆ Choose which path to follow (this action will have consequences):" << TXT_RESET << endl;
+        cout << boxColor << "==================================================================" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[1]" << TXT_RESET << letterColor << " Test Parser" << boxColor << "                                                 *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[2]" << TXT_RESET << letterColor << " Read File" << boxColor << "                                                   *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[3]" << TXT_RESET << letterColor << " Build Graph" << boxColor << "                                                 *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[4]" << TXT_RESET << letterColor << " Debug Graph" << boxColor << "                                                 *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[5]" << TXT_RESET << letterColor << " Run Edmond Karp's Algorithm" << boxColor << "                                 *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[6]" << TXT_RESET << letterColor << " Debug Graph FLow" << boxColor << "                                            *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[7]" << TXT_RESET << letterColor << " Interpret Graph Flow" << boxColor << "                                        *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[8]" << TXT_RESET << letterColor << " Debug Interpretation" << boxColor << "                                        *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[9]" << TXT_RESET << letterColor << " Save output" << boxColor << "                                                 *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[10]" << TXT_RESET << letterColor << " Run all Inputs" << boxColor << "                                             *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[11]" << TXT_RESET << letterColor << " Test all Inputs" << boxColor << "                                            *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[0]" << TXT_RESET << letterColor << " Exit :p" << boxColor << "                                                     *" << TXT_RESET << endl;
+        cout << boxColor << "==================================================================" << TXT_RESET << endl;
+        cout << FG_YELLOW << TXT_INVERT << "Input: ";
         cin >> choice;
         cout << TXT_RESET << CLR_ALL;
 
