@@ -10,6 +10,9 @@
 #include <unordered_map>
 #include <sstream>
 using namespace std;
+#define SOURCE 0
+#define SINK 1
+#define NOT_DEFINED -1
 
 /**
  * @class ConferenceManager
