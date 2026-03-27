@@ -1,4 +1,3 @@
-# Scenario: Both domains active - undercovered without secondary, satisfied with secondary
 #Submissions
 #Id, Title, Authors, E-mail, Primary, Secondary
 1, "AI Planning Systems", Alice Brown, alice.brown@gmail.com, 1, 4
@@ -22,6 +21,6 @@ SecondaryReviewerExpertise, 0
 PrimarySubmissionDomain, 1
 SecondarySubmissionDomain, 1
 #Control
-GenerateAssignments, 1
+GenerateAssignments, 2
 RiskAnalysis, 1
 OutputFileName, "output_dataset14.csv"

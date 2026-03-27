@@ -59,7 +59,7 @@ bool Tester::areFilesEqual(const fs::path& filePath1, const fs::path& filePath2)
     std::vector<char> buffer2(bufferSize);
 
     do {
-        //reading a chunk from both files
+        //Reading a chunk from both files
         file1.read(buffer1.data(), bufferSize);
         file2.read(buffer2.data(), bufferSize);
 

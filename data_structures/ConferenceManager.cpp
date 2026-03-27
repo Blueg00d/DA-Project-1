@@ -16,7 +16,16 @@ ConferenceManager::ConferenceManager(
         this->submissions = std::move(submissions);
         this->params = std::move(params);
 }
+void ConferenceManager::setFilename(string filename) {
+    this->filename = filename;
+}
+string ConferenceManager::getFilename() {
+    return this->filename;
+}
 
+void ConferenceManager::setParams(Parameters params) {
+    this->params = params;
+}
 /**
  * @copybrief createNodes
  *
@@ -71,7 +80,7 @@ void ConferenceManager::connectSourceSinkToNodes() {
     //    this->graph.addEdge(0, p.first, this->params.getMaxReviewsPerReviewer());
     //}
 
-    // Connecting submissions to Sink
+    // Connecting Submissions to Sink
     for (pair<int, Submission*>p: this->nodesToSubmissions) {
         this->graph.addEdge(p.first, 1, this->params.getMinReviewsPerSubmission());
     }

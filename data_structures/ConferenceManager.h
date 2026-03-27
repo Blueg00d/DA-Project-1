@@ -21,6 +21,7 @@ class ConferenceManager {
     vector<Reviewer> reviewers;
     vector<Submission> submissions;
     Parameters params;
+    string filename;
 
     vector<MatchResult> matchResults;
     vector<MissingReviewsResult> missingReviewsResults;
@@ -125,6 +126,9 @@ class ConferenceManager {
      * @param folder
      */
     void executeAllTasks(const string& folder);
+    void setFilename(string filename);
+    string getFilename();
+    void setParams(Parameters params);
 };
 
 
