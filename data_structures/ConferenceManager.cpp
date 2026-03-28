@@ -292,6 +292,20 @@ void ConferenceManager::debugInterpretationResults() const {
  * @copybrief runRiskAnalysis
  * Time Complexity: O(R * (R+S)*(R*S)^2)
  * Reruns edmondsKarp() once per reviewer R
+ *
+ * @details This runRiskAnalysis works only for level k == 1.
+ *  If we wanted to run this function for a level k > 1, we could use a brute-force approach.
+ *
+ *  The algorithm would be analogous to this one but
+ *  instead of pushing a single reviewerID to the reviewerNodes vector,
+ *  we would create every possible subset of discarded reviewers of size <= k,
+ *  resulting in \f$ \sum_{i=1}^{k} C_{i}^{R} \f$ subsets.
+ *  Then, for each subset of reviewers, we would set each reviewers flow to 0,
+ *  similar to what this algorithm does.
+ *
+ *  This algorithm would result in a temporal complexity of O(2^R * (R+S)*(R*S)^2),
+ *  characterized by running the Edmound's Karp Algorithm through every subset of
+ *  discarded reviewers.
  */
 void ConferenceManager::runRiskAnalysis() {
     int M = params.getRiskAnalLevel();
