@@ -1,7 +1,7 @@
 #ifndef DA_PROJECT_1_DEBUGGER_H
 #define DA_PROJECT_1_DEBUGGER_H
 
-class ConferenceManager; // Forward declaration
+#include "ConferenceManager.h"
 
 /**
  * @class Debugger
