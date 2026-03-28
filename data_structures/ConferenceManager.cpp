@@ -10,7 +10,7 @@ ConferenceManager::ConferenceManager(
         vector<Reviewer> reviewers,
         vector<Submission> submissions,
         Parameters params
-    ) 
+    )
 {
         this->reviewers = std::move(reviewers);
         this->submissions = std::move(submissions);
@@ -43,11 +43,11 @@ void ConferenceManager::createNodes() {
     for (int i = 2; i < 2 + this->reviewers.size() + this->submissions.size(); i++) {
         this->graph.addVertex(i);
 
-        if (i - 2 < this->reviewers.size()) { 
+        if (i - 2 < this->reviewers.size()) {
             // Reviewers' Nodes
             this->nodesToReviewers.emplace(i, &this->reviewers[i - 2]);
         }
-        else { 
+        else {
             // Submissions' Nodes
             this->nodesToSubmissions.emplace(i, &this->submissions[i - 2 - this->reviewers.size()]);
         }
@@ -75,11 +75,6 @@ void ConferenceManager::connectSourceSinkToNodes() {
         this->graph.addEdge(SOURCE, nodeID, this->params.getMaxReviewsPerReviewer());
     }
 
-    // Connecting Source to Reviewers
-    //for (pair<int, Reviewer*> p: this->nodesToReviewers) {
-    //    this->graph.addEdge(0, p.first, this->params.getMaxReviewsPerReviewer());
-    //}
-
     // Connecting Submissions to Sink
     for (pair<int, Submission*>p: this->nodesToSubmissions) {
         this->graph.addEdge(p.first, SINK, this->params.getMinReviewsPerSubmission());
@@ -95,39 +90,31 @@ void ConferenceManager::connectSourceSinkToNodes() {
  * Cases 1, 2 and 3 have nested for loops where the outer loop iterates through all Reviewers (R) and the inner loop through all Submissions (S)
  */
 void ConferenceManager::connectNodes() {
-    switch (this->params.getGenerateAssigLevel()) {
-        case 0: case 1: //Only prints results in terminal but doesn't write output
-            for (pair<int, Reviewer*> reviewer: this->nodesToReviewers) {
-                for (pair<int, Submission*> submission: this->nodesToSubmissions) {
-                    if (reviewer.second->getPrimary() == submission.second->getPrimary()) { //Verifies Reviewer's primary expertise area with Submission's primary area
-                        this->graph.addEdge(reviewer.first, submission.first, 1);
-                    }
-                }
+    int level = this->params.getGenerateAssigLevel();
+
+    for (pair<int, Reviewer*> reviewer: this->nodesToReviewers) {
+        for (pair<int, Submission*> submission: this->nodesToSubmissions) {
+            bool isEligible = false;
+            int rPrim = reviewer.second->getPrimary();
+            int rSec = reviewer.second->getSecondary();
+            int sPrim = submission.second->getPrimary();
+            int sSec = submission.second->getSecondary();
+
+            if (level == 0 || level == 1) {
+                isEligible = (rPrim == sPrim);
+            } else if (level == 2) {
+                isEligible = (rPrim == sPrim) || (sSec != NOT_DEFINED && rPrim == sSec);
+            } else if (level == 3) {
+                isEligible = (rPrim == sPrim) ||
+                             (sSec != NOT_DEFINED && rPrim == sSec) ||
+                             (rSec != NOT_DEFINED && rSec == sPrim) ||
+                             (rSec != NOT_DEFINED && sSec != NOT_DEFINED && rSec == sSec);
             }
-            break;
-        case 2:
-            for (pair<int, Reviewer*> reviewer: this->nodesToReviewers) {
-                for (pair<int, Submission*> submission: this->nodesToSubmissions) {
-                    if (reviewer.second->getPrimary() == submission.second->getPrimary() || //Verifies Reviewer's Primary Expertise Area with Submission's Primary Area
-                       (submission.second->getSecondary() != NOT_DEFINED && reviewer.second->getPrimary() == submission.second->getSecondary()) //Verifies Reviewer's Primary Expertise Area with Submission's Secondary Area
-                ) {
-                        this->graph.addEdge(reviewer.first, submission.first, 1);
-                    }
-                }
+
+            if (isEligible) {
+                this->graph.addEdge(reviewer.first, submission.first, 1);
             }
-            break;
-        case 3: 
-            for (pair<int, Reviewer*> reviewer: this->nodesToReviewers) {
-                for (pair<int, Submission*> submission: this->nodesToSubmissions) {
-                    if (reviewer.second->getPrimary() == submission.second->getPrimary() || // Verifies Reviewer's Primary Expertise Area with Submission's Primary Area
-                        (submission.second->getSecondary() != NOT_DEFINED && reviewer.second->getPrimary() == submission.second->getSecondary()) || // Verifies Reviewer's Primary Expertise Area with Submission's Secondary Area
-                        (reviewer.second->getSecondary() != NOT_DEFINED && reviewer.second->getSecondary() == submission.second->getPrimary()) || // Verifies Reviewer's Secondary Expertise Area with Submission's Primary Area
-                        (reviewer.second->getSecondary() != NOT_DEFINED && submission.second->getSecondary() != NOT_DEFINED && reviewer.second->getSecondary() == submission.second->getSecondary()) // Verifies Reviewer's Secondary Expertise Area with Submission's Secondary Area
-                    ) {
-                        this->graph.addEdge(reviewer.first, submission.first, 1);
-                    }
-                }
-            }
+        }
     }
 }
 
@@ -158,7 +145,7 @@ void ConferenceManager::runAssignment() {
     this->graph = Graph<int>();
     //Build the new graph with new data
     buildGraph();
-    double flow = graph.edmondsKarp(SOURCE,SINK);
+    graph.edmondsKarp(SOURCE,SINK); // Unused variable 'flow' removed
 }
 
 
@@ -172,14 +159,13 @@ void ConferenceManager::interpretFlowResults() {
     //Initialization
     this->matchResults.clear();
     this->missingReviewsResults.clear();
-    int flow = 0;
+
     //Iterate through all submissions
     for (const pair<int, Submission*> p: this->nodesToSubmissions) {
         int reviewsExecuted = 0;
         Submission* s = p.second;
         for (Edge<int>* e: this->graph.findVertex(p.first)->getIncoming()) {
             if (e->getFlow() > 0) {
-                flow++;
                 reviewsExecuted++;
                 Reviewer* r = this->nodesToReviewers.at(e->getOrig()->getInfo());
                 //Determine which area is matched
@@ -203,9 +189,9 @@ void ConferenceManager::interpretFlowResults() {
                             );
         }
     }
-    //If it was successful or not
-    if (flow >= this->params.getMinReviewsPerSubmission() * this->nodesToSubmissions.size()) this->success = true;
-    else success = false;
+    //If it was successful or not (Unused independent flow accumulator removed for reliability)
+    this->success = (this->matchResults.size() >= this->params.getMinReviewsPerSubmission() * this->nodesToSubmissions.size());
+
     //Sort results
     sort(matchResults.begin(), matchResults.end());
     sort(missingReviewsResults.begin(), missingReviewsResults.end());
@@ -218,58 +204,62 @@ void ConferenceManager::interpretFlowResults() {
  * Reruns edmondsKarp() once per reviewer R
  *
  * @details This runRiskAnalysis works only for level k == 1.
- *  If we wanted to run this function for a level k > 1, we could use a brute-force approach.
+ * If we wanted to run this function for a level k > 1, we could use a brute-force approach.
  *
- *  The algorithm would be analogous to this one but
- *  instead of pushing a single reviewerID to the reviewerNodes vector,
- *  we would create every possible subset of discarded reviewers of size <= k,
- *  resulting in \f$\sum_{i=1}^{k} C_{i}^{R}\f$ subsets.
- *  Then, for each subset of reviewers, we would set each reviewers flow to 0,
- *  similar to what this algorithm does.
+ * The algorithm would be analogous to this one but
+ * instead of pushing a single reviewerID to the reviewerNodes vector,
+ * we would create every possible subset of discarded reviewers of size <= k,
+ * resulting in \f$\sum_{i=1}^{k} C_{i}^{R}\f$ subsets.
+ * Then, for each subset of reviewers, we would set each reviewers flow to 0,
+ * similar to what this algorithm does.
  *
- *  This algorithm would result in a temporal complexity of O(2^R * (R+S)*(R*S)^2),
- *  characterized by running the Edmound's Karp Algorithm through every subset of
- *  discarded reviewers.
+ * This algorithm would result in a temporal complexity of O(2^R * (R+S)*(R*S)^2),
+ * characterized by running the Edmound's Karp Algorithm through every subset of
+ * discarded reviewers.
  */
 void ConferenceManager::runRiskAnalysis() {
     int M = params.getRiskAnalLevel();
     if (M == 0) return;
 
-    //As createNodes() clears the map at its beginning we need to save the revID so we are not affected in the next loop
     vector<int> reviewerNodes;
     for (auto const& [nodeID, rev] : nodesToReviewers) {
         reviewerNodes.push_back(nodeID);
     }
 
     double requiredFlow = submissions.size() * params.getMinReviewsPerSubmission();
-    //Clear previous results
     this->riskyReviewers.clear();
 
-    for (int revNodeID : reviewerNodes) {
-        //Full reset of the graph since the algorithm leaves residual flow on the edges
-        this->graph = Graph<int>();
-        buildGraph();
+    Vertex<int>* vSource = graph.findVertex(SOURCE);
 
-        Reviewer* currentRev = nodesToReviewers[revNodeID];
-        Vertex<int>* vSource = graph.findVertex(SOURCE);
+    for (int revNodeID : reviewerNodes) {
+        Edge<int>* targetEdge = nullptr;
+        double originalWeight = 0;
+
+        // Temporarily nullify the target capacity for the isolated reviewer node
         for (auto e : vSource->getAdj()) {
             if (e->getDest()->getInfo() == revNodeID) {
+                targetEdge = e;
+                originalWeight = e->getWeight();
                 e->setWeight(0);
                 break;
             }
         }
 
+        // Run EdmundsKarp on the existing initialized graph
         double flowAfter = graph.edmondsKarp(SOURCE,SINK);
         if (flowAfter < requiredFlow) {
-            this->riskyReviewers.push_back(currentRev->getId());
+            this->riskyReviewers.push_back(nodesToReviewers[revNodeID]->getId());
+        }
+
+        // Restore the reviewer capacity edge
+        if (targetEdge) {
+            targetEdge->setWeight(originalWeight);
         }
     }
     sort(riskyReviewers.begin(), riskyReviewers.end());
 
-    //Leave the graph just like we found it
-    this->graph = Graph<int>();
-    this->buildGraph();
-    this->runAssignment();
+    // Leave the graph just like we found it by running EdmondsKarp one last time with all capacities fully intact
+    this->graph.edmondsKarp(SOURCE, SINK);
 }
 
 /**
@@ -277,7 +267,7 @@ void ConferenceManager::runRiskAnalysis() {
  * Time complexity: O(MlogM + R)
  * - M = number of matches (matchResults.size())
  * Sorts results twice (grouped by submission and then grouped by reviewer)
- *  Writes matches, missing reviews and risky reviewers to output O(M+R)
+ * Writes matches, missing reviews and risky reviewers to output O(M+R)
  */
 void ConferenceManager::saveOutput(const string& folder) {
     string filename = folder + params.getOutputFilename();
@@ -349,4 +339,3 @@ void ConferenceManager::executeAllTasks(const string &folder) {
     runRiskAnalysis();
     saveOutput(folder);
 }
-

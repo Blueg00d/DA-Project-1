@@ -7,9 +7,51 @@
 #include "data_structures/Tester.h"
 using namespace std;
 
-void handleChoice(int choice, ConferenceManager& manager, Parser& parser) {
+enum class MenuOption {
+    EXIT = 0,
+    PRINT_FILE = 1,
+    READ_FILE = 2,
+    BUILD_GRAPH = 3,
+    DEBUG_GRAPH = 4,
+    RUN_EDMONDS_KARP = 5,
+    DEBUG_GRAPH_FLOW = 6,
+    INTERPRET_GRAPH_FLOW = 7,
+    DEBUG_INTERPRETATION = 8,
+    SAVE_OUTPUT = 9,
+    RUN_ALL_INPUTS = 10,
+    TEST_ALL_INPUTS = 11,
+    CHANGE_PARAMETERS = 12
+};
+
+void handleChangeParameters(Parser& parser, ConferenceManager& manager) {
+    int parameter;
+    int value;
+    cout << "Please specify which parameter you want to change." << endl;
+    cout << "choices:" << endl;
+    cout << "1. Minimum Reviews per Submission" << endl;
+    cout << "2. Maximum Reviews per Reviewer" << endl;
+    cout << "3. Generate Assignments" << endl;
+    cout << "4. Risk Analysis" << endl;
+    cout << "Input: ";
+    cin >> parameter;
+    cout << endl;
+    cout << "What do you want to change it for? ";
+    cin >> value;
+    cout << endl;
+
+    Parameters& params = parser.getParams();
+    switch (parameter) {
+        case 1: params.setMinReviewsPerSubmission(value); break;
+        case 2: params.setMaxReviewsPerReviewer(value); break;
+        case 3: params.setGenerateAssigLevel(value); break;
+        case 4: params.setRiskAnalLevel(value); break;
+    }
+    manager.setParams(parser.getParams()); //warn manager that the params changed
+}
+
+void handleChoice(MenuOption choice, ConferenceManager& manager, Parser& parser) {
     switch (choice) {
-        case 1: /*PRINT FILE*/ {
+        case MenuOption::PRINT_FILE: /*PRINT FILE*/ {
             string filename = manager.getFilename();
             if (filename.empty()) {
                 cout << FG_RED << TXT_INVERT << "no file found, PLEASE use option 2 first!" << endl;
@@ -19,7 +61,7 @@ void handleChoice(int choice, ConferenceManager& manager, Parser& parser) {
             }
             break;
         }
-        case 2: /*READ FILE*/ {
+        case MenuOption::READ_FILE: /*READ FILE*/ {
             // input file
             string filename;
 
@@ -34,25 +76,28 @@ void handleChoice(int choice, ConferenceManager& manager, Parser& parser) {
             break;
         }
 
-        case 3: case 4: /*BUILD GRAPH AND DEBUG GRAPH*/{
+        case MenuOption::BUILD_GRAPH:
+        case MenuOption::DEBUG_GRAPH: /*BUILD GRAPH AND DEBUG GRAPH*/{
             manager.buildGraph();
-            if (choice == 4) Debugger::debugGraph(manager);
+            if (choice == MenuOption::DEBUG_GRAPH) Debugger::debugGraph(manager);
             break;
         }
-        case 5: case 6: /*RUN EDMONDS KARP AND DEBUG GRAPH FLOW*/{
+        case MenuOption::RUN_EDMONDS_KARP:
+        case MenuOption::DEBUG_GRAPH_FLOW: /*RUN EDMONDS KARP AND DEBUG GRAPH FLOW*/{
             manager.runAssignment();
             manager.runRiskAnalysis();
-            if (choice == 6) Debugger::debugGraphFlow(manager);
+            if (choice == MenuOption::DEBUG_GRAPH_FLOW) Debugger::debugGraphFlow(manager);
             break;
         }
 
-        case 7: case 8: /*INTERPRET GRAPH FLOW AND DEBUG INTERPRETATION*/{
+        case MenuOption::INTERPRET_GRAPH_FLOW:
+        case MenuOption::DEBUG_INTERPRETATION: /*INTERPRET GRAPH FLOW AND DEBUG INTERPRETATION*/{
             manager.interpretFlowResults();
-            if (choice == 8) Debugger::debugInterpretationResults(manager);
+            if (choice == MenuOption::DEBUG_INTERPRETATION) Debugger::debugInterpretationResults(manager);
             break;
         }
 
-        case 9: /*SAVE OUTPUT*/{
+        case MenuOption::SAVE_OUTPUT: /*SAVE OUTPUT*/{
             manager.interpretFlowResults(); //?
             string folder;
             cout << TXT_INVERT <<"Insert the name of your folder: ";
@@ -61,20 +106,22 @@ void handleChoice(int choice, ConferenceManager& manager, Parser& parser) {
             manager.saveOutput(folder);
             break;
         }
-        case 10: case 11: /*RUN ALL INPUTS AND TEST ALL INPUTS*/{
+        case MenuOption::RUN_ALL_INPUTS:
+        case MenuOption::TEST_ALL_INPUTS: /*RUN ALL INPUTS AND TEST ALL INPUTS*/{
             string folder;
             cout << TXT_INVERT <<"Insert the name of your folder: ";
             cin >> folder;
             cout << TXT_RESET;
             Tester tester(folder);
             tester.executeAllInputTasks();
-            if (choice == 11) tester.compareGeneratedWithExpected();
+            if (choice == MenuOption::TEST_ALL_INPUTS) tester.compareGeneratedWithExpected();
             break;
         }
-        case 12: /*CHANGE PARAMETERS*/{
-            parser.changeparams();
-            manager.setParams(parser.getParams()); //warn manager that the params changed
+        case MenuOption::CHANGE_PARAMETERS: /*CHANGE PARAMETERS*/{
+            handleChangeParameters(parser, manager);
+            break;
         }
+        default: break;
     }
 }
 
@@ -82,7 +129,7 @@ int main() {
     cout << CLR_ALL;
     ConferenceManager manager;
     Parser parser;
-    int choice;
+    int choiceInt;
 
     string optionsColor = FG_CYAN;
     string letterColor = TXT_RESET;
@@ -116,10 +163,11 @@ int main() {
         cout << boxColor << "*" << optionsColor << "[0]" << TXT_RESET << letterColor << " Exit :p" << boxColor << "                                                     *" << TXT_RESET << endl;
         cout << boxColor << "==================================================================" << TXT_RESET << endl;
         cout << FG_YELLOW << TXT_INVERT << "Input: ";
-        cin >> choice;
+        cin >> choiceInt;
         cout << TXT_RESET << CLR_ALL;
 
-        if (choice == 0) {
+        MenuOption choice = static_cast<MenuOption>(choiceInt);
+        if (choice == MenuOption::EXIT) {
             break;
         }
         handleChoice(choice, manager, parser);

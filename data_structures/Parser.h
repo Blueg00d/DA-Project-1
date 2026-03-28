@@ -10,18 +10,17 @@
 #define NOT_DEFINED -1
 
 class Parser {
-    private:
+private:
     vector<Submission> submissions;
     vector<Reviewer> reviewers;
     Parameters params;
 
-    public:
+public:
     bool parseFile(const string &fileName);
     vector<Submission> getSubmissions() {return this->submissions;}
     vector<Reviewer> getReviewers() {return this->reviewers;}
     Parameters& getParams() {return this->params;}
     void testParser();
-    void changeparams();
 };
 
 #endif //PARSER_H

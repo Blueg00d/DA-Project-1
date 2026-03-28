@@ -46,7 +46,7 @@ void Tester::compareGeneratedWithExpected() {
                 std::string originalFilename = expectedPath.filename().string();
 
                 // Constructing the path for the generated file. They have an "output_" prefix.
-                fs::path generatedPath = this->mainFolder + "/generated/output_" + originalFilename;
+                fs::path generatedPath = this->mainFolder + "/generated/" + originalFilename;
 
                 // Checking if the generated file even exists
                 if (!fs::exists(generatedPath)) {
