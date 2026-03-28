@@ -21,6 +21,8 @@ add_library(DataStructures STATIC
         Utils.h
         Tester.cpp
         Tester.h
+        Debugger.cpp
+        Debugger.h
 )
 
 target_include_directories(DataStructures PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

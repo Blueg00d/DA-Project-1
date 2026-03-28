@@ -143,33 +143,6 @@ void ConferenceManager::buildGraph() {
     connectNodes();
 }
 
-/**
- * @copybrief debugGraph
- *
- * Time complexity: O(R*S)
- * Nested loops of Reviewers R and Submissions S
- */
-void ConferenceManager::debugGraph() const{
-
-    // Print Source to Reviewers Edges
-    for (Edge<int>* e: this->graph.findVertex(SOURCE)->getAdj()) {
-        cout << "Source--- " << e->getWeight() << " ---" << this->nodesToReviewers.at(e->getDest()->getInfo())->getId() << endl;
-    }
-    cout << endl;
-
-    // Print Reviewers to Submissions Edges
-    for (pair<int, Reviewer*> reviewer: this->nodesToReviewers) {
-        for (Edge<int>* e: this->graph.findVertex(reviewer.first)->getAdj()) {
-            cout << this->nodesToReviewers.at(e->getOrig()->getInfo())->getId() << "--- " << e->getWeight() << " ---" << this->nodesToSubmissions.at(e->getDest()->getInfo())->getId() << endl;
-        }
-    }
-    cout << endl;
-
-    // Print Submissions to Sink Edges
-    for (Edge<int>* e: this->graph.findVertex(SINK)->getIncoming()) {
-        cout << this->nodesToSubmissions.at(e->getOrig()->getInfo())->getId() << "--- " << e->getWeight() << " ---Sink" << endl;
-    }
-}
 
 /**
  * @copybrief runAssignment
@@ -188,22 +161,6 @@ void ConferenceManager::runAssignment() {
     double flow = graph.edmondsKarp(SOURCE,SINK);
 }
 
-/**
- * @copybrief debugGraphFLow
- * Time complexity: O(R*S)
- * Nested cycle of Reviewers R and Submissions S
- */
-void ConferenceManager::debugGraphFLow() const {
-    std::stringstream ss;
-    for(auto v : this->graph.getVertexSet()) {
-        ss << v->getInfo() << "-> (";
-        for (const auto e : v->getAdj())
-            ss << (e->getDest())->getInfo() << "[Flow: " << e->getFlow() << "] ";
-        ss << ") || ";
-    }
-
-    std::cout << ss.str() << std::endl << std::endl;
-}
 
 /**
  * @copybrief interpretFlowResults
@@ -254,39 +211,6 @@ void ConferenceManager::interpretFlowResults() {
     sort(missingReviewsResults.begin(), missingReviewsResults.end());
 }
 
-/**
- * @copybrief debugInterpretationResults
- * Time complexity: O()
- */
-void ConferenceManager::debugInterpretationResults() const {
-    cout << TXT_BOLD << FG_GREEN << "#SubmissionId,ReviewerId,Match" << TXT_RESET << endl;
-    for (const MatchResult& ms: this->matchResults) {
-        cout << ms.toStringSubRevMatch() << endl;
-    }
-
-    cout << TXT_BOLD << FG_GREEN << "#ReviewerId,SubmissionId,Match" << TXT_RESET <<endl;
-    for (const MatchResult& ms: this->matchResults) {
-        cout << ms.toStringRevSubMatch() << endl;
-    }
-
-    cout << TXT_BOLD << FG_YELLOW << "#Total: " << this->matchResults.size() << TXT_RESET <<endl;
-
-    if (!this->missingReviewsResults.empty()) {
-        cout << TXT_BOLD << FG_GREEN << "#SubmissionId,Domain,MissingReviews" << TXT_RESET <<endl;
-        for (const MissingReviewsResult& ms: this->missingReviewsResults) {
-            cout << ms.toStringMissingReviewsResult() << endl;
-        }
-    }
-
-    if (params.getRiskAnalLevel() > 0) {
-        cout << "#Risk Analysis: " << params.getRiskAnalLevel() << endl;
-
-        for (size_t i = 0; i < this->riskyReviewers.size(); i++) {
-            cout << this->riskyReviewers[i] << (i == riskyReviewers.size() - 1 ? "" : ", ");
-        }
-        cout << endl;
-    }
-}
 
 /**
  * @copybrief runRiskAnalysis

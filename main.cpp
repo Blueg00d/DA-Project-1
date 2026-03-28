@@ -1,4 +1,6 @@
 #include <iostream>
+
+#include "data_structures/Debugger.h"
 #include "data_structures/Utils.h"
 #include "data_structures/ConferenceManager.h"
 #include "data_structures/Parser.h"
@@ -34,19 +36,19 @@ void handleChoice(int choice, ConferenceManager& manager, Parser& parser) {
 
         case 3: case 4: /*BUILD GRAPH AND DEBUG GRAPH*/{
             manager.buildGraph();
-            if (choice == 4) manager.debugGraph();
+            if (choice == 4) Debugger::debugGraph(manager);
             break;
         }
         case 5: case 6: /*RUN EDMONDS KARP AND DEBUG GRAPH FLOW*/{
             manager.runAssignment();
             manager.runRiskAnalysis();
-            if (choice == 6) manager.debugGraphFLow();
+            if (choice == 6) Debugger::debugGraphFlow(manager);
             break;
         }
 
         case 7: case 8: /*INTERPRET GRAPH FLOW AND DEBUG INTERPRETATION*/{
             manager.interpretFlowResults();
-            if (choice == 8) manager.debugInterpretationResults();
+            if (choice == 8) Debugger::debugInterpretationResults(manager);
             break;
         }
 

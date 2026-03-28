@@ -12,7 +12,7 @@
 using namespace std;
 #define SOURCE 0
 #define SINK 1
-#define NOT_DEFINED -1
+#define NOT_DEFINED (-1)
 
 /**
  * @class ConferenceManager
@@ -20,6 +20,8 @@ using namespace std;
  *
  */
 class ConferenceManager {
+    friend class Debugger;
+
     private:
     vector<Reviewer> reviewers;
     vector<Submission> submissions;
@@ -89,29 +91,14 @@ class ConferenceManager {
     void buildGraph();
 
     /**
-     * @brief Function prints graph for debug purposes
-     */
-    void debugGraph() const;
-
-    /**
      * @brief Function "restarts" graph and calls buildgraph
      */
     void runAssignment();
 
     /**
-     * @brief Function prints the graph nodes and the flows between them
-     */
-    void debugGraphFLow() const;
-
-    /**
      * @brief Function maps the flows on edges given by the max flow into a sorted list
      */
     void interpretFlowResults();
-
-    /**
-     * @brief
-     */
-    void debugInterpretationResults() const;
 
     /**
      * @brief
