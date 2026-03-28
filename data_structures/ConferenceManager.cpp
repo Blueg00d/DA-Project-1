@@ -61,7 +61,7 @@ void ConferenceManager::createNodes() {
  *First for loop iterates through all reviewers (R) and second one through all Submissions (S)
  */
 void ConferenceManager::connectSourceSinkToNodes() {
-    //process so that the revisor with the smallest ID is processed first
+    //process so that the reviser with the smallest ID is processed first
     vector<int> sortedNodeIDs;
     for (auto const& [nodeID, rev] : nodesToReviewers) {
         sortedNodeIDs.push_back(nodeID);
@@ -96,9 +96,7 @@ void ConferenceManager::connectSourceSinkToNodes() {
  */
 void ConferenceManager::connectNodes() {
     switch (this->params.getGenerateAssigLevel()) {
-        case 0: break; //Only prints results in terminal but doesn't write output
-        case 1:
-        case 0: case 1:
+        case 0: case 1: //Only prints results in terminal but doesn't write output
             for (pair<int, Reviewer*> reviewer: this->nodesToReviewers) {
                 for (pair<int, Submission*> submission: this->nodesToSubmissions) {
                     if (reviewer.second->getPrimary() == submission.second->getPrimary()) { //Verifies Reviewer's primary expertise area with Submission's primary area
@@ -292,7 +290,7 @@ void ConferenceManager::debugInterpretationResults() const {
 
 /**
  * @copybrief runRiskAnalysis
- * O(R * (R+S)*(R*S)^2)
+ * Time Complexity: O(R * (R+S)*(R*S)^2)
  * Reruns edmondsKarp() once per reviewer R
  */
 void ConferenceManager::runRiskAnalysis() {

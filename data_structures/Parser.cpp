@@ -150,14 +150,12 @@ void Parser::testParser() {
 void Parser::changeparams() {
     int parameter;
     int value;
-    string name;
     cout << "Please specify which parameter you want to change." << endl;
     cout << "choices:" << endl;
     cout << "1. Minimum Reviews per Submission" << endl;
     cout << "2. Maximum Reviews per Reviewer" << endl;
     cout << "3. Generate Assignments" << endl;
     cout << "4. Risk Analysis" << endl;
-    cout << "5. Output Filename" << endl;
     cout << "Input: ";
     cin >> parameter;
     cout << endl;
@@ -178,12 +176,6 @@ void Parser::changeparams() {
             if (parameter == 4) {
                 getParams().setRiskAnalLevel(value);
             }
-            break;
-        }
-        case 5: {
-            cin >> name;
-            cout << endl;
-            getParams().setOutputFilename(name);
             break;
         }
     }
