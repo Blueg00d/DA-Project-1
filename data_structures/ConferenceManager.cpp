@@ -285,55 +285,52 @@ void ConferenceManager::saveOutput(const string& folder) {
     //if the parser couldn't read the filename, then we need to use a default one
     if (filename.empty()) { filename = "assignment.csv"; }
 
-    //open the writing stream so we can write in the file
-    ofstream outFile(filename);
-
-    //check if we can open/create file
-    if (!outFile.is_open()) {
-        cerr << TXT_BOLD << FG_RED << TXT_INVERT << "ERROR OPENING FILE!" << endl << TXT_RESET;
-        return;
-    }
+    vector<string> lines;
 
     //write in the output file just like it prints on the terminal
-    outFile << "#SubmissionId,ReviewerId,Match" << endl;
+    lines.push_back("#SubmissionId,ReviewerId,Match");
+
+    // Sort logic for Match Results
     sort(matchResults.begin(), matchResults.end(), [] (MatchResult& a, MatchResult& b) {
         if (a.getSubmissionID() != b.getSubmissionID()) return a.getSubmissionID() < b.getSubmissionID();
         else if (a.getReviewerID() != b.getReviewerID()) return a.getReviewerID() < b.getReviewerID();
         else return a.getMatch() < b.getMatch();
     });
     for (const MatchResult& ms: this->matchResults) {
-        outFile << ms.toStringSubRevMatch() << endl;
+        lines.push_back(ms.toStringSubRevMatch());
     }
 
-    outFile << "#ReviewerId,SubmissionId,Match" << endl;
+    lines.push_back("#ReviewerId,SubmissionId,Match");
     sort(matchResults.begin(), matchResults.end(), [] (MatchResult& a, MatchResult& b) {
         if (a.getReviewerID() != b.getReviewerID()) return a.getReviewerID() < b.getReviewerID();
         else if (a.getSubmissionID() != b.getSubmissionID()) return a.getSubmissionID() < b.getSubmissionID();
         else return a.getMatch() < b.getMatch();
     });
     for (const MatchResult& ms: this->matchResults) {
-        outFile << ms.toStringRevSubMatch() << endl;
+        lines.push_back(ms.toStringRevSubMatch());
     }
 
-    outFile << "#Total: " << this->matchResults.size() << endl;
+    lines.push_back("#Total: " + to_string(this->matchResults.size()));
+
     if (!this->missingReviewsResults.empty()) {
-        outFile << "#SubmissionId,Domain,MissingReviews" << endl;
+        lines.push_back("#SubmissionId,Domain,MissingReviews");
         for (const MissingReviewsResult& ms: this->missingReviewsResults) {
-            outFile << ms.toStringMissingReviewsResult() << endl;
+            lines.push_back(ms.toStringMissingReviewsResult());
         }
     }
 
     if (params.getRiskAnalLevel() > 0) {
-        outFile << "#Risk Analysis: " << params.getRiskAnalLevel() << endl;
+        lines.push_back("#Risk Analysis: " + to_string(params.getRiskAnalLevel()));
 
+        string riskLine = "";
         for (size_t i = 0; i < this->riskyReviewers.size(); i++) {
-            outFile << this->riskyReviewers[i] << (i == riskyReviewers.size() - 1 ? "" : ", ");
+            riskLine += to_string(this->riskyReviewers[i]) + (i == riskyReviewers.size() - 1 ? "" : ", ");
         }
-        outFile << endl;
+        lines.push_back(riskLine);
     }
 
-    outFile.close();
-    cout << "success! results saved in: " << filename << endl;
+    // Use the FileManager to write all generated lines at once
+    FileManager::writeLines(filename, lines);
 }
 
 /**

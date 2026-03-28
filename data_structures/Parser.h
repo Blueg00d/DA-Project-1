@@ -5,6 +5,7 @@
 #include "Parameters.h"
 #include "Reviewer.h"
 #include "Submission.h"
+#include "FileManager.h"
 
 #define NOT_DEFINED -1
 

@@ -3,9 +3,12 @@ project(DataStructures CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
+# Added FileManager.cpp and FileManager.h to the compilation process
 add_library(DataStructures STATIC
         ConferenceManager.cpp
         ConferenceManager.h
+        FileManager.cpp
+        FileManager.h
         Graph.h
         MatchResult.h
         MatchResult.cpp

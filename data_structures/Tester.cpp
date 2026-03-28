@@ -4,17 +4,16 @@
 
 #include "Tester.h"
 #include "Utils.h"
-#include <cstring>
-#include <fstream>
 #include "Parser.h"
 #include "ConferenceManager.h"
+#include "FileManager.h"
+#include <iostream>
 
-/**
- * @copybrief
- * Time complexity: O(F* )
- * Parses and executes executeAllTasks() once for each number of files F
- */
+using namespace std;
+namespace fs = std::filesystem;
+
 void Tester::executeAllInputTasks() {
+    // Iterating through all files in the "input" directory
     for (const auto& entry: fs::directory_iterator(this->mainFolder + "/input/")) {
         if (entry.is_regular_file()) {
             Parser parser;
@@ -26,63 +25,6 @@ void Tester::executeAllInputTasks() {
     }
 }
 
-namespace fs = std::filesystem;
-
-/**
- * @copydoc areFilesEqual
- * Time complexity: O(N)
- * Size in bytes of the files being read is N
- */
-bool Tester::areFilesEqual(const fs::path& filePath1, const fs::path& filePath2) {
-    //Checking if both paths exist and are actually files
-    if (!fs::exists(filePath1) || !fs::exists(filePath2) ||
-        !fs::is_regular_file(filePath1) || !fs::is_regular_file(filePath2)) {
-        return false;
-        }
-
-    //If the sizes are different, the files are different
-    if (fs::file_size(filePath1) != fs::file_size(filePath2)) {
-        return false;
-    }
-
-    //Opening both files in binary mode
-    std::ifstream file1(filePath1, std::ios::binary);
-    std::ifstream file2(filePath2, std::ios::binary);
-
-    if (!file1.is_open() || !file2.is_open()) {
-        return false; // Failed to open one or both files
-    }
-
-    //Comparing the contents in chunks to keep memory usage low
-    const size_t bufferSize = 8192; // 8KB buffer
-    std::vector<char> buffer1(bufferSize);
-    std::vector<char> buffer2(bufferSize);
-
-    do {
-        //Reading a chunk from both files
-        file1.read(buffer1.data(), bufferSize);
-        file2.read(buffer2.data(), bufferSize);
-
-        //Checking how many bytes were read
-        std::streamsize bytesRead1 = file1.gcount();
-        std::streamsize bytesRead2 = file2.gcount();
-
-        // If read amounts differ, or if the memory contents don't match exactly, they aren't equal
-        if (bytesRead1 != bytesRead2 ||
-            std::memcmp(buffer1.data(), buffer2.data(), bytesRead1) != 0) {
-            return false;
-            }
-    } while (file1.good() && file2.good());
-
-    return true; //The files are identical
-}
-
-/**
- * @copybrief
- * Time complexity: O(F*N)
- * Size in bytes of the files being compared in areFilesEqual is N
- * Number of files expected is F
- */
 void Tester::compareGeneratedWithExpected() {
     std::cout << CLR_ALL << FG_YELLOW << TXT_BOLD;
     std::cout << "======================================\n";
@@ -114,8 +56,8 @@ void Tester::compareGeneratedWithExpected() {
                     continue;
                 }
 
-                //Comparing the files using the areFilesEqual method
-                if (areFilesEqual(generatedPath, expectedPath)) {
+                // Comparing the files using the areFilesEqual method from FileManager
+                if (FileManager::areFilesEqual(generatedPath, expectedPath)) {
                     std::cout << FG_GREEN << "[+] PASS: " << TXT_RESET << originalFilename << '\n';
                     passedCount++;
                 } else {

@@ -10,3 +10,4 @@ add_executable(program
 )
 
 target_link_libraries(program PRIVATE DataStructures)
+    

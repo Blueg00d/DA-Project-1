@@ -17,18 +17,19 @@ bool Parser::parseFile(const string &filename) {
     this->submissions.clear();
     this->reviewers.clear();
 
-    ifstream file(filename);
-    if (!file.is_open()) {
-        cerr << TXT_BOLD << FG_RED << TXT_INVERT << "ERROR OPENING FILE!" << endl << TXT_RESET;
+    // Delegate file reading to FileManager
+    vector<string> lines = FileManager::readLines(filename);
+    if (lines.empty()) {
         return false;
     }
 
     Section currentSection = NONE;
-    string line;
 
-    while (getline(file, line)) {
+    for (const string& line : lines) {
+        // Skip empty lines
         if (line.empty()) continue;
 
+        // Detect sections
         if (line.find("#Submissions") != string::npos) {
             currentSection = SUBMISSIONS;
             continue;
@@ -46,6 +47,7 @@ bool Parser::parseFile(const string &filename) {
             continue;
         }
 
+        // Ignore generic comments
         if (line[0] == '#') continue;
 
         auto fields = split(line);
@@ -60,12 +62,12 @@ bool Parser::parseFile(const string &filename) {
             s.setAuthor(fields[2]);
             s.setEmail(fields[3]);
             s.setPrimary(stoi(fields[4]));
-                if (fields.size() > 5 && !fields[5].empty()) {
-                    s.setSecondary(std::stoi(fields[5]));
-                }
-                else {
-                    s.setSecondary(NOT_DEFINED);
-                }
+            if (fields.size() > 5 && !fields[5].empty()) {
+                s.setSecondary(std::stoi(fields[5]));
+            }
+            else {
+                s.setSecondary(NOT_DEFINED);
+            }
             submissions.push_back(s);
         }
 
@@ -160,24 +162,13 @@ void Parser::changeparams() {
     cin >> parameter;
     cout << endl;
     cout << "What do you want to change it for? ";
+    cin >> value;
+    cout << endl;
     switch (parameter) {
-        case 1: case 2: case 3: case 4: {
-            cin >> value;
-            cout << endl;
-            if (parameter == 1) {
-                getParams().setMinReviewsPerSubmission(value);
-            }
-            if (parameter == 2) {
-                getParams().setMaxReviewsPerReviewer(value);
-            }
-            if (parameter == 3) {
-                getParams().setGenerateAssigLevel(value);
-            }
-            if (parameter == 4) {
-                getParams().setRiskAnalLevel(value);
-            }
-            break;
-        }
+        case 1: getParams().setMinReviewsPerSubmission(value); break;
+        case 2: getParams().setMaxReviewsPerReviewer(value); break;
+        case 3: getParams().setGenerateAssigLevel(value); break;
+        case 4: getParams().setRiskAnalLevel(value); break;
     }
 }
 

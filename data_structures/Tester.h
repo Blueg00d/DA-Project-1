@@ -21,22 +21,14 @@ private:
 public:
     /**
      * @brief Constructor of Tester class
-     * @param mainFolder
+     * @param mainFolder The base directory containing input/output/generated folders.
      */
     Tester(const string& mainFolder): mainFolder(mainFolder) {};
 
     /**
-    *@brief Takes all valid inputs in a file and executes all tasks
+    * @brief Takes all valid inputs in a file and executes all tasks
     */
     void executeAllInputTasks();
-
-    /**
-     * @brief Function takes two file paths and checks if they are valid and, if so, they match
-     * @param filePath1
-     * @param filePath2
-     * @return bool value; true if files in path are equal, false otherwise
-     */
-    static bool areFilesEqual(const fs::path& filePath1, const fs::path& filePath2);
 
     /**
      * @brief Visual representation of the results of the tests performed

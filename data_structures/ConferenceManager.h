@@ -6,6 +6,7 @@
 #include "Graph.h"
 #include "MatchResult.h"
 #include "MissingReviewsResult.h"
+#include "FileManager.h"
 #include <string>
 #include <unordered_map>
 #include <sstream>
