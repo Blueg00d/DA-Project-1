@@ -299,7 +299,7 @@ void ConferenceManager::debugInterpretationResults() const {
  *  The algorithm would be analogous to this one but
  *  instead of pushing a single reviewerID to the reviewerNodes vector,
  *  we would create every possible subset of discarded reviewers of size <= k,
- *  resulting in \f$ \sum_{i=1}^{k} C_{i}^{R} \f$ subsets.
+ *  resulting in \f$\sum_{i=1}^{k} C_{i}^{R}\f$ subsets.
  *  Then, for each subset of reviewers, we would set each reviewers flow to 0,
  *  similar to what this algorithm does.
  *
