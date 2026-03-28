@@ -9,5 +9,6 @@ var searchData=
   ['bg_5fred_6',['BG_RED',['../Utils_8h.html#ac317d04c219b630f9c36b0241d9d4be7',1,'Utils.h']]],
   ['bg_5fwhite_7',['BG_WHITE',['../Utils_8h.html#a6beded3f171517df3902c52f79f6fea2',1,'Utils.h']]],
   ['bg_5fyellow_8',['BG_YELLOW',['../Utils_8h.html#ab31fe3e74b1137650d30ede5c9b86218',1,'Utils.h']]],
-  ['buildgraph_9',['buildGraph',['../classConferenceManager.html#ada708112549f0183b43c9dc08d222993',1,'ConferenceManager']]]
+  ['build_5fgraph_9',['BUILD_GRAPH',['../main_8cpp.html#a5be5e47a3042bc91460d05e47f32120dadbe806dbccbcfd02e766d1a27d22adae',1,'main.cpp']]],
+  ['buildgraph_10',['buildGraph',['../classConferenceManager.html#ada708112549f0183b43c9dc08d222993',1,'ConferenceManager']]]
 ];

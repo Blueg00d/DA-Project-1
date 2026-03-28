@@ -34,9 +34,15 @@ digraph "data_structures/ConferenceManager.h"
   Node13 [id="Node000013",label="MissingReviewsResult.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$MissingReviewsResult_8h.html",tooltip=" "];
   Node13 -> Node4 [id="edge16_Node000013_Node000004",color="steelblue1",style="solid",tooltip=" "];
   Node13 -> Node3 [id="edge17_Node000013_Node000003",color="steelblue1",style="solid",tooltip=" "];
-  Node1 -> Node3 [id="edge18_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
-  Node1 -> Node14 [id="edge19_Node000001_Node000014",color="steelblue1",style="solid",tooltip=" "];
-  Node14 [id="Node000014",label="unordered_map",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
-  Node1 -> Node15 [id="edge20_Node000001_Node000015",color="steelblue1",style="solid",tooltip=" "];
-  Node15 [id="Node000015",label="sstream",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
+  Node1 -> Node14 [id="edge18_Node000001_Node000014",color="steelblue1",style="solid",tooltip=" "];
+  Node14 [id="Node000014",label="FileManager.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$FileManager_8h.html",tooltip=" "];
+  Node14 -> Node3 [id="edge19_Node000014_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node14 -> Node8 [id="edge20_Node000014_Node000008",color="steelblue1",style="solid",tooltip=" "];
+  Node14 -> Node15 [id="edge21_Node000014_Node000015",color="steelblue1",style="solid",tooltip=" "];
+  Node15 [id="Node000015",label="filesystem",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
+  Node1 -> Node3 [id="edge22_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node16 [id="edge23_Node000001_Node000016",color="steelblue1",style="solid",tooltip=" "];
+  Node16 [id="Node000016",label="unordered_map",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
+  Node1 -> Node17 [id="edge24_Node000001_Node000017",color="steelblue1",style="solid",tooltip=" "];
+  Node17 [id="Node000017",label="sstream",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
 }

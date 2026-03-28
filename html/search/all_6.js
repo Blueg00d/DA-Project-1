@@ -9,10 +9,13 @@ var searchData=
   ['fg_5fred_6',['FG_RED',['../Utils_8h.html#a1dc5215d084174df6f00a9267cec2f17',1,'Utils.h']]],
   ['fg_5fwhite_7',['FG_WHITE',['../Utils_8h.html#a7fbb956b9e769a1020c2eff1f6743857',1,'Utils.h']]],
   ['fg_5fyellow_8',['FG_YELLOW',['../Utils_8h.html#a266aa539aa271da1b1f711d2413b1bfa',1,'Utils.h']]],
-  ['filename_9',['filename',['../classConferenceManager.html#adf96ecb82c10e356a4c79f72c2263666',1,'ConferenceManager']]],
-  ['findaugmentingpath_10',['findAugmentingPath',['../classGraph.html#a039221fcb215967752f3672f39ae5206',1,'Graph']]],
-  ['findminresidualalongpath_11',['findMinResidualAlongPath',['../classGraph.html#a5a8fe8c1552124482985fc8c5e9fbfb2',1,'Graph']]],
-  ['findvertex_12',['findVertex',['../classGraph.html#a8b7b7465fbfd562e2a469f90a437ab75',1,'Graph']]],
-  ['findvertexidx_13',['findVertexIdx',['../classGraph.html#a676cdfb976eccfa82b631d2094c1cdac',1,'Graph']]],
-  ['flow_14',['flow',['../classEdge.html#a30808601fa37f509147eabf9cc5f9ed6',1,'Edge']]]
+  ['filemanager_9',['FileManager',['../classFileManager.html',1,'']]],
+  ['filemanager_2ecpp_10',['FileManager.cpp',['../FileManager_8cpp.html',1,'']]],
+  ['filemanager_2eh_11',['FileManager.h',['../FileManager_8h.html',1,'']]],
+  ['filename_12',['filename',['../classConferenceManager.html#adf96ecb82c10e356a4c79f72c2263666',1,'ConferenceManager']]],
+  ['findaugmentingpath_13',['findAugmentingPath',['../classGraph.html#a039221fcb215967752f3672f39ae5206',1,'Graph']]],
+  ['findminresidualalongpath_14',['findMinResidualAlongPath',['../classGraph.html#a5a8fe8c1552124482985fc8c5e9fbfb2',1,'Graph']]],
+  ['findvertex_15',['findVertex',['../classGraph.html#a8b7b7465fbfd562e2a469f90a437ab75',1,'Graph']]],
+  ['findvertexidx_16',['findVertexIdx',['../classGraph.html#a676cdfb976eccfa82b631d2094c1cdac',1,'Graph']]],
+  ['flow_17',['flow',['../classEdge.html#a30808601fa37f509147eabf9cc5f9ed6',1,'Edge']]]
 ];

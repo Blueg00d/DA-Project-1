@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['testandvisit_0',['testAndVisit',['../classGraph.html#a48009b3e803da7c058b08a0dbeb19474',1,'Graph']]],
-  ['tester_1',['tester',['../classTester.html#a31b959618b60f5043c11e1f67cea8c3e',1,'Tester::Tester()'],['../classTester.html',1,'Tester']]],
-  ['tester_2ecpp_2',['Tester.cpp',['../Tester_8cpp.html',1,'']]],
-  ['tester_2ecpp_2eo_2ed_3',['Tester.cpp.o.d',['../Tester_8cpp_8o_8d.html',1,'']]],
+  ['test_5fall_5finputs_0',['TEST_ALL_INPUTS',['../main_8cpp.html#a5be5e47a3042bc91460d05e47f32120daf80385d6c872371c6029412909fba432',1,'main.cpp']]],
+  ['testandvisit_1',['testAndVisit',['../classGraph.html#a48009b3e803da7c058b08a0dbeb19474',1,'Graph']]],
+  ['tester_2',['tester',['../classTester.html',1,'Tester'],['../classTester.html#a31b959618b60f5043c11e1f67cea8c3e',1,'Tester::Tester()']]],
+  ['tester_2ecpp_3',['Tester.cpp',['../Tester_8cpp.html',1,'']]],
   ['tester_2eh_4',['Tester.h',['../Tester_8h.html',1,'']]],
   ['testparser_5',['testParser',['../classParser.html#abd1a5b8f06f799d5f4feeb77c18e64bd',1,'Parser']]],
   ['title_6',['title',['../classSubmission.html#ac26241e9b65c1ac2303a721ac41fed23',1,'Submission']]],

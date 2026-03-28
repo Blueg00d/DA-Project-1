@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['submission_0',['Submission',['../classSubmission.html',1,'']]]
+  ['parameters_0',['Parameters',['../classParameters.html',1,'']]],
+  ['parser_1',['Parser',['../classParser.html',1,'']]]
 ];
