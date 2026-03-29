@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['saveoutput_0',['saveOutput',['../classConferenceManager.html#a6f077c7839e5e9dfe72d8ee9c4018b04',1,'ConferenceManager']]],
+  ['saveoutput_0',['saveOutput',['../classBrainer.html#a6313c5513a8738689d67902bcb0948d7',1,'Brainer']]],
   ['setauthor_1',['setAuthor',['../classSubmission.html#af99fd193a5768661a93baf1e808dd455',1,'Submission']]],
   ['setemail_2',['setemail',['../classReviewer.html#a7ff0eedfe2d6fc7781c361e4c4840a46',1,'Reviewer::setEmail()'],['../classSubmission.html#a40332d8c3949b336510eda7dcffb6476',1,'Submission::setEmail()']]],
-  ['setfilename_3',['setFilename',['../classConferenceManager.html#a6a1818b8d1988a0c22a204b921d4ccb5',1,'ConferenceManager']]],
+  ['setfilename_3',['setFilename',['../classBrainer.html#ae5b49aab702cbaf734101e84b06c3c42',1,'Brainer']]],
   ['setflow_4',['setFlow',['../classEdge.html#a1819116e2c156733a14bbd94cc27908e',1,'Edge']]],
   ['setgenerateassiglevel_5',['setGenerateAssigLevel',['../classParameters.html#a420d37a9e4d97dcd4679fbaffea8ea0b',1,'Parameters']]],
   ['setid_6',['setid',['../classReviewer.html#a92b863c2b2370a83a4947ef7f4e13925',1,'Reviewer::setId()'],['../classSubmission.html#ab282e1ad40bb76a01f24341e922b93e6',1,'Submission::setId()']]],
@@ -12,7 +12,7 @@ var searchData=
   ['setminreviewspersubmission_9',['setMinReviewsPerSubmission',['../classParameters.html#acdb0906eecbf22ff61726b94c4699e73',1,'Parameters']]],
   ['setname_10',['setName',['../classReviewer.html#a1acf05120ecafbd21f476eeccad0ae21',1,'Reviewer']]],
   ['setoutputfilename_11',['setOutputFilename',['../classParameters.html#a4bdbd26a5935391c5038a4e5cbb13128',1,'Parameters']]],
-  ['setparams_12',['setParams',['../classConferenceManager.html#a2b3ed762ffc1ca842d96e46f353c93a2',1,'ConferenceManager']]],
+  ['setparams_12',['setParams',['../classBrainer.html#a9ab4d81aba20ae7638e0ebbef351e444',1,'Brainer']]],
   ['setpath_13',['setPath',['../classVertex.html#a5ebf4b550ec94b89a8f80df1a53cc97d',1,'Vertex']]],
   ['setprimary_14',['setprimary',['../classReviewer.html#a903f53e05c9b1af4ddb12bc950182b28',1,'Reviewer::setPrimary()'],['../classSubmission.html#abcd2763bc7ecddb1560e00aed2e481e6',1,'Submission::setPrimary()']]],
   ['setriskanallevel_15',['setRiskAnalLevel',['../classParameters.html#af15189b94833666847d059dcc82b9d44',1,'Parameters']]],

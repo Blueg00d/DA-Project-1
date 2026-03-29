@@ -12,7 +12,7 @@ var searchData=
   ['filemanager_9',['FileManager',['../classFileManager.html',1,'']]],
   ['filemanager_2ecpp_10',['FileManager.cpp',['../FileManager_8cpp.html',1,'']]],
   ['filemanager_2eh_11',['FileManager.h',['../FileManager_8h.html',1,'']]],
-  ['filename_12',['filename',['../classConferenceManager.html#adf96ecb82c10e356a4c79f72c2263666',1,'ConferenceManager']]],
+  ['filename_12',['filename',['../classBrainer.html#a12a8bd33b69a621b6b6e1f9565019985',1,'Brainer']]],
   ['findaugmentingpath_13',['findAugmentingPath',['../classGraph.html#a039221fcb215967752f3672f39ae5206',1,'Graph']]],
   ['findminresidualalongpath_14',['findMinResidualAlongPath',['../classGraph.html#a5a8fe8c1552124482985fc8c5e9fbfb2',1,'Graph']]],
   ['findvertex_15',['findVertex',['../classGraph.html#a8b7b7465fbfd562e2a469f90a437ab75',1,'Graph']]],

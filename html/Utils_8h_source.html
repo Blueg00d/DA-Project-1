@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>DA-PROJECT-1: data_structures/Utils.h Source File</title>
+<title>DA-PROJECT-1: data_structures/utils/Utils.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,7 +81,7 @@ $(document).ready(function() { init_codefold(0); });
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_2e746e9d06bf2d8ff842208bcc6ebcfc.html">data_structures</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_2e746e9d06bf2d8ff842208bcc6ebcfc.html">data_structures</a></li><li class="navelem"><a class="el" href="dir_528650e2f254cb66d9a9983fa6d01200.html">utils</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -136,34 +136,39 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="Utils_8h.html#aab997642e0d262dfaaac15229318b435">   46</a></span><span class="preprocessor">#define CUR_UP(n)      ANSI_ESC #n &quot;A&quot;  </span><span class="comment">// MOVES THE CURSOR N LINES UP</span></div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="Utils_8h.html#a2ea00fa4dd763f625dc603723f7381a7">   47</a></span><span class="preprocessor">#define CLR_ALL        CUR_HOME CLR_SCREEN CLR_HISTORY</span></div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#include &lt;sstream&gt;</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">using namespace </span>std;</div>
-<div class="foldopen" id="foldopen00060" data-start="{" data-end="}">
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="Utils_8h.html#aaa10c23df5f0308cae9207945670d815">   60</a></span><span class="keyword">inline</span> <a class="code hl_class" href="classEdge.html">vector&lt;string&gt;</a> <a class="code hl_function" href="Utils_8h.html#aaa10c23df5f0308cae9207945670d815">split</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp; <a class="code hl_class" href="classEdge.html">line</a>) {</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <a class="code hl_class" href="classEdge.html">vector&lt;string&gt;</a> <a class="code hl_class" href="classEdge.html">result</a>;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <a class="code hl_class" href="classEdge.html">stringstream</a> <a class="code hl_class" href="classEdge.html">ss</a>(<a class="code hl_class" href="classEdge.html">line</a>);</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">string</span> <a class="code hl_class" href="classEdge.html">item</a>;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">while</span> (<a class="code hl_class" href="classEdge.html">getline</a>(<a class="code hl_class" href="classEdge.html">ss</a>, <a class="code hl_class" href="classEdge.html">item</a>, <span class="charliteral">&#39;,&#39;</span>)) {</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <a class="code hl_class" href="classEdge.html">result</a>.push_back(<a class="code hl_class" href="classEdge.html">item</a>);</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    }</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordflow">return</span> <a class="code hl_class" href="classEdge.html">result</a>;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>}</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">// -- MISSING PARAMETER IS PASSED WITH -1 --</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="Utils_8h.html#a500822c521c7c220a6db1cb25a2d60ac">   50</a></span><span class="preprocessor">#define NOT_DEFINED (-1)</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">// -- NODE ID --</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="Utils_8h.html#a88cabaa30cba6807a1c75eaa7e4c188e">   52</a></span><span class="preprocessor">#define SOURCE 0</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="Utils_8h.html#adb1aacb84dbc34f3a142a9d7bc80f375">   53</a></span><span class="preprocessor">#define SINK 1</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#include &lt;sstream&gt;</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">using namespace </span>std;</div>
+<div class="foldopen" id="foldopen00065" data-start="{" data-end="}">
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="Utils_8h.html#aaa10c23df5f0308cae9207945670d815">   65</a></span><span class="keyword">inline</span> <a class="code hl_class" href="classEdge.html">vector&lt;string&gt;</a> <a class="code hl_function" href="Utils_8h.html#aaa10c23df5f0308cae9207945670d815">split</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp; <a class="code hl_class" href="classEdge.html">line</a>) {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <a class="code hl_class" href="classEdge.html">vector&lt;string&gt;</a> <a class="code hl_class" href="classEdge.html">result</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <a class="code hl_class" href="classEdge.html">stringstream</a> <a class="code hl_class" href="classEdge.html">ss</a>(<a class="code hl_class" href="classEdge.html">line</a>);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">string</span> <a class="code hl_class" href="classEdge.html">item</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordflow">while</span> (<a class="code hl_class" href="classEdge.html">getline</a>(<a class="code hl_class" href="classEdge.html">ss</a>, <a class="code hl_class" href="classEdge.html">item</a>, <span class="charliteral">&#39;,&#39;</span>)) {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <a class="code hl_class" href="classEdge.html">result</a>.push_back(<a class="code hl_class" href="classEdge.html">item</a>);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">return</span> <a class="code hl_class" href="classEdge.html">result</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>}</div>
 </div>
-<div class="foldopen" id="foldopen00075" data-start="{" data-end="}">
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="Utils_8h.html#accfb5d82d0fde3e767afd67efabff29c">   75</a></span><span class="keyword">inline</span> <span class="keywordtype">string</span> <a class="code hl_function" href="Utils_8h.html#accfb5d82d0fde3e767afd67efabff29c">trim</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp; <a class="code hl_class" href="classEdge.html">line</a>) {</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="comment">// Add spaces &#39; &#39;, \r, and \n to the list of characters to remove</span></div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">size_t</span> <a class="code hl_class" href="classEdge.html">start</a> = <a class="code hl_class" href="classEdge.html">line</a>.find_first_not_of(<span class="stringliteral">&quot; \t\r\n\&quot;&quot;</span>);</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">size_t</span> <a class="code hl_class" href="classEdge.html">end</a> = <a class="code hl_class" href="classEdge.html">line</a>.find_last_not_of(<span class="stringliteral">&quot; \t\r\n\&quot;&quot;</span>);</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordflow">return</span> (<a class="code hl_class" href="classEdge.html">start</a> == <a class="code hl_function" href="classEdge.html#ab976213419283ed754f42f57b195a288">string::npos</a>) ? <span class="stringliteral">&quot;&quot;</span> : <a class="code hl_class" href="classEdge.html">line</a>.substr(<a class="code hl_class" href="classEdge.html">start</a>, <a class="code hl_class" href="classEdge.html">end</a> - <a class="code hl_class" href="classEdge.html">start</a> + 1);</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>}</div>
+<div class="foldopen" id="foldopen00080" data-start="{" data-end="}">
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="Utils_8h.html#accfb5d82d0fde3e767afd67efabff29c">   80</a></span><span class="keyword">inline</span> <span class="keywordtype">string</span> <a class="code hl_function" href="Utils_8h.html#accfb5d82d0fde3e767afd67efabff29c">trim</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp; <a class="code hl_class" href="classEdge.html">line</a>) {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="comment">// Add spaces &#39; &#39;, \r, and \n to the list of characters to remove</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordtype">size_t</span> <a class="code hl_class" href="classEdge.html">start</a> = <a class="code hl_class" href="classEdge.html">line</a>.find_first_not_of(<span class="stringliteral">&quot; \t\r\n\&quot;&quot;</span>);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordtype">size_t</span> <a class="code hl_class" href="classEdge.html">end</a> = <a class="code hl_class" href="classEdge.html">line</a>.find_last_not_of(<span class="stringliteral">&quot; \t\r\n\&quot;&quot;</span>);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordflow">return</span> (<a class="code hl_class" href="classEdge.html">start</a> == <a class="code hl_function" href="classEdge.html#ab976213419283ed754f42f57b195a288">string::npos</a>) ? <span class="stringliteral">&quot;&quot;</span> : <a class="code hl_class" href="classEdge.html">line</a>.substr(<a class="code hl_class" href="classEdge.html">start</a>, <a class="code hl_class" href="classEdge.html">end</a> - <a class="code hl_class" href="classEdge.html">start</a> + 1);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>}</div>
 </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">#endif </span><span class="comment">//UTILS_H</span></div>
-<div class="ttc" id="aUtils_8h_html_aaa10c23df5f0308cae9207945670d815"><div class="ttname"><a href="Utils_8h.html#aaa10c23df5f0308cae9207945670d815">split</a></div><div class="ttdeci">vector&lt; string &gt; split(const string &amp;line)</div><div class="ttdoc">Function: split. split so we can split the lines where there are commas.</div><div class="ttdef"><b>Definition</b> Utils.h:60</div></div>
-<div class="ttc" id="aUtils_8h_html_accfb5d82d0fde3e767afd67efabff29c"><div class="ttname"><a href="Utils_8h.html#accfb5d82d0fde3e767afd67efabff29c">trim</a></div><div class="ttdeci">string trim(const string &amp;line)</div><div class="ttdoc">Function: trim to 'trim' poorly written inputs (extra spaces, tabs, \r,  )</div><div class="ttdef"><b>Definition</b> Utils.h:75</div></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="preprocessor">#endif </span><span class="comment">//UTILS_H</span></div>
+<div class="ttc" id="aUtils_8h_html_aaa10c23df5f0308cae9207945670d815"><div class="ttname"><a href="Utils_8h.html#aaa10c23df5f0308cae9207945670d815">split</a></div><div class="ttdeci">vector&lt; string &gt; split(const string &amp;line)</div><div class="ttdoc">Function: split. split so we can split the lines where there are commas.</div><div class="ttdef"><b>Definition</b> Utils.h:65</div></div>
+<div class="ttc" id="aUtils_8h_html_accfb5d82d0fde3e767afd67efabff29c"><div class="ttname"><a href="Utils_8h.html#accfb5d82d0fde3e767afd67efabff29c">trim</a></div><div class="ttdeci">string trim(const string &amp;line)</div><div class="ttdoc">Function: trim to 'trim' poorly written inputs (extra spaces, tabs, \r,  )</div><div class="ttdef"><b>Definition</b> Utils.h:80</div></div>
 <div class="ttc" id="aclassEdge_html"><div class="ttname"><a href="classEdge.html">Edge</a></div><div class="ttdef"><b>Definition</b> Graph.h:55</div></div>
 <div class="ttc" id="aclassEdge_html_ab976213419283ed754f42f57b195a288"><div class="ttname"><a href="classEdge.html#ab976213419283ed754f42f57b195a288">Edge::Edge</a></div><div class="ttdeci">Edge(Vertex&lt; T &gt; *orig, Vertex&lt; T &gt; *dest, double w)</div><div class="ttdef"><b>Definition</b> Graph.h:241</div></div>
 </div><!-- fragment --></div><!-- contents -->

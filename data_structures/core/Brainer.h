@@ -15,7 +15,7 @@ using namespace std;
 
 /**
  * @class Brainer
- * @brief ConferenceManager gathers all info from inputs and puts them in a graph
+ * @brief Brainer gathers all info from inputs and puts them in a graph
  *
  */
 class Brainer {
@@ -59,7 +59,7 @@ class Brainer {
 
     public:
     /**
-     * @brief Constructor of class ConferenceManager
+     * @brief Constructor of class Brainer
      *
      * @param reviewers a vector of Reviewers from input
      * @param submissions a vector of Submissions from input
@@ -72,12 +72,12 @@ class Brainer {
     );
 
     /**
-     * @brief Default constructor of ConferenceManager
+     * @brief Default constructor of Brainer
      */
     Brainer() = default;
 
     /**
-     * @brief Destructor of class ConferenceManager
+     * @brief Destructor of class Brainer
      */
     ~Brainer() = default;
 
@@ -115,8 +115,23 @@ class Brainer {
      * @param folder
      */
     void executeAllTasks(const string& folder);
+
+    /**
+     * @brief Sets the filename currently being processed.
+     * @param filename The name of the file.
+     */
     void setFilename(string filename);
+
+    /**
+     * @brief Gets the current filename.
+     * @return The name of the file.
+     */
     string getFilename();
+
+    /**
+     * @brief Sets the execution parameters for the assignment process.
+     * @param params The Parameters object containing the configurations.
+     */
     void setParams(Parameters params);
 };
 

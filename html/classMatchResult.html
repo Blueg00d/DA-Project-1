@@ -84,23 +84,33 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Represents the result of an assignment match between a reviewer and a submission.  
+ <a href="classMatchResult.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="MatchResult_8h_source.html">MatchResult.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3681e73f74e26b2a6ff2c495fc46c66d" id="r_a3681e73f74e26b2a6ff2c495fc46c66d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchResult.html#a3681e73f74e26b2a6ff2c495fc46c66d">operator&lt;</a> (<a class="el" href="classEdge.html">const</a> <a class="el" href="classMatchResult.html">MatchResult</a> &amp;<a class="el" href="classEdge.html">r</a>) <a class="el" href="classEdge.html">const</a></td></tr>
+<tr class="memdesc:a3681e73f74e26b2a6ff2c495fc46c66d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloads the less-than operator for sorting MatchResults.  <br /></td></tr>
 <tr class="separator:a3681e73f74e26b2a6ff2c495fc46c66d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff291f1d347b1a8f5ea0c9561e6760bf" id="r_aff291f1d347b1a8f5ea0c9561e6760bf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchResult.html#aff291f1d347b1a8f5ea0c9561e6760bf">MatchResult</a> (<a class="el" href="classEdge.html">int</a> <a class="el" href="classMatchResult.html#a4f2ce2f2bb944691d9c12c6c86a0eab4">reviewerID</a>, <a class="el" href="classEdge.html">int</a> <a class="el" href="classMatchResult.html#a185cbe399240d395c9bee1f342244271">submissionID</a>, <a class="el" href="classEdge.html">int</a> <a class="el" href="classMatchResult.html#a47140a3eb986f9d717afc3b5c10e02ac">match</a>)</td></tr>
+<tr class="memdesc:aff291f1d347b1a8f5ea0c9561e6760bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classMatchResult.html" title="Represents the result of an assignment match between a reviewer and a submission.">MatchResult</a>.  <br /></td></tr>
 <tr class="separator:aff291f1d347b1a8f5ea0c9561e6760bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8aad5afd5b0bb4d6e51183749eafbd66" id="r_a8aad5afd5b0bb4d6e51183749eafbd66"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchResult.html#a8aad5afd5b0bb4d6e51183749eafbd66">getReviewerID</a> () <a class="el" href="classEdge.html">const</a></td></tr>
+<tr class="memdesc:a8aad5afd5b0bb4d6e51183749eafbd66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the reviewer ID.  <br /></td></tr>
 <tr class="separator:a8aad5afd5b0bb4d6e51183749eafbd66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ea316a1f71e865442dd99c099f96c13" id="r_a0ea316a1f71e865442dd99c099f96c13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchResult.html#a0ea316a1f71e865442dd99c099f96c13">getSubmissionID</a> () <a class="el" href="classEdge.html">const</a></td></tr>
+<tr class="memdesc:a0ea316a1f71e865442dd99c099f96c13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the submission ID.  <br /></td></tr>
 <tr class="separator:a0ea316a1f71e865442dd99c099f96c13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d74fd73fea7a050924a61b143b8a96f" id="r_a3d74fd73fea7a050924a61b143b8a96f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchResult.html#a3d74fd73fea7a050924a61b143b8a96f">getMatch</a> () <a class="el" href="classEdge.html">const</a></td></tr>
+<tr class="memdesc:a3d74fd73fea7a050924a61b143b8a96f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the matching weight/score.  <br /></td></tr>
 <tr class="separator:a3d74fd73fea7a050924a61b143b8a96f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44e9a806558b03b23be547ca47163455" id="r_a44e9a806558b03b23be547ca47163455"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchResult.html#a44e9a806558b03b23be547ca47163455">toStringRevSubMatch</a> () <a class="el" href="classEdge.html">const</a></td></tr>
+<tr class="memdesc:a44e9a806558b03b23be547ca47163455"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation formatted as Reviewer-Submission-Match.  <br /></td></tr>
 <tr class="separator:a44e9a806558b03b23be547ca47163455"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6272071ef97e2e0136879966e26a29e" id="r_af6272071ef97e2e0136879966e26a29e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchResult.html#af6272071ef97e2e0136879966e26a29e">toStringSubRevMatch</a> () <a class="el" href="classEdge.html">const</a></td></tr>
+<tr class="memdesc:af6272071ef97e2e0136879966e26a29e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation formatted as Submission-Reviewer-Match.  <br /></td></tr>
 <tr class="separator:af6272071ef97e2e0136879966e26a29e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -112,7 +122,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a47140a3eb986f9d717afc3b5c10e02ac" id="r_a47140a3eb986f9d717afc3b5c10e02ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatchResult.html#a47140a3eb986f9d717afc3b5c10e02ac">match</a></td></tr>
 <tr class="separator:a47140a3eb986f9d717afc3b5c10e02ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents the result of an assignment match between a reviewer and a submission. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aff291f1d347b1a8f5ea0c9561e6760bf" name="aff291f1d347b1a8f5ea0c9561e6760bf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aff291f1d347b1a8f5ea0c9561e6760bf">&#9670;&#160;</a></span>MatchResult()</h2>
 
@@ -145,6 +157,16 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Constructor for <a class="el" href="classMatchResult.html" title="Represents the result of an assignment match between a reviewer and a submission.">MatchResult</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">reviewerID</td><td>The ID of the assigned reviewer. </td></tr>
+    <tr><td class="paramname">submissionID</td><td>The ID of the assigned submission. </td></tr>
+    <tr><td class="paramname">match</td><td>The matching weight/score. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -163,6 +185,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Gets the matching weight/score. </p>
+<dl class="section return"><dt>Returns</dt><dd>The match value. </dd></dl>
+
 </div>
 </div>
 <a id="a8aad5afd5b0bb4d6e51183749eafbd66" name="a8aad5afd5b0bb4d6e51183749eafbd66"></a>
@@ -180,6 +205,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Gets the reviewer ID. </p>
+<dl class="section return"><dt>Returns</dt><dd>The ID of the reviewer. </dd></dl>
+
 </div>
 </div>
 <a id="a0ea316a1f71e865442dd99c099f96c13" name="a0ea316a1f71e865442dd99c099f96c13"></a>
@@ -196,6 +224,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Gets the submission ID. </p>
+<dl class="section return"><dt>Returns</dt><dd>The ID of the submission. </dd></dl>
 
 </div>
 </div>
@@ -223,6 +254,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Overloads the less-than operator for sorting MatchResults. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>The other <a class="el" href="classMatchResult.html" title="Represents the result of an assignment match between a reviewer and a submission.">MatchResult</a> to compare against. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if this object should precede the other object, false otherwise. </dd></dl>
+
 </div>
 </div>
 <a id="a44e9a806558b03b23be547ca47163455" name="a44e9a806558b03b23be547ca47163455"></a>
@@ -240,6 +280,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns a string representation formatted as Reviewer-Submission-Match. </p>
+<dl class="section return"><dt>Returns</dt><dd>The formatted string. </dd></dl>
+
 </div>
 </div>
 <a id="af6272071ef97e2e0136879966e26a29e" name="af6272071ef97e2e0136879966e26a29e"></a>
@@ -256,6 +299,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns a string representation formatted as Submission-Reviewer-Match. </p>
+<dl class="section return"><dt>Returns</dt><dd>The formatted string. </dd></dl>
 
 </div>
 </div>
@@ -327,8 +373,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>data_structures/<a class="el" href="MatchResult_8h_source.html">MatchResult.h</a></li>
-<li>data_structures/<a class="el" href="MatchResult_8cpp.html">MatchResult.cpp</a></li>
+<li>data_structures/models/<a class="el" href="MatchResult_8h_source.html">MatchResult.h</a></li>
+<li>data_structures/models/<a class="el" href="MatchResult_8cpp.html">MatchResult.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

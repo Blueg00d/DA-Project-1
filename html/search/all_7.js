@@ -5,7 +5,7 @@ var searchData=
   ['getauthor_2',['getAuthor',['../classSubmission.html#a1a61d05f516a515d0ca634d7892197c9',1,'Submission']]],
   ['getdest_3',['getDest',['../classEdge.html#a9a2de066dff8513dd788d553fc1d0c81',1,'Edge']]],
   ['getemail_4',['getemail',['../classReviewer.html#abb619078f0b5bd62b275262a7c7e2317',1,'Reviewer::getEmail()'],['../classSubmission.html#a9e12d61153cfff12a8fb34c98cea7f6a',1,'Submission::getEmail()']]],
-  ['getfilename_5',['getFilename',['../classConferenceManager.html#a2de0cd946c64e5e82b94478027d93463',1,'ConferenceManager']]],
+  ['getfilename_5',['getFilename',['../classBrainer.html#a942ac63dfdd8ee068d5390bd1caf66ab',1,'Brainer']]],
   ['getflow_6',['getFlow',['../classEdge.html#a75458cfc838ca5aee5c34cb9f03b5647',1,'Edge']]],
   ['getgenerateassiglevel_7',['getGenerateAssigLevel',['../classParameters.html#a2f9077980e2f813a794c7326e323d180',1,'Parameters']]],
   ['getid_8',['getid',['../classReviewer.html#ac50e6f913844d7d3f0f284be5b60e678',1,'Reviewer::getId()'],['../classSubmission.html#af59a22b09e0fb4c13ac9ecda74ac344e',1,'Submission::getId()']]],
@@ -33,7 +33,7 @@ var searchData=
   ['gettitle_30',['getTitle',['../classSubmission.html#abbebd69de3b1e62ef2399f46bbcf3578',1,'Submission']]],
   ['getvertexset_31',['getVertexSet',['../classGraph.html#a41624b03fcb6bd29e4df574a1ec58541',1,'Graph']]],
   ['getweight_32',['getWeight',['../classEdge.html#a3df378e283d6c8be5be4170ac8d7f4e8',1,'Edge']]],
-  ['graph_33',['graph',['../classGraph.html',1,'Graph&lt; T &gt;'],['../classConferenceManager.html#a01db308184021b6275804f643e8d2a18',1,'ConferenceManager::graph']]],
+  ['graph_33',['graph',['../classGraph.html',1,'Graph&lt; T &gt;'],['../classBrainer.html#ab4d62b42fb47da75028b153467ed7f0e',1,'Brainer::graph']]],
   ['graph_2eh_34',['Graph.h',['../Graph_8h.html',1,'']]],
   ['graph_3c_20int_20_3e_35',['Graph&lt; int &gt;',['../classGraph.html',1,'']]]
 ];

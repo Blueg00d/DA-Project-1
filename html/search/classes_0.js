@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['conferencemanager_0',['ConferenceManager',['../classConferenceManager.html',1,'']]]
+  ['brainer_0',['Brainer',['../classBrainer.html',1,'']]]
 ];

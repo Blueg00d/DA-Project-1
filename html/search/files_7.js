@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['submission_2ecpp_0',['Submission.cpp',['../Submission_8cpp.html',1,'']]],
-  ['submission_2eh_1',['Submission.h',['../Submission_8h.html',1,'']]]
+  ['reviewer_2ecpp_0',['Reviewer.cpp',['../Reviewer_8cpp.html',1,'']]],
+  ['reviewer_2eh_1',['Reviewer.h',['../Reviewer_8h.html',1,'']]]
 ];

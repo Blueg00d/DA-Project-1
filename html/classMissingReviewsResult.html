@@ -84,23 +84,33 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Stores information about a submission that did not receive the required minimum number of reviews.  
+ <a href="classMissingReviewsResult.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="MissingReviewsResult_8h_source.html">MissingReviewsResult.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a03a500a96a67470331fc487a69c5b10a" id="r_a03a500a96a67470331fc487a69c5b10a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMissingReviewsResult.html#a03a500a96a67470331fc487a69c5b10a">operator&lt;</a> (<a class="el" href="classEdge.html">const</a> <a class="el" href="classMissingReviewsResult.html">MissingReviewsResult</a> &amp;<a class="el" href="classEdge.html">r</a>) <a class="el" href="classEdge.html">const</a></td></tr>
+<tr class="memdesc:a03a500a96a67470331fc487a69c5b10a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloads the less-than operator for sorting MissingReviewsResults.  <br /></td></tr>
 <tr class="separator:a03a500a96a67470331fc487a69c5b10a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12c045992bdce30fdd61cc1658b6a38f" id="r_a12c045992bdce30fdd61cc1658b6a38f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMissingReviewsResult.html#a12c045992bdce30fdd61cc1658b6a38f">MissingReviewsResult</a> (<a class="el" href="classEdge.html">int</a> <a class="el" href="classMissingReviewsResult.html#a53d48f13de1d5b4c8a89710da007cbda">submissionID</a>, <a class="el" href="classEdge.html">int</a> <a class="el" href="classMissingReviewsResult.html#a84c0db3795317b11c87e65cbb1a8c71c">primaryDomain</a>, <a class="el" href="classEdge.html">int</a> <a class="el" href="classMissingReviewsResult.html#a64d9eccb314c68b288f4c0500d262cb9">missingReviewsNumber</a>)</td></tr>
+<tr class="memdesc:a12c045992bdce30fdd61cc1658b6a38f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classMissingReviewsResult.html" title="Stores information about a submission that did not receive the required minimum number of reviews.">MissingReviewsResult</a> using IDs directly.  <br /></td></tr>
 <tr class="separator:a12c045992bdce30fdd61cc1658b6a38f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ff37f1e8fd500ef4d9c954c750b8c72" id="r_a7ff37f1e8fd500ef4d9c954c750b8c72"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMissingReviewsResult.html#a7ff37f1e8fd500ef4d9c954c750b8c72">MissingReviewsResult</a> (<a class="el" href="classEdge.html">const</a> <a class="el" href="classSubmission.html">Submission</a> &amp;<a class="el" href="classEdge.html">submission</a>, <a class="el" href="classEdge.html">int</a> <a class="el" href="classMissingReviewsResult.html#a64d9eccb314c68b288f4c0500d262cb9">missingReviewsNumber</a>)</td></tr>
+<tr class="memdesc:a7ff37f1e8fd500ef4d9c954c750b8c72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classMissingReviewsResult.html" title="Stores information about a submission that did not receive the required minimum number of reviews.">MissingReviewsResult</a> using a <a class="el" href="classSubmission.html" title="Represents a paper or article submitted to the conference.">Submission</a> object.  <br /></td></tr>
 <tr class="separator:a7ff37f1e8fd500ef4d9c954c750b8c72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7df4dd05ee7a1c7c7710617e9971bee0" id="r_a7df4dd05ee7a1c7c7710617e9971bee0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMissingReviewsResult.html#a7df4dd05ee7a1c7c7710617e9971bee0">getSubmissionID</a> () <a class="el" href="classEdge.html">const</a></td></tr>
+<tr class="memdesc:a7df4dd05ee7a1c7c7710617e9971bee0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the submission ID.  <br /></td></tr>
 <tr class="separator:a7df4dd05ee7a1c7c7710617e9971bee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a467f73df861e3799ab7066b27f28eb27" id="r_a467f73df861e3799ab7066b27f28eb27"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMissingReviewsResult.html#a467f73df861e3799ab7066b27f28eb27">getPrimaryDomain</a> () <a class="el" href="classEdge.html">const</a></td></tr>
+<tr class="memdesc:a467f73df861e3799ab7066b27f28eb27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the primary domain ID.  <br /></td></tr>
 <tr class="separator:a467f73df861e3799ab7066b27f28eb27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb0989ba2facae51218d03c9f967c995" id="r_acb0989ba2facae51218d03c9f967c995"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMissingReviewsResult.html#acb0989ba2facae51218d03c9f967c995">getMissingReviewsNumber</a> () <a class="el" href="classEdge.html">const</a></td></tr>
+<tr class="memdesc:acb0989ba2facae51218d03c9f967c995"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of missing reviews.  <br /></td></tr>
 <tr class="separator:acb0989ba2facae51218d03c9f967c995"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7e8d7e52abe985d76c36b728b2f9365" id="r_ac7e8d7e52abe985d76c36b728b2f9365"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMissingReviewsResult.html#ac7e8d7e52abe985d76c36b728b2f9365">toStringMissingReviewsResult</a> () <a class="el" href="classEdge.html">const</a></td></tr>
+<tr class="memdesc:ac7e8d7e52abe985d76c36b728b2f9365"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a formatted string representation of the missing reviews data.  <br /></td></tr>
 <tr class="separator:ac7e8d7e52abe985d76c36b728b2f9365"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -112,7 +122,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a64d9eccb314c68b288f4c0500d262cb9" id="r_a64d9eccb314c68b288f4c0500d262cb9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMissingReviewsResult.html#a64d9eccb314c68b288f4c0500d262cb9">missingReviewsNumber</a></td></tr>
 <tr class="separator:a64d9eccb314c68b288f4c0500d262cb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Stores information about a submission that did not receive the required minimum number of reviews. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a12c045992bdce30fdd61cc1658b6a38f" name="a12c045992bdce30fdd61cc1658b6a38f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a12c045992bdce30fdd61cc1658b6a38f">&#9670;&#160;</a></span>MissingReviewsResult() <span class="overload">[1/2]</span></h2>
 
@@ -145,6 +157,16 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Constructor for <a class="el" href="classMissingReviewsResult.html" title="Stores information about a submission that did not receive the required minimum number of reviews.">MissingReviewsResult</a> using IDs directly. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">submissionID</td><td>The ID of the submission. </td></tr>
+    <tr><td class="paramname">primaryDomain</td><td>The primary domain ID of the submission. </td></tr>
+    <tr><td class="paramname">missingReviewsNumber</td><td>The count of reviews missing to meet the required threshold. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a7ff37f1e8fd500ef4d9c954c750b8c72" name="a7ff37f1e8fd500ef4d9c954c750b8c72"></a>
@@ -173,6 +195,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Constructor for <a class="el" href="classMissingReviewsResult.html" title="Stores information about a submission that did not receive the required minimum number of reviews.">MissingReviewsResult</a> using a <a class="el" href="classSubmission.html" title="Represents a paper or article submitted to the conference.">Submission</a> object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">submission</td><td>The <a class="el" href="classSubmission.html" title="Represents a paper or article submitted to the conference.">Submission</a> object missing reviews. </td></tr>
+    <tr><td class="paramname">missingReviewsNumber</td><td>The count of reviews missing to meet the required threshold. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -191,6 +222,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Gets the number of missing reviews. </p>
+
 </div>
 </div>
 <a id="a467f73df861e3799ab7066b27f28eb27" name="a467f73df861e3799ab7066b27f28eb27"></a>
@@ -208,6 +241,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Gets the primary domain ID. </p>
+
 </div>
 </div>
 <a id="a7df4dd05ee7a1c7c7710617e9971bee0" name="a7df4dd05ee7a1c7c7710617e9971bee0"></a>
@@ -224,6 +259,8 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Gets the submission ID. </p>
 
 </div>
 </div>
@@ -251,6 +288,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Overloads the less-than operator for sorting MissingReviewsResults. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>The other <a class="el" href="classMissingReviewsResult.html" title="Stores information about a submission that did not receive the required minimum number of reviews.">MissingReviewsResult</a> to compare against. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if this object should precede the other object. </dd></dl>
+
 </div>
 </div>
 <a id="ac7e8d7e52abe985d76c36b728b2f9365" name="ac7e8d7e52abe985d76c36b728b2f9365"></a>
@@ -267,6 +313,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns a formatted string representation of the missing reviews data. </p>
+<dl class="section return"><dt>Returns</dt><dd>The formatted string. </dd></dl>
 
 </div>
 </div>
@@ -338,8 +387,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>data_structures/<a class="el" href="MissingReviewsResult_8h_source.html">MissingReviewsResult.h</a></li>
-<li>data_structures/<a class="el" href="MissingReviewsResult_8cpp.html">MissingReviewsResult.cpp</a></li>
+<li>data_structures/models/<a class="el" href="MissingReviewsResult_8h_source.html">MissingReviewsResult.h</a></li>
+<li>data_structures/models/<a class="el" href="MissingReviewsResult_8cpp.html">MissingReviewsResult.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

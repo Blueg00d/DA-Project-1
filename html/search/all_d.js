@@ -2,7 +2,7 @@ var searchData=
 [
   ['parameters_0',['parameters',['../classParameters.html',1,'Parameters'],['../Parser_8cpp.html#aa2bc2fd5a40cdb0c40963e6fe6a24ccead11aad7580a1dfde8fd0be6832f6d31d',1,'PARAMETERS:&#160;Parser.cpp']]],
   ['parameters_2eh_1',['Parameters.h',['../Parameters_8h.html',1,'']]],
-  ['params_2',['params',['../classConferenceManager.html#accf511799fcc777d76a1c1c6a30b8426',1,'ConferenceManager::params'],['../classParser.html#a4ba4e49757aa9990ca170fed7d37f222',1,'Parser::params']]],
+  ['params_2',['params',['../classBrainer.html#a2be171836ffbeacbcd8c66fb73ad36ee',1,'Brainer::params'],['../classParser.html#a4ba4e49757aa9990ca170fed7d37f222',1,'Parser::params']]],
   ['parsefile_3',['parseFile',['../classParser.html#aeb62016f7a333b02b94d350d21624839',1,'Parser']]],
   ['parser_4',['Parser',['../classParser.html',1,'']]],
   ['parser_2ecpp_5',['Parser.cpp',['../Parser_8cpp.html',1,'']]],

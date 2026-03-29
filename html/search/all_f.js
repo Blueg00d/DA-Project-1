@@ -1,12 +1,12 @@
 var searchData=
 [
   ['save_5foutput_0',['SAVE_OUTPUT',['../main_8cpp.html#a5be5e47a3042bc91460d05e47f32120da4ea977b505f491d2f2250a081398fec9',1,'main.cpp']]],
-  ['saveoutput_1',['saveOutput',['../classConferenceManager.html#a6f077c7839e5e9dfe72d8ee9c4018b04',1,'ConferenceManager']]],
+  ['saveoutput_1',['saveOutput',['../classBrainer.html#a6313c5513a8738689d67902bcb0948d7',1,'Brainer']]],
   ['secondary_2',['secondary',['../classReviewer.html#ab81f15c667b7930352aae518af446e66',1,'Reviewer::secondary'],['../classSubmission.html#a9a0cecfd6d8ff31ce85a22c4a88737bd',1,'Submission::secondary']]],
   ['section_3',['Section',['../Parser_8cpp.html#aa2bc2fd5a40cdb0c40963e6fe6a24cce',1,'Parser.cpp']]],
   ['setauthor_4',['setAuthor',['../classSubmission.html#af99fd193a5768661a93baf1e808dd455',1,'Submission']]],
   ['setemail_5',['setemail',['../classReviewer.html#a7ff0eedfe2d6fc7781c361e4c4840a46',1,'Reviewer::setEmail()'],['../classSubmission.html#a40332d8c3949b336510eda7dcffb6476',1,'Submission::setEmail()']]],
-  ['setfilename_6',['setFilename',['../classConferenceManager.html#a6a1818b8d1988a0c22a204b921d4ccb5',1,'ConferenceManager']]],
+  ['setfilename_6',['setFilename',['../classBrainer.html#ae5b49aab702cbaf734101e84b06c3c42',1,'Brainer']]],
   ['setflow_7',['setFlow',['../classEdge.html#a1819116e2c156733a14bbd94cc27908e',1,'Edge']]],
   ['setgenerateassiglevel_8',['setGenerateAssigLevel',['../classParameters.html#a420d37a9e4d97dcd4679fbaffea8ea0b',1,'Parameters']]],
   ['setid_9',['setid',['../classReviewer.html#a92b863c2b2370a83a4947ef7f4e13925',1,'Reviewer::setId()'],['../classSubmission.html#ab282e1ad40bb76a01f24341e922b93e6',1,'Submission::setId()']]],
@@ -15,7 +15,7 @@ var searchData=
   ['setminreviewspersubmission_12',['setMinReviewsPerSubmission',['../classParameters.html#acdb0906eecbf22ff61726b94c4699e73',1,'Parameters']]],
   ['setname_13',['setName',['../classReviewer.html#a1acf05120ecafbd21f476eeccad0ae21',1,'Reviewer']]],
   ['setoutputfilename_14',['setOutputFilename',['../classParameters.html#a4bdbd26a5935391c5038a4e5cbb13128',1,'Parameters']]],
-  ['setparams_15',['setParams',['../classConferenceManager.html#a2b3ed762ffc1ca842d96e46f353c93a2',1,'ConferenceManager']]],
+  ['setparams_15',['setParams',['../classBrainer.html#a9ab4d81aba20ae7638e0ebbef351e444',1,'Brainer']]],
   ['setpath_16',['setPath',['../classVertex.html#a5ebf4b550ec94b89a8f80df1a53cc97d',1,'Vertex']]],
   ['setprimary_17',['setprimary',['../classReviewer.html#a903f53e05c9b1af4ddb12bc950182b28',1,'Reviewer::setPrimary()'],['../classSubmission.html#abcd2763bc7ecddb1560e00aed2e481e6',1,'Submission::setPrimary()']]],
   ['setriskanallevel_18',['setRiskAnalLevel',['../classParameters.html#af15189b94833666847d059dcc82b9d44',1,'Parameters']]],
@@ -23,8 +23,8 @@ var searchData=
   ['settitle_20',['setTitle',['../classSubmission.html#a355b3d8663ea883bc84e4cee0a52fb05',1,'Submission']]],
   ['setvisited_21',['setVisited',['../classVertex.html#a95a3f3c55f2ba371fae51d3fe0e76c23',1,'Vertex']]],
   ['setweight_22',['setWeight',['../classEdge.html#aff600b093dd6917feeeb35bb7947bdd4',1,'Edge']]],
-  ['sink_23',['SINK',['../ConferenceManager_8h.html#adb1aacb84dbc34f3a142a9d7bc80f375',1,'ConferenceManager.h']]],
-  ['source_24',['SOURCE',['../ConferenceManager_8h.html#a88cabaa30cba6807a1c75eaa7e4c188e',1,'ConferenceManager.h']]],
+  ['sink_23',['SINK',['../Utils_8h.html#adb1aacb84dbc34f3a142a9d7bc80f375',1,'Utils.h']]],
+  ['source_24',['SOURCE',['../Utils_8h.html#a88cabaa30cba6807a1c75eaa7e4c188e',1,'Utils.h']]],
   ['split_25',['split',['../Utils_8h.html#aaa10c23df5f0308cae9207945670d815',1,'Utils.h']]],
   ['stringify_26',['STRINGIFY',['../CMakeCXXCompilerId_8cpp.html#a43e1cad902b6477bec893cb6430bd6c8',1,'CMakeCXXCompilerId.cpp']]],
   ['stringify_5fhelper_27',['STRINGIFY_HELPER',['../CMakeCXXCompilerId_8cpp.html#a2ae9b72bb13abaabfcf2ee0ba7d3fa1d',1,'CMakeCXXCompilerId.cpp']]],
@@ -32,6 +32,6 @@ var searchData=
   ['submission_2ecpp_29',['Submission.cpp',['../Submission_8cpp.html',1,'']]],
   ['submission_2eh_30',['Submission.h',['../Submission_8h.html',1,'']]],
   ['submissionid_31',['submissionid',['../classMissingReviewsResult.html#a53d48f13de1d5b4c8a89710da007cbda',1,'MissingReviewsResult::submissionID'],['../classMatchResult.html#a185cbe399240d395c9bee1f342244271',1,'MatchResult::submissionID']]],
-  ['submissions_32',['submissions',['../classParser.html#a66cd7ff2d0d54e7d01c882431aec7c45',1,'Parser::submissions'],['../classConferenceManager.html#a00f31a80159b5f63d307d03eac9ab242',1,'ConferenceManager::submissions'],['../Parser_8cpp.html#aa2bc2fd5a40cdb0c40963e6fe6a24ccea560900af464e7abd0c187468e7ecdf6e',1,'SUBMISSIONS:&#160;Parser.cpp']]],
-  ['success_33',['success',['../classConferenceManager.html#a9ab1ca6766ebccce48243820b1987096',1,'ConferenceManager']]]
+  ['submissions_32',['submissions',['../classParser.html#a66cd7ff2d0d54e7d01c882431aec7c45',1,'Parser::submissions'],['../classBrainer.html#a24a484af0eee0e76ebfb03396e886e7d',1,'Brainer::submissions'],['../Parser_8cpp.html#aa2bc2fd5a40cdb0c40963e6fe6a24ccea560900af464e7abd0c187468e7ecdf6e',1,'SUBMISSIONS:&#160;Parser.cpp']]],
+  ['success_33',['success',['../classBrainer.html#a05efa28dd56c401f92fcb3323c7ac219',1,'Brainer']]]
 ];

@@ -10,6 +10,6 @@ var searchData=
   ['info_5flanguage_5fstandard_5fdefault_7',['info_language_standard_default',['../CMakeCXXCompilerId_8cpp.html#a4607cccf070750927b458473ca82c090',1,'CMakeCXXCompilerId.cpp']]],
   ['info_5fplatform_8',['info_platform',['../CMakeCXXCompilerId_8cpp.html#a2321403dee54ee23f0c2fa849c60f7d4',1,'CMakeCXXCompilerId.cpp']]],
   ['interpret_5fgraph_5fflow_9',['INTERPRET_GRAPH_FLOW',['../main_8cpp.html#a5be5e47a3042bc91460d05e47f32120da7bc746df67fb2b04d545614aaceb0b6a',1,'main.cpp']]],
-  ['interpretflowresults_10',['interpretFlowResults',['../classConferenceManager.html#a1fd2cc8aa442c375023f210f7c781747',1,'ConferenceManager']]],
+  ['interpretflowresults_10',['interpretFlowResults',['../classBrainer.html#a8f261a7bc00213775fd848dce0e6edfa',1,'Brainer']]],
   ['isvisited_11',['isVisited',['../classVertex.html#aa2bb17f6ebd98a67f8da1f689b22fadc',1,'Vertex']]]
 ];

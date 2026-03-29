@@ -10,11 +10,11 @@ var searchData=
   ['reviewer_2ecpp_7',['Reviewer.cpp',['../Reviewer_8cpp.html',1,'']]],
   ['reviewer_2eh_8',['Reviewer.h',['../Reviewer_8h.html',1,'']]],
   ['reviewerid_9',['reviewerID',['../classMatchResult.html#a4f2ce2f2bb944691d9c12c6c86a0eab4',1,'MatchResult']]],
-  ['reviewers_10',['reviewers',['../classParser.html#acc84f9513c887fcadbbbf56511e831c0',1,'Parser::reviewers'],['../classConferenceManager.html#a558f0e9f01c78448c177a363daf8cab9',1,'ConferenceManager::reviewers'],['../Parser_8cpp.html#aa2bc2fd5a40cdb0c40963e6fe6a24cceae3607e509604b10360a962a8925bdcd2',1,'REVIEWERS:&#160;Parser.cpp']]],
+  ['reviewers_10',['reviewers',['../classParser.html#acc84f9513c887fcadbbbf56511e831c0',1,'Parser::reviewers'],['../classBrainer.html#a9c673459b83c1bea1909d96d18956ad1',1,'Brainer::reviewers'],['../Parser_8cpp.html#aa2bc2fd5a40cdb0c40963e6fe6a24cceae3607e509604b10360a962a8925bdcd2',1,'REVIEWERS:&#160;Parser.cpp']]],
   ['riskanalysis_11',['riskAnalysis',['../classParameters.html#a88fbc9d0d3e1682778f1d0e15fb89ea0',1,'Parameters']]],
-  ['riskyreviewers_12',['riskyReviewers',['../classConferenceManager.html#a08dd5840f460bb7b4eca68e6c6394349',1,'ConferenceManager']]],
+  ['riskyreviewers_12',['riskyReviewers',['../classBrainer.html#a264cb246b15e4ceaa0deb966246fb509',1,'Brainer']]],
   ['run_5fall_5finputs_13',['RUN_ALL_INPUTS',['../main_8cpp.html#a5be5e47a3042bc91460d05e47f32120da7eddf14a9e850d9140c6f5f50b2d88ac',1,'main.cpp']]],
   ['run_5fedmonds_5fkarp_14',['RUN_EDMONDS_KARP',['../main_8cpp.html#a5be5e47a3042bc91460d05e47f32120da06b08de58db423b52580ad94855aa589',1,'main.cpp']]],
-  ['runassignment_15',['runAssignment',['../classConferenceManager.html#aba923b46b3a47d3f32727852cbc17744',1,'ConferenceManager']]],
-  ['runriskanalysis_16',['runRiskAnalysis',['../classConferenceManager.html#afda1cfcdf87521958f9babc55961fce9',1,'ConferenceManager']]]
+  ['runassignment_15',['runAssignment',['../classBrainer.html#ab3f1ea4014d978a924de7227fdc4acb3',1,'Brainer']]],
+  ['runriskanalysis_16',['runRiskAnalysis',['../classBrainer.html#aaf8015abdee542f57c4bd9c2dd6d76b6',1,'Brainer']]]
 ];

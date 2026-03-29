@@ -1,4 +1,15 @@
+/**
+ * @file main.cpp
+ * @brief Main entry point for the DA-Project-1 application.
+ *
+ * This file contains the main menu loop, command-line argument handling,
+ * and the primary functions to interact with the Conference Manager (Brainer)
+ * and input Parser.
+ */
+
 #include <iostream>
+#include <thread>  // Required for std::this_thread::sleep_for
+#include <chrono>  // Required for std::chrono::milliseconds
 
 #include "data_structures/utils/Debugger.h"
 #include "data_structures/utils/Utils.h"
@@ -7,22 +18,33 @@
 #include "data_structures/tests/Tester.h"
 using namespace std;
 
+/**
+ * @enum MenuOption
+ * @brief Defines the available options in the interactive console menu.
+ */
 enum class MenuOption {
-    EXIT = 0,
-    PRINT_FILE = 1,
-    READ_FILE = 2,
-    BUILD_GRAPH = 3,
-    DEBUG_GRAPH = 4,
-    RUN_EDMONDS_KARP = 5,
-    DEBUG_GRAPH_FLOW = 6,
-    INTERPRET_GRAPH_FLOW = 7,
-    DEBUG_INTERPRETATION = 8,
-    SAVE_OUTPUT = 9,
-    RUN_ALL_INPUTS = 10,
-    TEST_ALL_INPUTS = 11,
-    CHANGE_PARAMETERS = 12
+    EXIT = 0,                   /**< Exit the application */
+    PRINT_FILE = 1,             /**< Print the parsed dataset file contents */
+    READ_FILE = 2,              /**< Read and parse a new dataset file */
+    BUILD_GRAPH = 3,            /**< Build the flow graph from the parsed data */
+    DEBUG_GRAPH = 4,            /**< Print the graph nodes and edges for debugging */
+    RUN_EDMONDS_KARP = 5,       /**< Run the max-flow algorithm to assign reviews */
+    DEBUG_GRAPH_FLOW = 6,       /**< Print the graph flows for debugging */
+    INTERPRET_GRAPH_FLOW = 7,   /**< Interpret the resulting max flow into assignments */
+    DEBUG_INTERPRETATION = 8,   /**< Debug the interpreted assignment results */
+    SAVE_OUTPUT = 9,            /**< Save the generated assignments to a file */
+    RUN_ALL_INPUTS = 10,        /**< Run the pipeline for all files in a folder */
+    TEST_ALL_INPUTS = 11,       /**< Test generated outputs against expected outputs */
+    CHANGE_PARAMETERS = 12      /**< Interactively change the assignment parameters */
 };
 
+/**
+ * @brief Handles the user interface for changing execution parameters.
+ * * Allows the user to modify parameters like min/max reviews, assignment generation
+ * level, and risk analysis level.
+ * * @param parser A reference to the Parser to update internal parameters.
+ * @param manager A reference to the Brainer to apply the updated parameters.
+ */
 void handleChangeParameters(Parser& parser, Brainer& manager) {
     string filename = manager.getFilename();
     if (filename.empty()) {
@@ -60,6 +82,12 @@ void handleChangeParameters(Parser& parser, Brainer& manager) {
     }
 }
 
+/**
+ * @brief Executes the logic corresponding to the user's menu choice.
+ * * @param choice The selected MenuOption enum value.
+ * @param manager A reference to the active Brainer (Conference Manager) instance.
+ * @param parser A reference to the active Parser instance.
+ */
 void handleChoice(MenuOption choice, Brainer& manager, Parser& parser) {
     switch (choice) {
         case MenuOption::PRINT_FILE: /*PRINT FILE*/ {
@@ -136,6 +164,14 @@ void handleChoice(MenuOption choice, Brainer& manager, Parser& parser) {
     }
 }
 
+/**
+ * @brief Main function of the application.
+ * * Supports both an interactive menu-driven mode and a batch-processing mode
+ * triggered by command line arguments.
+ * * @param argc The number of command-line arguments.
+ * @param argv The array of command-line arguments.
+ * @return Returns 0 on successful execution, or 1 if an error occurred.
+ */
 int main(int argc, char* argv[]) {
     cout << CLR_ALL;
     Brainer manager;
@@ -173,7 +209,11 @@ int main(int argc, char* argv[]) {
     string letterColor = TXT_RESET;
     string boxColor = FG_YELLOW;
 
-    cout << FG_RED << R"(
+    // Print the car ASCII art
+    cout << FG_RED << TXT_BOLD << TXT_ITALIC <<
+        "         Scientific Conference Organization Tool"
+        << TXT_RESET
+        << FG_RED <<R"(
                          _..-------++._
                      _.-'/ |      _||  \"--._
                __.--'`._/_\j_____/_||___\    `----.
@@ -182,7 +222,17 @@ int main(int argc, char* argv[]) {
         [__]==// .-. \\==`===========/==// .-. \\=[__]
          `-._|\ `-' /|___\_________/___|\ `-' /|_.-'
                `---'                     `---'
-)" << TXT_RESET;
+)" << TXT_RESET
+    << FG_RED <<
+        "       Delivering the fastest tools you'll ever need" << endl <<
+            "           Since Aniversário do Lázaro"
+    << TXT_RESET << endl;
+
+    // Add a delay of 1.5 seconds (1500 milliseconds)
+    std::this_thread::sleep_for(std::chrono::milliseconds(4000));
+
+    cout << CLR_ALL;
+
     while (true) {
         cout << TXT_BOLD << FG_YELLOW << TXT_INVERT << "☆ Choose which path to follow (this action will have consequences):" << TXT_RESET << endl;
         cout << boxColor << "==================================================================" << TXT_RESET << endl;

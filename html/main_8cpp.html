@@ -82,12 +82,17 @@ $(function() {
   <div class="headertitle"><div class="title">main.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Main entry point for the DA-Project-1 application.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;iostream&gt;</code><br />
-<code>#include &quot;<a class="el" href="Debugger_8h_source.html">data_structures/Debugger.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="Utils_8h_source.html">data_structures/Utils.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="ConferenceManager_8h_source.html">data_structures/ConferenceManager.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="Parser_8h_source.html">data_structures/Parser.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="Tester_8h_source.html">data_structures/Tester.h</a>&quot;</code><br />
+<code>#include &lt;thread&gt;</code><br />
+<code>#include &lt;chrono&gt;</code><br />
+<code>#include &quot;<a class="el" href="Debugger_8h_source.html">data_structures/utils/Debugger.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Utils_8h_source.html">data_structures/utils/Utils.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Brainer_8h_source.html">data_structures/core/Brainer.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Parser_8h_source.html">data_structures/io/Parser.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Tester_8h_source.html">data_structures/tests/Tester.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for main.cpp:</div>
 <div class="dyncontent">
@@ -115,18 +120,25 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="main_8cpp.html#a5be5e47a3042bc91460d05e47f32120da937e24664a79d44d641796ee1b5a6b06">CHANGE_PARAMETERS</a> = 12
 <br />
  }</td></tr>
+<tr class="memdesc:a5be5e47a3042bc91460d05e47f32120d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the available options in the interactive console menu.  <a href="main_8cpp.html#a5be5e47a3042bc91460d05e47f32120d">More...</a><br /></td></tr>
 <tr class="separator:a5be5e47a3042bc91460d05e47f32120d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a75296366c8d123634e3f4c866e8abe7e" id="r_a75296366c8d123634e3f4c866e8abe7e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a75296366c8d123634e3f4c866e8abe7e">handleChangeParameters</a> (<a class="el" href="classParser.html">Parser</a> &amp;<a class="el" href="classEdge.html">parser</a>, <a class="el" href="classConferenceManager.html">ConferenceManager</a> &amp;<a class="el" href="classEdge.html">manager</a>)</td></tr>
-<tr class="separator:a75296366c8d123634e3f4c866e8abe7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37fce3390e7bf44be4c96108cdf2b9b4" id="r_a37fce3390e7bf44be4c96108cdf2b9b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a37fce3390e7bf44be4c96108cdf2b9b4">handleChoice</a> (<a class="el" href="main_8cpp.html#a5be5e47a3042bc91460d05e47f32120d">MenuOption</a> <a class="el" href="classEdge.html">choice</a>, <a class="el" href="classConferenceManager.html">ConferenceManager</a> &amp;<a class="el" href="classEdge.html">manager</a>, <a class="el" href="classParser.html">Parser</a> &amp;<a class="el" href="classEdge.html">parser</a>)</td></tr>
-<tr class="separator:a37fce3390e7bf44be4c96108cdf2b9b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
-<tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4713bbb16e6bc8ddf0562c78c96162c9" id="r_a4713bbb16e6bc8ddf0562c78c96162c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a4713bbb16e6bc8ddf0562c78c96162c9">handleChangeParameters</a> (<a class="el" href="classParser.html">Parser</a> &amp;<a class="el" href="classEdge.html">parser</a>, <a class="el" href="classBrainer.html">Brainer</a> &amp;<a class="el" href="classEdge.html">manager</a>)</td></tr>
+<tr class="memdesc:a4713bbb16e6bc8ddf0562c78c96162c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the user interface for changing execution parameters.  <br /></td></tr>
+<tr class="separator:a4713bbb16e6bc8ddf0562c78c96162c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac31360e90a0a93665adefe48257f8d2d" id="r_ac31360e90a0a93665adefe48257f8d2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ac31360e90a0a93665adefe48257f8d2d">handleChoice</a> (<a class="el" href="main_8cpp.html#a5be5e47a3042bc91460d05e47f32120d">MenuOption</a> <a class="el" href="classEdge.html">choice</a>, <a class="el" href="classBrainer.html">Brainer</a> &amp;<a class="el" href="classEdge.html">manager</a>, <a class="el" href="classParser.html">Parser</a> &amp;<a class="el" href="classEdge.html">parser</a>)</td></tr>
+<tr class="memdesc:ac31360e90a0a93665adefe48257f8d2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the logic corresponding to the user's menu choice.  <br /></td></tr>
+<tr class="separator:ac31360e90a0a93665adefe48257f8d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97" id="r_a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (<a class="el" href="classEdge.html">int</a> <a class="el" href="classEdge.html">argc</a>, <a class="el" href="classEdge.html">char</a> *<a class="el" href="classEdge.html">argv</a>[])</td></tr>
+<tr class="memdesc:a0ddf1224851353fc92bfbff6f499fa97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function of the application.  <br /></td></tr>
+<tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Main entry point for the DA-Project-1 application. </p>
+<p>This file contains the main menu loop, command-line argument handling, and the primary functions to interact with the Conference Manager (<a class="el" href="classBrainer.html" title="Brainer gathers all info from inputs and puts them in a graph.">Brainer</a>) and input <a class="el" href="classParser.html" title="Responsible for parsing input dataset files and extracting configurations, submissions,...">Parser</a>. </p>
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="a5be5e47a3042bc91460d05e47f32120d" name="a5be5e47a3042bc91460d05e47f32120d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5be5e47a3042bc91460d05e47f32120d">&#9670;&#160;</a></span>MenuOption</h2>
 
@@ -146,27 +158,42 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Defines the available options in the interactive console menu. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120daa42b2fb0e720a080e79a92f4ca97d927" name="a5be5e47a3042bc91460d05e47f32120daa42b2fb0e720a080e79a92f4ca97d927"></a>EXIT&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da2eb3192e634cc7089ee6f46c246e59e4" name="a5be5e47a3042bc91460d05e47f32120da2eb3192e634cc7089ee6f46c246e59e4"></a>PRINT_FILE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da94ad3ee1dc2b9b6649efea996ced37e8" name="a5be5e47a3042bc91460d05e47f32120da94ad3ee1dc2b9b6649efea996ced37e8"></a>READ_FILE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120dadbe806dbccbcfd02e766d1a27d22adae" name="a5be5e47a3042bc91460d05e47f32120dadbe806dbccbcfd02e766d1a27d22adae"></a>BUILD_GRAPH&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120dad0bb9d0759b20c399f3d5a8e341b8c4b" name="a5be5e47a3042bc91460d05e47f32120dad0bb9d0759b20c399f3d5a8e341b8c4b"></a>DEBUG_GRAPH&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da06b08de58db423b52580ad94855aa589" name="a5be5e47a3042bc91460d05e47f32120da06b08de58db423b52580ad94855aa589"></a>RUN_EDMONDS_KARP&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da8ada215abd477a39205fa879ebc7c7fa" name="a5be5e47a3042bc91460d05e47f32120da8ada215abd477a39205fa879ebc7c7fa"></a>DEBUG_GRAPH_FLOW&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da7bc746df67fb2b04d545614aaceb0b6a" name="a5be5e47a3042bc91460d05e47f32120da7bc746df67fb2b04d545614aaceb0b6a"></a>INTERPRET_GRAPH_FLOW&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da7d3098c155ab829b2c333c562a773b57" name="a5be5e47a3042bc91460d05e47f32120da7d3098c155ab829b2c333c562a773b57"></a>DEBUG_INTERPRETATION&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da4ea977b505f491d2f2250a081398fec9" name="a5be5e47a3042bc91460d05e47f32120da4ea977b505f491d2f2250a081398fec9"></a>SAVE_OUTPUT&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da7eddf14a9e850d9140c6f5f50b2d88ac" name="a5be5e47a3042bc91460d05e47f32120da7eddf14a9e850d9140c6f5f50b2d88ac"></a>RUN_ALL_INPUTS&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120daf80385d6c872371c6029412909fba432" name="a5be5e47a3042bc91460d05e47f32120daf80385d6c872371c6029412909fba432"></a>TEST_ALL_INPUTS&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da937e24664a79d44d641796ee1b5a6b06" name="a5be5e47a3042bc91460d05e47f32120da937e24664a79d44d641796ee1b5a6b06"></a>CHANGE_PARAMETERS&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120daa42b2fb0e720a080e79a92f4ca97d927" name="a5be5e47a3042bc91460d05e47f32120daa42b2fb0e720a080e79a92f4ca97d927"></a>EXIT&#160;</td><td class="fielddoc"><p>Exit the application </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da2eb3192e634cc7089ee6f46c246e59e4" name="a5be5e47a3042bc91460d05e47f32120da2eb3192e634cc7089ee6f46c246e59e4"></a>PRINT_FILE&#160;</td><td class="fielddoc"><p>Print the parsed dataset file contents </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da94ad3ee1dc2b9b6649efea996ced37e8" name="a5be5e47a3042bc91460d05e47f32120da94ad3ee1dc2b9b6649efea996ced37e8"></a>READ_FILE&#160;</td><td class="fielddoc"><p>Read and parse a new dataset file </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120dadbe806dbccbcfd02e766d1a27d22adae" name="a5be5e47a3042bc91460d05e47f32120dadbe806dbccbcfd02e766d1a27d22adae"></a>BUILD_GRAPH&#160;</td><td class="fielddoc"><p>Build the flow graph from the parsed data </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120dad0bb9d0759b20c399f3d5a8e341b8c4b" name="a5be5e47a3042bc91460d05e47f32120dad0bb9d0759b20c399f3d5a8e341b8c4b"></a>DEBUG_GRAPH&#160;</td><td class="fielddoc"><p>Print the graph nodes and edges for debugging </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da06b08de58db423b52580ad94855aa589" name="a5be5e47a3042bc91460d05e47f32120da06b08de58db423b52580ad94855aa589"></a>RUN_EDMONDS_KARP&#160;</td><td class="fielddoc"><p>Run the max-flow algorithm to assign reviews </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da8ada215abd477a39205fa879ebc7c7fa" name="a5be5e47a3042bc91460d05e47f32120da8ada215abd477a39205fa879ebc7c7fa"></a>DEBUG_GRAPH_FLOW&#160;</td><td class="fielddoc"><p>Print the graph flows for debugging </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da7bc746df67fb2b04d545614aaceb0b6a" name="a5be5e47a3042bc91460d05e47f32120da7bc746df67fb2b04d545614aaceb0b6a"></a>INTERPRET_GRAPH_FLOW&#160;</td><td class="fielddoc"><p>Interpret the resulting max flow into assignments </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da7d3098c155ab829b2c333c562a773b57" name="a5be5e47a3042bc91460d05e47f32120da7d3098c155ab829b2c333c562a773b57"></a>DEBUG_INTERPRETATION&#160;</td><td class="fielddoc"><p>Debug the interpreted assignment results </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da4ea977b505f491d2f2250a081398fec9" name="a5be5e47a3042bc91460d05e47f32120da4ea977b505f491d2f2250a081398fec9"></a>SAVE_OUTPUT&#160;</td><td class="fielddoc"><p>Save the generated assignments to a file </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da7eddf14a9e850d9140c6f5f50b2d88ac" name="a5be5e47a3042bc91460d05e47f32120da7eddf14a9e850d9140c6f5f50b2d88ac"></a>RUN_ALL_INPUTS&#160;</td><td class="fielddoc"><p>Run the pipeline for all files in a folder </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120daf80385d6c872371c6029412909fba432" name="a5be5e47a3042bc91460d05e47f32120daf80385d6c872371c6029412909fba432"></a>TEST_ALL_INPUTS&#160;</td><td class="fielddoc"><p>Test generated outputs against expected outputs </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da937e24664a79d44d641796ee1b5a6b06" name="a5be5e47a3042bc91460d05e47f32120da937e24664a79d44d641796ee1b5a6b06"></a>CHANGE_PARAMETERS&#160;</td><td class="fielddoc"><p>Interactively change the assignment parameters </p>
+</td></tr>
 </table>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a75296366c8d123634e3f4c866e8abe7e" name="a75296366c8d123634e3f4c866e8abe7e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a75296366c8d123634e3f4c866e8abe7e">&#9670;&#160;</a></span>handleChangeParameters()</h2>
+<a id="a4713bbb16e6bc8ddf0562c78c96162c9" name="a4713bbb16e6bc8ddf0562c78c96162c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4713bbb16e6bc8ddf0562c78c96162c9">&#9670;&#160;</a></span>handleChangeParameters()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -180,7 +207,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classConferenceManager.html">ConferenceManager</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classBrainer.html">Brainer</a> &amp;&#160;</td>
           <td class="paramname"><em>manager</em>&#160;</td>
         </tr>
         <tr>
@@ -191,10 +218,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Handles the user interface for changing execution parameters. </p>
+<ul>
+<li>Allows the user to modify parameters like min/max reviews, assignment generation level, and risk analysis level.</li>
+<li><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parser</td><td>A reference to the <a class="el" href="classParser.html" title="Responsible for parsing input dataset files and extracting configurations, submissions,...">Parser</a> to update internal parameters. </td></tr>
+    <tr><td class="paramname">manager</td><td>A reference to the <a class="el" href="classBrainer.html" title="Brainer gathers all info from inputs and puts them in a graph.">Brainer</a> to apply the updated parameters. </td></tr>
+  </table>
+  </dd>
+</dl>
+</li>
+</ul>
+
 </div>
 </div>
-<a id="a37fce3390e7bf44be4c96108cdf2b9b4" name="a37fce3390e7bf44be4c96108cdf2b9b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a37fce3390e7bf44be4c96108cdf2b9b4">&#9670;&#160;</a></span>handleChoice()</h2>
+<a id="ac31360e90a0a93665adefe48257f8d2d" name="ac31360e90a0a93665adefe48257f8d2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac31360e90a0a93665adefe48257f8d2d">&#9670;&#160;</a></span>handleChoice()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -208,7 +248,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classConferenceManager.html">ConferenceManager</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classBrainer.html">Brainer</a> &amp;&#160;</td>
           <td class="paramname"><em>manager</em>, </td>
         </tr>
         <tr>
@@ -225,10 +265,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Executes the logic corresponding to the user's menu choice. </p>
+<ul>
+<li><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">choice</td><td>The selected MenuOption enum value. </td></tr>
+    <tr><td class="paramname">manager</td><td>A reference to the active <a class="el" href="classBrainer.html" title="Brainer gathers all info from inputs and puts them in a graph.">Brainer</a> (Conference Manager) instance. </td></tr>
+    <tr><td class="paramname">parser</td><td>A reference to the active <a class="el" href="classParser.html" title="Responsible for parsing input dataset files and extracting configurations, submissions,...">Parser</a> instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+</li>
+</ul>
+
 </div>
 </div>
-<a id="ae66f6b31b5ad750f1fe042a706a4e3d4" name="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae66f6b31b5ad750f1fe042a706a4e3d4">&#9670;&#160;</a></span>main()</h2>
+<a id="a0ddf1224851353fc92bfbff6f499fa97" name="a0ddf1224851353fc92bfbff6f499fa97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ddf1224851353fc92bfbff6f499fa97">&#9670;&#160;</a></span>main()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -236,11 +289,36 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classEdge.html">int</a> main </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classEdge.html">int</a>&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classEdge.html">char</a> *&#160;</td>
+          <td class="paramname"><em>argv</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Main function of the application. </p>
+<ul>
+<li>Supports both an interactive menu-driven mode and a batch-processing mode triggered by command line arguments.</li>
+<li><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argc</td><td>The number of command-line arguments. </td></tr>
+    <tr><td class="paramname">argv</td><td>The array of command-line arguments. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns 0 on successful execution, or 1 if an error occurred. </dd></dl>
+</li>
+</ul>
 
 </div>
 </div>

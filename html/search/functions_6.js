@@ -4,7 +4,7 @@ var searchData=
   ['getauthor_1',['getAuthor',['../classSubmission.html#a1a61d05f516a515d0ca634d7892197c9',1,'Submission']]],
   ['getdest_2',['getDest',['../classEdge.html#a9a2de066dff8513dd788d553fc1d0c81',1,'Edge']]],
   ['getemail_3',['getemail',['../classReviewer.html#abb619078f0b5bd62b275262a7c7e2317',1,'Reviewer::getEmail()'],['../classSubmission.html#a9e12d61153cfff12a8fb34c98cea7f6a',1,'Submission::getEmail()']]],
-  ['getfilename_4',['getFilename',['../classConferenceManager.html#a2de0cd946c64e5e82b94478027d93463',1,'ConferenceManager']]],
+  ['getfilename_4',['getFilename',['../classBrainer.html#a942ac63dfdd8ee068d5390bd1caf66ab',1,'Brainer']]],
   ['getflow_5',['getFlow',['../classEdge.html#a75458cfc838ca5aee5c34cb9f03b5647',1,'Edge']]],
   ['getgenerateassiglevel_6',['getGenerateAssigLevel',['../classParameters.html#a2f9077980e2f813a794c7326e323d180',1,'Parameters']]],
   ['getid_7',['getid',['../classReviewer.html#ac50e6f913844d7d3f0f284be5b60e678',1,'Reviewer::getId()'],['../classSubmission.html#af59a22b09e0fb4c13ac9ecda74ac344e',1,'Submission::getId()']]],
