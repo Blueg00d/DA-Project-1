@@ -3,10 +3,10 @@
 //
 
 #include "Tester.h"
-#include "Utils.h"
-#include "Parser.h"
-#include "Brainer.h"
-#include "FileManager.h"
+#include "utils/Utils.h"
+#include "io/Parser.h"
+#include "core/Brainer.h"
+#include "io/FileManager.h"
 #include <iostream>
 
 using namespace std;

@@ -1,11 +1,11 @@
 #ifndef DA_PROJECT_1_DEBUGGER_H
 #define DA_PROJECT_1_DEBUGGER_H
 
-#include "Brainer.h"
+#include "core/Brainer.h"
 
 /**
  * @class Debugger
- * @brief Utility class to handle debugging outputs for the ConferenceManager
+ * @brief Utility class to handle debugging outputs for the Brainer
  */
 class Debugger {
 public:

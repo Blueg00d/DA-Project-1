@@ -48,6 +48,9 @@
 
 // -- MISSING PARAMETER IS PASSED WITH -1 --
 #define NOT_DEFINED (-1)
+// -- NODE ID --
+#define SOURCE 0
+#define SINK 1
 
 #include <string>
 #include <vector>

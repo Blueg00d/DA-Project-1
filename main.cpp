@@ -1,10 +1,10 @@
 #include <iostream>
 
-#include "data_structures/Debugger.h"
-#include "data_structures/Utils.h"
-#include "data_structures/Brainer.h"
-#include "data_structures/Parser.h"
-#include "data_structures/Tester.h"
+#include "data_structures/utils/Debugger.h"
+#include "data_structures/utils/Utils.h"
+#include "data_structures/core/Brainer.h"
+#include "data_structures/io/Parser.h"
+#include "data_structures/tests/Tester.h"
 using namespace std;
 
 enum class MenuOption {
