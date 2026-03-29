@@ -5,8 +5,8 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_library(DataStructures STATIC
         core/Brainer.cpp
-        core/Reviewer.cpp
-        core/Submission.cpp
+        models/Reviewer.cpp
+        models/Submission.cpp
         io/FileManager.cpp
         io/Parser.cpp
         models/MatchResult.cpp

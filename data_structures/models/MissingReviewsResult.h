@@ -5,7 +5,7 @@
 #ifndef MYPROJECT_MISSINGREVIEWSRESULT_H
 #define MYPROJECT_MISSINGREVIEWSRESULT_H
 
-#include "core/Submission.h"
+#include "models/Submission.h"
 #include <string>
 using namespace std;
 

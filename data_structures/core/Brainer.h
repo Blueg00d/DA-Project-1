@@ -1,7 +1,7 @@
 #ifndef DA_PROJECT_1_CONFERENCEMANAGER_H
 #define DA_PROJECT_1_CONFERENCEMANAGER_H
-#include "Reviewer.h"
-#include "Submission.h"
+#include "../models/Reviewer.h"
+#include "../models/Submission.h"
 #include "../utils/Parameters.h"
 #include "../structures/Graph.h"
 #include "../models/MatchResult.h"

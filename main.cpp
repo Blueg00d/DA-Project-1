@@ -145,8 +145,8 @@ int main(int argc, char* argv[]) {
             cerr << "Usage: ./myProg -b input.csv output.csv" << endl;
             return 1;
         }
-        string inputFile = argv[2];
-        string outputFile = argv[3];
+        string inputFile = "samples/input/" + string(argv[2]);
+        string outputFile = "samples/generated/" + string(argv[3]);
 
         if (!parser.parseFile(inputFile)) {
             cerr << "Error parsing input file: " << inputFile << endl;

@@ -3,8 +3,8 @@
 #include <string>
 #include <vector>
 #include "utils/Parameters.h"
-#include "core/Reviewer.h"
-#include "core/Submission.h"
+#include "models/Reviewer.h"
+#include "models/Submission.h"
 #include "FileManager.h"
 
 
