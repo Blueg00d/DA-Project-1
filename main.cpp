@@ -24,29 +24,40 @@ enum class MenuOption {
 };
 
 void handleChangeParameters(Parser& parser, ConferenceManager& manager) {
-    int parameter;
-    int value;
-    cout << "Please specify which parameter you want to change." << endl;
-    cout << "choices:" << endl;
-    cout << "1. Minimum Reviews per Submission" << endl;
-    cout << "2. Maximum Reviews per Reviewer" << endl;
-    cout << "3. Generate Assignments" << endl;
-    cout << "4. Risk Analysis" << endl;
-    cout << "Input: ";
-    cin >> parameter;
-    cout << endl;
-    cout << "What do you want to change it for? ";
-    cin >> value;
-    cout << endl;
+    string filename = manager.getFilename();
+    if (filename.empty()) {
+        cout << FG_RED << TXT_INVERT << "no file found, PLEASE use option 2 first!" << endl;
+        cout << TXT_RESET << endl;
+    } else {
+        int parameter;
+        int value;
+        string optionsColor = FG_YELLOW;
+        string letterColor = TXT_RESET;
+        string boxColor = FG_CYAN;
 
-    Parameters& params = parser.getParams();
-    switch (parameter) {
-        case 1: params.setMinReviewsPerSubmission(value); break;
-        case 2: params.setMaxReviewsPerReviewer(value); break;
-        case 3: params.setGenerateAssigLevel(value); break;
-        case 4: params.setRiskAnalLevel(value); break;
+        cout << TXT_BOLD << FG_CYAN << TXT_INVERT << "Please specify which parameter you want to change." << TXT_RESET << endl;
+        cout << boxColor << "==================================================================" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[1]" << TXT_RESET << letterColor << " Minimum Reviews per Submission" << boxColor << "                              *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[2]" << TXT_RESET << letterColor << " Maximum Reviews per Reviewer" << boxColor << "                                *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[3]" << TXT_RESET << letterColor << " Generate Assignments" << boxColor << "                                        *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[4]" << TXT_RESET << letterColor << " Risk Analysis" << boxColor << "                                               *" << TXT_RESET << endl;
+        cout << boxColor << "==================================================================" << TXT_RESET << endl;
+        cout << FG_CYAN << TXT_INVERT << "Input: ";
+        cin >> parameter;
+        cout << TXT_RESET << CLR_ALL;
+        cout << TXT_BOLD << TXT_INVERT << "What do you want to change it for? ";
+        cin >> value;
+        cout << TXT_RESET << CLR_ALL << endl;
+
+        Parameters& params = parser.getParams();
+        switch (parameter) {
+            case 1: params.setMinReviewsPerSubmission(value); break;
+            case 2: params.setMaxReviewsPerReviewer(value); break;
+            case 3: params.setGenerateAssigLevel(value); break;
+            case 4: params.setRiskAnalLevel(value); break;
+        }
+        manager.setParams(parser.getParams()); //warn manager that the params changed
     }
-    manager.setParams(parser.getParams()); //warn manager that the params changed
 }
 
 void handleChoice(MenuOption choice, ConferenceManager& manager, Parser& parser) {
@@ -148,7 +159,7 @@ int main() {
     while (true) {
         cout << TXT_BOLD << FG_YELLOW << TXT_INVERT << "☆ Choose which path to follow (this action will have consequences):" << TXT_RESET << endl;
         cout << boxColor << "==================================================================" << TXT_RESET << endl;
-        cout << boxColor << "*" << optionsColor << "[1]" << TXT_RESET << letterColor << " Print File" << boxColor << "                                                 *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[1]" << TXT_RESET << letterColor << " Print File" << boxColor << "                                                  *" << TXT_RESET << endl;
         cout << boxColor << "*" << optionsColor << "[2]" << TXT_RESET << letterColor << " Read File" << boxColor << "                                                   *" << TXT_RESET << endl;
         cout << boxColor << "*" << optionsColor << "[3]" << TXT_RESET << letterColor << " Build Graph" << boxColor << "                                                 *" << TXT_RESET << endl;
         cout << boxColor << "*" << optionsColor << "[4]" << TXT_RESET << letterColor << " Debug Graph" << boxColor << "                                                 *" << TXT_RESET << endl;
@@ -164,7 +175,7 @@ int main() {
         cout << boxColor << "==================================================================" << TXT_RESET << endl;
         cout << FG_YELLOW << TXT_INVERT << "Input: ";
         cin >> choiceInt;
-        cout << TXT_RESET << CLR_ALL;
+        cout << TXT_RESET << CLR_ALL << endl;
 
         MenuOption choice = static_cast<MenuOption>(choiceInt);
         if (choice == MenuOption::EXIT) {
