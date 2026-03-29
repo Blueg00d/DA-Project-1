@@ -269,8 +269,17 @@ void Brainer::runRiskAnalysis() {
  * Sorts results twice (grouped by submission and then grouped by reviewer)
  * Writes matches, missing reviews and risky reviewers to output O(M+R)
  */
-void Brainer::saveOutput(const string& folder) {
-    string filename = folder + params.getOutputFilename();
+void Brainer::saveOutput(const string& path) {
+    string filename;
+
+    //If path ends in .csv it's batch mode time
+    if (path.size() >= 4 && path.substr(path.size() - 4) == ".csv") {
+        filename = path;
+    }
+    //else normal mode
+    else {
+        filename = path + params.getOutputFilename();
+    }
 
     //if the parser couldn't read the filename, then we need to use a default one
     if (filename.empty()) { filename = "assignment.csv"; }

@@ -136,10 +136,37 @@ void handleChoice(MenuOption choice, Brainer& manager, Parser& parser) {
     }
 }
 
-int main() {
+int main(int argc, char* argv[]) {
     cout << CLR_ALL;
     Brainer manager;
     Parser parser;
+    if (argc > 1 && string(argv[1])=="-b") {
+        if (argc!=4) {
+            cerr << "Usage: ./myProg -b input.csv output.csv" << endl;
+            return 1;
+        }
+        string inputFile = argv[2];
+        string outputFile = argv[3];
+
+        if (!parser.parseFile(inputFile)) {
+            cerr << "Error parsing input file: " << inputFile << endl;
+            return 1;
+        }
+        // Initialize manager
+        manager = Brainer(parser.getReviewers(), parser.getSubmissions(), parser.getParams());
+        manager.setFilename(inputFile);
+
+        // Run full pipeline
+        manager.buildGraph();
+        manager.runAssignment();
+        manager.runRiskAnalysis();
+        manager.interpretFlowResults();
+
+        // Save output
+        manager.saveOutput(outputFile);
+
+        return 0;
+    }
     int choiceInt;
 
     string optionsColor = FG_CYAN;
