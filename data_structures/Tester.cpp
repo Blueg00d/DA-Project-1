@@ -5,7 +5,7 @@
 #include "Tester.h"
 #include "Utils.h"
 #include "Parser.h"
-#include "ConferenceManager.h"
+#include "Brainer.h"
 #include "FileManager.h"
 #include <iostream>
 
@@ -19,7 +19,7 @@ void Tester::executeAllInputTasks() {
             Parser parser;
             parser.parseFile(entry.path().string());
 
-            ConferenceManager manager(parser.getReviewers(), parser.getSubmissions(), parser.getParams());
+            Brainer manager(parser.getReviewers(), parser.getSubmissions(), parser.getParams());
             manager.executeAllTasks(this->mainFolder + "/generated/");
         }
     }

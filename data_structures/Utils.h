@@ -46,6 +46,8 @@
 #define CUR_UP(n)      ANSI_ESC #n "A"  // MOVES THE CURSOR N LINES UP
 #define CLR_ALL        CUR_HOME CLR_SCREEN CLR_HISTORY
 
+// -- MISSING PARAMETER IS PASSED WITH -1 --
+#define NOT_DEFINED (-1)
 
 #include <string>
 #include <vector>

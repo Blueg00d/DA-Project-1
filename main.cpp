@@ -2,7 +2,7 @@
 
 #include "data_structures/Debugger.h"
 #include "data_structures/Utils.h"
-#include "data_structures/ConferenceManager.h"
+#include "data_structures/Brainer.h"
 #include "data_structures/Parser.h"
 #include "data_structures/Tester.h"
 using namespace std;
@@ -23,7 +23,7 @@ enum class MenuOption {
     CHANGE_PARAMETERS = 12
 };
 
-void handleChangeParameters(Parser& parser, ConferenceManager& manager) {
+void handleChangeParameters(Parser& parser, Brainer& manager) {
     string filename = manager.getFilename();
     if (filename.empty()) {
         cout << FG_RED << TXT_INVERT << "no file found, PLEASE use option 2 first!" << endl;
@@ -60,7 +60,7 @@ void handleChangeParameters(Parser& parser, ConferenceManager& manager) {
     }
 }
 
-void handleChoice(MenuOption choice, ConferenceManager& manager, Parser& parser) {
+void handleChoice(MenuOption choice, Brainer& manager, Parser& parser) {
     switch (choice) {
         case MenuOption::PRINT_FILE: /*PRINT FILE*/ {
             string filename = manager.getFilename();
@@ -82,7 +82,7 @@ void handleChoice(MenuOption choice, ConferenceManager& manager, Parser& parser)
 
             parser.parseFile(filename);
 
-            manager = ConferenceManager(parser.getReviewers(), parser.getSubmissions(), parser.getParams());
+            manager = Brainer(parser.getReviewers(), parser.getSubmissions(), parser.getParams());
             manager.setFilename(filename);
             break;
         }
@@ -138,7 +138,7 @@ void handleChoice(MenuOption choice, ConferenceManager& manager, Parser& parser)
 
 int main() {
     cout << CLR_ALL;
-    ConferenceManager manager;
+    Brainer manager;
     Parser parser;
     int choiceInt;
 

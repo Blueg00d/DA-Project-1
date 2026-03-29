@@ -1,4 +1,4 @@
-#include "ConferenceManager.h"
+#include "Brainer.h"
 #include <fstream>
 using namespace std;
 
@@ -6,7 +6,7 @@ using namespace std;
 
 #include <utility>
 
-ConferenceManager::ConferenceManager(
+Brainer::Brainer(
         vector<Reviewer> reviewers,
         vector<Submission> submissions,
         Parameters params
@@ -16,14 +16,14 @@ ConferenceManager::ConferenceManager(
         this->submissions = std::move(submissions);
         this->params = std::move(params);
 }
-void ConferenceManager::setFilename(string filename) {
+void Brainer::setFilename(string filename) {
     this->filename = filename;
 }
-string ConferenceManager::getFilename() {
+string Brainer::getFilename() {
     return this->filename;
 }
 
-void ConferenceManager::setParams(Parameters params) {
+void Brainer::setParams(Parameters params) {
     this->params = params;
 }
 /**
@@ -34,7 +34,7 @@ void ConferenceManager::setParams(Parameters params) {
  * Time complexity: O(R+S)
  * Iterates over all Reviewers (R) and all Submissions (S) and adds them to an unordered map
  */
-void ConferenceManager::createNodes() {
+void Brainer::createNodes() {
     this->nodesToReviewers.clear();
     this->nodesToSubmissions.clear();
     this->graph.addVertex(SOURCE); // Represents Source
@@ -60,7 +60,7 @@ void ConferenceManager::createNodes() {
  * Time complexity: O(R+S)
  *First for loop iterates through all reviewers (R) and second one through all Submissions (S)
  */
-void ConferenceManager::connectSourceSinkToNodes() {
+void Brainer::connectSourceSinkToNodes() {
     //process so that the reviser with the smallest ID is processed first
     vector<int> sortedNodeIDs;
     for (auto const& [nodeID, rev] : nodesToReviewers) {
@@ -89,7 +89,7 @@ void ConferenceManager::connectSourceSinkToNodes() {
  * Time complexity: O(R*S)
  * Cases 1, 2 and 3 have nested for loops where the outer loop iterates through all Reviewers (R) and the inner loop through all Submissions (S)
  */
-void ConferenceManager::connectNodes() {
+void Brainer::connectNodes() {
     int level = this->params.getGenerateAssigLevel();
 
     for (pair<int, Reviewer*> reviewer: this->nodesToReviewers) {
@@ -124,7 +124,7 @@ void ConferenceManager::connectNodes() {
  * Time complexity: O(R*S)
  * Biggest time complexity out of the three functions called
  */
-void ConferenceManager::buildGraph() {
+void Brainer::buildGraph() {
     createNodes();
     connectSourceSinkToNodes();
     connectNodes();
@@ -140,7 +140,7 @@ void ConferenceManager::buildGraph() {
  * E is number of edges (Source->Reviewers == R; Reviewers->Submissions == up to R*S; Submissions->Sink == S) Let it be approx. R*S
  * O(R+S+2*(R*S)^2) ≈ O((R+S)*(R*S)^2)
  */
-void ConferenceManager::runAssignment() {
+void Brainer::runAssignment() {
     //Erase previous graph so we can start over
     this->graph = Graph<int>();
     //Build the new graph with new data
@@ -155,7 +155,7 @@ void ConferenceManager::runAssignment() {
  * First it iterates through all submissions S in a nested loop with the reviewers R O(R*S)
  * Sorting results takes O(ElogE) for edges E
  */
-void ConferenceManager::interpretFlowResults() {
+void Brainer::interpretFlowResults() {
     //Initialization
     this->matchResults.clear();
     this->missingReviewsResults.clear();
@@ -217,7 +217,7 @@ void ConferenceManager::interpretFlowResults() {
  * characterized by running the Edmound's Karp Algorithm through every subset of
  * discarded reviewers.
  */
-void ConferenceManager::runRiskAnalysis() {
+void Brainer::runRiskAnalysis() {
     int M = params.getRiskAnalLevel();
     if (M == 0) return;
 
@@ -269,7 +269,7 @@ void ConferenceManager::runRiskAnalysis() {
  * Sorts results twice (grouped by submission and then grouped by reviewer)
  * Writes matches, missing reviews and risky reviewers to output O(M+R)
  */
-void ConferenceManager::saveOutput(const string& folder) {
+void Brainer::saveOutput(const string& folder) {
     string filename = folder + params.getOutputFilename();
 
     //if the parser couldn't read the filename, then we need to use a default one
@@ -332,7 +332,7 @@ void ConferenceManager::saveOutput(const string& folder) {
  * runRiskAnalysis: O(R * (R+S)*(R*S)^2)
  * saveOutput: O(MlogM + R)
  */
-void ConferenceManager::executeAllTasks(const string &folder) {
+void Brainer::executeAllTasks(const string &folder) {
     buildGraph();
     runAssignment();
     interpretFlowResults();

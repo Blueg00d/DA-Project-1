@@ -5,8 +5,8 @@ set(CMAKE_CXX_STANDARD 17)
 
 # Added FileManager.cpp and FileManager.h to the compilation process
 add_library(DataStructures STATIC
-        ConferenceManager.cpp
-        ConferenceManager.h
+        Brainer.cpp
+        Brainer.h
         FileManager.cpp
         FileManager.h
         Graph.h

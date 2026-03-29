@@ -7,7 +7,6 @@
 #include "Submission.h"
 #include "FileManager.h"
 
-#define NOT_DEFINED -1
 
 class Parser {
 private:

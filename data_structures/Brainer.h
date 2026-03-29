@@ -13,14 +13,14 @@
 using namespace std;
 #define SOURCE 0
 #define SINK 1
-#define NOT_DEFINED (-1)
+
 
 /**
- * @class ConferenceManager
+ * @class Brainer
  * @brief ConferenceManager gathers all info from inputs and puts them in a graph
  *
  */
-class ConferenceManager {
+class Brainer {
     friend class Debugger;
 
     private:
@@ -67,7 +67,7 @@ class ConferenceManager {
      * @param submissions a vector of Submissions from input
      * @param params Parameters from input
      */
-    ConferenceManager(
+    Brainer(
         vector<Reviewer> reviewers,
         vector<Submission> submissions,
         Parameters params
@@ -76,12 +76,12 @@ class ConferenceManager {
     /**
      * @brief Default constructor of ConferenceManager
      */
-    ConferenceManager() = default;
+    Brainer() = default;
 
     /**
      * @brief Destructor of class ConferenceManager
      */
-    ~ConferenceManager() = default;
+    ~Brainer() = default;
 
 
     /**
