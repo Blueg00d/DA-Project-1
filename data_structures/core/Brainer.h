@@ -22,20 +22,37 @@ class Brainer {
     friend class Debugger;
 
     private:
+    /** @brief List of reviewers available for the conference. */
     vector<Reviewer> reviewers;
+
+    /** @brief List of submissions made to the conference. */
     vector<Submission> submissions;
+
+    /** @brief Execution parameters determining assignment rules. */
     Parameters params;
+
+    /** @brief Name of the input file currently being processed. */
     string filename;
 
+    /** @brief Stores the resulting matches between reviewers and submissions. */
     vector<MatchResult> matchResults;
+
+    /** @brief Stores submissions that did not meet the minimum required reviews. */
     vector<MissingReviewsResult> missingReviewsResults;
+
+    /** @brief Flag or counter indicating the success status of the operations. */
     int success = -1;
 
+    /** @brief Maps a graph node ID to a specific Reviewer object. */
     unordered_map<int, Reviewer*> nodesToReviewers;
+
+    /** @brief Maps a graph node ID to a specific Submission object. */
     unordered_map<int, Submission*> nodesToSubmissions;
 
+    /** @brief The flow network graph representing the assignment problem. */
     Graph<int> graph;
 
+    /** @brief List of reviewer IDs identified during the risk analysis. */
     vector<int> riskyReviewers;
 
     /**
@@ -85,7 +102,7 @@ class Brainer {
     /**
      * @brief Function builds graph with information from input
      *
-    * Calls createNodes, connectSourceSinkToNodes and connectNodes.
+     * Calls createNodes, connectSourceSinkToNodes and connectNodes.
      */
     void buildGraph();
 
@@ -100,19 +117,19 @@ class Brainer {
     void interpretFlowResults();
 
     /**
-     * @brief
-     * @param folder
+     * @brief Saves the interpreted assignment and missing reviews results to a file.
+     * @param folder The target directory/folder where the output file should be saved.
      */
     void saveOutput(const string& folder);
 
     /**
-     * @brief
+     * @brief Analyzes the assignments to identify risky reviewers or submissions.
      */
     void runRiskAnalysis();
 
     /**
-     * @brief
-     * @param folder
+     * @brief Executes the entire pipeline of tasks (building graph, running assignments, and saving) for a given input.
+     * @param folder The base folder to read inputs from and write generated outputs to.
      */
     void executeAllTasks(const string& folder);
 

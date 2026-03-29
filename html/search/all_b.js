@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['name_0',['name',['../classReviewer.html#a4f4d39ede0d1981ead7b06210a95c161',1,'Reviewer']]],
-  ['nodestoreviewers_1',['nodesToReviewers',['../classBrainer.html#ab63c05783137ed54da07eaf0972f8ae2',1,'Brainer']]],
-  ['nodestosubmissions_2',['nodesToSubmissions',['../classBrainer.html#a07044921dbc7e6e3ff28d5f4ecbd5ee5',1,'Brainer']]],
-  ['none_3',['NONE',['../Parser_8cpp.html#aa2bc2fd5a40cdb0c40963e6fe6a24cceac157bdf0b85a40d2619cbc8bc1ae5fe2',1,'Parser.cpp']]],
-  ['not_5fdefined_4',['NOT_DEFINED',['../Utils_8h.html#a500822c521c7c220a6db1cb25a2d60ac',1,'Utils.h']]]
+  ['operator_3c_0',['operator&lt;',['../classMatchResult.html#a3681e73f74e26b2a6ff2c495fc46c66d',1,'MatchResult::operator&lt;()'],['../classMissingReviewsResult.html#a03a500a96a67470331fc487a69c5b10a',1,'MissingReviewsResult::operator&lt;()']]],
+  ['orig_1',['orig',['../classEdge.html#a4510c31e0479f9d25f6e35d086887192',1,'Edge']]],
+  ['outputfilename_2',['outputFileName',['../classParameters.html#aa88d97d6533b3ab3f0e0806d1f77f708',1,'Parameters']]]
 ];

@@ -1,9 +1,21 @@
 var searchData=
 [
-  ['edge_0',['edge',['../classEdge.html',1,'Edge&lt; T &gt;'],['../classEdge.html#ab976213419283ed754f42f57b195a288',1,'Edge::Edge()']]],
-  ['edmondskarp_1',['edmondsKarp',['../classGraph.html#ac044521e31c1173e1c4f4d7dc34128cf',1,'Graph']]],
-  ['email_2',['email',['../classReviewer.html#a0c3ec9bf2183781b75b96053859e9e05',1,'Reviewer::email'],['../classSubmission.html#a51e55a4428be7a259df3e7c285673011',1,'Submission::email']]],
-  ['executeallinputtasks_3',['executeAllInputTasks',['../classTester.html#afa5c1065cd7db66f2c1704bf41543bc6',1,'Tester']]],
-  ['executealltasks_4',['executeAllTasks',['../classBrainer.html#a88bab0a53b9ca7173364135be3a300d3',1,'Brainer']]],
-  ['exit_5',['EXIT',['../main_8cpp.html#a5be5e47a3042bc91460d05e47f32120daa42b2fb0e720a080e79a92f4ca97d927',1,'main.cpp']]]
+  ['fg_5fblack_0',['FG_BLACK',['../Utils_8h.html#a9b32d0a26f9909c5b63ccd474f56420e',1,'Utils.h']]],
+  ['fg_5fblue_1',['FG_BLUE',['../Utils_8h.html#a4e411f6bd6ac8d6c2bd23d866c097e91',1,'Utils.h']]],
+  ['fg_5fcyan_2',['FG_CYAN',['../Utils_8h.html#afb40e6e076755308612ed6e18a34dbeb',1,'Utils.h']]],
+  ['fg_5fdefault_3',['FG_DEFAULT',['../Utils_8h.html#a1daa940dfc43b2a87eab5722f9f63e06',1,'Utils.h']]],
+  ['fg_5fgreen_4',['FG_GREEN',['../Utils_8h.html#a0af1e03653ace4d21aebf3b2e03a6535',1,'Utils.h']]],
+  ['fg_5fmagenta_5',['FG_MAGENTA',['../Utils_8h.html#aacf8f7d7b2a3f4ba0d0a131fcd1f1933',1,'Utils.h']]],
+  ['fg_5fred_6',['FG_RED',['../Utils_8h.html#a1dc5215d084174df6f00a9267cec2f17',1,'Utils.h']]],
+  ['fg_5fwhite_7',['FG_WHITE',['../Utils_8h.html#a7fbb956b9e769a1020c2eff1f6743857',1,'Utils.h']]],
+  ['fg_5fyellow_8',['FG_YELLOW',['../Utils_8h.html#a266aa539aa271da1b1f711d2413b1bfa',1,'Utils.h']]],
+  ['filemanager_9',['FileManager',['../classFileManager.html',1,'']]],
+  ['filemanager_2ecpp_10',['FileManager.cpp',['../FileManager_8cpp.html',1,'']]],
+  ['filemanager_2eh_11',['FileManager.h',['../FileManager_8h.html',1,'']]],
+  ['filename_12',['filename',['../classBrainer.html#a12a8bd33b69a621b6b6e1f9565019985',1,'Brainer']]],
+  ['findaugmentingpath_13',['findAugmentingPath',['../classGraph.html#a039221fcb215967752f3672f39ae5206',1,'Graph']]],
+  ['findminresidualalongpath_14',['findMinResidualAlongPath',['../classGraph.html#a5a8fe8c1552124482985fc8c5e9fbfb2',1,'Graph']]],
+  ['findvertex_15',['findVertex',['../classGraph.html#a8b7b7465fbfd562e2a469f90a437ab75',1,'Graph']]],
+  ['findvertexidx_16',['findVertexIdx',['../classGraph.html#a676cdfb976eccfa82b631d2094c1cdac',1,'Graph']]],
+  ['flow_17',['flow',['../classEdge.html#a30808601fa37f509147eabf9cc5f9ed6',1,'Edge']]]
 ];

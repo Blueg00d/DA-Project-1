@@ -117,12 +117,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a8f261a7bc00213775fd848dce0e6edfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function maps the flows on edges given by the max flow into a sorted list.  <br /></td></tr>
 <tr class="separator:a8f261a7bc00213775fd848dce0e6edfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6313c5513a8738689d67902bcb0948d7" id="r_a6313c5513a8738689d67902bcb0948d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBrainer.html#a6313c5513a8738689d67902bcb0948d7">saveOutput</a> (<a class="el" href="classEdge.html">const</a> <a class="el" href="classEdge.html">string</a> &amp;<a class="el" href="classEdge.html">folder</a>)</td></tr>
-<tr class="memdesc:a6313c5513a8738689d67902bcb0948d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time complexity: O(MlogM + R)   Time complexity: O(MlogM + R)  <br /></td></tr>
+<tr class="memdesc:a6313c5513a8738689d67902bcb0948d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the interpreted assignment and missing reviews results to a file.  <br /></td></tr>
 <tr class="separator:a6313c5513a8738689d67902bcb0948d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf8015abdee542f57c4bd9c2dd6d76b6" id="r_aaf8015abdee542f57c4bd9c2dd6d76b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBrainer.html#aaf8015abdee542f57c4bd9c2dd6d76b6">runRiskAnalysis</a> ()</td></tr>
-<tr class="memdesc:aaf8015abdee542f57c4bd9c2dd6d76b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time Complexity: O(R * (R+S)*(R*S)^2) Reruns edmondsKarp() once per reviewer R   Time Complexity: O(R * (R+S)*(R*S)^2) Reruns edmondsKarp() once per reviewer R  <br /></td></tr>
+<tr class="memdesc:aaf8015abdee542f57c4bd9c2dd6d76b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analyzes the assignments to identify risky reviewers or submissions.  <br /></td></tr>
 <tr class="separator:aaf8015abdee542f57c4bd9c2dd6d76b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88bab0a53b9ca7173364135be3a300d3" id="r_a88bab0a53b9ca7173364135be3a300d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBrainer.html#a88bab0a53b9ca7173364135be3a300d3">executeAllTasks</a> (<a class="el" href="classEdge.html">const</a> <a class="el" href="classEdge.html">string</a> &amp;<a class="el" href="classEdge.html">folder</a>)</td></tr>
+<tr class="memdesc:a88bab0a53b9ca7173364135be3a300d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the entire pipeline of tasks (building graph, running assignments, and saving) for a given input.  <br /></td></tr>
 <tr class="separator:a88bab0a53b9ca7173364135be3a300d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5b49aab702cbaf734101e84b06c3c42" id="r_ae5b49aab702cbaf734101e84b06c3c42"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBrainer.html#ae5b49aab702cbaf734101e84b06c3c42">setFilename</a> (<a class="el" href="classEdge.html">string</a> <a class="el" href="classBrainer.html#a12a8bd33b69a621b6b6e1f9565019985">filename</a>)</td></tr>
 <tr class="memdesc:ae5b49aab702cbaf734101e84b06c3c42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the filename currently being processed.  <br /></td></tr>
@@ -149,26 +150,37 @@ Private Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a9c673459b83c1bea1909d96d18956ad1" id="r_a9c673459b83c1bea1909d96d18956ad1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">vector</a>&lt; <a class="el" href="classReviewer.html">Reviewer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBrainer.html#a9c673459b83c1bea1909d96d18956ad1">reviewers</a></td></tr>
+<tr class="memdesc:a9c673459b83c1bea1909d96d18956ad1"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of reviewers available for the conference.  <br /></td></tr>
 <tr class="separator:a9c673459b83c1bea1909d96d18956ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24a484af0eee0e76ebfb03396e886e7d" id="r_a24a484af0eee0e76ebfb03396e886e7d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">vector</a>&lt; <a class="el" href="classSubmission.html">Submission</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBrainer.html#a24a484af0eee0e76ebfb03396e886e7d">submissions</a></td></tr>
+<tr class="memdesc:a24a484af0eee0e76ebfb03396e886e7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of submissions made to the conference.  <br /></td></tr>
 <tr class="separator:a24a484af0eee0e76ebfb03396e886e7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2be171836ffbeacbcd8c66fb73ad36ee" id="r_a2be171836ffbeacbcd8c66fb73ad36ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classParameters.html">Parameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBrainer.html#a2be171836ffbeacbcd8c66fb73ad36ee">params</a></td></tr>
+<tr class="memdesc:a2be171836ffbeacbcd8c66fb73ad36ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execution parameters determining assignment rules.  <br /></td></tr>
 <tr class="separator:a2be171836ffbeacbcd8c66fb73ad36ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12a8bd33b69a621b6b6e1f9565019985" id="r_a12a8bd33b69a621b6b6e1f9565019985"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBrainer.html#a12a8bd33b69a621b6b6e1f9565019985">filename</a></td></tr>
+<tr class="memdesc:a12a8bd33b69a621b6b6e1f9565019985"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the input file currently being processed.  <br /></td></tr>
 <tr class="separator:a12a8bd33b69a621b6b6e1f9565019985"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5518b0892f57d8b770433a6d2a666ac" id="r_aa5518b0892f57d8b770433a6d2a666ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">vector</a>&lt; <a class="el" href="classMatchResult.html">MatchResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBrainer.html#aa5518b0892f57d8b770433a6d2a666ac">matchResults</a></td></tr>
+<tr class="memdesc:aa5518b0892f57d8b770433a6d2a666ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the resulting matches between reviewers and submissions.  <br /></td></tr>
 <tr class="separator:aa5518b0892f57d8b770433a6d2a666ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7edfe20a42cff0a936f20504172cbfdc" id="r_a7edfe20a42cff0a936f20504172cbfdc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">vector</a>&lt; <a class="el" href="classMissingReviewsResult.html">MissingReviewsResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBrainer.html#a7edfe20a42cff0a936f20504172cbfdc">missingReviewsResults</a></td></tr>
+<tr class="memdesc:a7edfe20a42cff0a936f20504172cbfdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores submissions that did not meet the minimum required reviews.  <br /></td></tr>
 <tr class="separator:a7edfe20a42cff0a936f20504172cbfdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05efa28dd56c401f92fcb3323c7ac219" id="r_a05efa28dd56c401f92fcb3323c7ac219"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBrainer.html#a05efa28dd56c401f92fcb3323c7ac219">success</a> = -1</td></tr>
+<tr class="memdesc:a05efa28dd56c401f92fcb3323c7ac219"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag or counter indicating the success status of the operations.  <br /></td></tr>
 <tr class="separator:a05efa28dd56c401f92fcb3323c7ac219"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab63c05783137ed54da07eaf0972f8ae2" id="r_ab63c05783137ed54da07eaf0972f8ae2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">unordered_map</a>&lt; <a class="el" href="classEdge.html">int</a>, <a class="el" href="classReviewer.html">Reviewer</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBrainer.html#ab63c05783137ed54da07eaf0972f8ae2">nodesToReviewers</a></td></tr>
+<tr class="memdesc:ab63c05783137ed54da07eaf0972f8ae2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps a graph node ID to a specific <a class="el" href="classReviewer.html" title="Represents a reviewer available to evaluate conference submissions.">Reviewer</a> object.  <br /></td></tr>
 <tr class="separator:ab63c05783137ed54da07eaf0972f8ae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07044921dbc7e6e3ff28d5f4ecbd5ee5" id="r_a07044921dbc7e6e3ff28d5f4ecbd5ee5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">unordered_map</a>&lt; <a class="el" href="classEdge.html">int</a>, <a class="el" href="classSubmission.html">Submission</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBrainer.html#a07044921dbc7e6e3ff28d5f4ecbd5ee5">nodesToSubmissions</a></td></tr>
+<tr class="memdesc:a07044921dbc7e6e3ff28d5f4ecbd5ee5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps a graph node ID to a specific <a class="el" href="classSubmission.html" title="Represents a paper or article submitted to the conference.">Submission</a> object.  <br /></td></tr>
 <tr class="separator:a07044921dbc7e6e3ff28d5f4ecbd5ee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4d62b42fb47da75028b153467ed7f0e" id="r_ab4d62b42fb47da75028b153467ed7f0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGraph.html">Graph</a>&lt; <a class="el" href="classEdge.html">int</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBrainer.html#ab4d62b42fb47da75028b153467ed7f0e">graph</a></td></tr>
+<tr class="memdesc:ab4d62b42fb47da75028b153467ed7f0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The flow network graph representing the assignment problem.  <br /></td></tr>
 <tr class="separator:ab4d62b42fb47da75028b153467ed7f0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a264cb246b15e4ceaa0deb966246fb509" id="r_a264cb246b15e4ceaa0deb966246fb509"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">vector</a>&lt; <a class="el" href="classEdge.html">int</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBrainer.html#a264cb246b15e4ceaa0deb966246fb509">riskyReviewers</a></td></tr>
+<tr class="memdesc:a264cb246b15e4ceaa0deb966246fb509"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of reviewer IDs identified during the risk analysis.  <br /></td></tr>
 <tr class="separator:a264cb246b15e4ceaa0deb966246fb509"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
@@ -406,11 +418,17 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p></p>
+<p>Executes the entire pipeline of tasks (building graph, running assignments, and saving) for a given input. </p>
+<p>Executes the entire pipeline of tasks (building graph, running assignments, and saving) for a given input.  </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">folder</td><td></td></tr>
-    <tr><td class="paramname">folder</td><td></td></tr>
+    <tr><td class="paramname">folder</td><td>The base folder to read inputs from and write generated outputs to.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">folder</td><td>The base folder to read inputs from and write generated outputs to.</td></tr>
   </table>
   </dd>
 </dl>
@@ -494,7 +512,8 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Time Complexity: O(R * (R+S)*(R*S)^2) Reruns edmondsKarp() once per reviewer R   Time Complexity: O(R * (R+S)*(R*S)^2) Reruns edmondsKarp() once per reviewer R </p>
+<p>Analyzes the assignments to identify risky reviewers or submissions. </p>
+<p>Analyzes the assignments to identify risky reviewers or submissions.   Time Complexity: O(R * (R+S)*(R*S)^2) Reruns edmondsKarp() once per reviewer R</p>
 <p>This runRiskAnalysis works only for level k == 1. If we wanted to run this function for a level k &gt; 1, we could use a brute-force approach.</p>
 <p>The algorithm would be analogous to this one but instead of pushing a single reviewerID to the reviewerNodes vector, we would create every possible subset of discarded reviewers of size &lt;= k, resulting in \(\sum_{i=1}^{k} C_{i}^{R}\) subsets. Then, for each subset of reviewers, we would set each reviewers flow to 0, similar to what this algorithm does.</p>
 <p>This algorithm would result in a temporal complexity of O(2^R * (R+S)*(R*S)^2), characterized by running the Edmound's Karp Algorithm through every subset of discarded reviewers. </p>
@@ -517,10 +536,11 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Time complexity: O(MlogM + R)   Time complexity: O(MlogM + R) </p>
+<p>Saves the interpreted assignment and missing reviews results to a file. </p>
+<p>Saves the interpreted assignment and missing reviews results to a file.   Time complexity: O(MlogM + R)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">folder</td><td></td></tr>
+    <tr><td class="paramname">folder</td><td>The target directory/folder where the output file should be saved.</td></tr>
   </table>
   </dd>
 </dl>
@@ -626,6 +646,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Name of the input file currently being processed. </p>
+
 </div>
 </div>
 <a id="ab4d62b42fb47da75028b153467ed7f0e" name="ab4d62b42fb47da75028b153467ed7f0e"></a>
@@ -647,6 +669,8 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The flow network graph representing the assignment problem. </p>
 
 </div>
 </div>
@@ -670,6 +694,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Stores the resulting matches between reviewers and submissions. </p>
+
 </div>
 </div>
 <a id="a7edfe20a42cff0a936f20504172cbfdc" name="a7edfe20a42cff0a936f20504172cbfdc"></a>
@@ -691,6 +717,8 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Stores submissions that did not meet the minimum required reviews. </p>
 
 </div>
 </div>
@@ -714,6 +742,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Maps a graph node ID to a specific <a class="el" href="classReviewer.html" title="Represents a reviewer available to evaluate conference submissions.">Reviewer</a> object. </p>
+
 </div>
 </div>
 <a id="a07044921dbc7e6e3ff28d5f4ecbd5ee5" name="a07044921dbc7e6e3ff28d5f4ecbd5ee5"></a>
@@ -735,6 +765,8 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Maps a graph node ID to a specific <a class="el" href="classSubmission.html" title="Represents a paper or article submitted to the conference.">Submission</a> object. </p>
 
 </div>
 </div>
@@ -758,6 +790,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Execution parameters determining assignment rules. </p>
+
 </div>
 </div>
 <a id="a9c673459b83c1bea1909d96d18956ad1" name="a9c673459b83c1bea1909d96d18956ad1"></a>
@@ -779,6 +813,8 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>List of reviewers available for the conference. </p>
 
 </div>
 </div>
@@ -802,6 +838,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>List of reviewer IDs identified during the risk analysis. </p>
+
 </div>
 </div>
 <a id="a24a484af0eee0e76ebfb03396e886e7d" name="a24a484af0eee0e76ebfb03396e886e7d"></a>
@@ -824,6 +862,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>List of submissions made to the conference. </p>
+
 </div>
 </div>
 <a id="a05efa28dd56c401f92fcb3323c7ac219" name="a05efa28dd56c401f92fcb3323c7ac219"></a>
@@ -845,6 +885,8 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Flag or counter indicating the success status of the operations. </p>
 
 </div>
 </div>

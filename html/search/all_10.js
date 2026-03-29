@@ -1,23 +1,4 @@
 var searchData=
 [
-  ['test_5fall_5finputs_0',['TEST_ALL_INPUTS',['../main_8cpp.html#a5be5e47a3042bc91460d05e47f32120daf80385d6c872371c6029412909fba432',1,'main.cpp']]],
-  ['testandvisit_1',['testAndVisit',['../classGraph.html#a48009b3e803da7c058b08a0dbeb19474',1,'Graph']]],
-  ['tester_2',['tester',['../classTester.html',1,'Tester'],['../classTester.html#a31b959618b60f5043c11e1f67cea8c3e',1,'Tester::Tester()']]],
-  ['tester_2ecpp_3',['Tester.cpp',['../Tester_8cpp.html',1,'']]],
-  ['tester_2eh_4',['Tester.h',['../Tester_8h.html',1,'']]],
-  ['testparser_5',['testParser',['../classParser.html#abd1a5b8f06f799d5f4feeb77c18e64bd',1,'Parser']]],
-  ['title_6',['title',['../classSubmission.html#ac26241e9b65c1ac2303a721ac41fed23',1,'Submission']]],
-  ['tostringmissingreviewsresult_7',['toStringMissingReviewsResult',['../classMissingReviewsResult.html#ac7e8d7e52abe985d76c36b728b2f9365',1,'MissingReviewsResult']]],
-  ['tostringrevsubmatch_8',['toStringRevSubMatch',['../classMatchResult.html#a44e9a806558b03b23be547ca47163455',1,'MatchResult']]],
-  ['tostringsubrevmatch_9',['toStringSubRevMatch',['../classMatchResult.html#af6272071ef97e2e0136879966e26a29e',1,'MatchResult']]],
-  ['trim_10',['trim',['../Utils_8h.html#accfb5d82d0fde3e767afd67efabff29c',1,'Utils.h']]],
-  ['txt_5fblink_11',['TXT_BLINK',['../Utils_8h.html#af752f72ec47de86222ebeb1a24c6a41d',1,'Utils.h']]],
-  ['txt_5fbold_12',['TXT_BOLD',['../Utils_8h.html#a34fc0c9e1aaf624c2af5244c3cb1b61c',1,'Utils.h']]],
-  ['txt_5fdim_13',['TXT_DIM',['../Utils_8h.html#a4a5d2ec9b018c1b803ed1689fc7f9ddc',1,'Utils.h']]],
-  ['txt_5fhidden_14',['TXT_HIDDEN',['../Utils_8h.html#adb090886a356c4ed3ab9cb18b44bcc08',1,'Utils.h']]],
-  ['txt_5finvert_15',['TXT_INVERT',['../Utils_8h.html#a4bb8ebc5255c4fabbaacebd120e8988a',1,'Utils.h']]],
-  ['txt_5fitalic_16',['TXT_ITALIC',['../Utils_8h.html#a4b56997ea2a75b801b8c79c07257532a',1,'Utils.h']]],
-  ['txt_5freset_17',['TXT_RESET',['../Utils_8h.html#ab102af8d544f4d89bc63f65b13662f66',1,'Utils.h']]],
-  ['txt_5fstrike_18',['TXT_STRIKE',['../Utils_8h.html#aa4423a9cc8fc90923066f0b77c3f8849',1,'Utils.h']]],
-  ['txt_5funderline_19',['TXT_UNDERLINE',['../Utils_8h.html#ae8ea3c979aa89db3498a5482a24024d0',1,'Utils.h']]]
+  ['utils_2eh_0',['Utils.h',['../Utils_8h.html',1,'']]]
 ];
