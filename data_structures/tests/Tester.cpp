@@ -11,7 +11,11 @@
 
 using namespace std;
 namespace fs = std::filesystem;
-
+/**
+ * @copybrief executeAllInputTasks
+ * Time complexity: O(F* )
+ * Parses and executes executeAllTasks() once for each number of files F
+ */
 void Tester::executeAllInputTasks() {
     // Iterating through all files in the "input" directory
     for (const auto& entry: fs::directory_iterator(this->mainFolder + "/input/")) {
@@ -24,7 +28,12 @@ void Tester::executeAllInputTasks() {
         }
     }
 }
-
+/**
+ * @copybrief compareGeneratedWithExpected
+ * Time complexity: O(F*N)
+ * Size in bytes of the files being compared in areFilesEqual is N
+ * Number of files expected is F
+ */
 void Tester::compareGeneratedWithExpected() {
     std::cout << CLR_ALL << FG_YELLOW << TXT_BOLD;
     std::cout << "======================================\n";
