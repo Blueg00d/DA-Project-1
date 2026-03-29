@@ -2,9 +2,9 @@
 #define PARSER_H
 #include <string>
 #include <vector>
-#include "Parameters.h"
-#include "Reviewer.h"
-#include "Submission.h"
+#include "utils/Parameters.h"
+#include "core/Reviewer.h"
+#include "core/Submission.h"
 #include "FileManager.h"
 
 

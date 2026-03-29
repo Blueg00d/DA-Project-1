@@ -3,29 +3,25 @@ project(DataStructures CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
-# Added FileManager.cpp and FileManager.h to the compilation process
 add_library(DataStructures STATIC
-        Brainer.cpp
-        Brainer.h
-        FileManager.cpp
-        FileManager.h
-        Graph.h
-        MatchResult.h
-        MatchResult.cpp
-        MissingReviewsResult.cpp
-        MissingReviewsResult.h
-        Parameters.h
-        Parser.cpp
-        Parser.h
-        Reviewer.cpp
-        Reviewer.h
-        Submission.cpp
-        Submission.h
-        Utils.h
-        Tester.cpp
-        Tester.h
-        Debugger.cpp
-        Debugger.h
+        core/Brainer.cpp
+        core/Reviewer.cpp
+        core/Submission.cpp
+        io/FileManager.cpp
+        io/Parser.cpp
+        models/MatchResult.cpp
+        models/MissingReviewsResult.cpp
+        tests/Tester.cpp
+        utils/Debugger.cpp
 )
 
-target_include_directories(DataStructures PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+#include all folders
+target_include_directories(DataStructures PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}
+        ${CMAKE_CURRENT_SOURCE_DIR}/core
+        ${CMAKE_CURRENT_SOURCE_DIR}/io
+        ${CMAKE_CURRENT_SOURCE_DIR}/models
+        ${CMAKE_CURRENT_SOURCE_DIR}/structures
+        ${CMAKE_CURRENT_SOURCE_DIR}/tests
+        ${CMAKE_CURRENT_SOURCE_DIR}/utils
+)

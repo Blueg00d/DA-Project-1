@@ -11,7 +11,7 @@ using namespace std;
  * Time complexity: O(R*S)
  * Nested loops of Reviewers R and Submissions S
  */
-void Debugger::debugGraph(const ConferenceManager& manager) {
+void Debugger::debugGraph(const  Brainer& manager) {
     // Print Source to Reviewers Edges
     for (Edge<int>* e: manager.graph.findVertex(SOURCE)->getAdj()) {
         cout << "Source--- " << e->getWeight() << " ---" << manager.nodesToReviewers.at(e->getDest()->getInfo())->getId() << endl;
@@ -38,7 +38,7 @@ void Debugger::debugGraph(const ConferenceManager& manager) {
  * Time complexity: O(R*S)
  * Nested cycle of Reviewers R and Submissions S
  */
-void Debugger::debugGraphFlow(const ConferenceManager& manager) {
+void Debugger::debugGraphFlow(const Brainer& manager) {
     std::stringstream ss;
     for(auto v : manager.graph.getVertexSet()) {
         ss << v->getInfo() << "-> (";
@@ -55,7 +55,7 @@ void Debugger::debugGraphFlow(const ConferenceManager& manager) {
  * @copybrief debugInterpretationResults
  * Time complexity: O()
  */
-void Debugger::debugInterpretationResults(const ConferenceManager& manager) {
+void Debugger::debugInterpretationResults(const Brainer& manager) {
     cout << TXT_BOLD << FG_GREEN << "#SubmissionId,ReviewerId,Match" << TXT_RESET << endl;
     for (const MatchResult& ms: manager.matchResults) {
         cout << ms.toStringSubRevMatch() << endl;

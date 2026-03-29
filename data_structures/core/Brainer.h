@@ -2,17 +2,15 @@
 #define DA_PROJECT_1_CONFERENCEMANAGER_H
 #include "Reviewer.h"
 #include "Submission.h"
-#include "Parameters.h"
-#include "Graph.h"
-#include "MatchResult.h"
-#include "MissingReviewsResult.h"
-#include "FileManager.h"
+#include "../utils/Parameters.h"
+#include "../structures/Graph.h"
+#include "../models/MatchResult.h"
+#include "../models/MissingReviewsResult.h"
+#include "../io/FileManager.h"
 #include <string>
 #include <unordered_map>
 #include <sstream>
 using namespace std;
-#define SOURCE 0
-#define SINK 1
 
 
 /**
