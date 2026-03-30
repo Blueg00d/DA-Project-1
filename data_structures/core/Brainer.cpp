@@ -28,7 +28,7 @@ Brainer::Brainer(
 }
 
 /**
- * @copybrief Brainer::setFilename
+ * @copybrief setFilename
  *
  * Time complexity: O(1)
  *
@@ -39,7 +39,7 @@ void Brainer::setFilename(string filename) {
 }
 
 /**
- * @copybrief Brainer::getFilename
+ * @copybrief getFilename
  *
  * Time complexity: O(1)
  *
@@ -50,7 +50,7 @@ string Brainer::getFilename() {
 }
 
 /**
- * @copybrief Brainer::setParams
+ * @copybrief setParams
  *
  * Time complexity: O(1)
  *
