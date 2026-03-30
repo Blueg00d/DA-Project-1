@@ -77,9 +77,18 @@ void Brainer::connectSourceSinkToNodes() {
         this->graph.addEdge(SOURCE, nodeID, this->params.getMaxReviewsPerReviewer());
     }
 
-    // Connecting Submissions to Sink
-    for (pair<int, Submission*>p: this->nodesToSubmissions) {
-        this->graph.addEdge(p.first, SINK, this->params.getMinReviewsPerSubmission());
+    // Connecting Submissions to Sink ordered by ID
+    vector<int> sortedSubIDs;
+    for (auto const& [nodeID, sub] : nodesToSubmissions) {
+        sortedSubIDs.push_back(nodeID);
+    }
+
+    sort(sortedSubIDs.begin(), sortedSubIDs.end(), [&](int a, int b) {
+        return nodesToSubmissions[a]->getId() < nodesToSubmissions[b]->getId();
+    });
+
+    for (int nodeID : sortedSubIDs) {
+        this->graph.addEdge(nodeID, SINK, this->params.getMinReviewsPerSubmission());
     }
 }
 
@@ -94,13 +103,26 @@ void Brainer::connectSourceSinkToNodes() {
 void Brainer::connectNodes() {
     int level = this->params.getGenerateAssigLevel();
 
-    for (pair<int, Reviewer*> reviewer: this->nodesToReviewers) {
-        for (pair<int, Submission*> submission: this->nodesToSubmissions) {
+    vector<pair<int, Reviewer*>> sortedRev(this->nodesToReviewers.begin(), this->nodesToReviewers.end());
+    sort(sortedRev.begin(), sortedRev.end(), [](const auto& a, const auto& b) {
+        return a.second->getId() < b.second->getId();
+    });
+
+    vector<pair<int, Submission*>> sortedSub(this->nodesToSubmissions.begin(), this->nodesToSubmissions.end());
+    sort(sortedSub.begin(), sortedSub.end(), [](const auto& a, const auto& b) {
+        return a.second->getId() < b.second->getId();
+    });
+
+    for (const auto& reviewerPair: sortedRev) {
+        for (const auto& submissionPair: sortedSub) {
             bool isEligible = false;
-            int rPrim = reviewer.second->getPrimary();
-            int rSec = reviewer.second->getSecondary();
-            int sPrim = submission.second->getPrimary();
-            int sSec = submission.second->getSecondary();
+            Reviewer* reviewer = reviewerPair.second;
+            Submission* submission = submissionPair.second;
+
+            int rPrim = reviewer->getPrimary();
+            int rSec = reviewer->getSecondary();
+            int sPrim = submission->getPrimary();
+            int sSec = submission->getSecondary();
 
             if (level == 0 || level == 1) {
                 isEligible = (rPrim == sPrim);
@@ -114,7 +136,7 @@ void Brainer::connectNodes() {
             }
 
             if (isEligible) {
-                this->graph.addEdge(reviewer.first, submission.first, 1);
+                this->graph.addEdge(reviewerPair.first, submissionPair.first, 1);
             }
         }
     }
