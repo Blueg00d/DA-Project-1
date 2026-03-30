@@ -1,15 +1,17 @@
 var searchData=
 [
-  ['change_5fparameters_0',['CHANGE_PARAMETERS',['../main_8cpp.html#a5be5e47a3042bc91460d05e47f32120da937e24664a79d44d641796ee1b5a6b06',1,'main.cpp']]],
-  ['clr_5fall_1',['CLR_ALL',['../Utils_8h.html#a2ea00fa4dd763f625dc603723f7381a7',1,'Utils.h']]],
-  ['clr_5fhistory_2',['CLR_HISTORY',['../Utils_8h.html#a3875f1d80762cbfa3dd490e480b43a7a',1,'Utils.h']]],
-  ['clr_5fline_3',['CLR_LINE',['../Utils_8h.html#a6ea7d3421268b985c47b9d53199330d1',1,'Utils.h']]],
-  ['clr_5fscreen_4',['CLR_SCREEN',['../Utils_8h.html#afd21b586a3e771744cec45ddf078a8ef',1,'Utils.h']]],
-  ['comparegeneratedwithexpected_5',['compareGeneratedWithExpected',['../classTester.html#aff833ab1dce3ff536d46a415edb8a797',1,'Tester']]],
-  ['connectnodes_6',['connectNodes',['../classBrainer.html#a1d750f77c862f038a9f01688347dd9ad',1,'Brainer']]],
-  ['connectsourcesinktonodes_7',['connectSourceSinkToNodes',['../classBrainer.html#a2c8277fb622af2fb3a1cb7b10290a2e4',1,'Brainer']]],
-  ['control_8',['CONTROL',['../Parser_8cpp.html#aa2bc2fd5a40cdb0c40963e6fe6a24cceaf722a5faa36087c914da53ebe4711f08',1,'Parser.cpp']]],
-  ['createnodes_9',['createNodes',['../classBrainer.html#aebb28da2294e2b6badb4540c56f6ada4',1,'Brainer']]],
-  ['cur_5fhome_10',['CUR_HOME',['../Utils_8h.html#ade8be98bb9950d426bd246cc322b2750',1,'Utils.h']]],
-  ['cur_5fup_11',['CUR_UP',['../Utils_8h.html#aab997642e0d262dfaaac15229318b435',1,'Utils.h']]]
+  ['bg_5fblack_0',['BG_BLACK',['../_utils_8h.html#a0e5ebbe291d95cf1b8f1661252722fe0',1,'Utils.h']]],
+  ['bg_5fblue_1',['BG_BLUE',['../_utils_8h.html#a9afd14c731aa8c62d9471913c1b23b9f',1,'Utils.h']]],
+  ['bg_5fcyan_2',['BG_CYAN',['../_utils_8h.html#a21ef237e1c4d69656729da4b34c31d8b',1,'Utils.h']]],
+  ['bg_5fdefault_3',['BG_DEFAULT',['../_utils_8h.html#afa3f152fd3f35cbbb2d6492ae143f8f9',1,'Utils.h']]],
+  ['bg_5fgreen_4',['BG_GREEN',['../_utils_8h.html#ac351fb4567ed6655a5b39769cc5dfd04',1,'Utils.h']]],
+  ['bg_5fmagenta_5',['BG_MAGENTA',['../_utils_8h.html#ac08aa3f07e012f1b0edafa632d5300ba',1,'Utils.h']]],
+  ['bg_5fred_6',['BG_RED',['../_utils_8h.html#ac317d04c219b630f9c36b0241d9d4be7',1,'Utils.h']]],
+  ['bg_5fwhite_7',['BG_WHITE',['../_utils_8h.html#a6beded3f171517df3902c52f79f6fea2',1,'Utils.h']]],
+  ['bg_5fyellow_8',['BG_YELLOW',['../_utils_8h.html#ab31fe3e74b1137650d30ede5c9b86218',1,'Utils.h']]],
+  ['brainer_9',['Brainer',['../class_brainer.html',1,'Brainer'],['../class_brainer.html#a5e7cc23f952ba73e3bd677d85a230ce8',1,'Brainer::Brainer(const vector&lt; Reviewer &gt; &amp;reviewers, const vector&lt; Submission &gt; &amp;submissions, const Parameters &amp;params)'],['../class_brainer.html#a6e986d575bf640ac1cea18eca713612f',1,'Brainer::Brainer()=default']]],
+  ['brainer_2ecpp_10',['Brainer.cpp',['../_brainer_8cpp.html',1,'']]],
+  ['brainer_2eh_11',['Brainer.h',['../_brainer_8h.html',1,'']]],
+  ['build_5fgraph_12',['BUILD_GRAPH',['../main_8cpp.html#a5be5e47a3042bc91460d05e47f32120dadbe806dbccbcfd02e766d1a27d22adae',1,'main.cpp']]],
+  ['buildgraph_13',['buildGraph',['../class_brainer.html#a854b34e2e41e108fa9eecb8d25790305',1,'Brainer']]]
 ];

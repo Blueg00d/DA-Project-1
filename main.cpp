@@ -71,7 +71,7 @@ void handleChangeParameters(Parser& parser, Brainer& manager) {
         cin >> value;
         cout << TXT_RESET << CLR_ALL << endl;
 
-        Parameters& params = parser.getParams();
+        Parameters params = parser.getParams();
         switch (parameter) {
             case 1: params.setMinReviewsPerSubmission(value); break;
             case 2: params.setMaxReviewsPerReviewer(value); break;
@@ -225,7 +225,7 @@ int main(int argc, char* argv[]) {
 )" << TXT_RESET
     << FG_RED <<
         "       Delivering the fastest tools you'll ever need" << endl <<
-            "           Since Aniversário do Lázaro"
+            "                   Since 14/04/2026"
     << TXT_RESET << endl;
 
     // Add a delay of 1.5 seconds (1500 milliseconds)

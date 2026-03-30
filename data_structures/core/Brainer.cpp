@@ -7,14 +7,14 @@ using namespace std;
 #include <utility>
 
 Brainer::Brainer(
-        vector<Reviewer> reviewers,
-        vector<Submission> submissions,
-        Parameters params
+        const vector<Reviewer>& reviewers,
+        const vector<Submission>& submissions,
+        const Parameters& params
     )
 {
-        this->reviewers = std::move(reviewers);
-        this->submissions = std::move(submissions);
-        this->params = std::move(params);
+        this->reviewers = reviewers;
+        this->submissions = submissions;
+        this->params = params;
 }
 void Brainer::setFilename(string filename) {
     this->filename = filename;

@@ -1,7 +1,7 @@
 #ifndef DA_PROJECT_1_DEBUGGER_H
 #define DA_PROJECT_1_DEBUGGER_H
 
-#include "data_structures/core/Brainer.h"
+#include "core/Brainer.h"
 
 /**
  * @class Debugger

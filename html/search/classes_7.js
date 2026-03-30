@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['reviewer_0',['Reviewer',['../classReviewer.html',1,'']]]
+  ['reviewer_0',['Reviewer',['../class_reviewer.html',1,'']]]
 ];

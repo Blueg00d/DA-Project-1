@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['brainer_0',['Brainer',['../classBrainer.html',1,'']]]
+  ['brainer_0',['Brainer',['../class_brainer.html',1,'']]]
 ];

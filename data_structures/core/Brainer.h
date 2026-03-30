@@ -83,9 +83,9 @@ class Brainer {
      * @param params Parameters from input
      */
     Brainer(
-        vector<Reviewer> reviewers,
-        vector<Submission> submissions,
-        Parameters params
+        const vector<Reviewer>& reviewers,
+        const vector<Submission>& submissions,
+        const Parameters& params
     );
 
     /**

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['matchresult_0',['MatchResult',['../classMatchResult.html',1,'']]],
-  ['missingreviewsresult_1',['MissingReviewsResult',['../classMissingReviewsResult.html',1,'']]]
+  ['matchresult_0',['MatchResult',['../class_match_result.html',1,'']]],
+  ['missingreviewsresult_1',['MissingReviewsResult',['../class_missing_reviews_result.html',1,'']]]
 ];

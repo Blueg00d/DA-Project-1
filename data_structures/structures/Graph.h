@@ -9,6 +9,7 @@
 #include <queue>
 #include <limits>
 #include <algorithm>
+#include <unordered_map>
 
 template <class T>
 class Edge;
@@ -86,8 +87,8 @@ public:
     */
     Vertex<T> *findVertex(const T &in) const;
     /*
-     *  Adds a vertex with a given content or info (in) to a graph (this).
-     *  Returns true if successful, and false if a vertex with that content already exists.
+     * Adds a vertex with a given content or info (in) to a graph (this).
+     * Returns true if successful, and false if a vertex with that content already exists.
      */
     bool addVertex(const T &in);
     bool removeVertex(const T &in);
@@ -111,6 +112,7 @@ public:
 
 protected:
     std::vector<Vertex<T> *> vertexSet;    // vertex set
+    std::unordered_map<T, Vertex<T> *> vertexMap; // O(1) vertex lookups
 
     /*
      * Finds the index of the vertex with a given content.
@@ -289,12 +291,14 @@ std::vector<Vertex<T> *> Graph<T>::getVertexSet() const {
 
 /*
  * Auxiliary function to find a vertex with a given content.
+ * REFACTORED for O(1) lookups.
  */
 template <class T>
 Vertex<T> * Graph<T>::findVertex(const T &in) const {
-    for (auto v : vertexSet)
-        if (v->getInfo() == in)
-            return v;
+    auto it = vertexMap.find(in);
+    if (it != vertexMap.end()) {
+        return it->second;
+    }
     return nullptr;
 }
 
@@ -309,21 +313,23 @@ int Graph<T>::findVertexIdx(const T &in) const {
     return -1;
 }
 /*
- *  Adds a vertex with a given content or info (in) to a graph (this).
- *  Returns true if successful, and false if a vertex with that content already exists.
+ * Adds a vertex with a given content or info (in) to a graph (this).
+ * Returns true if successful, and false if a vertex with that content already exists.
  */
 template <class T>
 bool Graph<T>::addVertex(const T &in) {
     if (findVertex(in) != nullptr)
         return false;
-    vertexSet.push_back(new Vertex<T>(in));
+    auto newVertex = new Vertex<T>(in);
+    vertexSet.push_back(newVertex);
+    vertexMap[in] = newVertex; // O(1) map insertion
     return true;
 }
 
 /*
- *  Removes a vertex with a given content (in) from a graph (this), and
- *  all outgoing and incoming edges.
- *  Returns true if successful, and false if such vertex does not exist.
+ * Removes a vertex with a given content (in) from a graph (this), and
+ * all outgoing and incoming edges.
+ * Returns true if successful, and false if such vertex does not exist.
  */
 template <class T>
 bool Graph<T>::removeVertex(const T &in) {
@@ -335,6 +341,7 @@ bool Graph<T>::removeVertex(const T &in) {
                 u->removeEdge(v->getInfo());
             }
             vertexSet.erase(it);
+            vertexMap.erase(in); // O(1) map deletion
             delete v;
             return true;
         }

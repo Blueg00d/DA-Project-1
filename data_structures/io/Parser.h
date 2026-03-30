@@ -27,21 +27,21 @@ public:
 
     /**
      * @brief Gets the parsed list of submissions.
-     * @return A vector of parsed Submission objects.
+     * @return A const reference to the vector of parsed Submission objects.
      */
-    vector<Submission> getSubmissions() {return this->submissions;}
+    const vector<Submission>& getSubmissions() const {return this->submissions;}
 
     /**
      * @brief Gets the parsed list of reviewers.
-     * @return A vector of parsed Reviewer objects.
+     * @return A const reference to the vector of parsed Reviewer objects.
      */
-    vector<Reviewer> getReviewers() {return this->reviewers;}
+    const vector<Reviewer>& getReviewers() const {return this->reviewers;}
 
     /**
      * @brief Gets the execution parameters parsed from the file.
      * @return A reference to the parsed Parameters object.
      */
-    Parameters& getParams() {return this->params;}
+    Parameters getParams() const {return this->params;}
 
     /**
      * @brief Utility function to test if the parsing functionality works as expected.
