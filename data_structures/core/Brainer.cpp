@@ -188,7 +188,7 @@ void Brainer::runAssignment() {
     this->graph = Graph<int>();
     //Build the new graph with new data
     buildGraph();
-    graph.fordFulkerson(SOURCE,SINK); // Unused variable 'flow' removed
+    graph.fordFulkerson(SOURCE,SINK);
 }
 
 
