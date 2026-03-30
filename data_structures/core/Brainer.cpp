@@ -268,7 +268,7 @@ void Brainer::interpretFlowResults() {
  * Then, for each subset of reviewers, we would set each reviewers flow to 0,
  * similar to what this algorithm does.
  *
- * This algorithm would result in a temporal complexity of O(2^R * E * f_max),
+ * This algorithm would result in a temporal complexity of O(R^K * E * f_max),
  * characterized by running the Ford-Fulkerson algorithm through every subset of
  * discarded reviewers.
  */
