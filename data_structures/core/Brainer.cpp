@@ -1,6 +1,5 @@
 #include "Brainer.h"
 #include <fstream>
-#include <algorithm>
 using namespace std;
 
 #include "utils/Utils.h"
@@ -27,7 +26,6 @@ string Brainer::getFilename() {
 void Brainer::setParams(Parameters params) {
     this->params = params;
 }
-
 /**
  * @copybrief createNodes
  *
@@ -77,18 +75,9 @@ void Brainer::connectSourceSinkToNodes() {
         this->graph.addEdge(SOURCE, nodeID, this->params.getMaxReviewsPerReviewer());
     }
 
-    // Connecting Submissions to Sink ordered by ID
-    vector<int> sortedSubIDs;
-    for (auto const& [nodeID, sub] : nodesToSubmissions) {
-        sortedSubIDs.push_back(nodeID);
-    }
-
-    sort(sortedSubIDs.begin(), sortedSubIDs.end(), [&](int a, int b) {
-        return nodesToSubmissions[a]->getId() < nodesToSubmissions[b]->getId();
-    });
-
-    for (int nodeID : sortedSubIDs) {
-        this->graph.addEdge(nodeID, SINK, this->params.getMinReviewsPerSubmission());
+    // Connecting Submissions to Sink
+    for (pair<int, Submission*>p: this->nodesToSubmissions) {
+        this->graph.addEdge(p.first, SINK, this->params.getMinReviewsPerSubmission());
     }
 }
 
@@ -103,26 +92,13 @@ void Brainer::connectSourceSinkToNodes() {
 void Brainer::connectNodes() {
     int level = this->params.getGenerateAssigLevel();
 
-    vector<pair<int, Reviewer*>> sortedRev(this->nodesToReviewers.begin(), this->nodesToReviewers.end());
-    sort(sortedRev.begin(), sortedRev.end(), [](const auto& a, const auto& b) {
-        return a.second->getId() < b.second->getId();
-    });
-
-    vector<pair<int, Submission*>> sortedSub(this->nodesToSubmissions.begin(), this->nodesToSubmissions.end());
-    sort(sortedSub.begin(), sortedSub.end(), [](const auto& a, const auto& b) {
-        return a.second->getId() < b.second->getId();
-    });
-
-    for (const auto& reviewerPair: sortedRev) {
-        for (const auto& submissionPair: sortedSub) {
+    for (pair<int, Reviewer*> reviewer: this->nodesToReviewers) {
+        for (pair<int, Submission*> submission: this->nodesToSubmissions) {
             bool isEligible = false;
-            Reviewer* reviewer = reviewerPair.second;
-            Submission* submission = submissionPair.second;
-
-            int rPrim = reviewer->getPrimary();
-            int rSec = reviewer->getSecondary();
-            int sPrim = submission->getPrimary();
-            int sSec = submission->getSecondary();
+            int rPrim = reviewer.second->getPrimary();
+            int rSec = reviewer.second->getSecondary();
+            int sPrim = submission.second->getPrimary();
+            int sSec = submission.second->getSecondary();
 
             if (level == 0 || level == 1) {
                 isEligible = (rPrim == sPrim);
@@ -136,7 +112,7 @@ void Brainer::connectNodes() {
             }
 
             if (isEligible) {
-                this->graph.addEdge(reviewerPair.first, submissionPair.first, 1);
+                this->graph.addEdge(reviewer.first, submission.first, 1);
             }
         }
     }
@@ -154,6 +130,7 @@ void Brainer::buildGraph() {
     connectNodes();
 }
 
+
 /**
  * @copybrief runAssignment
  *
@@ -164,34 +141,13 @@ void Brainer::buildGraph() {
  * O(R+S+2*(R*S)^2) ≈ O((R+S)*(R*S)^2)
  */
 void Brainer::runAssignment() {
+    //Erase previous graph so we can start over
     this->graph = Graph<int>();
+    //Build the new graph with new data
     buildGraph();
-
-    Vertex<int>* vSource = graph.findVertex(SOURCE);
-    double requiredFlow = this->submissions.size() * this->params.getMinReviewsPerSubmission();
-
-    vector<Edge<int>*> reviewerEdges = vSource->getAdj();
-    sort(reviewerEdges.begin(), reviewerEdges.end(), [this](Edge<int>* a, Edge<int>* b) {
-        int idA = this->nodesToReviewers.at(a->getDest()->getInfo())->getId();
-        int idB = this->nodesToReviewers.at(b->getDest()->getInfo())->getId();
-        return idA < idB;
-    });
-
-    for (Edge<int>* e : reviewerEdges) {
-        e->setWeight(0);
-    }
-
-    double currentFlow = 0;
-    for (Edge<int>* e : reviewerEdges) {
-        e->setWeight(this->params.getMaxReviewsPerReviewer());
-
-        currentFlow = graph.edmondsKarp(SOURCE, SINK);
-
-        if (currentFlow >= requiredFlow) {
-            break;
-        }
-    }
+    graph.edmondsKarp(SOURCE,SINK); // Unused variable 'flow' removed
 }
+
 
 /**
  * @copybrief interpretFlowResults
@@ -233,7 +189,7 @@ void Brainer::interpretFlowResults() {
                             );
         }
     }
-    //If it was successful or not
+    //If it was successful or not (Unused independent flow accumulator removed for reliability)
     this->success = (this->matchResults.size() >= this->params.getMinReviewsPerSubmission() * this->nodesToSubmissions.size());
 
     //Sort results
@@ -244,8 +200,8 @@ void Brainer::interpretFlowResults() {
 
 /**
  * @copybrief runRiskAnalysis
- * Time Complexity: Optimized with incremental max-flow.
- * Reruns edmondsKarp() on residual graph once per reviewer R
+ * Time Complexity: O(R * (R+S)*(R*S)^2)
+ * Reruns edmondsKarp() once per reviewer R
  *
  * @details This runRiskAnalysis works only for level k == 1.
  * If we wanted to run this function for a level k > 1, we could use a brute-force approach.
@@ -258,7 +214,7 @@ void Brainer::interpretFlowResults() {
  * similar to what this algorithm does.
  *
  * This algorithm would result in a temporal complexity of O(2^R * (R+S)*(R*S)^2),
- * characterized by running the Edmound's Karp Algorithm through every subset of
+ * characterized by running the Edmonds Karp Algorithm through every subset of
  * discarded reviewers.
  */
 void Brainer::runRiskAnalysis() {
@@ -274,69 +230,36 @@ void Brainer::runRiskAnalysis() {
     this->riskyReviewers.clear();
 
     Vertex<int>* vSource = graph.findVertex(SOURCE);
-    Vertex<int>* vSink = graph.findVertex(SINK);
 
     for (int revNodeID : reviewerNodes) {
-        Vertex<int>* vRev = graph.findVertex(revNodeID);
         Edge<int>* targetEdge = nullptr;
         double originalWeight = 0;
-        double flowToRemove = 0;
 
-        // Find edge from SOURCE to the specific Reviewer
+        // Temporarily nullify the target capacity for the isolated reviewer node
         for (auto e : vSource->getAdj()) {
             if (e->getDest()->getInfo() == revNodeID) {
                 targetEdge = e;
                 originalWeight = e->getWeight();
-                flowToRemove = e->getFlow();
+                e->setWeight(0);
                 break;
             }
         }
 
-        if (targetEdge == nullptr) continue;
-
-        // Manually rollback flow tracing backward so that we maintain conservation
-        if (flowToRemove > 0) {
-            targetEdge->setFlow(0); // Removing flow from Source -> Reviewer
-
-            double remainingToRemove = flowToRemove;
-            for (auto eRevSub : vRev->getAdj()) {
-                if (remainingToRemove <= 0) break;
-                double f = eRevSub->getFlow();
-
-                if (f > 0) {
-                    eRevSub->setFlow(0);
-
-                    Vertex<int>* vSub = eRevSub->getDest();
-                    for (auto eSubSink : vSub->getAdj()) {
-                        if (eSubSink->getDest() == vSink && eSubSink->getFlow() > 0) {
-                            double reducible = std::min(eSubSink->getFlow(), f);
-                            eSubSink->setFlow(eSubSink->getFlow() - reducible);
-                            break;
-                        }
-                    }
-                    remainingToRemove -= f;
-                }
-            }
-        }
-
-        // Temporarily nullify the target capacity for the isolated reviewer node
-        targetEdge->setWeight(0);
-
-        // Run EdmundsKarp on the residual graph to incrementally reroute dropped flow
-        double flowAfter = graph.edmondsKarp(SOURCE, SINK);
-
+        // Run EdmundsKarp on the existing initialized graph
+        double flowAfter = graph.edmondsKarp(SOURCE,SINK);
         if (flowAfter < requiredFlow) {
             this->riskyReviewers.push_back(nodesToReviewers[revNodeID]->getId());
         }
 
         // Restore the reviewer capacity edge
-        targetEdge->setWeight(originalWeight);
-
-        // Push flow back through this reviewer to instantly restore the original max flow optimal state
-        graph.edmondsKarp(SOURCE, SINK);
+        if (targetEdge) {
+            targetEdge->setWeight(originalWeight);
+        }
     }
-
     sort(riskyReviewers.begin(), riskyReviewers.end());
+
+    // Leave the graph just like we found it by running EdmondsKarp one last time with all capacities fully intact
+    this->graph.edmondsKarp(SOURCE, SINK);
 }
 
 /**
@@ -411,10 +334,11 @@ void Brainer::saveOutput(const string& path) {
 
 /**
  * @copydoc executeAllTasks
- * Time complexity: O(R * (R+S)*(R*S)^2) (Note: Risk Analysis optimized incrementally)
+ * Time complexity: O(R * (R+S)*(R*S)^2)
  * buildGraph: O(R*S)
  * runAssignment: O((R+S)*(R*S)^2)
  * interpretFlowResults: O((R*S)+ElogE)
+ * runRiskAnalysis: O(R * (R+S)*(R*S)^2)
  * saveOutput: O(MlogM + R)
  */
 void Brainer::executeAllTasks(const string &folder) {
