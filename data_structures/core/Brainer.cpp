@@ -214,7 +214,7 @@ void Brainer::interpretFlowResults() {
  * similar to what this algorithm does.
  *
  * This algorithm would result in a temporal complexity of O(2^R * (R+S)*(R*S)^2),
- * characterized by running the Edmound's Karp Algorithm through every subset of
+ * characterized by running the Edmonds Karp Algorithm through every subset of
  * discarded reviewers.
  */
 void Brainer::runRiskAnalysis() {
