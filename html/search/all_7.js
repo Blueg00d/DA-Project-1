@@ -19,7 +19,7 @@ var searchData=
   ['getnumvertex_16',['getNumVertex',['../class_graph.html#a0853eac15cdf0f06d63f4b8a7820ec71',1,'Graph']]],
   ['getorig_17',['getOrig',['../class_edge.html#a40fc1470c5339203defca19b67c2535b',1,'Edge']]],
   ['getoutputfilename_18',['getOutputFilename',['../class_parameters.html#a7db55db8e2fbf0afef54bf5532338c3e',1,'Parameters']]],
-  ['getparams_19',['getParams',['../class_parser.html#aee2dc9e76bf015417efdab10a687178b',1,'Parser']]],
+  ['getparams_19',['getParams',['../class_parser.html#a95e15b74c42f5670455b28d54c3c6b13',1,'Parser::getParams()'],['../class_parser.html#a2294f120db2190c15d86ac6bf1f1f324',1,'Parser::getParams() const']]],
   ['getpath_20',['getPath',['../class_vertex.html#a15e4ff95fba2bb5970a6551137ceb950',1,'Vertex']]],
   ['getprimary_21',['getPrimary',['../class_reviewer.html#ab19da460b2b5af8161fe1e888fa1f692',1,'Reviewer::getPrimary()'],['../class_submission.html#a2791f6437929aff82ba5be5c0b28b77a',1,'Submission::getPrimary()']]],
   ['getprimarydomain_22',['getPrimaryDomain',['../class_missing_reviews_result.html#a467f73df861e3799ab7066b27f28eb27',1,'MissingReviewsResult']]],

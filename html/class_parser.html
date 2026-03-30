@@ -120,9 +120,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1168dfa9e2c0f7c573dd1004972259ae" id="r_a1168dfa9e2c0f7c573dd1004972259ae"><td class="memItemLeft" align="right" valign="top">const vector&lt; <a class="el" href="class_reviewer.html">Reviewer</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1168dfa9e2c0f7c573dd1004972259ae">getReviewers</a> () const</td></tr>
 <tr class="memdesc:a1168dfa9e2c0f7c573dd1004972259ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the parsed list of reviewers.  <br /></td></tr>
 <tr class="separator:a1168dfa9e2c0f7c573dd1004972259ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee2dc9e76bf015417efdab10a687178b" id="r_aee2dc9e76bf015417efdab10a687178b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_parameters.html">Parameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee2dc9e76bf015417efdab10a687178b">getParams</a> () const</td></tr>
-<tr class="memdesc:aee2dc9e76bf015417efdab10a687178b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the execution parameters parsed from the file.  <br /></td></tr>
-<tr class="separator:aee2dc9e76bf015417efdab10a687178b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95e15b74c42f5670455b28d54c3c6b13" id="r_a95e15b74c42f5670455b28d54c3c6b13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_parameters.html">Parameters</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95e15b74c42f5670455b28d54c3c6b13">getParams</a> ()</td></tr>
+<tr class="memdesc:a95e15b74c42f5670455b28d54c3c6b13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the execution parameters parsed from the file.  <br /></td></tr>
+<tr class="separator:a95e15b74c42f5670455b28d54c3c6b13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2294f120db2190c15d86ac6bf1f1f324" id="r_a2294f120db2190c15d86ac6bf1f1f324"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_parameters.html">Parameters</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2294f120db2190c15d86ac6bf1f1f324">getParams</a> () const</td></tr>
+<tr class="memdesc:a2294f120db2190c15d86ac6bf1f1f324"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a read-only reference to the execution parameters.  <br /></td></tr>
+<tr class="separator:a2294f120db2190c15d86ac6bf1f1f324"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd1a5b8f06f799d5f4feeb77c18e64bd" id="r_abd1a5b8f06f799d5f4feeb77c18e64bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd1a5b8f06f799d5f4feeb77c18e64bd">testParser</a> ()</td></tr>
 <tr class="memdesc:abd1a5b8f06f799d5f4feeb77c18e64bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility function to test if the parsing functionality works as expected.  <br /></td></tr>
 <tr class="separator:abd1a5b8f06f799d5f4feeb77c18e64bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -139,8 +142,8 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Responsible for parsing input dataset files and extracting configurations, submissions, and reviewers. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="aee2dc9e76bf015417efdab10a687178b" name="aee2dc9e76bf015417efdab10a687178b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee2dc9e76bf015417efdab10a687178b">&#9670;&#160;</a></span>getParams()</h2>
+<a id="a95e15b74c42f5670455b28d54c3c6b13" name="a95e15b74c42f5670455b28d54c3c6b13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95e15b74c42f5670455b28d54c3c6b13">&#9670;&#160;</a></span>getParams() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -149,7 +152,35 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_parameters.html">Parameters</a> Parser::getParams </td>
+          <td class="memname"><a class="el" href="class_parameters.html">Parameters</a> &amp; Parser::getParams </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the execution parameters parsed from the file. </p>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the parsed <a class="el" href="class_parameters.html" title="Holds the parsed configuration parameters for governing the assignment and analysis process.">Parameters</a> object. </dd></dl>
+
+</div>
+</div>
+<a id="a2294f120db2190c15d86ac6bf1f1f324" name="a2294f120db2190c15d86ac6bf1f1f324"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2294f120db2190c15d86ac6bf1f1f324">&#9670;&#160;</a></span>getParams() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_parameters.html">Parameters</a> &amp; Parser::getParams </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -162,8 +193,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the execution parameters parsed from the file. </p>
-<dl class="section return"><dt>Returns</dt><dd>A reference to the parsed <a class="el" href="class_parameters.html" title="Holds the parsed configuration parameters for governing the assignment and analysis process.">Parameters</a> object. </dd></dl>
+<p>Gets a read-only reference to the execution parameters. </p>
+<dl class="section return"><dt>Returns</dt><dd>A const reference to the parsed <a class="el" href="class_parameters.html" title="Holds the parsed configuration parameters for governing the assignment and analysis process.">Parameters</a> object. </dd></dl>
 
 </div>
 </div>

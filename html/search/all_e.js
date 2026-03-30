@@ -14,8 +14,7 @@ var searchData=
   ['reviewers_11',['reviewers',['../class_brainer.html#a9c673459b83c1bea1909d96d18956ad1',1,'Brainer::reviewers'],['../class_parser.html#acc84f9513c887fcadbbbf56511e831c0',1,'Parser::reviewers']]],
   ['riskanalysis_12',['riskAnalysis',['../class_parameters.html#a88fbc9d0d3e1682778f1d0e15fb89ea0',1,'Parameters']]],
   ['riskyreviewers_13',['riskyReviewers',['../class_brainer.html#a264cb246b15e4ceaa0deb966246fb509',1,'Brainer']]],
-  ['run_5fall_5finputs_14',['RUN_ALL_INPUTS',['../main_8cpp.html#a5be5e47a3042bc91460d05e47f32120da7eddf14a9e850d9140c6f5f50b2d88ac',1,'main.cpp']]],
-  ['run_5fedmonds_5fkarp_15',['RUN_EDMONDS_KARP',['../main_8cpp.html#a5be5e47a3042bc91460d05e47f32120da06b08de58db423b52580ad94855aa589',1,'main.cpp']]],
-  ['runassignment_16',['runAssignment',['../class_brainer.html#ab3f1ea4014d978a924de7227fdc4acb3',1,'Brainer']]],
-  ['runriskanalysis_17',['runRiskAnalysis',['../class_brainer.html#aaf8015abdee542f57c4bd9c2dd6d76b6',1,'Brainer']]]
+  ['run_5fford_5ffulkerson_14',['RUN_FORD_FULKERSON',['../main_8cpp.html#a5be5e47a3042bc91460d05e47f32120dacc72cc3e7fbf73e91c0459bc8a273599',1,'main.cpp']]],
+  ['runassignment_15',['runAssignment',['../class_brainer.html#ab3f1ea4014d978a924de7227fdc4acb3',1,'Brainer']]],
+  ['runriskanalysis_16',['runRiskAnalysis',['../class_brainer.html#aaf8015abdee542f57c4bd9c2dd6d76b6',1,'Brainer']]]
 ];

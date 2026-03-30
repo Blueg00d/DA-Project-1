@@ -103,6 +103,7 @@ $(function(){ initResizable(false); });
 <div class="textblock"><code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;thread&gt;</code><br />
 <code>#include &lt;chrono&gt;</code><br />
+<code>#include &lt;limits&gt;</code><br />
 <code>#include &quot;<a class="el" href="_debugger_8h_source.html">data_structures/utils/Debugger.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_utils_8h_source.html">data_structures/utils/Utils.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_brainer_8h_source.html">data_structures/core/Brainer.h</a>&quot;</code><br />
@@ -118,21 +119,21 @@ Include dependency graph for main.cpp:</div>
 Enumerations</h2></td></tr>
 <tr class="memitem:a5be5e47a3042bc91460d05e47f32120d" id="r_a5be5e47a3042bc91460d05e47f32120d"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5be5e47a3042bc91460d05e47f32120d">MenuOption</a> { <br />
 &#160;&#160;<a class="el" href="#a5be5e47a3042bc91460d05e47f32120daa42b2fb0e720a080e79a92f4ca97d927">EXIT</a> = 0
-, <a class="el" href="#a5be5e47a3042bc91460d05e47f32120da2eb3192e634cc7089ee6f46c246e59e4">PRINT_FILE</a> = 1
-, <a class="el" href="#a5be5e47a3042bc91460d05e47f32120da94ad3ee1dc2b9b6649efea996ced37e8">READ_FILE</a> = 2
-, <a class="el" href="#a5be5e47a3042bc91460d05e47f32120dadbe806dbccbcfd02e766d1a27d22adae">BUILD_GRAPH</a> = 3
+, <a class="el" href="#a5be5e47a3042bc91460d05e47f32120da2eb3192e634cc7089ee6f46c246e59e4">PRINT_FILE</a> = 2
+, <a class="el" href="#a5be5e47a3042bc91460d05e47f32120da94ad3ee1dc2b9b6649efea996ced37e8">READ_FILE</a> = 1
+, <a class="el" href="#a5be5e47a3042bc91460d05e47f32120dadbe806dbccbcfd02e766d1a27d22adae">BUILD_GRAPH</a> = 4
 , <br />
-&#160;&#160;<a class="el" href="#a5be5e47a3042bc91460d05e47f32120dad0bb9d0759b20c399f3d5a8e341b8c4b">DEBUG_GRAPH</a> = 4
-, <a class="el" href="#a5be5e47a3042bc91460d05e47f32120da06b08de58db423b52580ad94855aa589">RUN_EDMONDS_KARP</a> = 5
-, <a class="el" href="#a5be5e47a3042bc91460d05e47f32120da8ada215abd477a39205fa879ebc7c7fa">DEBUG_GRAPH_FLOW</a> = 6
-, <a class="el" href="#a5be5e47a3042bc91460d05e47f32120da7bc746df67fb2b04d545614aaceb0b6a">INTERPRET_GRAPH_FLOW</a> = 7
+&#160;&#160;<a class="el" href="#a5be5e47a3042bc91460d05e47f32120dacc72cc3e7fbf73e91c0459bc8a273599">RUN_FORD_FULKERSON</a> = 5
+, <a class="el" href="#a5be5e47a3042bc91460d05e47f32120da7bc746df67fb2b04d545614aaceb0b6a">INTERPRET_GRAPH_FLOW</a> = 6
+, <a class="el" href="#a5be5e47a3042bc91460d05e47f32120da4ea977b505f491d2f2250a081398fec9">SAVE_OUTPUT</a> = 7
+, <a class="el" href="#a5be5e47a3042bc91460d05e47f32120daf80385d6c872371c6029412909fba432">TEST_ALL_INPUTS</a> = 8
 , <br />
-&#160;&#160;<a class="el" href="#a5be5e47a3042bc91460d05e47f32120da7d3098c155ab829b2c333c562a773b57">DEBUG_INTERPRETATION</a> = 8
-, <a class="el" href="#a5be5e47a3042bc91460d05e47f32120da4ea977b505f491d2f2250a081398fec9">SAVE_OUTPUT</a> = 9
-, <a class="el" href="#a5be5e47a3042bc91460d05e47f32120da7eddf14a9e850d9140c6f5f50b2d88ac">RUN_ALL_INPUTS</a> = 10
-, <a class="el" href="#a5be5e47a3042bc91460d05e47f32120daf80385d6c872371c6029412909fba432">TEST_ALL_INPUTS</a> = 11
+&#160;&#160;<a class="el" href="#a5be5e47a3042bc91460d05e47f32120da937e24664a79d44d641796ee1b5a6b06">CHANGE_PARAMETERS</a> = 3
+, <a class="el" href="#a5be5e47a3042bc91460d05e47f32120dadc30ec20708ef7b0f641ef78b7880a15">DEBUG</a> = 9
+, <a class="el" href="#a5be5e47a3042bc91460d05e47f32120da7d3098c155ab829b2c333c562a773b57">DEBUG_INTERPRETATION</a> = 12
+, <a class="el" href="#a5be5e47a3042bc91460d05e47f32120da8ada215abd477a39205fa879ebc7c7fa">DEBUG_GRAPH_FLOW</a> = 11
 , <br />
-&#160;&#160;<a class="el" href="#a5be5e47a3042bc91460d05e47f32120da937e24664a79d44d641796ee1b5a6b06">CHANGE_PARAMETERS</a> = 12
+&#160;&#160;<a class="el" href="#a5be5e47a3042bc91460d05e47f32120dad0bb9d0759b20c399f3d5a8e341b8c4b">DEBUG_GRAPH</a> = 10
 <br />
  }</td></tr>
 <tr class="memdesc:a5be5e47a3042bc91460d05e47f32120d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the available options in the interactive console menu.  <a href="#a5be5e47a3042bc91460d05e47f32120d">More...</a><br /></td></tr>
@@ -140,6 +141,8 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a10f1439dd2a40ade9e900a5d34d134cf" id="r_a10f1439dd2a40ade9e900a5d34d134cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10f1439dd2a40ade9e900a5d34d134cf">handleDebugger</a> (<a class="el" href="class_brainer.html">Brainer</a> &amp;manager)</td></tr>
+<tr class="separator:a10f1439dd2a40ade9e900a5d34d134cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4713bbb16e6bc8ddf0562c78c96162c9" id="r_a4713bbb16e6bc8ddf0562c78c96162c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4713bbb16e6bc8ddf0562c78c96162c9">handleChangeParameters</a> (<a class="el" href="class_parser.html">Parser</a> &amp;parser, <a class="el" href="class_brainer.html">Brainer</a> &amp;manager)</td></tr>
 <tr class="memdesc:a4713bbb16e6bc8ddf0562c78c96162c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the user interface for changing execution parameters.  <br /></td></tr>
 <tr class="separator:a4713bbb16e6bc8ddf0562c78c96162c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -184,23 +187,22 @@ Functions</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120dadbe806dbccbcfd02e766d1a27d22adae" name="a5be5e47a3042bc91460d05e47f32120dadbe806dbccbcfd02e766d1a27d22adae"></a>BUILD_GRAPH&#160;</td><td class="fielddoc"><p>Build the flow graph from the parsed data </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120dad0bb9d0759b20c399f3d5a8e341b8c4b" name="a5be5e47a3042bc91460d05e47f32120dad0bb9d0759b20c399f3d5a8e341b8c4b"></a>DEBUG_GRAPH&#160;</td><td class="fielddoc"><p>Print the graph nodes and edges for debugging </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da06b08de58db423b52580ad94855aa589" name="a5be5e47a3042bc91460d05e47f32120da06b08de58db423b52580ad94855aa589"></a>RUN_EDMONDS_KARP&#160;</td><td class="fielddoc"><p>Run the max-flow algorithm to assign reviews </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da8ada215abd477a39205fa879ebc7c7fa" name="a5be5e47a3042bc91460d05e47f32120da8ada215abd477a39205fa879ebc7c7fa"></a>DEBUG_GRAPH_FLOW&#160;</td><td class="fielddoc"><p>Print the graph flows for debugging </p>
+<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120dacc72cc3e7fbf73e91c0459bc8a273599" name="a5be5e47a3042bc91460d05e47f32120dacc72cc3e7fbf73e91c0459bc8a273599"></a>RUN_FORD_FULKERSON&#160;</td><td class="fielddoc"><p>Run the max-flow algorithm to assign reviews </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da7bc746df67fb2b04d545614aaceb0b6a" name="a5be5e47a3042bc91460d05e47f32120da7bc746df67fb2b04d545614aaceb0b6a"></a>INTERPRET_GRAPH_FLOW&#160;</td><td class="fielddoc"><p>Interpret the resulting max flow into assignments </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da7d3098c155ab829b2c333c562a773b57" name="a5be5e47a3042bc91460d05e47f32120da7d3098c155ab829b2c333c562a773b57"></a>DEBUG_INTERPRETATION&#160;</td><td class="fielddoc"><p>Debug the interpreted assignment results </p>
-</td></tr>
 <tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da4ea977b505f491d2f2250a081398fec9" name="a5be5e47a3042bc91460d05e47f32120da4ea977b505f491d2f2250a081398fec9"></a>SAVE_OUTPUT&#160;</td><td class="fielddoc"><p>Save the generated assignments to a file </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da7eddf14a9e850d9140c6f5f50b2d88ac" name="a5be5e47a3042bc91460d05e47f32120da7eddf14a9e850d9140c6f5f50b2d88ac"></a>RUN_ALL_INPUTS&#160;</td><td class="fielddoc"><p>Run the pipeline for all files in a folder </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120daf80385d6c872371c6029412909fba432" name="a5be5e47a3042bc91460d05e47f32120daf80385d6c872371c6029412909fba432"></a>TEST_ALL_INPUTS&#160;</td><td class="fielddoc"><p>Test generated outputs against expected outputs </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da937e24664a79d44d641796ee1b5a6b06" name="a5be5e47a3042bc91460d05e47f32120da937e24664a79d44d641796ee1b5a6b06"></a>CHANGE_PARAMETERS&#160;</td><td class="fielddoc"><p>Interactively change the assignment parameters </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120dadc30ec20708ef7b0f641ef78b7880a15" name="a5be5e47a3042bc91460d05e47f32120dadc30ec20708ef7b0f641ef78b7880a15"></a>DEBUG&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da7d3098c155ab829b2c333c562a773b57" name="a5be5e47a3042bc91460d05e47f32120da7d3098c155ab829b2c333c562a773b57"></a>DEBUG_INTERPRETATION&#160;</td><td class="fielddoc"><p>Debug the interpreted assignment results </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120da8ada215abd477a39205fa879ebc7c7fa" name="a5be5e47a3042bc91460d05e47f32120da8ada215abd477a39205fa879ebc7c7fa"></a>DEBUG_GRAPH_FLOW&#160;</td><td class="fielddoc"><p>Print the graph flows for debugging </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5be5e47a3042bc91460d05e47f32120dad0bb9d0759b20c399f3d5a8e341b8c4b" name="a5be5e47a3042bc91460d05e47f32120dad0bb9d0759b20c399f3d5a8e341b8c4b"></a>DEBUG_GRAPH&#160;</td><td class="fielddoc"><p>Print the graph nodes and edges for debugging </p>
 </td></tr>
 </table>
 
@@ -277,6 +279,23 @@ Functions</h2></td></tr>
 </dl>
 </li>
 </ul>
+
+</div>
+</div>
+<a id="a10f1439dd2a40ade9e900a5d34d134cf" name="a10f1439dd2a40ade9e900a5d34d134cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10f1439dd2a40ade9e900a5d34d134cf">&#9670;&#160;</a></span>handleDebugger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleDebugger </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_brainer.html">Brainer</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>manager</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
