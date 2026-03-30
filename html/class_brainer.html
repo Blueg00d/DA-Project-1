@@ -231,6 +231,16 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructor of class <a class="el" href="class_brainer.html" title="Brainer gathers all info from inputs and puts them in a graph.">Brainer</a>. </p>
+<p>Constructor of class <a class="el" href="class_brainer.html" title="Brainer gathers all info from inputs and puts them in a graph.">Brainer</a>.   </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">reviewers</td><td>a vector of Reviewers from input </td></tr>
+    <tr><td class="paramname">submissions</td><td>a vector of Submissions from input </td></tr>
+    <tr><td class="paramname">params</td><td><a class="el" href="class_parameters.html" title="Holds the parsed configuration parameters for governing the assignment and analysis process.">Parameters</a> from input</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Time complexity: O(R+S) Performs a deep copy of the Reviewers and Submissions vectors.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">reviewers</td><td>a vector of Reviewers from input </td></tr>
@@ -375,7 +385,7 @@ Friends</h2></td></tr>
 
 <p>Connects Source to Reviewers and Submissions to Sink. </p>
 <p>Connects Source to Reviewers and Submissions to Sink.   </p>
-<p>Time complexity: O(R+S) First for loop iterates through all reviewers (R) and second one through all Submissions (S) </p>
+<p>Time complexity: O(R log R + S) Sorts reviewer nodes in O(R log R) to ensure the smallest ID is processed first, then connects Reviewers (R) to Source and Submissions (S) to Sink. </p>
 
 </div>
 </div>
@@ -438,7 +448,7 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>Time complexity: O(R * (R+S)*(R*S)^2) buildGraph: O(R*S) runAssignment: O((R+S)*(R*S)^2) interpretFlowResults: O((R*S)+ElogE) runRiskAnalysis: O(R * (R+S)*(R*S)^2) saveOutput: O(MlogM + R)    Time complexity: O(R * (R+S)*(R*S)^2) buildGraph: O(R*S) runAssignment: O((R+S)*(R*S)^2) interpretFlowResults: O((R*S)+ElogE) runRiskAnalysis: O(R * (R+S)*(R*S)^2) saveOutput: O(MlogM + R) </p>
+<p>Time complexity: O(R * E * f_max + MlogM + S) buildGraph: O(R*S) runAssignment: O(E * f_max) interpretFlowResults: O((R*S)+ElogE) runRiskAnalysis: O(R * E * f_max) saveOutput: O(MlogM + R + S)    Time complexity: O(R * E * f_max + MlogM + S) buildGraph: O(R*S) runAssignment: O(E * f_max) interpretFlowResults: O((R*S)+ElogE) runRiskAnalysis: O(R * E * f_max) saveOutput: O(MlogM + R + S) </p>
 
 </div>
 </div>
@@ -458,6 +468,9 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the current filename. </p>
+<p>Gets the current filename.   </p>
+<dl class="section return"><dt>Returns</dt><dd>The name of the file.</dd></dl>
+<p>Time complexity: O(1)</p>
 <dl class="section return"><dt>Returns</dt><dd>The name of the file. </dd></dl>
 
 </div>
@@ -499,7 +512,7 @@ Friends</h2></td></tr>
 
 <p>Function "restarts" graph and calls buildgraph. </p>
 <p>Function "restarts" graph and calls buildgraph.   </p>
-<p>Time complexity: O((R+S)*(R*S)^2) Calls edmondsKarp with complexity O(V*E^2); V is number of vertices (R+S+2); E is number of edges (Source-&gt;Reviewers == R; Reviewers-&gt;Submissions == up to R*S; Submissions-&gt;Sink == S) Let it be approx. R*S O(R+S+2*(R*S)^2) ≈ O((R+S)*(R*S)^2) </p>
+<p>Time complexity: O(E * f_max) Calls the Ford-Fulkerson algorithm implemented with DFS, where E is the number of edges and f_max is the maximum possible flow in the network. </p>
 
 </div>
 </div>
@@ -519,10 +532,10 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Analyzes the assignments to identify risky reviewers or submissions. </p>
-<p>Analyzes the assignments to identify risky reviewers or submissions.    Time Complexity: O(R * (R+S)*(R*S)^2) Reruns edmondsKarp() once per reviewer R</p>
+<p>Analyzes the assignments to identify risky reviewers or submissions.    Time Complexity: O(R * E * f_max) Reruns Ford-Fulkerson once per reviewer R, with each taking O(E * f_max). We used an alternative Max-Flow approach called incremental isolation, where we temporarily set the capacity of the edge from the source to the reviewer node to 0, effectively isolating that reviewer from the flow network. After running Ford-Fulkerson, we check if the total flow is still sufficient to meet the required number of reviews. If not, we consider that reviewer risky and add their ID to the riskyReviewers vector. Finally, we restore the original capacity of the edge to ensure the graph is back to its initial state for the next iteration. Running Ford-Fulkerson with the isolated reviewer is more efficient than rebuilding the entire graph for each reviewer and running the algorithm on a fresh graph with no flow, as it allows us to reuse the existing flow and only adjust the necessary part of the graph for each iteration.</p>
 <p>This runRiskAnalysis works only for level k == 1. If we wanted to run this function for a level k &gt; 1, we could use a brute-force approach.</p>
 <p>The algorithm would be analogous to this one but instead of pushing a single reviewerID to the reviewerNodes vector, we would create every possible subset of discarded reviewers of size &lt;= k, resulting in \(\sum_{i=1}^{k} C_{i}^{R}\) subsets. Then, for each subset of reviewers, we would set each reviewers flow to 0, similar to what this algorithm does.</p>
-<p>This algorithm would result in a temporal complexity of O(2^R * (R+S)*(R*S)^2), characterized by running the Edmound's Karp Algorithm through every subset of discarded reviewers. </p>
+<p>This algorithm would result in a temporal complexity of O(2^R * E * f_max), characterized by running the Ford-Fulkerson algorithm through every subset of discarded reviewers. </p>
 
 </div>
 </div>
@@ -542,7 +555,7 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Saves the interpreted assignment and missing reviews results to a file. </p>
-<p>Saves the interpreted assignment and missing reviews results to a file.    Time complexity: O(MlogM + R)</p>
+<p>Saves the interpreted assignment and missing reviews results to a file.    Time complexity: O(MlogM + R + S)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">folder</td><td>The target directory/folder where the output file should be saved.</td></tr>
@@ -550,7 +563,9 @@ Friends</h2></td></tr>
   </dd>
 </dl>
 <ul>
-<li>M = number of matches (matchResults.size()) Sorts results twice (grouped by submission and then grouped by reviewer) Writes matches, missing reviews and risky reviewers to output O(M+R) </li>
+<li>M = number of matches (matchResults.size())</li>
+<li>R = number of risky reviewers</li>
+<li>S = number of missing review objects (up to total submissions) Sorts results twice (grouped by submission and then grouped by reviewer) O(MlogM) Writes matches, missing reviews and risky reviewers to output O(M + R + S) </li>
 </ul>
 
 </div>
@@ -571,6 +586,14 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Sets the filename currently being processed. </p>
+<p>Sets the filename currently being processed.   </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>The name of the file.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Time complexity: O(1)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">filename</td><td>The name of the file. </td></tr>
@@ -596,6 +619,14 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Sets the execution parameters for the assignment process. </p>
+<p>Sets the execution parameters for the assignment process.   </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">params</td><td>The <a class="el" href="class_parameters.html" title="Holds the parsed configuration parameters for governing the assignment and analysis process.">Parameters</a> object containing the configurations.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Time complexity: O(1)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">params</td><td>The <a class="el" href="class_parameters.html" title="Holds the parsed configuration parameters for governing the assignment and analysis process.">Parameters</a> object containing the configurations. </td></tr>

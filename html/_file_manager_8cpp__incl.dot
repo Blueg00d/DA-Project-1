@@ -25,4 +25,5 @@ digraph "data_structures/io/FileManager.cpp"
   Node9 [id="Node000009",label="iostream",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
   Node1 -> Node10 [id="edge11_Node000001_Node000010",color="steelblue1",style="solid",tooltip=" "];
   Node10 [id="Node000010",label="cstring",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
+  Node1 -> Node3 [id="edge12_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
 }

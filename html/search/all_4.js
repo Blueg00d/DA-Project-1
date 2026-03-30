@@ -11,5 +11,6 @@ var searchData=
   ['debuginterpretationresults_8',['debugInterpretationResults',['../class_debugger.html#aebb1b7f324e107197e5465dc52ecc60a',1,'Debugger']]],
   ['dec_9',['DEC',['../_c_make_c_x_x_compiler_id_8cpp.html#ad1280362da42492bbc11aa78cbf776ad',1,'CMakeCXXCompilerId.cpp']]],
   ['deleteedge_10',['deleteEdge',['../class_vertex.html#a622503fe44ef12d5c39bd1043d47865c',1,'Vertex']]],
-  ['dest_11',['dest',['../class_edge.html#ae4d65678b91bd9d814af4720ad87cd0c',1,'Edge']]]
+  ['dest_11',['dest',['../class_edge.html#ae4d65678b91bd9d814af4720ad87cd0c',1,'Edge']]],
+  ['dfsfindaugmentingpath_12',['dfsFindAugmentingPath',['../class_graph.html#a6055d4c858210fca4eb29551f7788d68',1,'Graph']]]
 ];

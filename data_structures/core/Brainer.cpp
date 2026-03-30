@@ -6,6 +6,16 @@ using namespace std;
 
 #include <utility>
 
+/**
+ * @copybrief Brainer::Brainer
+ *
+ * Time complexity: O(R+S)
+ * Performs a deep copy of the Reviewers and Submissions vectors.
+ *
+ * @param reviewers a vector of Reviewers from input
+ * @param submissions a vector of Submissions from input
+ * @param params Parameters from input
+ */
 Brainer::Brainer(
         const vector<Reviewer>& reviewers,
         const vector<Submission>& submissions,
@@ -16,16 +26,40 @@ Brainer::Brainer(
         this->submissions = submissions;
         this->params = params;
 }
+
+/**
+ * @copybrief Brainer::setFilename
+ *
+ * Time complexity: O(1)
+ *
+ * @param filename The name of the file.
+ */
 void Brainer::setFilename(string filename) {
     this->filename = filename;
 }
+
+/**
+ * @copybrief Brainer::getFilename
+ *
+ * Time complexity: O(1)
+ *
+ * @return The name of the file.
+ */
 string Brainer::getFilename() {
     return this->filename;
 }
 
+/**
+ * @copybrief Brainer::setParams
+ *
+ * Time complexity: O(1)
+ *
+ * @param params The Parameters object containing the configurations.
+ */
 void Brainer::setParams(Parameters params) {
     this->params = params;
 }
+
 /**
  * @copybrief createNodes
  *
@@ -57,8 +91,9 @@ void Brainer::createNodes() {
 /**
  * @copybrief connectSourceSinkToNodes
  *
- * Time complexity: O(R+S)
- *First for loop iterates through all reviewers (R) and second one through all Submissions (S)
+ * Time complexity: O(R log R + S)
+ * Sorts reviewer nodes in O(R log R) to ensure the smallest ID is processed first,
+ * then connects Reviewers (R) to Source and Submissions (S) to Sink.
  */
 void Brainer::connectSourceSinkToNodes() {
     //process so that the reviser with the smallest ID is processed first
@@ -144,11 +179,9 @@ void Brainer::buildGraph() {
 /**
  * @copybrief runAssignment
  *
- * Time complexity: O((R+S)*(R*S)^2)
- * Calls edmondsKarp with complexity O(V*E^2);
- * V is number of vertices (R+S+2);
- * E is number of edges (Source->Reviewers == R; Reviewers->Submissions == up to R*S; Submissions->Sink == S) Let it be approx. R*S
- * O(R+S+2*(R*S)^2) ≈ O((R+S)*(R*S)^2)
+ * Time complexity: O(E * f_max)
+ * Calls the Ford-Fulkerson algorithm implemented with DFS, where E is the number of edges
+ * and f_max is the maximum possible flow in the network.
  */
 void Brainer::runAssignment() {
     //Erase previous graph so we can start over
@@ -210,8 +243,16 @@ void Brainer::interpretFlowResults() {
 
 /**
  * @copybrief runRiskAnalysis
- * Time Complexity: O(R * (R+S)*(R*S)^2)
- * Reruns edmondsKarp() once per reviewer R
+ * Time Complexity: O(R * E * f_max)
+ * Reruns Ford-Fulkerson once per reviewer R, with each taking O(E * f_max).
+ * We used an alternative Max-Flow approach called incremental isolation,
+ * where we temporarily set the capacity of the edge from the source to the reviewer node to 0,
+ * effectively isolating that reviewer from the flow network.
+ * After running Ford-Fulkerson, we check if the total flow is still sufficient to meet the required number of reviews.
+ * If not, we consider that reviewer risky and add their ID to the riskyReviewers vector.
+ * Finally, we restore the original capacity of the edge to ensure the graph is back to its initial state for the next iteration.
+ * Running Ford-Fulkerson with the isolated reviewer is more efficient than rebuilding the entire graph for each reviewer and running the algorithm on a fresh graph with no flow,
+ * as it allows us to reuse the existing flow and only adjust the necessary part of the graph for each iteration.
  *
  * @details This runRiskAnalysis works only for level k == 1.
  * If we wanted to run this function for a level k > 1, we could use a brute-force approach.
@@ -223,8 +264,8 @@ void Brainer::interpretFlowResults() {
  * Then, for each subset of reviewers, we would set each reviewers flow to 0,
  * similar to what this algorithm does.
  *
- * This algorithm would result in a temporal complexity of O(2^R * (R+S)*(R*S)^2),
- * characterized by running the Edmonds Karp Algorithm through every subset of
+ * This algorithm would result in a temporal complexity of O(2^R * E * f_max),
+ * characterized by running the Ford-Fulkerson algorithm through every subset of
  * discarded reviewers.
  */
 void Brainer::runRiskAnalysis() {
@@ -255,7 +296,7 @@ void Brainer::runRiskAnalysis() {
             }
         }
 
-        // Run EdmundsKarp on the existing initialized graph
+        // Run FordFulkerson on the existing initialized graph
         double flowAfter = graph.fordFulkerson(SOURCE,SINK);
         if (flowAfter < requiredFlow) {
             this->riskyReviewers.push_back(nodesToReviewers[revNodeID]->getId());
@@ -268,16 +309,18 @@ void Brainer::runRiskAnalysis() {
     }
     sort(riskyReviewers.begin(), riskyReviewers.end());
 
-    // Leave the graph just like we found it by running EdmondsKarp one last time with all capacities fully intact
+    // Leave the graph just like we found it by running FordFulkerson one last time with all capacities fully intact
     this->graph.fordFulkerson(SOURCE, SINK);
 }
 
 /**
  * @copybrief saveOutput
- * Time complexity: O(MlogM + R)
+ * Time complexity: O(MlogM + R + S)
  * - M = number of matches (matchResults.size())
- * Sorts results twice (grouped by submission and then grouped by reviewer)
- * Writes matches, missing reviews and risky reviewers to output O(M+R)
+ * - R = number of risky reviewers
+ * - S = number of missing review objects (up to total submissions)
+ * Sorts results twice (grouped by submission and then grouped by reviewer) O(MlogM)
+ * Writes matches, missing reviews and risky reviewers to output O(M + R + S)
  */
 void Brainer::saveOutput(const string& path) {
     string filename;
@@ -344,12 +387,12 @@ void Brainer::saveOutput(const string& path) {
 
 /**
  * @copydoc executeAllTasks
- * Time complexity: O(R * (R+S)*(R*S)^2)
+ * Time complexity: O(R * E * f_max + MlogM + S)
  * buildGraph: O(R*S)
- * runAssignment: O((R+S)*(R*S)^2)
+ * runAssignment: O(E * f_max)
  * interpretFlowResults: O((R*S)+ElogE)
- * runRiskAnalysis: O(R * (R+S)*(R*S)^2)
- * saveOutput: O(MlogM + R)
+ * runRiskAnalysis: O(R * E * f_max)
+ * saveOutput: O(MlogM + R + S)
  */
 void Brainer::executeAllTasks(const string &folder) {
     buildGraph();

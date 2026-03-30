@@ -7,6 +7,5 @@ var searchData=
   ['ansi_5fesc_4',['ANSI_ESC',['../_utils_8h.html#ab259b9d579e8f6337efbb2c541d071d3',1,'Utils.h']]],
   ['architecture_5fid_5',['ARCHITECTURE_ID',['../_c_make_c_x_x_compiler_id_8cpp.html#aba35d0d200deaeb06aee95ca297acb28',1,'CMakeCXXCompilerId.cpp']]],
   ['arefilesequal_6',['areFilesEqual',['../class_file_manager.html#aec49c982866733564f1efe7fcc01fbeb',1,'FileManager']]],
-  ['augmentflowalongpath_7',['augmentFlowAlongPath',['../class_graph.html#acd3158ca10299be0fb0eef8f0338e8c7',1,'Graph']]],
-  ['author_8',['author',['../class_submission.html#a1bd275c204af07b9cc6715dd1c2305e3',1,'Submission']]]
+  ['author_7',['author',['../class_submission.html#a1bd275c204af07b9cc6715dd1c2305e3',1,'Submission']]]
 ];

@@ -112,8 +112,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a00be284ea2be3b3d0f0d2e493b70245b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9c903104ad69a7782979fa9caedf163" id="r_af9c903104ad69a7782979fa9caedf163"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af9c903104ad69a7782979fa9caedf163">removeVertex</a> (const T &amp;in)</td></tr>
 <tr class="separator:af9c903104ad69a7782979fa9caedf163"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac044521e31c1173e1c4f4d7dc34128cf" id="r_ac044521e31c1173e1c4f4d7dc34128cf"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac044521e31c1173e1c4f4d7dc34128cf">edmondsKarp</a> (T source, T target)</td></tr>
-<tr class="separator:ac044521e31c1173e1c4f4d7dc34128cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d469a49b772174506e06661737b7bba" id="r_a5d469a49b772174506e06661737b7bba"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d469a49b772174506e06661737b7bba">fordFulkerson</a> (int source, int target)</td></tr>
+<tr class="separator:a5d469a49b772174506e06661737b7bba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac61af3aafe6277215f5a3b3cc7d58ce2" id="r_ac61af3aafe6277215f5a3b3cc7d58ce2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac61af3aafe6277215f5a3b3cc7d58ce2">addEdge</a> (const T &amp;sourc, const T &amp;dest, double w)</td></tr>
 <tr class="separator:ac61af3aafe6277215f5a3b3cc7d58ce2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8949d071d45bf93e171e275462e1007a" id="r_a8949d071d45bf93e171e275462e1007a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8949d071d45bf93e171e275462e1007a">removeEdge</a> (const T &amp;source, const T &amp;dest)</td></tr>
@@ -129,14 +129,8 @@ Public Member Functions</h2></td></tr>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a676cdfb976eccfa82b631d2094c1cdac" id="r_a676cdfb976eccfa82b631d2094c1cdac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a676cdfb976eccfa82b631d2094c1cdac">findVertexIdx</a> (const T &amp;in) const</td></tr>
 <tr class="separator:a676cdfb976eccfa82b631d2094c1cdac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a039221fcb215967752f3672f39ae5206" id="r_a039221fcb215967752f3672f39ae5206"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a039221fcb215967752f3672f39ae5206">findAugmentingPath</a> (<a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *s, <a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *t)</td></tr>
-<tr class="separator:a039221fcb215967752f3672f39ae5206"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48009b3e803da7c058b08a0dbeb19474" id="r_a48009b3e803da7c058b08a0dbeb19474"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48009b3e803da7c058b08a0dbeb19474">testAndVisit</a> (std::queue&lt; <a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; * &gt; &amp;q, <a class="el" href="class_edge.html">Edge</a>&lt; T &gt; *e, <a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *w, double residual)</td></tr>
-<tr class="separator:a48009b3e803da7c058b08a0dbeb19474"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a8fe8c1552124482985fc8c5e9fbfb2" id="r_a5a8fe8c1552124482985fc8c5e9fbfb2"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a8fe8c1552124482985fc8c5e9fbfb2">findMinResidualAlongPath</a> (<a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *s, <a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *t)</td></tr>
-<tr class="separator:a5a8fe8c1552124482985fc8c5e9fbfb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd3158ca10299be0fb0eef8f0338e8c7" id="r_acd3158ca10299be0fb0eef8f0338e8c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd3158ca10299be0fb0eef8f0338e8c7">augmentFlowAlongPath</a> (<a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *s, <a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *t, double f)</td></tr>
-<tr class="separator:acd3158ca10299be0fb0eef8f0338e8c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6055d4c858210fca4eb29551f7788d68" id="r_a6055d4c858210fca4eb29551f7788d68"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6055d4c858210fca4eb29551f7788d68">dfsFindAugmentingPath</a> (<a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *v, <a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *t, double &amp;flow)</td></tr>
+<tr class="separator:a6055d4c858210fca4eb29551f7788d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -249,8 +243,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="acd3158ca10299be0fb0eef8f0338e8c7" name="acd3158ca10299be0fb0eef8f0338e8c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd3158ca10299be0fb0eef8f0338e8c7">&#9670;&#160;</a></span>augmentFlowAlongPath()</h2>
+<a id="a6055d4c858210fca4eb29551f7788d68" name="a6055d4c858210fca4eb29551f7788d68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6055d4c858210fca4eb29551f7788d68">&#9670;&#160;</a></span>dfsFindAugmentingPath()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -261,9 +255,9 @@ template&lt;class T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="class_graph.html">Graph</a>&lt; T &gt;::augmentFlowAlongPath </td>
+          <td class="memname">bool <a class="el" href="class_graph.html">Graph</a>&lt; T &gt;::dfsFindAugmentingPath </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *</td>          <td class="paramname"><span class="paramname"><em>s</em></span>, </td>
+          <td class="paramtype"><a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *</td>          <td class="paramname"><span class="paramname"><em>v</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -273,92 +267,7 @@ template&lt;class T &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>f</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac044521e31c1173e1c4f4d7dc34128cf" name="ac044521e31c1173e1c4f4d7dc34128cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac044521e31c1173e1c4f4d7dc34128cf">&#9670;&#160;</a></span>edmondsKarp()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">double <a class="el" href="class_graph.html">Graph</a>&lt; T &gt;::edmondsKarp </td>
-          <td>(</td>
-          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>source</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>target</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a039221fcb215967752f3672f39ae5206" name="a039221fcb215967752f3672f39ae5206"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a039221fcb215967752f3672f39ae5206">&#9670;&#160;</a></span>findAugmentingPath()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool <a class="el" href="class_graph.html">Graph</a>&lt; T &gt;::findAugmentingPath </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *</td>          <td class="paramname"><span class="paramname"><em>s</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *</td>          <td class="paramname"><span class="paramname"><em>t</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a5a8fe8c1552124482985fc8c5e9fbfb2" name="a5a8fe8c1552124482985fc8c5e9fbfb2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a8fe8c1552124482985fc8c5e9fbfb2">&#9670;&#160;</a></span>findMinResidualAlongPath()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double <a class="el" href="class_graph.html">Graph</a>&lt; T &gt;::findMinResidualAlongPath </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *</td>          <td class="paramname"><span class="paramname"><em>s</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *</td>          <td class="paramname"><span class="paramname"><em>t</em></span>&#160;)</td>
+          <td class="paramtype">double &amp;</td>          <td class="paramname"><span class="paramname"><em>flow</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -412,6 +321,29 @@ template&lt;class T &gt; </div>
 <span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5d469a49b772174506e06661737b7bba" name="a5d469a49b772174506e06661737b7bba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d469a49b772174506e06661737b7bba">&#9670;&#160;</a></span>fordFulkerson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">double <a class="el" href="class_graph.html">Graph</a>&lt; T &gt;::fordFulkerson </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>source</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>target</em></span>&#160;)</td>
+        </tr>
+      </table>
 </div><div class="memdoc">
 
 </div>
@@ -492,47 +424,6 @@ template&lt;class T &gt; </div>
           <td></td>
         </tr>
       </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a48009b3e803da7c058b08a0dbeb19474" name="a48009b3e803da7c058b08a0dbeb19474"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a48009b3e803da7c058b08a0dbeb19474">&#9670;&#160;</a></span>testAndVisit()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="class_graph.html">Graph</a>&lt; T &gt;::testAndVisit </td>
-          <td>(</td>
-          <td class="paramtype">std::queue&lt; <a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; * &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>q</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_edge.html">Edge</a>&lt; T &gt; *</td>          <td class="paramname"><span class="paramname"><em>e</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *</td>          <td class="paramname"><span class="paramname"><em>w</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>residual</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>

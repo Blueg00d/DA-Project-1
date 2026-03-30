@@ -13,9 +13,8 @@ var searchData=
   ['filemanager_2ecpp_10',['FileManager.cpp',['../_file_manager_8cpp.html',1,'']]],
   ['filemanager_2eh_11',['FileManager.h',['../_file_manager_8h.html',1,'']]],
   ['filename_12',['filename',['../class_brainer.html#a12a8bd33b69a621b6b6e1f9565019985',1,'Brainer']]],
-  ['findaugmentingpath_13',['findAugmentingPath',['../class_graph.html#a039221fcb215967752f3672f39ae5206',1,'Graph']]],
-  ['findminresidualalongpath_14',['findMinResidualAlongPath',['../class_graph.html#a5a8fe8c1552124482985fc8c5e9fbfb2',1,'Graph']]],
-  ['findvertex_15',['findVertex',['../class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75',1,'Graph']]],
-  ['findvertexidx_16',['findVertexIdx',['../class_graph.html#a676cdfb976eccfa82b631d2094c1cdac',1,'Graph']]],
-  ['flow_17',['flow',['../class_edge.html#a30808601fa37f509147eabf9cc5f9ed6',1,'Edge']]]
+  ['findvertex_13',['findVertex',['../class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75',1,'Graph']]],
+  ['findvertexidx_14',['findVertexIdx',['../class_graph.html#a676cdfb976eccfa82b631d2094c1cdac',1,'Graph']]],
+  ['flow_15',['flow',['../class_edge.html#a30808601fa37f509147eabf9cc5f9ed6',1,'Edge']]],
+  ['fordfulkerson_16',['fordFulkerson',['../class_graph.html#a5d469a49b772174506e06661737b7bba',1,'Graph']]]
 ];
