@@ -93,10 +93,10 @@ public:
     bool addVertex(const T &in);
     bool removeVertex(const T &in);
     /*
-     * Function that applies the Edmonds-Karp algorithm to a graph..
-     * Returns the maxflow acumulated (this is useful for the ConferenceMaanager class to check if the atribution was well made) and uses auxiliary functions defined in the protected area.
+     * Function that applies the Ford-Fulkerson algorithm to a graph.
+     * Returns the maxflow accumulated (this is useful for the Brainer class to check if the attribution was well-made) and uses auxiliary functions defined in the protected area.
      */
-    double edmondsKarp(T source, T target);
+    double fordFulkerson(int source, int target);
 
     /*
      * Adds an edge to a graph (this), given the contents of the source and
@@ -118,14 +118,10 @@ protected:
      * Finds the index of the vertex with a given content.
      */
     int findVertexIdx(const T &in) const;
-
     /*
-     * auxiliary functions to apply Edmonds-Karp algorithm.
+     * Auxiliary function for the Ford-Fulkerson algorithm
      */
-    bool findAugmentingPath(Vertex<T> *s, Vertex<T> *t);
-    void testAndVisit(std::queue<Vertex<T>*> &q, Edge<T> *e, Vertex<T> *w, double residual);
-    double findMinResidualAlongPath(Vertex<T> *s, Vertex<T> *t);
-    void augmentFlowAlongPath(Vertex<T> *s, Vertex<T> *t, double f);
+    bool dfsFindAugmentingPath(Vertex<T>* v, Vertex<T>* t, double& flow);
 };
 
 /************************* Vertex  **************************/
@@ -391,112 +387,97 @@ bool Graph<T>::addBidirectionalEdge(const T &sourc, const T &dest, double w) {
     return true;
 }
 
-// Function to test the given vertex 'w' and visit it if conditions are met
+// Function to perform DFS and find an augmenting path
 template <class T>
-void Graph<T>::testAndVisit(std::queue< Vertex<T>*> &q, Edge<T> *e, Vertex<T> *w, double residual) {
-    // Check if the vertex 'w' is not visited and there is residual capacity
-    if (!w->isVisited() && residual > 0) {
-        // Mark 'w' as visited, set the path through which it was reached, and enqueue it
-        w->setVisited(true);
-        w->setPath(e);
-        q.push(w);
+bool Graph<T>::dfsFindAugmentingPath(Vertex<T>* v, Vertex<T>* t, double& flow) {
+    if (v == t) return true;
+    v->setVisited(true);
+
+    // Forward edges
+    for (auto e : v->getAdj()) {
+
+        Vertex<T>* w = e->getDest();
+        double residual = e->getWeight() - e->getFlow();
+        if (!w->isVisited() && residual > 0) {
+            w->setPath(e);
+            if (dfsFindAugmentingPath(w, t, flow)) {
+                 //Keep edge to backtrack
+                flow = std::min(flow, residual);
+                return true;
+            }
+        }
     }
+
+    // Backward edges
+    for (auto e : v->getIncoming()) {
+        double residual = e->getFlow();
+        Vertex<T>* w = e->getOrig();
+
+        if (!w->isVisited() && residual > 0) {
+            w->setPath(e); //keeps edge; destination for backtracking
+            if (dfsFindAugmentingPath(w, t, flow)) {
+                flow = std::min(flow, residual);
+
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
-// Function to find an augmenting path using Breadth-First Search
+// Ford-Fulkerson algorithm (change has return type int)
 template <class T>
-bool Graph<T>::findAugmentingPath(Vertex<T> *s, Vertex<T> *t) {
-    // Mark all vertices as not visited
-    for(auto v : vertexSet) {
-        v->setVisited(false);
-    }
-
-    //começar queue para iterar sobre o grafo, marcar visited o vertice começado e po-lo na fila
-    std::queue<Vertex<T>*> q;
-    s->setVisited(true);
-    q.push(s);
-
-    while (!q.empty()) {
-        Vertex<T>* v = q.front();
-        q.pop();
-
-        //iteramos sobre as edges do vertice (a flow começa a 0 para o s depois atualiza) pensar que é o flow da aresta anterior (o S como n tem aresta anterior é 0)
-        for (auto e : v->getAdj()) {
-            testAndVisit(q, e, e->getDest(), e->getWeight() - e->getFlow());
-        }
-
-        //reconstruir o path de trás para a frente
-        for (auto e : v->getIncoming()) {
-            testAndVisit(q, e, e->getOrig(), e->getFlow());
-        }
-    }
-
-    // Return true if a path to the target is found, false otherwise
-    return t->isVisited();
-}
-
-// Function to find the minimum residual capacity along the augmenting path
-template <class T>
-double Graph<T>::findMinResidualAlongPath(Vertex<T> *s, Vertex<T> *t) {
-    double f = INF;
-
-    for (auto v = t; v !=s;) {
-        auto e = v->getPath();
-        if (e->getDest() == v) {
-            f = std::min(f, e->getWeight() - e->getFlow());
-            v = e->getOrig();
-        }
-        else {
-            f= std::min(f, e->getFlow());
-            v = e->getDest();
-        }
-    }
-    // Return the minimum residual capacity
-    return f;
-}
-
-// Function to augment flow along the augmenting path with the given flow value
-template <class T>
-void Graph<T>::augmentFlowAlongPath(Vertex<T> *s, Vertex<T> *t, double f) {
-    // Traverse the augmenting path and update the flow values accordingly
-    for (auto v = t; v !=s;) {
-        auto e = v->getPath();
-        if (e->getDest() == v) {
-            e->setFlow(e->getFlow() + f);
-            v = e->getOrig();
-        }
-        else {
-            e->setFlow(e->getFlow() - f);
-            v = e->getDest();
-        }
-    }
-}
-
-// Main function implementing the Edmonds-Karp algorithm
-template <class T>
-double Graph<T>::edmondsKarp(T source, T target) {
-    // Find source and target vertices in the graph
+double Graph<T>::fordFulkerson(int source, int target) {
     Vertex<T>* s = findVertex(source);
     Vertex<T>* t = findVertex(target);
 
-    if (s == nullptr || t == nullptr || s == t) {
-        return 0;
-    }
+    if (s == nullptr || t == nullptr || s == t)
+        throw std::logic_error("Invalid source and/or target vertex");
 
-    //initialize all flows at 0
+    double maxFlow = 0;
+
+    // Initialize all flows to 0
     for (auto v : vertexSet) {
         for (auto e : v->getAdj()) {
             e->setFlow(0);
         }
     }
-
-    double maxFlow = 0;
-    while (findAugmentingPath(s,t)) {
-        double f = findMinResidualAlongPath(s, t);
-        augmentFlowAlongPath(s, t, f);
-        maxFlow += f;
+    double flow=INF;
+    for (Vertex<T>* v : vertexSet)
+    {
+        v->setVisited(false);
+        v->setPath(nullptr);
     }
+    while (dfsFindAugmentingPath(s, t, flow))
+    {
+        Vertex<T>* vertex = t;
+        maxFlow += flow;
 
+        for (Vertex<T>* v = t; v != s; )
+        {
+            Edge<T>* e = v->getPath();
+            double floww = e->getFlow();
+
+            if (e->getDest() == v) //If forward edge
+            {
+                e->setFlow(floww + flow);
+                v = e->getOrig();
+            } else //Backward edge
+            {
+                e->setFlow(floww - flow);
+                v = e->getDest();
+            }
+        }
+
+        flow = INF;
+
+        for (Vertex<T>* v : vertexSet)
+        {
+            v->setVisited(false);
+            v->setPath(nullptr);
+        }
+
+    }
     return maxFlow;
 }
 

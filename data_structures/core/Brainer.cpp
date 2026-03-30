@@ -75,7 +75,6 @@ void Brainer::connectSourceSinkToNodes() {
         this->graph.addEdge(SOURCE, nodeID, this->params.getMaxReviewsPerReviewer());
     }
 
-    // Connecting Submissions to Sink
     for (pair<int, Submission*>p: this->nodesToSubmissions) {
         this->graph.addEdge(p.first, SINK, this->params.getMinReviewsPerSubmission());
     }
@@ -91,9 +90,20 @@ void Brainer::connectSourceSinkToNodes() {
  */
 void Brainer::connectNodes() {
     int level = this->params.getGenerateAssigLevel();
+    //Order reviewers by nodeID
+   vector<pair<int, Reviewer*>> sortedReviewers(nodesToReviewers.begin(), nodesToReviewers.end());
+    sort(sortedReviewers.begin(), sortedReviewers.end(), [](const auto& a, const auto& b) {
+        return a.second->getId() < b.second->getId();
+    });
 
-    for (pair<int, Reviewer*> reviewer: this->nodesToReviewers) {
-        for (pair<int, Submission*> submission: this->nodesToSubmissions) {
+    //Order submissions by nodeID
+    vector<pair<int, Submission*>> sortedSubmissions(nodesToSubmissions.begin(), nodesToSubmissions.end());
+    sort(sortedSubmissions.begin(), sortedSubmissions.end(), [](const auto& a, const auto& b) {
+        return a.second->getId() < b.second->getId();
+    });
+    for (auto& reviewer : sortedReviewers) {
+        for (auto& submission : sortedSubmissions) {
+
             bool isEligible = false;
             int rPrim = reviewer.second->getPrimary();
             int rSec = reviewer.second->getSecondary();
@@ -145,7 +155,7 @@ void Brainer::runAssignment() {
     this->graph = Graph<int>();
     //Build the new graph with new data
     buildGraph();
-    graph.edmondsKarp(SOURCE,SINK); // Unused variable 'flow' removed
+    graph.fordFulkerson(SOURCE,SINK); // Unused variable 'flow' removed
 }
 
 
@@ -246,7 +256,7 @@ void Brainer::runRiskAnalysis() {
         }
 
         // Run EdmundsKarp on the existing initialized graph
-        double flowAfter = graph.edmondsKarp(SOURCE,SINK);
+        double flowAfter = graph.fordFulkerson(SOURCE,SINK);
         if (flowAfter < requiredFlow) {
             this->riskyReviewers.push_back(nodesToReviewers[revNodeID]->getId());
         }
@@ -259,7 +269,7 @@ void Brainer::runRiskAnalysis() {
     sort(riskyReviewers.begin(), riskyReviewers.end());
 
     // Leave the graph just like we found it by running EdmondsKarp one last time with all capacities fully intact
-    this->graph.edmondsKarp(SOURCE, SINK);
+    this->graph.fordFulkerson(SOURCE, SINK);
 }
 
 /**

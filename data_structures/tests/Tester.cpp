@@ -13,7 +13,6 @@ using namespace std;
 namespace fs = std::filesystem;
 /**
  * @copybrief executeAllInputTasks
- * Time complexity: O(F* )
  * Parses and executes executeAllTasks() once for each number of files F
  */
 void Tester::executeAllInputTasks() {
@@ -30,7 +29,6 @@ void Tester::executeAllInputTasks() {
 }
 /**
  * @copybrief compareGeneratedWithExpected
- * Time complexity: O(F*N)
  * Size in bytes of the files being compared in areFilesEqual is N
  * Number of files expected is F
  */
