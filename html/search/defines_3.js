@@ -1,17 +1,12 @@
 var searchData=
 [
-  ['clr_5fall_0',['CLR_ALL',['../_utils_8h.html#a2ea00fa4dd763f625dc603723f7381a7',1,'Utils.h']]],
-  ['clr_5fhistory_1',['CLR_HISTORY',['../_utils_8h.html#a3875f1d80762cbfa3dd490e480b43a7a',1,'Utils.h']]],
-  ['clr_5fline_2',['CLR_LINE',['../_utils_8h.html#a6ea7d3421268b985c47b9d53199330d1',1,'Utils.h']]],
-  ['clr_5fscreen_3',['CLR_SCREEN',['../_utils_8h.html#afd21b586a3e771744cec45ddf078a8ef',1,'Utils.h']]],
-  ['compiler_5fid_4',['COMPILER_ID',['../_c_make_c_x_x_compiler_id_8cpp.html#a81dee0709ded976b2e0319239f72d174',1,'CMakeCXXCompilerId.cpp']]],
-  ['cur_5fhome_5',['CUR_HOME',['../_utils_8h.html#ade8be98bb9950d426bd246cc322b2750',1,'Utils.h']]],
-  ['cur_5fup_6',['CUR_UP',['../_utils_8h.html#aab997642e0d262dfaaac15229318b435',1,'Utils.h']]],
-  ['cxx_5fstd_7',['CXX_STD',['../_c_make_c_x_x_compiler_id_8cpp.html#a34cc889e576a1ae6c84ae9e0a851ba21',1,'CMakeCXXCompilerId.cpp']]],
-  ['cxx_5fstd_5f11_8',['CXX_STD_11',['../_c_make_c_x_x_compiler_id_8cpp.html#a2c21af1889e9ca5cda36069184cc3234',1,'CMakeCXXCompilerId.cpp']]],
-  ['cxx_5fstd_5f14_9',['CXX_STD_14',['../_c_make_c_x_x_compiler_id_8cpp.html#a39fb4789a452bfb5df17d40f640dd720',1,'CMakeCXXCompilerId.cpp']]],
-  ['cxx_5fstd_5f17_10',['CXX_STD_17',['../_c_make_c_x_x_compiler_id_8cpp.html#ae17f1ae0bf56cf631eadff4f73e96ff9',1,'CMakeCXXCompilerId.cpp']]],
-  ['cxx_5fstd_5f20_11',['CXX_STD_20',['../_c_make_c_x_x_compiler_id_8cpp.html#aa52ec6104623a66734cc5d5d28733bed',1,'CMakeCXXCompilerId.cpp']]],
-  ['cxx_5fstd_5f23_12',['CXX_STD_23',['../_c_make_c_x_x_compiler_id_8cpp.html#ae5e2d955d2884c65b7de2e1ad29a4f1d',1,'CMakeCXXCompilerId.cpp']]],
-  ['cxx_5fstd_5f98_13',['CXX_STD_98',['../_c_make_c_x_x_compiler_id_8cpp.html#a2454727f55dd7af9210ab341ca8be2c8',1,'CMakeCXXCompilerId.cpp']]]
+  ['fg_5fblack_0',['FG_BLACK',['../_utils_8h.html#a9b32d0a26f9909c5b63ccd474f56420e',1,'Utils.h']]],
+  ['fg_5fblue_1',['FG_BLUE',['../_utils_8h.html#a4e411f6bd6ac8d6c2bd23d866c097e91',1,'Utils.h']]],
+  ['fg_5fcyan_2',['FG_CYAN',['../_utils_8h.html#afb40e6e076755308612ed6e18a34dbeb',1,'Utils.h']]],
+  ['fg_5fdefault_3',['FG_DEFAULT',['../_utils_8h.html#a1daa940dfc43b2a87eab5722f9f63e06',1,'Utils.h']]],
+  ['fg_5fgreen_4',['FG_GREEN',['../_utils_8h.html#a0af1e03653ace4d21aebf3b2e03a6535',1,'Utils.h']]],
+  ['fg_5fmagenta_5',['FG_MAGENTA',['../_utils_8h.html#aacf8f7d7b2a3f4ba0d0a131fcd1f1933',1,'Utils.h']]],
+  ['fg_5fred_6',['FG_RED',['../_utils_8h.html#a1dc5215d084174df6f00a9267cec2f17',1,'Utils.h']]],
+  ['fg_5fwhite_7',['FG_WHITE',['../_utils_8h.html#a7fbb956b9e769a1020c2eff1f6743857',1,'Utils.h']]],
+  ['fg_5fyellow_8',['FG_YELLOW',['../_utils_8h.html#a266aa539aa271da1b1f711d2413b1bfa',1,'Utils.h']]]
 ];

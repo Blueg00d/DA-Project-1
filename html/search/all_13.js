@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['weight_0',['weight',['../class_edge.html#af188b57b604f0d65e2da48733bd76426',1,'Edge']]],
-  ['writelines_1',['writeLines',['../class_file_manager.html#a3c28dd8619200457ea7e25adfc9e5f02',1,'FileManager']]]
+  ['_7ebrainer_0',['~Brainer',['../class_brainer.html#a3485891d87ccfc0678827fcda0460f38',1,'Brainer']]],
+  ['_7egraph_1',['~Graph',['../class_graph.html#a5d726ad66f18119b421cda8208087358',1,'Graph']]]
 ];

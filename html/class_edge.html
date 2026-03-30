@@ -99,25 +99,36 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 
+<p>Represents a directed edge connecting two vertices in the graph.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_graph_8h_source.html">Graph.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab976213419283ed754f42f57b195a288" id="r_ab976213419283ed754f42f57b195a288"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab976213419283ed754f42f57b195a288">Edge</a> (<a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *<a class="el" href="#a4510c31e0479f9d25f6e35d086887192">orig</a>, <a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *<a class="el" href="#ae4d65678b91bd9d814af4720ad87cd0c">dest</a>, double w)</td></tr>
+<tr class="memdesc:ab976213419283ed754f42f57b195a288"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="class_edge.html" title="Represents a directed edge connecting two vertices in the graph.">Edge</a>.  <br /></td></tr>
 <tr class="separator:ab976213419283ed754f42f57b195a288"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a2de066dff8513dd788d553fc1d0c81" id="r_a9a2de066dff8513dd788d553fc1d0c81"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a2de066dff8513dd788d553fc1d0c81">getDest</a> () const</td></tr>
+<tr class="memdesc:a9a2de066dff8513dd788d553fc1d0c81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the destination vertex of the edge.  <br /></td></tr>
 <tr class="separator:a9a2de066dff8513dd788d553fc1d0c81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3df378e283d6c8be5be4170ac8d7f4e8" id="r_a3df378e283d6c8be5be4170ac8d7f4e8"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3df378e283d6c8be5be4170ac8d7f4e8">getWeight</a> () const</td></tr>
+<tr class="memdesc:a3df378e283d6c8be5be4170ac8d7f4e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the weight or capacity of the edge.  <br /></td></tr>
 <tr class="separator:a3df378e283d6c8be5be4170ac8d7f4e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40fc1470c5339203defca19b67c2535b" id="r_a40fc1470c5339203defca19b67c2535b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40fc1470c5339203defca19b67c2535b">getOrig</a> () const</td></tr>
+<tr class="memdesc:a40fc1470c5339203defca19b67c2535b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the origin vertex of the edge.  <br /></td></tr>
 <tr class="separator:a40fc1470c5339203defca19b67c2535b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0a900f3006e47b9f363df7429298eeb" id="r_af0a900f3006e47b9f363df7429298eeb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">Edge</a>&lt; T &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0a900f3006e47b9f363df7429298eeb">getReverse</a> () const</td></tr>
+<tr class="memdesc:af0a900f3006e47b9f363df7429298eeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the reverse edge if this is part of a bidirectional connection.  <br /></td></tr>
 <tr class="separator:af0a900f3006e47b9f363df7429298eeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75458cfc838ca5aee5c34cb9f03b5647" id="r_a75458cfc838ca5aee5c34cb9f03b5647"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75458cfc838ca5aee5c34cb9f03b5647">getFlow</a> () const</td></tr>
+<tr class="memdesc:a75458cfc838ca5aee5c34cb9f03b5647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current flow of the edge.  <br /></td></tr>
 <tr class="separator:a75458cfc838ca5aee5c34cb9f03b5647"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1819116e2c156733a14bbd94cc27908e" id="r_a1819116e2c156733a14bbd94cc27908e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1819116e2c156733a14bbd94cc27908e">setFlow</a> (double <a class="el" href="#a30808601fa37f509147eabf9cc5f9ed6">flow</a>)</td></tr>
+<tr class="memdesc:a1819116e2c156733a14bbd94cc27908e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the flow of the edge.  <br /></td></tr>
 <tr class="separator:a1819116e2c156733a14bbd94cc27908e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff600b093dd6917feeeb35bb7947bdd4" id="r_aff600b093dd6917feeeb35bb7947bdd4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff600b093dd6917feeeb35bb7947bdd4">setWeight</a> (double <a class="el" href="#af188b57b604f0d65e2da48733bd76426">weight</a>)</td></tr>
+<tr class="memdesc:aff600b093dd6917feeeb35bb7947bdd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the weight or capacity of the edge.  <br /></td></tr>
 <tr class="separator:aff600b093dd6917feeeb35bb7947bdd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
@@ -133,7 +144,16 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a30808601fa37f509147eabf9cc5f9ed6" id="r_a30808601fa37f509147eabf9cc5f9ed6"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30808601fa37f509147eabf9cc5f9ed6">flow</a></td></tr>
 <tr class="separator:a30808601fa37f509147eabf9cc5f9ed6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class T&gt;<br />
+class Edge&lt; T &gt;</div><p>Represents a directed edge connecting two vertices in the graph. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The type of the information stored in the vertices. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab976213419283ed754f42f57b195a288" name="ab976213419283ed754f42f57b195a288"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab976213419283ed754f42f57b195a288">&#9670;&#160;</a></span>Edge()</h2>
 
@@ -160,6 +180,16 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Constructor for <a class="el" href="class_edge.html" title="Represents a directed edge connecting two vertices in the graph.">Edge</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">orig</td><td>Pointer to the origin vertex. </td></tr>
+    <tr><td class="paramname">dest</td><td>Pointer to the destination vertex. </td></tr>
+    <tr><td class="paramname">w</td><td>The weight (or capacity) of the edge. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -180,6 +210,9 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Gets the destination vertex of the edge. </p>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the destination vertex. </dd></dl>
+
 </div>
 </div>
 <a id="a75458cfc838ca5aee5c34cb9f03b5647" name="a75458cfc838ca5aee5c34cb9f03b5647"></a>
@@ -198,6 +231,9 @@ template&lt;class T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Gets the current flow of the edge. </p>
+<dl class="section return"><dt>Returns</dt><dd>The flow value. </dd></dl>
 
 </div>
 </div>
@@ -218,6 +254,9 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Gets the origin vertex of the edge. </p>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the origin vertex. </dd></dl>
+
 </div>
 </div>
 <a id="af0a900f3006e47b9f363df7429298eeb" name="af0a900f3006e47b9f363df7429298eeb"></a>
@@ -236,6 +275,9 @@ template&lt;class T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Gets the reverse edge if this is part of a bidirectional connection. </p>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the reverse edge. </dd></dl>
 
 </div>
 </div>
@@ -256,6 +298,9 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Gets the weight or capacity of the edge. </p>
+<dl class="section return"><dt>Returns</dt><dd>The weight value. </dd></dl>
+
 </div>
 </div>
 <a id="a1819116e2c156733a14bbd94cc27908e" name="a1819116e2c156733a14bbd94cc27908e"></a>
@@ -275,6 +320,14 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Sets the flow of the edge. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">flow</td><td>The new flow value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="aff600b093dd6917feeeb35bb7947bdd4" name="aff600b093dd6917feeeb35bb7947bdd4"></a>
@@ -293,6 +346,14 @@ template&lt;class T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sets the weight or capacity of the edge. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">weight</td><td>The new weight value. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -100,38 +100,54 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 
+<p>Represents a node in the graph.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_graph_8h_source.html">Graph.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:afcbdd4d4198b672356559cb8fa088408" id="r_afcbdd4d4198b672356559cb8fa088408"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afcbdd4d4198b672356559cb8fa088408">Vertex</a> (T in)</td></tr>
+<tr class="memdesc:afcbdd4d4198b672356559cb8fa088408"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="class_vertex.html" title="Represents a node in the graph.">Vertex</a>.  <br /></td></tr>
 <tr class="separator:afcbdd4d4198b672356559cb8fa088408"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48eae2f7af2362634adab02b7b2dbec6" id="r_a48eae2f7af2362634adab02b7b2dbec6"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48eae2f7af2362634adab02b7b2dbec6">getInfo</a> () const</td></tr>
+<tr class="memdesc:a48eae2f7af2362634adab02b7b2dbec6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the content of the vertex.  <br /></td></tr>
 <tr class="separator:a48eae2f7af2362634adab02b7b2dbec6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0010a7d0b7db1bb81dd2ebb1ffae650a" id="r_a0010a7d0b7db1bb81dd2ebb1ffae650a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_edge.html">Edge</a>&lt; T &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0010a7d0b7db1bb81dd2ebb1ffae650a">getAdj</a> () const</td></tr>
+<tr class="memdesc:a0010a7d0b7db1bb81dd2ebb1ffae650a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the outgoing edges of the vertex.  <br /></td></tr>
 <tr class="separator:a0010a7d0b7db1bb81dd2ebb1ffae650a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2bb17f6ebd98a67f8da1f689b22fadc" id="r_aa2bb17f6ebd98a67f8da1f689b22fadc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2bb17f6ebd98a67f8da1f689b22fadc">isVisited</a> () const</td></tr>
+<tr class="memdesc:aa2bb17f6ebd98a67f8da1f689b22fadc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the vertex has been visited during a traversal.  <br /></td></tr>
 <tr class="separator:aa2bb17f6ebd98a67f8da1f689b22fadc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15e4ff95fba2bb5970a6551137ceb950" id="r_a15e4ff95fba2bb5970a6551137ceb950"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">Edge</a>&lt; T &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15e4ff95fba2bb5970a6551137ceb950">getPath</a> () const</td></tr>
+<tr class="memdesc:a15e4ff95fba2bb5970a6551137ceb950"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the path edge used to reach this vertex.  <br /></td></tr>
 <tr class="separator:a15e4ff95fba2bb5970a6551137ceb950"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a361d7d0459d37aead6401d6af9f81f0a" id="r_a361d7d0459d37aead6401d6af9f81f0a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_edge.html">Edge</a>&lt; T &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a361d7d0459d37aead6401d6af9f81f0a">getIncoming</a> () const</td></tr>
+<tr class="memdesc:a361d7d0459d37aead6401d6af9f81f0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the incoming edges of the vertex.  <br /></td></tr>
 <tr class="separator:a361d7d0459d37aead6401d6af9f81f0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31cd60c26640f8072a928ba70eb2f95e" id="r_a31cd60c26640f8072a928ba70eb2f95e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31cd60c26640f8072a928ba70eb2f95e">setInfo</a> (T <a class="el" href="#a415d7811eef6cdd992f0dca1f35a49cd">info</a>)</td></tr>
+<tr class="memdesc:a31cd60c26640f8072a928ba70eb2f95e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the content of the vertex.  <br /></td></tr>
 <tr class="separator:a31cd60c26640f8072a928ba70eb2f95e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95a3f3c55f2ba371fae51d3fe0e76c23" id="r_a95a3f3c55f2ba371fae51d3fe0e76c23"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95a3f3c55f2ba371fae51d3fe0e76c23">setVisited</a> (bool <a class="el" href="#a187a2fe4ff50261cf3c15b8cda7dfc56">visited</a>)</td></tr>
+<tr class="memdesc:a95a3f3c55f2ba371fae51d3fe0e76c23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the visited status of the vertex.  <br /></td></tr>
 <tr class="separator:a95a3f3c55f2ba371fae51d3fe0e76c23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ebf4b550ec94b89a8f80df1a53cc97d" id="r_a5ebf4b550ec94b89a8f80df1a53cc97d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ebf4b550ec94b89a8f80df1a53cc97d">setPath</a> (<a class="el" href="class_edge.html">Edge</a>&lt; T &gt; *<a class="el" href="#abfc6d8f64308c47901c72d5ebceda80e">path</a>)</td></tr>
+<tr class="memdesc:a5ebf4b550ec94b89a8f80df1a53cc97d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the path edge used to reach this vertex.  <br /></td></tr>
 <tr class="separator:a5ebf4b550ec94b89a8f80df1a53cc97d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36a616b80daad6e2a8c6d2fa78a1eb34" id="r_a36a616b80daad6e2a8c6d2fa78a1eb34"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">Edge</a>&lt; T &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36a616b80daad6e2a8c6d2fa78a1eb34">addEdge</a> (<a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *dest, double w)</td></tr>
+<tr class="memdesc:a36a616b80daad6e2a8c6d2fa78a1eb34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an outgoing edge to a destination vertex.  <br /></td></tr>
 <tr class="separator:a36a616b80daad6e2a8c6d2fa78a1eb34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1f1dd0a8e1019a242f1120d6559c754" id="r_ac1f1dd0a8e1019a242f1120d6559c754"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1f1dd0a8e1019a242f1120d6559c754">removeEdge</a> (T in)</td></tr>
+<tr class="memdesc:ac1f1dd0a8e1019a242f1120d6559c754"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an outgoing edge given a destination's content.  <br /></td></tr>
 <tr class="separator:ac1f1dd0a8e1019a242f1120d6559c754"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a414ce58fdf35ee5200a82912f3865506" id="r_a414ce58fdf35ee5200a82912f3865506"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a414ce58fdf35ee5200a82912f3865506">removeOutgoingEdges</a> ()</td></tr>
+<tr class="memdesc:a414ce58fdf35ee5200a82912f3865506"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all outgoing edges from the vertex.  <br /></td></tr>
 <tr class="separator:a414ce58fdf35ee5200a82912f3865506"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a622503fe44ef12d5c39bd1043d47865c" id="r_a622503fe44ef12d5c39bd1043d47865c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a622503fe44ef12d5c39bd1043d47865c">deleteEdge</a> (<a class="el" href="class_edge.html">Edge</a>&lt; T &gt; *edge)</td></tr>
+<tr class="memdesc:a622503fe44ef12d5c39bd1043d47865c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility function to safely delete an edge.  <br /></td></tr>
 <tr class="separator:a622503fe44ef12d5c39bd1043d47865c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
@@ -147,7 +163,16 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a004d1b624d1cd1a7afe49295682e2899" id="r_a004d1b624d1cd1a7afe49295682e2899"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_edge.html">Edge</a>&lt; T &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a004d1b624d1cd1a7afe49295682e2899">incoming</a></td></tr>
 <tr class="separator:a004d1b624d1cd1a7afe49295682e2899"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class T&gt;<br />
+class Vertex&lt; T &gt;</div><p>Represents a node in the graph. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The type of the information stored in the vertex. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="afcbdd4d4198b672356559cb8fa088408" name="afcbdd4d4198b672356559cb8fa088408"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afcbdd4d4198b672356559cb8fa088408">&#9670;&#160;</a></span>Vertex()</h2>
 
@@ -164,6 +189,14 @@ template&lt;class T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Constructor for <a class="el" href="class_vertex.html" title="Represents a node in the graph.">Vertex</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in</td><td>The content or information to be stored in the vertex. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -188,6 +221,16 @@ template&lt;class T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Adds an outgoing edge to a destination vertex. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dest</td><td>Pointer to the destination vertex. </td></tr>
+    <tr><td class="paramname">w</td><td>The weight of the edge. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the newly created edge. </dd></dl>
 
 </div>
 </div>
@@ -216,6 +259,14 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Utility function to safely delete an edge. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">edge</td><td>Pointer to the edge to be deleted. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a0010a7d0b7db1bb81dd2ebb1ffae650a" name="a0010a7d0b7db1bb81dd2ebb1ffae650a"></a>
@@ -234,6 +285,9 @@ template&lt;class T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Gets the outgoing edges of the vertex. </p>
+<dl class="section return"><dt>Returns</dt><dd>A vector of pointers to the outgoing edges. </dd></dl>
 
 </div>
 </div>
@@ -254,6 +308,9 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Gets the incoming edges of the vertex. </p>
+<dl class="section return"><dt>Returns</dt><dd>A vector of pointers to the incoming edges. </dd></dl>
+
 </div>
 </div>
 <a id="a48eae2f7af2362634adab02b7b2dbec6" name="a48eae2f7af2362634adab02b7b2dbec6"></a>
@@ -272,6 +329,9 @@ template&lt;class T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Gets the content of the vertex. </p>
+<dl class="section return"><dt>Returns</dt><dd>The information stored in the vertex. </dd></dl>
 
 </div>
 </div>
@@ -292,6 +352,9 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Gets the path edge used to reach this vertex. </p>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the path edge. </dd></dl>
+
 </div>
 </div>
 <a id="aa2bb17f6ebd98a67f8da1f689b22fadc" name="aa2bb17f6ebd98a67f8da1f689b22fadc"></a>
@@ -310,6 +373,9 @@ template&lt;class T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Checks if the vertex has been visited during a traversal. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if visited, false otherwise. </dd></dl>
 
 </div>
 </div>
@@ -330,6 +396,15 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Removes an outgoing edge given a destination's content. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in</td><td>The content of the destination vertex to remove the edge to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if successful, and false if such edge does not exist. </dd></dl>
+
 </div>
 </div>
 <a id="a414ce58fdf35ee5200a82912f3865506" name="a414ce58fdf35ee5200a82912f3865506"></a>
@@ -348,6 +423,8 @@ template&lt;class T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Removes all outgoing edges from the vertex. </p>
 
 </div>
 </div>
@@ -368,6 +445,14 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Sets the content of the vertex. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">info</td><td>The new information to store. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a5ebf4b550ec94b89a8f80df1a53cc97d" name="a5ebf4b550ec94b89a8f80df1a53cc97d"></a>
@@ -387,6 +472,14 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Sets the path edge used to reach this vertex. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Pointer to the edge. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a95a3f3c55f2ba371fae51d3fe0e76c23" name="a95a3f3c55f2ba371fae51d3fe0e76c23"></a>
@@ -405,6 +498,14 @@ template&lt;class T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sets the visited status of the vertex. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">visited</td><td>Boolean indicating whether the vertex was visited. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

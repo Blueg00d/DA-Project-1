@@ -18,23 +18,86 @@ class Edge;
 
 /************************* Vertex  **************************/
 
+/**
+ * @class Vertex
+ * @brief Represents a node in the graph.
+ * @tparam T The type of the information stored in the vertex.
+ */
 template <class T>
 class Vertex {
 public:
+    /**
+     * @brief Constructor for Vertex.
+     * @param in The content or information to be stored in the vertex.
+     */
     Vertex(T in);
 
+    /**
+     * @brief Gets the content of the vertex.
+     * @return The information stored in the vertex.
+     */
     T getInfo() const;
+
+    /**
+     * @brief Gets the outgoing edges of the vertex.
+     * @return A vector of pointers to the outgoing edges.
+     */
     std::vector<Edge<T> *> getAdj() const;
+
+    /**
+     * @brief Checks if the vertex has been visited during a traversal.
+     * @return True if visited, false otherwise.
+     */
     bool isVisited() const;
+
+    /**
+     * @brief Gets the path edge used to reach this vertex.
+     * @return A pointer to the path edge.
+     */
     Edge<T> *getPath() const;
+
+    /**
+     * @brief Gets the incoming edges of the vertex.
+     * @return A vector of pointers to the incoming edges.
+     */
     std::vector<Edge<T> *> getIncoming() const;
 
+    /**
+     * @brief Sets the content of the vertex.
+     * @param info The new information to store.
+     */
     void setInfo(T info);
+
+    /**
+     * @brief Sets the visited status of the vertex.
+     * @param visited Boolean indicating whether the vertex was visited.
+     */
     void setVisited(bool visited);
 
+    /**
+     * @brief Sets the path edge used to reach this vertex.
+     * @param path Pointer to the edge.
+     */
     void setPath(Edge<T> *path);
+
+    /**
+     * @brief Adds an outgoing edge to a destination vertex.
+     * @param dest Pointer to the destination vertex.
+     * @param w The weight of the edge.
+     * @return Pointer to the newly created edge.
+     */
     Edge<T> * addEdge(Vertex<T> *dest, double w);
+
+    /**
+     * @brief Removes an outgoing edge given a destination's content.
+     * @param in The content of the destination vertex to remove the edge to.
+     * @return True if successful, and false if such edge does not exist.
+     */
     bool removeEdge(T in);
+
+    /**
+     * @brief Removes all outgoing edges from the vertex.
+     */
     void removeOutgoingEdges();
 
 protected:
@@ -47,23 +110,71 @@ protected:
 
     std::vector<Edge<T> *> incoming; // incoming edges
 
+    /**
+     * @brief Utility function to safely delete an edge.
+     * @param edge Pointer to the edge to be deleted.
+     */
     void deleteEdge(Edge<T> *edge);
 };
 
 /********************** Edge  ****************************/
 
+/**
+ * @class Edge
+ * @brief Represents a directed edge connecting two vertices in the graph.
+ * @tparam T The type of the information stored in the vertices.
+ */
 template <class T>
 class Edge {
 public:
+    /**
+     * @brief Constructor for Edge.
+     * @param orig Pointer to the origin vertex.
+     * @param dest Pointer to the destination vertex.
+     * @param w The weight (or capacity) of the edge.
+     */
     Edge(Vertex<T> *orig, Vertex<T> *dest, double w);
 
+    /**
+     * @brief Gets the destination vertex of the edge.
+     * @return Pointer to the destination vertex.
+     */
     Vertex<T> * getDest() const;
+
+    /**
+     * @brief Gets the weight or capacity of the edge.
+     * @return The weight value.
+     */
     double getWeight() const;
+
+    /**
+     * @brief Gets the origin vertex of the edge.
+     * @return Pointer to the origin vertex.
+     */
     Vertex<T> * getOrig() const;
+
+    /**
+     * @brief Gets the reverse edge if this is part of a bidirectional connection.
+     * @return Pointer to the reverse edge.
+     */
     Edge<T> *getReverse() const;
+
+    /**
+     * @brief Gets the current flow of the edge.
+     * @return The flow value.
+     */
     double getFlow() const;
 
+    /**
+     * @brief Sets the flow of the edge.
+     * @param flow The new flow value.
+     */
     void setFlow(double flow);
+
+    /**
+     * @brief Sets the weight or capacity of the edge.
+     * @param weight The new weight value.
+     */
     void setWeight(double weight);
 protected:
     Vertex<T> * dest; // destination vertex
@@ -78,48 +189,100 @@ protected:
 
 /********************** Graph  ****************************/
 
+/**
+ * @class Graph
+ * @brief Represents a generic graph data structure used to model assignment flows.
+ * @tparam T The type of the information stored in the vertices.
+ */
 template <class T>
 class Graph {
 public:
     ~Graph() = default;
-    /*
-    * Auxiliary function to find a vertex with a given the content.
-    */
+
+    /**
+     * @brief Auxiliary function to find a vertex with a given content.
+     * @param in The content to search for.
+     * @return Pointer to the vertex if found, nullptr otherwise.
+     */
     Vertex<T> *findVertex(const T &in) const;
-    /*
-     * Adds a vertex with a given content or info (in) to a graph (this).
-     * Returns true if successful, and false if a vertex with that content already exists.
+
+    /**
+     * @brief Adds a vertex with a given content to the graph.
+     * @param in The content to add.
+     * @return True if successful, and false if a vertex with that content already exists.
      */
     bool addVertex(const T &in);
+
+    /**
+     * @brief Removes a vertex with a given content from the graph.
+     * @param in The content of the vertex to remove.
+     * @return True if successful, false otherwise.
+     */
     bool removeVertex(const T &in);
-    /*
-     * Function that applies the Ford-Fulkerson algorithm to a graph.
-     * Returns the maxflow accumulated (this is useful for the Brainer class to check if the attribution was well-made) and uses auxiliary functions defined in the protected area.
+
+    /**
+     * @brief Function that applies the Ford-Fulkerson algorithm to the graph.
+     * @param source The content identifying the source node.
+     * @param target The content identifying the target (sink) node.
+     * @return The maxflow accumulated.
      */
     double fordFulkerson(int source, int target);
 
-    /*
-     * Adds an edge to a graph (this), given the contents of the source and
-     * destination vertices and the edge weight (w).
-     * Returns true if successful, and false if the source or destination vertex does not exist.
+    /**
+     * @brief Adds an edge to the graph.
+     * @param sourc The content of the source vertex.
+     * @param dest The content of the destination vertex.
+     * @param w The edge weight (or capacity).
+     * @return True if successful, and false if the source or destination vertex does not exist.
      */
     bool addEdge(const T &sourc, const T &dest, double w);
+
+    /**
+     * @brief Removes an edge from the graph.
+     * @param source The content of the source vertex.
+     * @param dest The content of the destination vertex.
+     * @return True if successful, false otherwise.
+     */
     bool removeEdge(const T &source, const T &dest);
+
+    /**
+     * @brief Adds a bidirectional edge to the graph.
+     * @param sourc The content of the source vertex.
+     * @param dest The content of the destination vertex.
+     * @param w The edge weight (or capacity).
+     * @return True if successful, false otherwise.
+     */
     bool addBidirectionalEdge(const T &sourc, const T &dest, double w);
 
+    /**
+     * @brief Gets the total number of vertices in the graph.
+     * @return The count of vertices.
+     */
     int getNumVertex() const;
+
+    /**
+     * @brief Gets the list of all vertices in the graph.
+     * @return A vector of pointers to the vertices.
+     */
     std::vector<Vertex<T> *> getVertexSet() const;
 
 protected:
     std::vector<Vertex<T> *> vertexSet;    // vertex set
     std::unordered_map<T, Vertex<T> *> vertexMap; // O(1) vertex lookups
 
-    /*
-     * Finds the index of the vertex with a given content.
+    /**
+     * @brief Finds the index of the vertex with a given content.
+     * @param in The content to look up.
+     * @return The index of the vertex, or -1 if not found.
      */
     int findVertexIdx(const T &in) const;
-    /*
-     * Auxiliary function for the Ford-Fulkerson algorithm
+
+    /**
+     * @brief Auxiliary DFS function for the Ford-Fulkerson algorithm to find an augmenting path.
+     * @param v The current vertex.
+     * @param t The target vertex.
+     * @param flow Reference to the flow accumulator.
+     * @return True if an augmenting path is found, false otherwise.
      */
     bool dfsFindAugmentingPath(Vertex<T>* v, Vertex<T>* t, double& flow);
 };
@@ -128,6 +291,7 @@ protected:
 
 template <class T>
 Vertex<T>::Vertex(T in): info(in) {}
+
 /*
  * Auxiliary function to add an outgoing edge to a vertex (this),
  * with a given destination vertex (d) and edge weight (w).
@@ -308,6 +472,7 @@ int Graph<T>::findVertexIdx(const T &in) const {
             return i;
     return -1;
 }
+
 /*
  * Adds a vertex with a given content or info (in) to a graph (this).
  * Returns true if successful, and false if a vertex with that content already exists.
@@ -425,7 +590,7 @@ bool Graph<T>::dfsFindAugmentingPath(Vertex<T>* v, Vertex<T>* t, double& flow) {
     return false;
 }
 
-// Ford-Fulkerson algorithm (change has return type int)
+// Ford-Fulkerson algorithm
 template <class T>
 double Graph<T>::fordFulkerson(int source, int target) {
     Vertex<T>* s = findVertex(source);

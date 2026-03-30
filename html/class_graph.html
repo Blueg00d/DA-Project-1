@@ -100,6 +100,9 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 
+<p>Represents a generic graph data structure used to model assignment flows.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_graph_8h_source.html">Graph.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -107,29 +110,40 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5d726ad66f18119b421cda8208087358" id="r_a5d726ad66f18119b421cda8208087358"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d726ad66f18119b421cda8208087358">~Graph</a> ()=default</td></tr>
 <tr class="separator:a5d726ad66f18119b421cda8208087358"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b7b7465fbfd562e2a469f90a437ab75" id="r_a8b7b7465fbfd562e2a469f90a437ab75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b7b7465fbfd562e2a469f90a437ab75">findVertex</a> (const T &amp;in) const</td></tr>
+<tr class="memdesc:a8b7b7465fbfd562e2a469f90a437ab75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliary function to find a vertex with a given content.  <br /></td></tr>
 <tr class="separator:a8b7b7465fbfd562e2a469f90a437ab75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00be284ea2be3b3d0f0d2e493b70245b" id="r_a00be284ea2be3b3d0f0d2e493b70245b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00be284ea2be3b3d0f0d2e493b70245b">addVertex</a> (const T &amp;in)</td></tr>
+<tr class="memdesc:a00be284ea2be3b3d0f0d2e493b70245b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a vertex with a given content to the graph.  <br /></td></tr>
 <tr class="separator:a00be284ea2be3b3d0f0d2e493b70245b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9c903104ad69a7782979fa9caedf163" id="r_af9c903104ad69a7782979fa9caedf163"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af9c903104ad69a7782979fa9caedf163">removeVertex</a> (const T &amp;in)</td></tr>
+<tr class="memdesc:af9c903104ad69a7782979fa9caedf163"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a vertex with a given content from the graph.  <br /></td></tr>
 <tr class="separator:af9c903104ad69a7782979fa9caedf163"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d469a49b772174506e06661737b7bba" id="r_a5d469a49b772174506e06661737b7bba"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d469a49b772174506e06661737b7bba">fordFulkerson</a> (int source, int target)</td></tr>
+<tr class="memdesc:a5d469a49b772174506e06661737b7bba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that applies the Ford-Fulkerson algorithm to the graph.  <br /></td></tr>
 <tr class="separator:a5d469a49b772174506e06661737b7bba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac61af3aafe6277215f5a3b3cc7d58ce2" id="r_ac61af3aafe6277215f5a3b3cc7d58ce2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac61af3aafe6277215f5a3b3cc7d58ce2">addEdge</a> (const T &amp;sourc, const T &amp;dest, double w)</td></tr>
+<tr class="memdesc:ac61af3aafe6277215f5a3b3cc7d58ce2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an edge to the graph.  <br /></td></tr>
 <tr class="separator:ac61af3aafe6277215f5a3b3cc7d58ce2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8949d071d45bf93e171e275462e1007a" id="r_a8949d071d45bf93e171e275462e1007a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8949d071d45bf93e171e275462e1007a">removeEdge</a> (const T &amp;source, const T &amp;dest)</td></tr>
+<tr class="memdesc:a8949d071d45bf93e171e275462e1007a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an edge from the graph.  <br /></td></tr>
 <tr class="separator:a8949d071d45bf93e171e275462e1007a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb94a42983b1612ddbeade1a2a0132ea" id="r_aeb94a42983b1612ddbeade1a2a0132ea"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb94a42983b1612ddbeade1a2a0132ea">addBidirectionalEdge</a> (const T &amp;sourc, const T &amp;dest, double w)</td></tr>
+<tr class="memdesc:aeb94a42983b1612ddbeade1a2a0132ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a bidirectional edge to the graph.  <br /></td></tr>
 <tr class="separator:aeb94a42983b1612ddbeade1a2a0132ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0853eac15cdf0f06d63f4b8a7820ec71" id="r_a0853eac15cdf0f06d63f4b8a7820ec71"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0853eac15cdf0f06d63f4b8a7820ec71">getNumVertex</a> () const</td></tr>
+<tr class="memdesc:a0853eac15cdf0f06d63f4b8a7820ec71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the total number of vertices in the graph.  <br /></td></tr>
 <tr class="separator:a0853eac15cdf0f06d63f4b8a7820ec71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41624b03fcb6bd29e4df574a1ec58541" id="r_a41624b03fcb6bd29e4df574a1ec58541"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41624b03fcb6bd29e4df574a1ec58541">getVertexSet</a> () const</td></tr>
+<tr class="memdesc:a41624b03fcb6bd29e4df574a1ec58541"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the list of all vertices in the graph.  <br /></td></tr>
 <tr class="separator:a41624b03fcb6bd29e4df574a1ec58541"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a676cdfb976eccfa82b631d2094c1cdac" id="r_a676cdfb976eccfa82b631d2094c1cdac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a676cdfb976eccfa82b631d2094c1cdac">findVertexIdx</a> (const T &amp;in) const</td></tr>
+<tr class="memdesc:a676cdfb976eccfa82b631d2094c1cdac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the index of the vertex with a given content.  <br /></td></tr>
 <tr class="separator:a676cdfb976eccfa82b631d2094c1cdac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6055d4c858210fca4eb29551f7788d68" id="r_a6055d4c858210fca4eb29551f7788d68"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6055d4c858210fca4eb29551f7788d68">dfsFindAugmentingPath</a> (<a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *v, <a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *t, double &amp;flow)</td></tr>
+<tr class="memdesc:a6055d4c858210fca4eb29551f7788d68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliary DFS function for the Ford-Fulkerson algorithm to find an augmenting path.  <br /></td></tr>
 <tr class="separator:a6055d4c858210fca4eb29551f7788d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
@@ -139,7 +153,16 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a1bfa936c23ca5d64f18bbc539ea264b6" id="r_a1bfa936c23ca5d64f18bbc539ea264b6"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; T, <a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1bfa936c23ca5d64f18bbc539ea264b6">vertexMap</a></td></tr>
 <tr class="separator:a1bfa936c23ca5d64f18bbc539ea264b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class T&gt;<br />
+class Graph&lt; T &gt;</div><p>Represents a generic graph data structure used to model assignment flows. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The type of the information stored in the vertices. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5d726ad66f18119b421cda8208087358" name="a5d726ad66f18119b421cda8208087358"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5d726ad66f18119b421cda8208087358">&#9670;&#160;</a></span>~Graph()</h2>
 
@@ -194,6 +217,17 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Adds a bidirectional edge to the graph. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sourc</td><td>The content of the source vertex. </td></tr>
+    <tr><td class="paramname">dest</td><td>The content of the destination vertex. </td></tr>
+    <tr><td class="paramname">w</td><td>The edge weight (or capacity). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if successful, false otherwise. </dd></dl>
+
 </div>
 </div>
 <a id="ac61af3aafe6277215f5a3b3cc7d58ce2" name="ac61af3aafe6277215f5a3b3cc7d58ce2"></a>
@@ -222,6 +256,17 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Adds an edge to the graph. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sourc</td><td>The content of the source vertex. </td></tr>
+    <tr><td class="paramname">dest</td><td>The content of the destination vertex. </td></tr>
+    <tr><td class="paramname">w</td><td>The edge weight (or capacity). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if successful, and false if the source or destination vertex does not exist. </dd></dl>
+
 </div>
 </div>
 <a id="a00be284ea2be3b3d0f0d2e493b70245b" name="a00be284ea2be3b3d0f0d2e493b70245b"></a>
@@ -240,6 +285,15 @@ template&lt;class T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Adds a vertex with a given content to the graph. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in</td><td>The content to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if successful, and false if a vertex with that content already exists. </dd></dl>
 
 </div>
 </div>
@@ -277,6 +331,17 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Auxiliary DFS function for the Ford-Fulkerson algorithm to find an augmenting path. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>The current vertex. </td></tr>
+    <tr><td class="paramname">t</td><td>The target vertex. </td></tr>
+    <tr><td class="paramname">flow</td><td>Reference to the flow accumulator. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if an augmenting path is found, false otherwise. </dd></dl>
+
 </div>
 </div>
 <a id="a8b7b7465fbfd562e2a469f90a437ab75" name="a8b7b7465fbfd562e2a469f90a437ab75"></a>
@@ -295,6 +360,15 @@ template&lt;class T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Auxiliary function to find a vertex with a given content. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in</td><td>The content to search for. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the vertex if found, nullptr otherwise. </dd></dl>
 
 </div>
 </div>
@@ -323,6 +397,15 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Finds the index of the vertex with a given content. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in</td><td>The content to look up. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The index of the vertex, or -1 if not found. </dd></dl>
+
 </div>
 </div>
 <a id="a5d469a49b772174506e06661737b7bba" name="a5d469a49b772174506e06661737b7bba"></a>
@@ -346,6 +429,16 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Function that applies the Ford-Fulkerson algorithm to the graph. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td>The content identifying the source node. </td></tr>
+    <tr><td class="paramname">target</td><td>The content identifying the target (sink) node. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The maxflow accumulated. </dd></dl>
+
 </div>
 </div>
 <a id="a0853eac15cdf0f06d63f4b8a7820ec71" name="a0853eac15cdf0f06d63f4b8a7820ec71"></a>
@@ -365,6 +458,9 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Gets the total number of vertices in the graph. </p>
+<dl class="section return"><dt>Returns</dt><dd>The count of vertices. </dd></dl>
+
 </div>
 </div>
 <a id="a41624b03fcb6bd29e4df574a1ec58541" name="a41624b03fcb6bd29e4df574a1ec58541"></a>
@@ -383,6 +479,9 @@ template&lt;class T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Gets the list of all vertices in the graph. </p>
+<dl class="section return"><dt>Returns</dt><dd>A vector of pointers to the vertices. </dd></dl>
 
 </div>
 </div>
@@ -407,6 +506,16 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Removes an edge from the graph. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td>The content of the source vertex. </td></tr>
+    <tr><td class="paramname">dest</td><td>The content of the destination vertex. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if successful, false otherwise. </dd></dl>
+
 </div>
 </div>
 <a id="af9c903104ad69a7782979fa9caedf163" name="af9c903104ad69a7782979fa9caedf163"></a>
@@ -425,6 +534,15 @@ template&lt;class T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Removes a vertex with a given content from the graph. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in</td><td>The content of the vertex to remove. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if successful, false otherwise. </dd></dl>
 
 </div>
 </div>

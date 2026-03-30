@@ -1,8 +1,20 @@
 var searchData=
 [
-  ['edge_0',['Edge',['../class_edge.html',1,'Edge&lt; T &gt;'],['../class_edge.html#ab976213419283ed754f42f57b195a288',1,'Edge::Edge()']]],
-  ['email_1',['email',['../class_reviewer.html#a0c3ec9bf2183781b75b96053859e9e05',1,'Reviewer::email'],['../class_submission.html#a51e55a4428be7a259df3e7c285673011',1,'Submission::email']]],
-  ['executeallinputtasks_2',['executeAllInputTasks',['../class_tester.html#afa5c1065cd7db66f2c1704bf41543bc6',1,'Tester']]],
-  ['executealltasks_3',['executeAllTasks',['../class_brainer.html#a88bab0a53b9ca7173364135be3a300d3',1,'Brainer']]],
-  ['exit_4',['EXIT',['../main_8cpp.html#a5be5e47a3042bc91460d05e47f32120daa42b2fb0e720a080e79a92f4ca97d927',1,'main.cpp']]]
+  ['fg_5fblack_0',['FG_BLACK',['../_utils_8h.html#a9b32d0a26f9909c5b63ccd474f56420e',1,'Utils.h']]],
+  ['fg_5fblue_1',['FG_BLUE',['../_utils_8h.html#a4e411f6bd6ac8d6c2bd23d866c097e91',1,'Utils.h']]],
+  ['fg_5fcyan_2',['FG_CYAN',['../_utils_8h.html#afb40e6e076755308612ed6e18a34dbeb',1,'Utils.h']]],
+  ['fg_5fdefault_3',['FG_DEFAULT',['../_utils_8h.html#a1daa940dfc43b2a87eab5722f9f63e06',1,'Utils.h']]],
+  ['fg_5fgreen_4',['FG_GREEN',['../_utils_8h.html#a0af1e03653ace4d21aebf3b2e03a6535',1,'Utils.h']]],
+  ['fg_5fmagenta_5',['FG_MAGENTA',['../_utils_8h.html#aacf8f7d7b2a3f4ba0d0a131fcd1f1933',1,'Utils.h']]],
+  ['fg_5fred_6',['FG_RED',['../_utils_8h.html#a1dc5215d084174df6f00a9267cec2f17',1,'Utils.h']]],
+  ['fg_5fwhite_7',['FG_WHITE',['../_utils_8h.html#a7fbb956b9e769a1020c2eff1f6743857',1,'Utils.h']]],
+  ['fg_5fyellow_8',['FG_YELLOW',['../_utils_8h.html#a266aa539aa271da1b1f711d2413b1bfa',1,'Utils.h']]],
+  ['filemanager_9',['FileManager',['../class_file_manager.html',1,'']]],
+  ['filemanager_2ecpp_10',['FileManager.cpp',['../_file_manager_8cpp.html',1,'']]],
+  ['filemanager_2eh_11',['FileManager.h',['../_file_manager_8h.html',1,'']]],
+  ['filename_12',['filename',['../class_brainer.html#a12a8bd33b69a621b6b6e1f9565019985',1,'Brainer']]],
+  ['findvertex_13',['findVertex',['../class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75',1,'Graph']]],
+  ['findvertexidx_14',['findVertexIdx',['../class_graph.html#a676cdfb976eccfa82b631d2094c1cdac',1,'Graph']]],
+  ['flow_15',['flow',['../class_edge.html#a30808601fa37f509147eabf9cc5f9ed6',1,'Edge']]],
+  ['fordfulkerson_16',['fordFulkerson',['../class_graph.html#a5d469a49b772174506e06661737b7bba',1,'Graph']]]
 ];

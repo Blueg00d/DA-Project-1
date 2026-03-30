@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['dec_0',['DEC',['../_c_make_c_x_x_compiler_id_8cpp.html#ad1280362da42492bbc11aa78cbf776ad',1,'CMakeCXXCompilerId.cpp']]]
+  ['inf_0',['INF',['../_graph_8h.html#a12c2040f25d8e3a7b9e1c2024c618cb6',1,'Graph.h']]]
 ];
