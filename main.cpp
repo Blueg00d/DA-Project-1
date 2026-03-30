@@ -154,7 +154,7 @@ void handleChoice(MenuOption choice, Brainer& manager, Parser& parser) {
         }
 
         case MenuOption::SAVE_OUTPUT: /*SAVE OUTPUT*/{
-            manager.interpretFlowResults(); //?
+            manager.interpretFlowResults();
             string folder;
             cout << TXT_INVERT <<"Insert the name of your folder: ";
             cin >> folder;
@@ -164,11 +164,7 @@ void handleChoice(MenuOption choice, Brainer& manager, Parser& parser) {
         }
         case MenuOption::RUN_ALL_INPUTS:
         case MenuOption::TEST_ALL_INPUTS: /*RUN ALL INPUTS AND TEST ALL INPUTS*/{
-            string folder;
-            cout << TXT_INVERT <<"Insert the name of your folder: ";
-            cin >> folder;
-            cout << TXT_RESET;
-            Tester tester(folder);
+            Tester tester("samples");
             tester.executeAllInputTasks();
             if (choice == MenuOption::TEST_ALL_INPUTS) tester.compareGeneratedWithExpected();
             break;
@@ -245,7 +241,7 @@ int main(int argc, char* argv[]) {
             "                   Since 14/04/2026"
     << TXT_RESET << endl;
 
-    // Add a delay of 1.5 seconds (1500 milliseconds)
+    // Add a delay in milliseconds
     std::this_thread::sleep_for(std::chrono::milliseconds(2500));
 
     cout << CLR_ALL;
