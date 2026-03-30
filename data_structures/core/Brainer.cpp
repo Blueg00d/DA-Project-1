@@ -268,7 +268,7 @@ void Brainer::interpretFlowResults() {
  * Then, for each subset of reviewers, we would set each reviewers flow to 0,
  * similar to what this algorithm does.
  *
- * This algorithm would result in a temporal complexity of O(R^K * E * f_max),
+ * This algorithm would result in a temporal complexity of O(R^k * E * f_max),
  * characterized by running the Ford-Fulkerson algorithm through every subset of
  * discarded reviewers.
  */
@@ -285,37 +285,78 @@ void Brainer::runRiskAnalysis() {
     this->riskyReviewers.clear();
 
     Vertex<int>* vSource = graph.findVertex(SOURCE);
-    if (!vSource) return; // Safety check if graph hasn't been built yet
+    Vertex<int>* vSink = graph.findVertex(SINK);
+    if (!vSource || !vSink) return;
+
+    // Establishing the baseline max flow (O(E * f_max) - done only once!)
+    double baselineFlow = graph.fordFulkerson(SOURCE, SINK);
+
+    // Caching the baseline flow state to instantly restore it in O(E) time
+    vector<double> savedFlows;
+    for (auto v : graph.getVertexSet()) {
+        for (auto e : v->getAdj()) {
+            savedFlows.push_back(e->getFlow());
+        }
+    }
 
     for (int revNodeID : reviewerNodes) {
         Edge<int>* targetEdge = nullptr;
         double originalWeight = 0;
+        double flowToRev = 0;
 
-        // Temporarily nullify the target capacity for the isolated reviewer node
         for (auto e : vSource->getAdj()) {
             if (e->getDest()->getInfo() == revNodeID) {
                 targetEdge = e;
                 originalWeight = e->getWeight();
-                e->setWeight(0);
+                flowToRev = e->getFlow();
                 break;
             }
         }
 
-        // Run FordFulkerson on the existing initialized graph
-        double flowAfter = graph.fordFulkerson(SOURCE,SINK);
+        if (!targetEdge) continue;
+
+        // Temporarily isolating the reviewer
+        targetEdge->setWeight(0);
+        targetEdge->setFlow(0);
+
+        // Tracing and cancelling the flow that went exclusively through this Reviewer
+        Vertex<int>* revVertex = graph.findVertex(revNodeID);
+        for (auto e : revVertex->getAdj()) {
+            double f = e->getFlow();
+            if (f > 0) {
+                e->setFlow(0); // Cancel flow from Reviewer -> Submission
+
+                // Cancel the corresponding flow from Submission -> Sink
+                Vertex<int>* subVertex = e->getDest();
+                for (auto subEdge : subVertex->getAdj()) {
+                    if (subEdge->getDest()->getInfo() == SINK) {
+                        subEdge->setFlow(subEdge->getFlow() - f);
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Running the incremental flow (only routing the cancelled flow, if possible)
+        double currentFlow = baselineFlow - flowToRev;
+        double flowAfter = graph.resumeFordFulkerson(SOURCE, SINK, currentFlow);
+
         if (flowAfter < requiredFlow) {
             this->riskyReviewers.push_back(nodesToReviewers[revNodeID]->getId());
         }
 
-        // Restore the reviewer capacity edge
-        if (targetEdge) {
-            targetEdge->setWeight(originalWeight);
+        // Restoring the reviewer capacity and the exact baseline flows
+        targetEdge->setWeight(originalWeight);
+
+        int flowIdx = 0;
+        for (auto v : graph.getVertexSet()) {
+            for (auto e : v->getAdj()) {
+                e->setFlow(savedFlows[flowIdx++]);
+            }
         }
     }
-    sort(riskyReviewers.begin(), riskyReviewers.end());
 
-    // Leave the graph just like we found it by running FordFulkerson one last time with all capacities fully intact
-    this->graph.fordFulkerson(SOURCE, SINK);
+    sort(riskyReviewers.begin(), riskyReviewers.end());
 }
 
 /**

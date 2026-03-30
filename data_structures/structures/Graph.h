@@ -229,6 +229,15 @@ public:
     double fordFulkerson(int source, int target);
 
     /**
+     * @brief Resumes the Ford-Fulkerson algorithm without resetting existing flows.
+     * @param source The content identifying the source node.
+     * @param target The content identifying the target (sink) node.
+     * @param currentFlow The current total flow in the network.
+     * @return The new maxflow accumulated.
+     */
+    double resumeFordFulkerson(int source, int target, double currentFlow);
+
+    /**
      * @brief Adds an edge to the graph.
      * @param sourc The content of the source vertex.
      * @param dest The content of the destination vertex.
@@ -642,6 +651,49 @@ double Graph<T>::fordFulkerson(int source, int target) {
             v->setPath(nullptr);
         }
 
+    }
+    return maxFlow;
+}
+
+template <class T>
+double Graph<T>::resumeFordFulkerson(int source, int target, double currentFlow) {
+    Vertex<T>* s = findVertex(source);
+    Vertex<T>* t = findVertex(target);
+
+    if (s == nullptr || t == nullptr || s == t)
+        throw std::logic_error("Invalid source and/or target vertex");
+
+    double maxFlow = currentFlow;
+    double flow = INF;
+
+    for (Vertex<T>* v : vertexSet) {
+        v->setVisited(false);
+        v->setPath(nullptr);
+    }
+
+    while (dfsFindAugmentingPath(s, t, flow)) {
+        Vertex<T>* vertex = t;
+        maxFlow += flow;
+
+        for (Vertex<T>* v = t; v != s; ) {
+            Edge<T>* e = v->getPath();
+            double floww = e->getFlow();
+
+            if (e->getDest() == v) { // Forward edge
+                e->setFlow(floww + flow);
+                v = e->getOrig();
+            } else { // Backward edge
+                e->setFlow(floww - flow);
+                v = e->getDest();
+            }
+        }
+
+        flow = INF;
+
+        for (Vertex<T>* v : vertexSet) {
+            v->setVisited(false);
+            v->setPath(nullptr);
+        }
     }
     return maxFlow;
 }

@@ -121,6 +121,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5d469a49b772174506e06661737b7bba" id="r_a5d469a49b772174506e06661737b7bba"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d469a49b772174506e06661737b7bba">fordFulkerson</a> (int source, int target)</td></tr>
 <tr class="memdesc:a5d469a49b772174506e06661737b7bba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that applies the Ford-Fulkerson algorithm to the graph.  <br /></td></tr>
 <tr class="separator:a5d469a49b772174506e06661737b7bba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b24b9242a905784f2dfc3e687633f39" id="r_a6b24b9242a905784f2dfc3e687633f39"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b24b9242a905784f2dfc3e687633f39">resumeFordFulkerson</a> (int source, int target, double currentFlow)</td></tr>
+<tr class="memdesc:a6b24b9242a905784f2dfc3e687633f39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resumes the Ford-Fulkerson algorithm without resetting existing flows.  <br /></td></tr>
+<tr class="separator:a6b24b9242a905784f2dfc3e687633f39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac61af3aafe6277215f5a3b3cc7d58ce2" id="r_ac61af3aafe6277215f5a3b3cc7d58ce2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac61af3aafe6277215f5a3b3cc7d58ce2">addEdge</a> (const T &amp;sourc, const T &amp;dest, double w)</td></tr>
 <tr class="memdesc:ac61af3aafe6277215f5a3b3cc7d58ce2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an edge to the graph.  <br /></td></tr>
 <tr class="separator:ac61af3aafe6277215f5a3b3cc7d58ce2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -543,6 +546,45 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if successful, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a6b24b9242a905784f2dfc3e687633f39" name="a6b24b9242a905784f2dfc3e687633f39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b24b9242a905784f2dfc3e687633f39">&#9670;&#160;</a></span>resumeFordFulkerson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">double <a class="el" href="class_graph.html">Graph</a>&lt; T &gt;::resumeFordFulkerson </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>source</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>target</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>currentFlow</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resumes the Ford-Fulkerson algorithm without resetting existing flows. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td>The content identifying the source node. </td></tr>
+    <tr><td class="paramname">target</td><td>The content identifying the target (sink) node. </td></tr>
+    <tr><td class="paramname">currentFlow</td><td>The current total flow in the network. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new maxflow accumulated. </dd></dl>
 
 </div>
 </div>
