@@ -328,6 +328,11 @@ void Brainer::runRiskAnalysis() {
  * Writes matches, missing reviews and risky reviewers to output O(M + R + S)
  */
 void Brainer::saveOutput(const string& path) {
+    if (matchResults.empty() && missingReviewsResults.empty()) {
+        cout << CLR_ALL << FG_RED << TXT_INVERT << "No results to save! Please run the assignment and interpretation first." << endl;
+        cout << TXT_RESET;
+        return;
+    }
     string filename;
 
     //If path ends in .csv it's batch mode time

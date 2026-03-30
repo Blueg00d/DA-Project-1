@@ -42,7 +42,7 @@ bool FileManager::writeLines(const string& filename, const vector<string>& lines
     }
 
     outFile.close();
-    cout << "success! results saved in: " << filename << endl;
+    cout << FG_GREEN << TXT_INVERT << "Success! Results saved in: " << filename << TXT_RESET << endl;
     return true;
 }
 

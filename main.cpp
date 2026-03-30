@@ -155,12 +155,7 @@ void handleChoice(MenuOption choice, Brainer& manager, Parser& parser) {
         }
 
         case MenuOption::SAVE_OUTPUT: /*SAVE OUTPUT*/{
-            manager.interpretFlowResults();
-            string folder;
-            cout << TXT_INVERT <<"Insert the name of your folder: ";
-            cin >> folder;
-            cout << TXT_RESET;
-            manager.saveOutput(folder);
+            manager.saveOutput("samples/generated/");
             break;
         }
         case MenuOption::RUN_ALL_INPUTS:
