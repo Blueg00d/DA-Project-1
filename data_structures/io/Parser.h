@@ -41,7 +41,13 @@ public:
      * @brief Gets the execution parameters parsed from the file.
      * @return A reference to the parsed Parameters object.
      */
-    Parameters getParams() const {return this->params;}
+    Parameters& getParams() {return this->params;}
+
+    /**
+     * @brief Gets a read-only reference to the execution parameters.
+     * @return A const reference to the parsed Parameters object.
+     */
+    const Parameters& getParams() const {return this->params;}
 
     /**
      * @brief Utility function to test if the parsing functionality works as expected.

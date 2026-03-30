@@ -49,7 +49,7 @@ enum class MenuOption {
 void handleChangeParameters(Parser& parser, Brainer& manager) {
     string filename = manager.getFilename();
     if (filename.empty()) {
-        cout << FG_RED << TXT_INVERT << "no file found, PLEASE use option 2 first!" << endl;
+        cout << CLR_ALL << FG_RED << TXT_INVERT << "No file found, PLEASE use option 2 first!" << endl;
         cout << TXT_RESET << endl;
     } else {
         int parameter;
@@ -68,10 +68,10 @@ void handleChangeParameters(Parser& parser, Brainer& manager) {
         cout << FG_CYAN << TXT_INVERT << "Input: ";
         cin >> parameter;
 
-        if (cin.fail()) {
+        if (cin.fail() || parameter < 1 || parameter > 4) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << TXT_RESET << FG_RED << "Invalid input." << TXT_RESET << endl;
+            cout << CLR_ALL << TXT_RESET << FG_RED << TXT_INVERT <<  "Invalid input." << TXT_RESET << endl;
             return;
         }
 
@@ -79,23 +79,24 @@ void handleChangeParameters(Parser& parser, Brainer& manager) {
         cout << TXT_BOLD << TXT_INVERT << "What do you want to change it for? ";
         cin >> value;
 
-        if (cin.fail()) {
+        if (cin.fail() || value < 0 || (parameter == 3 && value > 3) || (parameter == 4 && value > 1)) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << TXT_RESET << FG_RED << "Invalid input." << TXT_RESET << endl;
+            cout << CLR_ALL << TXT_RESET << FG_RED << TXT_INVERT << "Invalid input." << TXT_RESET << endl;
             return;
         }
 
-        cout << TXT_RESET << CLR_ALL << endl;
+        Parameters& params = parser.getParams();
 
-        Parameters params = parser.getParams();
         switch (parameter) {
             case 1: params.setMinReviewsPerSubmission(value); break;
             case 2: params.setMaxReviewsPerReviewer(value); break;
             case 3: params.setGenerateAssigLevel(value); break;
             case 4: params.setRiskAnalLevel(value); break;
         }
-        manager.setParams(parser.getParams()); //warn manager that the params changed
+
+        cout << CLR_ALL << TXT_RESET << FG_GREEN << TXT_INVERT << "Changed Successfully." << TXT_RESET << endl;
+        manager.setParams(params);
     }
 }
 
@@ -125,7 +126,7 @@ void handleChoice(MenuOption choice, Brainer& manager, Parser& parser) {
             cin >> filename;
             cout << TXT_RESET;
 
-            parser.parseFile(filename);
+            parser.parseFile("samples/input/" + filename);
 
             manager = Brainer(parser.getReviewers(), parser.getSubmissions(), parser.getParams());
             manager.setFilename(filename);
