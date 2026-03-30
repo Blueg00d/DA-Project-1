@@ -8,8 +8,9 @@
  */
 
 #include <iostream>
-#include <thread>  // Required for std::this_thread::sleep_for
-#include <chrono>  // Required for std::chrono::milliseconds
+#include <thread>
+#include <chrono>
+#include <limits>
 
 #include "data_structures/utils/Debugger.h"
 #include "data_structures/utils/Utils.h"
@@ -66,9 +67,25 @@ void handleChangeParameters(Parser& parser, Brainer& manager) {
         cout << boxColor << "==================================================================" << TXT_RESET << endl;
         cout << FG_CYAN << TXT_INVERT << "Input: ";
         cin >> parameter;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << TXT_RESET << FG_RED << "Invalid input." << TXT_RESET << endl;
+            return;
+        }
+
         cout << TXT_RESET << CLR_ALL;
         cout << TXT_BOLD << TXT_INVERT << "What do you want to change it for? ";
         cin >> value;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << TXT_RESET << FG_RED << "Invalid input." << TXT_RESET << endl;
+            return;
+        }
+
         cout << TXT_RESET << CLR_ALL << endl;
 
         Parameters params = parser.getParams();
@@ -251,7 +268,16 @@ int main(int argc, char* argv[]) {
         cout << boxColor << "*" << optionsColor << "[0]" << TXT_RESET << letterColor << " Exit :p" << boxColor << "                                                     *" << TXT_RESET << endl;
         cout << boxColor << "==================================================================" << TXT_RESET << endl;
         cout << FG_YELLOW << TXT_INVERT << "Input: ";
+
         cin >> choiceInt;
+
+        if (cin.fail() || choiceInt < 0 || choiceInt > 12) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << CLR_ALL << FG_RED << TXT_INVERT << "Invalid input! Please input a valid menu integer." << TXT_RESET << endl;
+            continue;
+        }
+
         cout << TXT_RESET << CLR_ALL << endl;
 
         MenuOption choice = static_cast<MenuOption>(choiceInt);

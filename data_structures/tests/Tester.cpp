@@ -11,22 +11,37 @@
 
 using namespace std;
 namespace fs = std::filesystem;
+
 /**
  * @copybrief executeAllInputTasks
  * Parses and executes executeAllTasks() once for each number of files F
  */
 void Tester::executeAllInputTasks() {
-    // Iterating through all files in the "input" directory
-    for (const auto& entry: fs::directory_iterator(this->mainFolder + "/input/")) {
-        if (entry.is_regular_file()) {
-            Parser parser;
-            parser.parseFile(entry.path().string());
+    string inputPath = this->mainFolder + "/input/";
 
-            Brainer manager(parser.getReviewers(), parser.getSubmissions(), parser.getParams());
-            manager.executeAllTasks(this->mainFolder + "/generated/");
+    // FIX: Verify the directory exists before constructing a directory_iterator
+    if (!fs::exists(inputPath) || !fs::is_directory(inputPath)) {
+        std::cerr << FG_RED << TXT_BOLD << TXT_INVERT << "ERROR: Input directory does not exist or is not a valid directory: " << inputPath << TXT_RESET << '\n';
+        return;
+    }
+
+    try {
+        // Iterating through all files in the "input" directory
+        for (const auto& entry: fs::directory_iterator(inputPath)) {
+            if (entry.is_regular_file()) {
+                Parser parser;
+                parser.parseFile(entry.path().string());
+
+                Brainer manager(parser.getReviewers(), parser.getSubmissions(), parser.getParams());
+                manager.executeAllTasks(this->mainFolder + "/generated/");
+            }
         }
+    } catch (const fs::filesystem_error& e) {
+        // FIX: Gracefully catch any filesystem-level exceptions
+        std::cerr << FG_RED << TXT_BOLD << TXT_INVERT << "Filesystem error while accessing input tasks: " << e.what() << TXT_RESET << '\n';
     }
 }
+
 /**
  * @copybrief compareGeneratedWithExpected
  * Size in bytes of the files being compared in areFilesEqual is N
@@ -43,9 +58,17 @@ void Tester::compareGeneratedWithExpected() {
     int passedCount = 0;
     int totalCount = 0;
 
+    string outputPath = this->mainFolder + "/output/";
+
+    // FIX: Verify the directory exists before constructing a directory_iterator
+    if (!fs::exists(outputPath) || !fs::is_directory(outputPath)) {
+        std::cerr << FG_RED << TXT_BOLD << TXT_INVERT << "ERROR: Output directory does not exist or is not a valid directory: " << outputPath << TXT_RESET << '\n';
+        return;
+    }
+
     try {
         // Iterating through all files in the "output" directory (the expected files)
-        for (const auto& entry : fs::directory_iterator(this->mainFolder + "/output/")) {
+        for (const auto& entry : fs::directory_iterator(outputPath)) {
             if (entry.is_regular_file()) {
                 totalCount++;
 
@@ -74,7 +97,7 @@ void Tester::compareGeneratedWithExpected() {
             }
         }
     } catch (const fs::filesystem_error& e) {
-        std::cerr << FG_RED << TXT_BOLD << TXT_INVERT << "Filesystem error: " << e.what() << '\n';
+        std::cerr << FG_RED << TXT_BOLD << TXT_INVERT << "Filesystem error: " << e.what() << TXT_RESET << '\n';
         return;
     }
 

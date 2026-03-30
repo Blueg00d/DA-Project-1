@@ -2,7 +2,7 @@
 #include "utils/Utils.h"
 #include <fstream>
 #include <iostream>
-#include <filesystem> // Required for modern file system operations
+#include <filesystem>
 using namespace std;
 enum Section {
     NONE,
@@ -51,62 +51,75 @@ bool Parser::parseFile(const string &filename) {
         if (line[0] == '#') continue;
 
         auto fields = split(line);
+        if (fields.empty()) continue;
         for (auto& f : fields) f = trim(f);
 
-        // SUBMISSIONS
-        if (currentSection == SUBMISSIONS) {
-            Submission s;
+        try {
+            // SUBMISSIONS
+            if (currentSection == SUBMISSIONS) {
+                if (fields.size() < 5) continue; // Protect against segmentation faults
+                Submission s;
 
-            s.setId(stoi(fields[0]));
-            s.setTitle(fields[1]);
-            s.setAuthor(fields[2]);
-            s.setEmail(fields[3]);
-            s.setPrimary(stoi(fields[4]));
-            if (fields.size() > 5 && !fields[5].empty()) {
-                s.setSecondary(std::stoi(fields[5]));
+                s.setId(stoi(fields[0]));
+                s.setTitle(fields[1]);
+                s.setAuthor(fields[2]);
+                s.setEmail(fields[3]);
+                s.setPrimary(stoi(fields[4]));
+                if (fields.size() > 5 && !fields[5].empty()) {
+                    s.setSecondary(std::stoi(fields[5]));
+                }
+                else {
+                    s.setSecondary(NOT_DEFINED);
+                }
+                submissions.push_back(s);
             }
-            else {
-                s.setSecondary(NOT_DEFINED);
+
+            // REVIEWERS
+            else if (currentSection == REVIEWERS) {
+                if (fields.size() < 4) continue; // Protect against segmentation faults
+                Reviewer r;
+
+                r.setId(stoi(fields[0]));
+                r.setName(fields[1]);
+                r.setEmail(fields[2]);
+                r.setPrimary(stoi(fields[3]));
+                if (fields.size() > 4 && !fields[4].empty()) {
+                    r.setSecondary(std::stoi(fields[4]));
+                }
+                else {
+                    r.setSecondary(NOT_DEFINED);
+                }
+                reviewers.push_back(r);
             }
-            submissions.push_back(s);
-        }
 
-        // REVIEWERS
-        else if (currentSection == REVIEWERS) {
-            Reviewer r;
+            // PARAMETERS
+            else if (currentSection == PARAMETERS) {
+                if (fields.size() < 2) continue; // Protect against segmentation faults
+                if (fields[0] == "MinReviewsPerSubmission")
+                    params.setMinReviewsPerSubmission(stoi(fields[1]));
 
-            r.setId(stoi(fields[0]));
-            r.setName(fields[1]);
-            r.setEmail(fields[2]);
-            r.setPrimary(stoi(fields[3]));
-            if (fields.size() > 4 && !fields[4].empty()) {
-                r.setSecondary(std::stoi(fields[4]));
+                if (fields[0] == "MaxReviewsPerReviewer")
+                    params.setMaxReviewsPerReviewer(stoi(fields[1]));
             }
-            else {
-                r.setSecondary(NOT_DEFINED);
+
+            // CONTROL
+            else if (currentSection == CONTROL) {
+                if (fields.size() < 2) continue; // Protect against segmentation faults
+                if (fields[0] == "GenerateAssignments")
+                    params.setGenerateAssigLevel(stoi(fields[1]));
+
+                if (fields[0] == "RiskAnalysis")
+                    params.setRiskAnalLevel(stoi(fields[1]));
+
+                if (fields[0] == "OutputFileName")
+                    params.setOutputFilename(fields[1]);
             }
-            reviewers.push_back(r);
-        }
-
-        // PARAMETERS
-        else if (currentSection == PARAMETERS) {
-            if (fields[0] == "MinReviewsPerSubmission")
-                params.setMinReviewsPerSubmission(stoi(fields[1]));
-
-            if (fields[0] == "MaxReviewsPerReviewer")
-                params.setMaxReviewsPerReviewer(stoi(fields[1]));
-        }
-
-        // CONTROL
-        else if (currentSection == CONTROL) {
-            if (fields[0] == "GenerateAssignments")
-                params.setGenerateAssigLevel(stoi(fields[1]));
-
-            if (fields[0] == "RiskAnalysis")
-                params.setRiskAnalLevel(stoi(fields[1]));
-
-            if (fields[0] == "OutputFileName")
-                params.setOutputFilename(fields[1]);
+        } catch (const std::invalid_argument& e) {
+            // Skips faulty lines safely instead of aborting the process
+            cerr << FG_RED << "Corrupted line bypassed (invalid data type): " << e.what() << TXT_RESET << endl;
+        } catch (const std::out_of_range& e) {
+            // Skips faulty lines safely instead of aborting the process
+            cerr << FG_RED << "Corrupted line bypassed (out of range limit): " << e.what() << TXT_RESET << endl;
         }
     }
 

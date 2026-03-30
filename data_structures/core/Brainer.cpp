@@ -207,7 +207,11 @@ void Brainer::interpretFlowResults() {
     for (const pair<int, Submission*> p: this->nodesToSubmissions) {
         int reviewsExecuted = 0;
         Submission* s = p.second;
-        for (Edge<int>* e: this->graph.findVertex(p.first)->getIncoming()) {
+
+        auto vertex = this->graph.findVertex(p.first);
+        if (!vertex) continue; // Safety check if graph hasn't been built yet
+
+        for (Edge<int>* e: vertex->getIncoming()) {
             if (e->getFlow() > 0) {
                 reviewsExecuted++;
                 Reviewer* r = this->nodesToReviewers.at(e->getOrig()->getInfo());
@@ -281,6 +285,7 @@ void Brainer::runRiskAnalysis() {
     this->riskyReviewers.clear();
 
     Vertex<int>* vSource = graph.findVertex(SOURCE);
+    if (!vSource) return; // Safety check if graph hasn't been built yet
 
     for (int revNodeID : reviewerNodes) {
         Edge<int>* targetEdge = nullptr;
