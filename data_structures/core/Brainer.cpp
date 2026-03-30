@@ -164,13 +164,33 @@ void Brainer::buildGraph() {
  * O(R+S+2*(R*S)^2) ≈ O((R+S)*(R*S)^2)
  */
 void Brainer::runAssignment() {
-    // Only build the graph if it doesn't already exist to avoid redundant memory allocations.
-    if (this->graph.getNumVertex() == 0) {
-        buildGraph();
-    } else {
-        this->graph.resetFlows(); // Reuses node memory
+    this->graph = Graph<int>();
+    buildGraph();
+
+    Vertex<int>* vSource = graph.findVertex(SOURCE);
+    double requiredFlow = this->submissions.size() * this->params.getMinReviewsPerSubmission();
+
+    vector<Edge<int>*> reviewerEdges = vSource->getAdj();
+    sort(reviewerEdges.begin(), reviewerEdges.end(), [this](Edge<int>* a, Edge<int>* b) {
+        int idA = this->nodesToReviewers.at(a->getDest()->getInfo())->getId();
+        int idB = this->nodesToReviewers.at(b->getDest()->getInfo())->getId();
+        return idA < idB;
+    });
+
+    for (Edge<int>* e : reviewerEdges) {
+        e->setWeight(0);
     }
-    graph.edmondsKarp(SOURCE, SINK);
+
+    double currentFlow = 0;
+    for (Edge<int>* e : reviewerEdges) {
+        e->setWeight(this->params.getMaxReviewsPerReviewer());
+
+        currentFlow = graph.edmondsKarp(SOURCE, SINK);
+
+        if (currentFlow >= requiredFlow) {
+            break;
+        }
+    }
 }
 
 /**
