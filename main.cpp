@@ -25,20 +25,80 @@ using namespace std;
  */
 enum class MenuOption {
     EXIT = 0,                   /**< Exit the application */
-    PRINT_FILE = 1,             /**< Print the parsed dataset file contents */
-    READ_FILE = 2,              /**< Read and parse a new dataset file */
-    BUILD_GRAPH = 3,            /**< Build the flow graph from the parsed data */
-    DEBUG_GRAPH = 4,            /**< Print the graph nodes and edges for debugging */
-    RUN_EDMONDS_KARP = 5,       /**< Run the max-flow algorithm to assign reviews */
-    DEBUG_GRAPH_FLOW = 6,       /**< Print the graph flows for debugging */
-    INTERPRET_GRAPH_FLOW = 7,   /**< Interpret the resulting max flow into assignments */
-    DEBUG_INTERPRETATION = 8,   /**< Debug the interpreted assignment results */
-    SAVE_OUTPUT = 9,            /**< Save the generated assignments to a file */
-    RUN_ALL_INPUTS = 10,        /**< Run the pipeline for all files in a folder */
-    TEST_ALL_INPUTS = 11,       /**< Test generated outputs against expected outputs */
-    CHANGE_PARAMETERS = 12      /**< Interactively change the assignment parameters */
-};
+    PRINT_FILE = 2,             /**< Print the parsed dataset file contents */
+    READ_FILE = 1,              /**< Read and parse a new dataset file */
+    BUILD_GRAPH = 4,            /**< Build the flow graph from the parsed data */
+    RUN_FORD_FULKERSON = 5 ,       /**< Run the max-flow algorithm to assign reviews */
+    INTERPRET_GRAPH_FLOW = 6,   /**< Interpret the resulting max flow into assignments */
 
+    SAVE_OUTPUT = 7,            /**< Save the generated assignments to a file */
+    TEST_ALL_INPUTS = 8,       /**< Test generated outputs against expected outputs */
+    CHANGE_PARAMETERS = 3,  /**< Interactively change the assignment parameters */
+
+    DEBUG = 9,
+    DEBUG_INTERPRETATION = 12,   /**< Debug the interpreted assignment results */
+    DEBUG_GRAPH_FLOW = 11,       /**< Print the graph flows for debugging */
+    DEBUG_GRAPH = 10           /**< Print the graph nodes and edges for debugging */
+};
+void handleDebugger(Brainer& manager) {
+    string filename = manager.getFilename();
+
+    if (filename.empty()) {
+        cout << FG_RED << TXT_INVERT
+             << "no file found, PLEASE use option 1 first!" << endl;
+        cout << TXT_RESET << endl;
+        return;
+    }
+
+    int option;
+
+    string optionsColor = FG_YELLOW;
+    string letterColor = TXT_RESET;
+    string boxColor = FG_CYAN;
+
+    cout << TXT_BOLD << FG_CYAN << TXT_INVERT
+         << "Welcome to Debug Mode (things may break, that's the point)."
+         << TXT_RESET << endl;
+
+    cout << boxColor << "==================================================================" << TXT_RESET << endl;
+    cout << boxColor << "*" << optionsColor << "[1]" << TXT_RESET << letterColor << " Debug Graph Structure" << boxColor << "                                      *" << TXT_RESET << endl;
+    cout << boxColor << "*" << optionsColor << "[2]" << TXT_RESET << letterColor << " Debug Graph Flow" << boxColor << "                                           *" << TXT_RESET << endl;
+    cout << boxColor << "*" << optionsColor << "[3]" << TXT_RESET << letterColor << " Debug Interpretation Results" << boxColor << "                               *" << TXT_RESET << endl;
+    cout << boxColor << "==================================================================" << TXT_RESET << endl;
+
+    cout << FG_CYAN << TXT_INVERT << "Input: ";
+    cin >> option;
+
+    if (cin.fail()) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << TXT_RESET << FG_RED << "Invalid input." << TXT_RESET << endl;
+        return;
+    }
+
+    cout << TXT_RESET << CLR_ALL << endl;
+
+    switch (option) {
+        case 1:
+            manager.buildGraph();
+            Debugger::debugGraph(manager);
+            break;
+
+        case 2:
+            manager.runAssignment();
+            Debugger::debugGraphFlow(manager);
+            break;
+
+        case 3:
+            manager.interpretFlowResults();
+            Debugger::debugInterpretationResults(manager);
+            break;
+
+        default:
+            cout << FG_RED << "Invalid debug option." << TXT_RESET << endl;
+            break;
+    }
+}
 /**
  * @brief Handles the user interface for changing execution parameters.
  * * Allows the user to modify parameters like min/max reviews, assignment generation
@@ -134,23 +194,23 @@ void handleChoice(MenuOption choice, Brainer& manager, Parser& parser) {
         }
 
         case MenuOption::BUILD_GRAPH:
-        case MenuOption::DEBUG_GRAPH: /*BUILD GRAPH AND DEBUG GRAPH*/{
             manager.buildGraph();
-            if (choice == MenuOption::DEBUG_GRAPH) Debugger::debugGraph(manager);
             break;
-        }
-        case MenuOption::RUN_EDMONDS_KARP:
-        case MenuOption::DEBUG_GRAPH_FLOW: /*RUN EDMONDS KARP AND DEBUG GRAPH FLOW*/{
+        case MenuOption::DEBUG: /*BUILD GRAPH AND DEBUG GRAPH*/{
+            handleDebugger(manager);
+            break;
+          }
+        case MenuOption::RUN_FORD_FULKERSON:
+        //case MenuOption::DEBUG_GRAPH_FLOW: /*RUN EDMONDS KARP AND DEBUG GRAPH FLOW*/
+        {
             manager.runAssignment();
             manager.runRiskAnalysis();
-            if (choice == MenuOption::DEBUG_GRAPH_FLOW) Debugger::debugGraphFlow(manager);
             break;
         }
 
         case MenuOption::INTERPRET_GRAPH_FLOW:
-        case MenuOption::DEBUG_INTERPRETATION: /*INTERPRET GRAPH FLOW AND DEBUG INTERPRETATION*/{
+        {
             manager.interpretFlowResults();
-            if (choice == MenuOption::DEBUG_INTERPRETATION) Debugger::debugInterpretationResults(manager);
             break;
         }
 
@@ -163,7 +223,7 @@ void handleChoice(MenuOption choice, Brainer& manager, Parser& parser) {
             manager.saveOutput(folder);
             break;
         }
-        case MenuOption::RUN_ALL_INPUTS:
+        //9case MenuOption::RUN_ALL_INPUTS:
         case MenuOption::TEST_ALL_INPUTS: /*RUN ALL INPUTS AND TEST ALL INPUTS*/{
             Tester tester("samples");
             tester.executeAllInputTasks();
@@ -250,19 +310,16 @@ int main(int argc, char* argv[]) {
     while (true) {
         cout << TXT_BOLD << FG_YELLOW << TXT_INVERT << "☆ Choose which path to follow (this action will have consequences):" << TXT_RESET << endl;
         cout << boxColor << "==================================================================" << TXT_RESET << endl;
-        cout << boxColor << "*" << optionsColor << "[1]" << TXT_RESET << letterColor << " Print File" << boxColor << "                                                  *" << TXT_RESET << endl;
-        cout << boxColor << "*" << optionsColor << "[2]" << TXT_RESET << letterColor << " Read File" << boxColor << "                                                   *" << TXT_RESET << endl;
-        cout << boxColor << "*" << optionsColor << "[3]" << TXT_RESET << letterColor << " Build Graph" << boxColor << "                                                 *" << TXT_RESET << endl;
-        cout << boxColor << "*" << optionsColor << "[4]" << TXT_RESET << letterColor << " Debug Graph" << boxColor << "                                                 *" << TXT_RESET << endl;
-        cout << boxColor << "*" << optionsColor << "[5]" << TXT_RESET << letterColor << " Run Edmond Karp's Algorithm" << boxColor << "                                 *" << TXT_RESET << endl;
-        cout << boxColor << "*" << optionsColor << "[6]" << TXT_RESET << letterColor << " Debug Graph FLow" << boxColor << "                                            *" << TXT_RESET << endl;
-        cout << boxColor << "*" << optionsColor << "[7]" << TXT_RESET << letterColor << " Interpret Graph Flow" << boxColor << "                                        *" << TXT_RESET << endl;
-        cout << boxColor << "*" << optionsColor << "[8]" << TXT_RESET << letterColor << " Debug Interpretation" << boxColor << "                                        *" << TXT_RESET << endl;
-        cout << boxColor << "*" << optionsColor << "[9]" << TXT_RESET << letterColor << " Save output" << boxColor << "                                                 *" << TXT_RESET << endl;
-        cout << boxColor << "*" << optionsColor << "[10]" << TXT_RESET << letterColor << " Run all Inputs" << boxColor << "                                             *" << TXT_RESET << endl;
-        cout << boxColor << "*" << optionsColor << "[11]" << TXT_RESET << letterColor << " Test all Inputs" << boxColor << "                                            *" << TXT_RESET << endl;
-        cout << boxColor << "*" << optionsColor << "[12]" << TXT_RESET << letterColor << " Change Parameters" << boxColor << "                                          *" << TXT_RESET << endl;
-        cout << boxColor << "*" << optionsColor << "[0]" << TXT_RESET << letterColor << " Exit :p" << boxColor << "                                                     *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[1]" << TXT_RESET << letterColor << " Read File" << boxColor << "                                                    *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[2]" << TXT_RESET << letterColor << " Print File" << boxColor << "                                                   *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[3]" << TXT_RESET << letterColor << " Change Parameters" << boxColor << "                                            *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[4]" << TXT_RESET << letterColor << " Build Graph" << boxColor << "                                                  *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[5]" << TXT_RESET << letterColor << " Run Ford Fulkerson Algorithm" << boxColor << "                                 *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[6]" << TXT_RESET << letterColor << " Interpret Graph Flow" << boxColor << "                                         *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[7]" << TXT_RESET << letterColor << " Save output" << boxColor << "                                                  *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[8]" << TXT_RESET << letterColor << " Test all Inputs" << boxColor << "                                              *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[9]" << TXT_RESET << letterColor << " Debug" << boxColor << "                                                        *" << TXT_RESET << endl;
+        cout << boxColor << "*" << optionsColor << "[0]" << TXT_RESET << letterColor << " Exit :p" << boxColor << "                                                      *" << TXT_RESET << endl;
         cout << boxColor << "==================================================================" << TXT_RESET << endl;
         cout << FG_YELLOW << TXT_INVERT << "Input: ";
 
