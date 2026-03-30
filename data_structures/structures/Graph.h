@@ -99,6 +99,12 @@ public:
     double edmondsKarp(T source, T target);
 
     /*
+     * Resets the flows of all edges to 0, avoiding complete graph recreation.
+     * Added for Optimization purposes.
+     */
+    void resetFlows();
+
+    /*
      * Adds an edge to a graph (this), given the contents of the source and
      * destination vertices and the edge weight (w).
      * Returns true if successful, and false if the source or destination vertex does not exist.
@@ -132,6 +138,7 @@ protected:
 
 template <class T>
 Vertex<T>::Vertex(T in): info(in) {}
+
 /*
  * Auxiliary function to add an outgoing edge to a vertex (this),
  * with a given destination vertex (d) and edge weight (w).
@@ -312,6 +319,7 @@ int Graph<T>::findVertexIdx(const T &in) const {
             return i;
     return -1;
 }
+
 /*
  * Adds a vertex with a given content or info (in) to a graph (this).
  * Returns true if successful, and false if a vertex with that content already exists.
@@ -389,6 +397,15 @@ bool Graph<T>::addBidirectionalEdge(const T &sourc, const T &dest, double w) {
     e1->setReverse(e2);
     e2->setReverse(e1);
     return true;
+}
+
+template <class T>
+void Graph<T>::resetFlows() {
+    for (auto v : vertexSet) {
+        for (auto e : v->getAdj()) {
+            e->setFlow(0);
+        }
+    }
 }
 
 // Function to test the given vertex 'w' and visit it if conditions are met
@@ -483,21 +500,23 @@ double Graph<T>::edmondsKarp(T source, T target) {
         return 0;
     }
 
-    //initialize all flows at 0
-    for (auto v : vertexSet) {
-        for (auto e : v->getAdj()) {
-            e->setFlow(0);
-        }
-    }
+    // Removed the internal e->setFlow(0) reset logic.
+    // This allows the algorithm to run incrementally on top of a residual graph.
+    // Resetting flows is now handled explicitly using graph.resetFlows() when needed.
 
-    double maxFlow = 0;
     while (findAugmentingPath(s,t)) {
         double f = findMinResidualAlongPath(s, t);
         augmentFlowAlongPath(s, t, f);
-        maxFlow += f;
     }
 
-    return maxFlow;
+    // Since we are running incrementally, we return the absolute total flow
+    // rather than calculating just the newly appended flow amount.
+    double totalFlow = 0;
+    for (auto e : s->getAdj()) {
+        totalFlow += e->getFlow();
+    }
+
+    return totalFlow;
 }
 
 #endif /* DA_TP_CLASSES_GRAPH */

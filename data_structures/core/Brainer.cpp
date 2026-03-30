@@ -1,5 +1,6 @@
 #include "Brainer.h"
 #include <fstream>
+#include <algorithm>
 using namespace std;
 
 #include "utils/Utils.h"
@@ -26,6 +27,7 @@ string Brainer::getFilename() {
 void Brainer::setParams(Parameters params) {
     this->params = params;
 }
+
 /**
  * @copybrief createNodes
  *
@@ -130,7 +132,6 @@ void Brainer::buildGraph() {
     connectNodes();
 }
 
-
 /**
  * @copybrief runAssignment
  *
@@ -141,13 +142,14 @@ void Brainer::buildGraph() {
  * O(R+S+2*(R*S)^2) ≈ O((R+S)*(R*S)^2)
  */
 void Brainer::runAssignment() {
-    //Erase previous graph so we can start over
-    this->graph = Graph<int>();
-    //Build the new graph with new data
-    buildGraph();
-    graph.edmondsKarp(SOURCE,SINK); // Unused variable 'flow' removed
+    // Only build the graph if it doesn't already exist to avoid redundant memory allocations.
+    if (this->graph.getNumVertex() == 0) {
+        buildGraph();
+    } else {
+        this->graph.resetFlows(); // Reuses node memory
+    }
+    graph.edmondsKarp(SOURCE, SINK);
 }
-
 
 /**
  * @copybrief interpretFlowResults
@@ -189,7 +191,7 @@ void Brainer::interpretFlowResults() {
                             );
         }
     }
-    //If it was successful or not (Unused independent flow accumulator removed for reliability)
+    //If it was successful or not
     this->success = (this->matchResults.size() >= this->params.getMinReviewsPerSubmission() * this->nodesToSubmissions.size());
 
     //Sort results
@@ -200,8 +202,8 @@ void Brainer::interpretFlowResults() {
 
 /**
  * @copybrief runRiskAnalysis
- * Time Complexity: O(R * (R+S)*(R*S)^2)
- * Reruns edmondsKarp() once per reviewer R
+ * Time Complexity: Optimized with incremental max-flow.
+ * Reruns edmondsKarp() on residual graph once per reviewer R
  *
  * @details This runRiskAnalysis works only for level k == 1.
  * If we wanted to run this function for a level k > 1, we could use a brute-force approach.
@@ -214,7 +216,7 @@ void Brainer::interpretFlowResults() {
  * similar to what this algorithm does.
  *
  * This algorithm would result in a temporal complexity of O(2^R * (R+S)*(R*S)^2),
- * characterized by running the Edmonds Karp Algorithm through every subset of
+ * characterized by running the Edmound's Karp Algorithm through every subset of
  * discarded reviewers.
  */
 void Brainer::runRiskAnalysis() {
@@ -230,36 +232,69 @@ void Brainer::runRiskAnalysis() {
     this->riskyReviewers.clear();
 
     Vertex<int>* vSource = graph.findVertex(SOURCE);
+    Vertex<int>* vSink = graph.findVertex(SINK);
 
     for (int revNodeID : reviewerNodes) {
+        Vertex<int>* vRev = graph.findVertex(revNodeID);
         Edge<int>* targetEdge = nullptr;
         double originalWeight = 0;
+        double flowToRemove = 0;
 
-        // Temporarily nullify the target capacity for the isolated reviewer node
+        // Find edge from SOURCE to the specific Reviewer
         for (auto e : vSource->getAdj()) {
             if (e->getDest()->getInfo() == revNodeID) {
                 targetEdge = e;
                 originalWeight = e->getWeight();
-                e->setWeight(0);
+                flowToRemove = e->getFlow();
                 break;
             }
         }
 
-        // Run EdmundsKarp on the existing initialized graph
-        double flowAfter = graph.edmondsKarp(SOURCE,SINK);
+        if (targetEdge == nullptr) continue;
+
+        // Manually rollback flow tracing backward so that we maintain conservation
+        if (flowToRemove > 0) {
+            targetEdge->setFlow(0); // Removing flow from Source -> Reviewer
+
+            double remainingToRemove = flowToRemove;
+            for (auto eRevSub : vRev->getAdj()) {
+                if (remainingToRemove <= 0) break;
+                double f = eRevSub->getFlow();
+
+                if (f > 0) {
+                    eRevSub->setFlow(0);
+
+                    Vertex<int>* vSub = eRevSub->getDest();
+                    for (auto eSubSink : vSub->getAdj()) {
+                        if (eSubSink->getDest() == vSink && eSubSink->getFlow() > 0) {
+                            double reducible = std::min(eSubSink->getFlow(), f);
+                            eSubSink->setFlow(eSubSink->getFlow() - reducible);
+                            break;
+                        }
+                    }
+                    remainingToRemove -= f;
+                }
+            }
+        }
+
+        // Temporarily nullify the target capacity for the isolated reviewer node
+        targetEdge->setWeight(0);
+
+        // Run EdmundsKarp on the residual graph to incrementally reroute dropped flow
+        double flowAfter = graph.edmondsKarp(SOURCE, SINK);
+
         if (flowAfter < requiredFlow) {
             this->riskyReviewers.push_back(nodesToReviewers[revNodeID]->getId());
         }
 
         // Restore the reviewer capacity edge
-        if (targetEdge) {
-            targetEdge->setWeight(originalWeight);
-        }
-    }
-    sort(riskyReviewers.begin(), riskyReviewers.end());
+        targetEdge->setWeight(originalWeight);
 
-    // Leave the graph just like we found it by running EdmondsKarp one last time with all capacities fully intact
-    this->graph.edmondsKarp(SOURCE, SINK);
+        // Push flow back through this reviewer to instantly restore the original max flow optimal state
+        graph.edmondsKarp(SOURCE, SINK);
+    }
+
+    sort(riskyReviewers.begin(), riskyReviewers.end());
 }
 
 /**
@@ -334,11 +369,10 @@ void Brainer::saveOutput(const string& path) {
 
 /**
  * @copydoc executeAllTasks
- * Time complexity: O(R * (R+S)*(R*S)^2)
+ * Time complexity: O(R * (R+S)*(R*S)^2) (Note: Risk Analysis optimized incrementally)
  * buildGraph: O(R*S)
  * runAssignment: O((R+S)*(R*S)^2)
  * interpretFlowResults: O((R*S)+ElogE)
- * runRiskAnalysis: O(R * (R+S)*(R*S)^2)
  * saveOutput: O(MlogM + R)
  */
 void Brainer::executeAllTasks(const string &folder) {
