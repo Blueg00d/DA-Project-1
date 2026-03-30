@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include <cstring>
+#include <string>
 
 using namespace std;
 namespace fs = std::filesystem;
@@ -10,7 +11,7 @@ namespace fs = std::filesystem;
 vector<string> FileManager::readLines(const string& filename) {
     vector<string> lines;
     ifstream file(filename);
-    
+
     // Check if the file was successfully opened
     if (!file.is_open()) {
         cerr << TXT_BOLD << FG_RED << TXT_INVERT << "ERROR OPENING FILE!" << endl << TXT_RESET;
@@ -52,35 +53,36 @@ bool FileManager::areFilesEqual(const fs::path& filePath1, const fs::path& fileP
         return false;
     }
 
-    // Quick size check: if sizes differ, files are definitely not equal
-    if (fs::file_size(filePath1) != fs::file_size(filePath2)) {
-        return false;
-    }
-
-    std::ifstream file1(filePath1, std::ios::binary);
-    std::ifstream file2(filePath2, std::ios::binary);
+    // Refactored to compare textually rather than in strict binary.
+    // This safely ignores Windows (CRLF) vs Unix (LF) newline differences
+    // which commonly cause false-negative file size / binary mismatches.
+    std::ifstream file1(filePath1);
+    std::ifstream file2(filePath2);
 
     if (!file1.is_open() || !file2.is_open()) {
         return false;
     }
 
-    // Read and compare the files in chunks to optimize memory usage
-    const size_t bufferSize = 8192;
-    std::vector<char> buffer1(bufferSize);
-    std::vector<char> buffer2(bufferSize);
+    std::string line1, line2;
+    while (true) {
+        bool has1 = (bool)std::getline(file1, line1);
+        bool has2 = (bool)std::getline(file2, line2);
 
-    do {
-        file1.read(buffer1.data(), bufferSize);
-        file2.read(buffer2.data(), bufferSize);
+        // Normalize line endings by stripping trailing carriage returns (\r)
+        if (!line1.empty() && line1.back() == '\r') line1.pop_back();
+        if (!line2.empty() && line2.back() == '\r') line2.pop_back();
 
-        std::streamsize bytesRead1 = file1.gcount();
-        std::streamsize bytesRead2 = file2.gcount();
+        // If one file ends before the other
+        if (has1 != has2) return false;
 
-        if (bytesRead1 != bytesRead2 ||
-            std::memcmp(buffer1.data(), buffer2.data(), bytesRead1) != 0) {
+        // If both reached EOF simultaneously
+        if (!has1) break;
+
+        // Compare the normalized strings
+        if (line1 != line2) {
             return false;
         }
-    } while (file1.good() && file2.good());
+    }
 
     return true;
 }
